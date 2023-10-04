@@ -69,3 +69,5 @@ group :development do
 end
 
 gem 'devise', '~> 4.9'
+
+gem "nested_form", "~> 0.3.2"
