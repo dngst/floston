@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, tenant_attributes: [:unit_number, :unit_type, :moved_in, :next_payment, :amount_due]])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:fname, :lname, :email, :password, :password_confirmation, tenant_attributes: [:unit_number, :unit_type, :moved_in, :next_payment, :amount_due]])
   end
 
   def after_sign_in_path_for(resource)
