@@ -1,0 +1,20 @@
+<% if @user %>
+  <h1><%= @user.email %></h1>
+<% end %>
+
+<% if @user.tenant %>
+  <ul>
+    <% @user.tenant.attributes.each do |attribute, value| %>
+      <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
+        <span>
+          <h2>
+            <%= @user.tenant.class.human_attribute_name(attribute) %>
+          </h2>
+          <p><%= value %></p>
+        </span>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No associated tenant found for this user.</p>
+<% end %>
