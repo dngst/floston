@@ -24,7 +24,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   it { is_expected.to validate_presence_of :fname }
   it { is_expected.to validate_presence_of :lname }
   it { is_expected.to validate_presence_of :phone_number }

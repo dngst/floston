@@ -4,10 +4,22 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:fname, :lname, :phone_number, :email, :password, :password_confirmation, tenant_attributes: [:unit_number, :unit_type, :moved_in, :next_payment, :amount_due]])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: [:fname,
+                                             :lname,
+                                             :phone_number,
+                                             :email,
+                                             :password,
+                                             :password_confirmation,
+                                             { tenant_attributes:
+                                               %i[unit_number
+                                                  unit_type
+                                                  moved_in
+                                                  next_payment
+                                                  amount_due] }])
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     user_path(current_user)
   end
 end
