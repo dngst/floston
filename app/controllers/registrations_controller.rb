@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_user!, :check_admin, only: %i[new create]
+  include RequireAdmin
+
+  before_action :authenticate_user!, :require_admin, only: %i[new create]
   skip_before_action :require_no_authentication
 
   def create
@@ -18,14 +20,5 @@ class RegistrationsController < Devise::RegistrationsController
       flash[:alert] = 'You do not have permission to create an account.'
       redirect_to root_path
     end
-  end
-
-  private
-
-  def check_admin
-    return if current_user&.admin?
-
-    flash[:alert] = 'You do not have permission to access this page.'
-    redirect_to root_path
   end
 end

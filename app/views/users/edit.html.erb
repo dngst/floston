@@ -1,0 +1,40 @@
+<h2>Edit User</h2>
+
+<%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @user %>
+
+  <div class="field">
+    <%= f.label :fname, "First name" %><br />
+    <%= f.text_field :fname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lname, "Last name" %><br />
+    <%= f.text_field :lname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <%= fields_for @user.tenant do |tenant_fields| %>
+    <%= render "devise/registrations/tenant_fields", f: tenant_fields %>
+  <% end %></br>
+
+  <p class="alert">Caution</p></br>
+
+  <div class="field alert">
+    <%= f.label :admin %>
+    <%= f.check_box :admin %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Edit" %>
+  </div>
+<% end %>

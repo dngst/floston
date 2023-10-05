@@ -17,6 +17,19 @@ class ApplicationController < ActionController::Base
                                                   moved_in
                                                   next_payment
                                                   amount_due] }])
+
+    devise_parameter_sanitizer.permit(:account_update,
+                                      keys: [:fname,
+                                             :lname,
+                                             :phone_number,
+                                             :email,
+                                             :admin,
+                                             { tenant_attributes:
+                                               %i[amount_due
+                                                  moved_in
+                                                  next_payment
+                                                  unit_number
+                                                  unit_type] }])
   end
 
   def after_sign_in_path_for(_resource)

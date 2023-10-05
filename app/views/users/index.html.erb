@@ -1,0 +1,16 @@
+<% if @users %>
+  <% @users.each do |user| %>
+  <div>
+    <div>
+      <p><%= user.fname %> <%= user.lname %></p>
+      <%= link_to user_path(user) do %>
+        <p>view profile</p>
+      <% end %>
+      <%= link_to "Edit", edit_user_path(user) %>
+      <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Delete user?" } %>
+    </div>
+  </div></br>
+  <% end %>
+<% else %>
+  <p>There are no registered users yet.</p>
+<% end %>
