@@ -24,5 +24,9 @@
 require 'rails_helper'
 
 RSpec.describe Tenant, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to validate_presence_of :unit_number }
+  it { is_expected.to validate_presence_of :unit_type }
+  it { is_expected.to validate_presence_of :moved_in }
+  it { is_expected.to validate_presence_of :next_payment }
+  it { is_expected.to validate_presence_of :amount_due }
 end

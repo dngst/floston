@@ -25,5 +25,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to validate_presence_of :fname }
+  it { is_expected.to validate_presence_of :lname }
+  it { is_expected.to validate_presence_of :phone_number }
 end

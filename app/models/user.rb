@@ -32,6 +32,8 @@ class User < ApplicationRecord
   has_one :tenant, dependent: :destroy
   accepts_nested_attributes_for :tenant
 
+  validates :fname, :lname, :phone_number, presence: true
+
   def with_tenant
     build_tenant if tenant.nil?
     self
