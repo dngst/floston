@@ -14,7 +14,8 @@
 #
 # Indexes
 #
-#  index_tenants_on_user_id  (user_id)
+#  index_tenants_on_unit_number  (unit_number) UNIQUE
+#  index_tenants_on_user_id      (user_id)
 #
 # Foreign Keys
 #
