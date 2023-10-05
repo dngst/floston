@@ -8,6 +8,7 @@
 #  encrypted_password     :string           default(""), not null
 #  fname                  :string
 #  lname                  :string
+#  phone_number           :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
