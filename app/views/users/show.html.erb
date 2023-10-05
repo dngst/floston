@@ -12,7 +12,15 @@
           <h2>
             <%= @user.tenant.class.human_attribute_name(attribute) %>
           </h2>
-          <p><%= value %></p>
+          <p>
+            <% if value.is_a?(Date) %>
+              <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
+            <% elsif attribute == 'amount_due' %>
+              <%= number_to_currency(value, unit: 'KES', precision: 0) %>
+            <% else %>
+              <%= value %>
+            <% end %>
+          </p>
         </span>
       <% end %>
     <% end %>
