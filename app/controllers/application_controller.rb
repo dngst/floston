@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
                                                   unit_type] }])
   end
 
-  def after_sign_in_path_for(_resource)
-    user_path(current_user)
+  def after_sign_in_path_for(resource)
+    if resource.admin?
+      users_path
+    else
+      user_path(resource)
+    end
   end
 end
