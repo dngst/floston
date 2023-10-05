@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   before_action :require_admin, only: %i[index edit update destroy]
   before_action :set_user, only: %i[show edit update]
+  before_action :authorize_profile_access, only: [:show]
 
   def index
     @users = User.where(admin: false).reverse
@@ -28,6 +29,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def authorize_profile_access
+    @user = User.friendly.find(params[:id])
+
+    return if current_user == @user
+
+    flash[:alert] = 'You do not have permission to access this page.'
+    redirect_to root_path
+  end
 
   def set_user
     @user = User.friendly.find(params[:id])

@@ -5,6 +5,7 @@
     <% else %>
       <%= current_user.email %>
     <% end %>
+    <%= link_to "Profile", user_path(current_user) %>
   </div>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
 <% else %>
