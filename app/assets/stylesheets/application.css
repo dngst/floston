@@ -25,3 +25,7 @@ html {
 .notice {
   color: green;
 }
+
+.tenant-name {
+  text-transform: capitalize;
+}

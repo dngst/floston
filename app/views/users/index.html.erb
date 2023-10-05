@@ -6,12 +6,12 @@
   <% @users.each do |user| %>
   <div>
     <div>
-      <p><%= user.fname %> <%= user.lname %></p>
+      <h3 class="tenant-name"><%= user.fname %> <%= user.lname %></h3>
       <%= link_to user_path(user) do %>
-        <p>view profile</p>
+        <p>View profile</p>
       <% end %>
-      <%= link_to "Edit", edit_user_path(user) %>
-      <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Delete user?" } %>
+      <%= link_to "Edit profile", edit_user_path(user) %>
+      <%= link_to "Delete profile", user_path(user), method: :delete, data: { confirm: "Delete user?" } %>
     </div>
   </div></br>
   <% end %>

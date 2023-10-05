@@ -4,14 +4,19 @@
 #
 #  id                     :bigint           not null, primary key
 #  admin                  :boolean          default(FALSE)
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  fname                  :string
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string
 #  lname                  :string
 #  phone_number           :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  sign_in_count          :integer          default(0), not null
 #  slug                   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -28,7 +33,7 @@ class User < ApplicationRecord
   extend FriendlyId
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable
   has_one :tenant, dependent: :destroy
   accepts_nested_attributes_for :tenant
 

@@ -1,8 +1,12 @@
 <% if @user %>
-  <h1><%= @user.fname %> <%= @user.lname %></h1>
+  <h1 class="tenant-name"><%= @user.fname %> <%= @user.lname %></h1>
   <p>phone: <%= @user.phone_number %></p>
   <p>email: <%= @user.email %></p>
 <% end %></br>
+
+<% if user_signed_in? %>
+  <%= link_to "Change your password", edit_user_registration_path %>
+<% end %>
 
 <% if @user.tenant %>
   <ul>
