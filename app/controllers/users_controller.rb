@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def authorize_profile_access
     @user = User.friendly.find(params[:id])
 
-    return if current_user == @user
+    return if current_user == @user || current_user.admin?
 
     flash[:alert] = 'You do not have permission to access this page.'
     redirect_to root_path
