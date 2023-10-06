@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
                                              :email,
                                              :password,
                                              :password_confirmation,
+                                             :admin_id,
                                              { tenant_attributes:
                                                %i[unit_number
                                                   unit_type

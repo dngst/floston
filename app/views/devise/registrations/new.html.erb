@@ -36,6 +36,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.number_field :admin_id, value: current_user.id, hidden: true %>
+  </div>
+
   <%= f.fields_for :tenant do |builder| %>
     <%= render "tenant_fields", :f => builder %>
   <% end %>

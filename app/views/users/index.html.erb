@@ -4,16 +4,18 @@
 
 <% if @users %>
   <% @users.each do |user| %>
-  <div>
-    <div>
-      <h3 class="tenant-name"><%= user.fname %> <%= user.lname %></h3>
-      <%= link_to user_path(user) do %>
-        <p>View profile</p>
-      <% end %>
-      <%= link_to "Edit profile", edit_user_path(user) %>
-      <%= link_to "Delete profile", user_path(user), method: :delete, data: { confirm: "Delete user?" } %>
-    </div>
-  </div></br>
+    <% if current_user.id == user.admin_id %>
+      <div>
+        <div>
+          <h3 class="tenant-name"><%= user.fname %> <%= user.lname %></h3>
+          <%= link_to user_path(user) do %>
+            <p>View profile</p>
+          <% end %>
+          <%= link_to "Edit profile", edit_user_path(user) %>
+          <%= link_to "Delete profile", user_path(user), method: :delete, data: { confirm: "Delete user?" } %>
+        </div>
+      </div></br>
+    <% end %>
   <% end %>
 <% else %>
   <p>There are no registered users yet.</p>

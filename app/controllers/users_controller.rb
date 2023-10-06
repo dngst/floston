@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include RequireAdmin
 
   before_action :require_admin, only: %i[index edit update destroy]
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update destroy]
   before_action :authorize_profile_access, only: [:show]
 
   def index
