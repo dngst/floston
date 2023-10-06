@@ -4,7 +4,7 @@
   <p>email: <%= @user.email %></p>
 <% end %></br>
 
-<% if user_signed_in? && !current_user.admin? %>
+<% if user_signed_in? && current_user == @user %>
   <%= link_to "Change your password", edit_user_registration_path %>
 <% end %>
 
