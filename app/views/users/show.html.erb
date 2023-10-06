@@ -5,10 +5,10 @@
 <% end %></br>
 
 <% if user_signed_in? && current_user == @user %>
-  <%= link_to "Change your password", edit_user_registration_path %>
+  <%= link_to "Edit profile", edit_user_registration_path %>
 <% end %>
 
-<% if @user.tenant && @user.admin_id == current_user.id %>
+<% if @user.tenant %>
   <ul>
     <% @user.tenant.attributes.each do |attribute, value| %>
       <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>

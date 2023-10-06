@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
                                       keys: [:fname,
                                              :lname,
                                              :phone_number,
-                                             :email,
                                              { tenant_attributes:
                                                %i[amount_due
                                                   moved_in

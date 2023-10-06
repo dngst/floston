@@ -7,15 +7,6 @@ elrich = User.create!(
   admin: true
 )
 
-Tenant.create!(
-  user_id: elrich.id,
-  unit_number: "0",
-  unit_type: "0",
-  moved_in: "15-11-2012",
-  next_payment: "15-11-2012",
-  amount_due: "0",
-)
-
 richard = User.create!(
   fname: "Richard",
   lname: "Hendrix",
@@ -23,15 +14,6 @@ richard = User.create!(
   email: "richy@piedpipper.com",
   password: "password",
   admin: true
-)
-
-Tenant.create!(
-  user_id: richard.id,
-  unit_number: "1",
-  unit_type: "1",
-  moved_in: "15-11-2012",
-  next_payment: "15-11-2012",
-  amount_due: "0",
 )
 
 duckman = User.create!(

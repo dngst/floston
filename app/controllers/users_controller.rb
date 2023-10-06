@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   include RequireAdmin
 
   before_action :require_admin, only: %i[index edit update destroy]
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show edit update destroy authorize_profile_access]
   before_action :authorize_profile_access, only: [:show]
+  before_action :authenticate_user!
 
   def index
     @users = User.where(admin: false).reverse
@@ -31,9 +32,7 @@ class UsersController < ApplicationController
   private
 
   def authorize_profile_access
-    @user = User.friendly.find(params[:id])
-
-    return if current_user == @user || current_user.id == @user.admin_id
+    return if current_user&.id == @user.admin_id || current_user == @user
 
     flash[:alert] = 'You do not have permission to access this page.'
     redirect_to root_path
@@ -44,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:fname, :lname, :phone_number, :email)
+    params.require(:user).permit(:fname, :lname, :phone_number)
   end
 
   def tenant_params

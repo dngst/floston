@@ -22,5 +22,5 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Tenant < ApplicationRecord
-  validates :unit_number, :unit_type, :moved_in, :next_payment, :amount_due, presence: true
+  validates :unit_number, :unit_type, presence: true
 end
