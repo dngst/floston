@@ -8,7 +8,7 @@
   <%= link_to "Change your password", edit_user_registration_path %>
 <% end %>
 
-<% if @user.tenant %>
+<% if @user.tenant && @user.admin_id == current_user.id %>
   <ul>
     <% @user.tenant.attributes.each do |attribute, value| %>
       <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
@@ -29,6 +29,4 @@
       <% end %>
     <% end %>
   </ul>
-<% else %>
-  <p>No associated tenant found for this user.</p>
 <% end %>
