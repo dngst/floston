@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
                                              :lname,
                                              :phone_number,
                                              :email,
-                                             :admin,
                                              { tenant_attributes:
                                                %i[amount_due
                                                   moved_in

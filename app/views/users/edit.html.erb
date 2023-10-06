@@ -25,14 +25,7 @@
 
   <%= fields_for @user.tenant do |tenant_fields| %>
     <%= render "devise/registrations/tenant_fields", f: tenant_fields %>
-  <% end %></br>
-
-  <p class="alert">Caution</p></br>
-
-  <div class="field alert">
-    <%= f.label :admin %>
-    <%= f.check_box :admin %>
-  </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Edit" %>
