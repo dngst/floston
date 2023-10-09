@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Articles</h1>
+
+<% if current_user&.admin? %>
+  <%= link_to "New article", new_article_path %>
+<% end%>
+
+<div id="articles">
+  <% @articles.each do |article| %>
+    <% if current_user.id == article.admin_id %>
+      <%= render "article_index", article: article %>
+    <% end %>
+    <% if current_user.admin_id == article.admin_id && article.published %>
+      <%= render "article_index", article: article %>
+    <% end %>
+  <% end %>
+</div>
+

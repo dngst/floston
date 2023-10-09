@@ -3,16 +3,16 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
-#  admin                  :boolean          default(FALSE)
+#  admin                  :boolean          default(FALSE), not null
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  fname                  :string
+#  fname                  :string           not null
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
-#  lname                  :string
-#  phone_number           :string
+#  lname                  :string           not null
+#  phone_number           :string           not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string

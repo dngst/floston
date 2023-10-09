@@ -69,3 +69,31 @@ Tenant.create!(
   next_payment: "15-12-2022",
   amount_due: "10000"
 )
+
+Article.create!(
+  title: "Recent change of management",
+  body: "Following a recent incident, some changes have been made...",
+  admin_id: elrich.id,
+  published: true
+)
+
+Article.create!(
+  title: "Key people at Argon Properties",
+  body: "Some of the names and contacts of the people involved in this propect...",
+  admin_id: elrich.id,
+  published: true
+)
+
+Article.create!(
+  title: "Faulty tap at the parking lot near block D",
+  body: "There's a licking tap near block D at the parking lot. Please refrain
+   from usung it while we organise for repairs to be made.",
+  admin_id: elrich.id
+)
+
+Article.create!(
+  title: "Richard can also write some articles like this one",
+  body: "Jobs or... Jobs",
+  admin_id: richard.id,
+  published: true
+)

@@ -6,8 +6,8 @@
 #  amount_due   :integer
 #  moved_in     :date
 #  next_payment :date
-#  unit_number  :string
-#  unit_type    :string
+#  unit_number  :string           not null
+#  unit_type    :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :bigint           not null

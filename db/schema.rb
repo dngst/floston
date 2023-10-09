@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_06_095644) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_09_132904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.integer "admin_id", null: false
+    t.boolean "published", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -26,8 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_095644) do
   end
 
   create_table "tenants", force: :cascade do |t|
-    t.string "unit_number"
-    t.string "unit_type"
+    t.string "unit_number", null: false
+    t.string "unit_type", null: false
     t.date "moved_in"
     t.date "next_payment"
     t.integer "amount_due"
@@ -47,10 +58,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_095644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.string "fname"
-    t.string "lname"
-    t.boolean "admin", default: false
-    t.string "phone_number"
+    t.string "fname", null: false
+    t.string "lname", null: false
+    t.boolean "admin", default: false, null: false
+    t.string "phone_number", null: false
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"

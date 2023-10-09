@@ -1,0 +1,16 @@
+<div id="<%= dom_id article %>">
+
+  <h1><%= article.title %></h1>
+
+  <p>
+    <%= article.body %>
+  </p>
+
+  <% if current_user&.admin? %>
+    <p>
+      <strong>Published:</strong>
+      <%= article.published %>
+    </p>
+  <% end %>
+
+</div>
