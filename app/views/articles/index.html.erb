@@ -8,10 +8,10 @@
 
 <div id="articles">
   <% @articles.each do |article| %>
-    <% if current_user.id == article.admin_id %>
+    <% if current_user&.id == article.admin_id %>
       <%= render "article_index", article: article %>
     <% end %>
-    <% if current_user.admin_id == article.admin_id && article.published %>
+    <% if current_user&.admin_id == article.admin_id && article.published %>
       <%= render "article_index", article: article %>
     <% end %>
   <% end %>

@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Requests</h1>
+
+<% if !current_user&.admin %>
+  <%= link_to "New request", new_user_request_path %>
+<% end %>
+
+  <div id="requests">
+    <% @requests.each do |request| %>
+      <% if current_user&.id == request.user_id || request.user.admin_id == current_user.id %>
+        <%= render "request_index", request: request %>
+      <% end %>
+    <% end %>
+  </div>
