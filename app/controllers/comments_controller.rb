@@ -20,6 +20,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        if @comment.user_id == @request.user.admin_id
+          CommentNotificationMailer.comment_notification(@request.user, @request, @comment).deliver_now
+        end
         format.html { redirect_to user_request_path(@user, @request), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: user_request_comment_path(@user, @request, @comment) }
       else
