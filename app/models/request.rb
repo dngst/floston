@@ -23,6 +23,9 @@ class Request < ApplicationRecord
   extend FriendlyId
 
   belongs_to :user
+  has_many :comments, dependent: :destroy
+
+  validates :title, :description, presence: true
 
   friendly_id :generate_slug, use: :slugged
 

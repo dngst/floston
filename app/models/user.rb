@@ -36,7 +36,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
   has_one :tenant, dependent: :destroy
-  has_many :requests
+  has_many :requests, dependent: :destroy
+  has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :tenant
 
   validates :fname, :lname, :phone_number, presence: true

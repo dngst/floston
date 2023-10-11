@@ -13,7 +13,12 @@ class RequestsController < ApplicationController
   end
 
   # GET /requests/1 or /requests/1.json
-  def show; end
+  def show
+    @request = Request.friendly.find(params[:id])
+    @comments = @request.comments
+    @user =  @request.user
+    @comment = @request.comments.build(user: @user)
+  end
 
   # GET /requests/new
   def new
