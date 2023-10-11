@@ -25,4 +25,12 @@ class Article < ApplicationRecord
   def generate_slug
     SecureRandom.hex(4)
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[body title]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    []
+  end
 end

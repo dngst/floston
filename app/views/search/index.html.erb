@@ -1,0 +1,50 @@
+<% if @requests.any? %>
+  <% created_requests = @requests.select { |request| request.user.admin_id == current_user.id || request.user_id == current_user.id } %>
+  <% count_text = pluralize(created_requests.count, "Request") %>
+  <h2><%= count_text %></h2>
+  <% if created_requests.any? %>
+    <% created_requests.each do |request| %>
+      <%= link_to user_request_path(request.user, request) do %>
+        <p><%= request.title %></p>
+      <% end %>
+      <%= request.description %>
+      <% request.comments.each do |comment| %>
+        <%= comment.body %>
+      <% end %>
+    <% end %>
+  <% end %>
+<%else%>
+  <p>No request found.</p>
+<% end %>
+
+<% if @articles.any? %>
+  <% created_articles = @articles.select { |article| article.admin_id == current_user.id || article.admin_id == current_user.admin_id } %>
+  <% count_text = pluralize(created_articles.count, "Article") %>
+  <h2><%= count_text %></h2>
+  <% if created_articles.any? %>
+    <% created_articles.each do |article| %>
+    <%= link_to article_path(article) do %>
+      <p><%= article.title %></p>
+    <% end %>
+      <%= article.body %>
+    <% end %>
+  <% end %>
+<%else%>
+  <p>No article found.</p>
+<% end %>
+
+<% if current_user&.admin && @users.any? %>
+  <% created_users = @users.select { |user| user.admin_id == current_user.id } %>
+  <% count_text = pluralize(created_users.count, "User") %>
+  <h2><%= count_text %></h2>
+  <% if created_users.any? %>
+    <% created_users.each do |user| %>
+      <%= link_to user_path(user) do %>
+        <p><%= "#{user.fname} #{user.lname}"%></p>
+      <% end %>
+      <%= user.email %>
+    <% end %>
+  <% end %>
+<%else%>
+  <p>No user found.</p>
+<% end %>

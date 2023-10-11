@@ -29,6 +29,7 @@
           <%= link_to "Profile", user_path(current_user) %>
           <%= link_to "General Info", articles_path %>
           <%= link_to "Requests", user_requests_path(current_user) %>
+          <%= render 'search/form' %>
         </div>
         <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
       <% else %>

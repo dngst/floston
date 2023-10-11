@@ -77,3 +77,5 @@ gem 'devise', '~> 4.9'
 gem 'nested_form', '~> 0.3.2'
 
 gem 'friendly_id', '~> 5.5'
+
+gem 'ransack', '~> 4.0'
