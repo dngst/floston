@@ -1,28 +1,31 @@
-<h1>Edit Profile</h1>
+<div class="max-w-md my-4">
+  <%= link_to sanitize('&larr; Back'), :back, class: "text-gray-600" %>
+  <h1 class="text-4xl font-bold my-4">Edit Profile</h1>
 
-<%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
-  <%= render "devise/shared/error_messages", resource: @user %>
+  <%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
+    <%= render "devise/shared/error_messages", resource: @user %>
 
-  <div class="field">
-    <%= f.label :fname, "First name" %><br />
-    <%= f.text_field :fname %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :fname, "First name", class: "block font-semibold text-gray-800"  %>
+      <%= f.text_field :fname, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :lname, "Last name" %><br />
-    <%= f.text_field :lname %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :lname, "Last name", class: "block font-semibold text-gray-800"  %>
+      <%= f.text_field :lname, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :phone_number, class: "block font-semibold text-gray-800"  %>
+      <%= f.text_field :phone_number, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+    </div>
 
-  <%= fields_for @user.tenant do |tenant_fields| %>
-    <%= render "devise/registrations/tenant_fields", f: tenant_fields %>
+    <%= fields_for @user.tenant do |tenant_fields| %>
+      <%= render "devise/registrations/tenant_fields", f: tenant_fields %>
+    <% end %>
+
+    <div class="mt-4 mb-6">
+      <%= f.submit "Edit", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+    </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Edit" %>
-  </div>
-<% end %>
+</div>

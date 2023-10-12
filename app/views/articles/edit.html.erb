@@ -1,10 +1,11 @@
-<h1>Editing article</h1>
+<%= link_to sanitize('&larr; Back to articles'), articles_path, class: "text-gray-600" %>
 
-<%= render "form", article: @article %>
+<div class="w-full max-w-md mt-4">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Editing article</h1>
 
-<br>
+  <%= render "form", article: @article %>
 
-<div>
-  <%= link_to "Show this article", @article %> |
-  <%= link_to "Back to articles", articles_path %>
+  <div class="mt-4">
+    <%= link_to "View article", @article, class: "text-blue-500 hover:underline mr-4" %>
+  </div>
 </div>

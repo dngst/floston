@@ -79,3 +79,5 @@ gem 'nested_form', '~> 0.3.2'
 gem 'friendly_id', '~> 5.5'
 
 gem 'ransack', '~> 4.0'
+
+gem 'tailwindcss-rails', '~> 2.0'

@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<%= link_to sanitize('&larr; Back to articles'), articles_path, class: "text-gray-600" %>
 
-<%= render @article %>
-
-<% if current_user&.admin? %>
-  <%= link_to "Edit this article", edit_article_path(@article) %>
-  <%= button_to "Destroy this article", @article, method: :delete %>
+<div class="w-full max-w-md mt-4">
+  <%= render @article %>
+  <% if current_user&.admin? %>
+    <div class="mt-4">
+      <%= link_to "Edit this article", edit_article_path(@article), class: "text-blue-500 hover:underline" %>
+      <%= button_to "Delete this article", @article, method: :delete, class: "text-red-500 hover:underline" %>
+    </div>
+  </div>
 <% end %>
-
-<%= link_to "Back to articles", articles_path %>

@@ -13,19 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-html {
-  font-family: sans-serif;
-}
-
-.alert {
-  color: red;
-}
-
-.notice {
-  color: green;
-}
-
-.tenant-name {
-  text-transform: capitalize;
-}

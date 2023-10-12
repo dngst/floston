@@ -1,22 +1,27 @@
-<h1><%= link_to "Create user", new_user_registration_path %></h1>
-
-<h2>Users</h2>
+<div class="flex justify-between my-4">
+  <h2 class="text-4xl">Users</h2>
+  <%= link_to "Create user", new_user_registration_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+</div>
 
 <% if @users %>
   <% @users.each do |user| %>
     <% if current_user.id == user.admin_id %>
-      <div>
-        <div>
-          <h3 class="tenant-name"><%= user.fname %> <%= user.lname %></h3>
-          <%= link_to user_path(user) do %>
-            <p>View profile</p>
-          <% end %>
-          <%= link_to "Edit profile", edit_user_path(user) %>
-          <%= link_to "Delete profile", user_path(user), method: :delete, data: { confirm: "Delete user?" } %>
+      <div class="mt-4">
+        <div class="border border-gray-300 p-4 rounded flex items-center justify-between max-w-md">
+          <div>
+            <h3 class="text-xl font-semibold mb-2"><%= user.fname %> <%= user.lname %></h3>
+            <%= link_to user_path(user), class: "hover:underline" do %>
+              <p class="text-gray-600">View profile</p>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to "Edit profile", edit_user_path(user), class: "text-blue-500 hover:underline ml-4" %>
+            <%= link_to "Delete profile", user_path(user), method: :delete, data: { confirm: "Delete user?" }, class: "text-red-500 hover:underline ml-4" %>
+          </div>
         </div>
-      </div></br>
+      </div>
     <% end %>
   <% end %>
 <% else %>
-  <p>There are no registered users yet.</p>
+  <p class="mt-4 text-gray-600">There are no registered users yet.</p>
 <% end %>

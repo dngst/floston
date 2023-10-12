@@ -1,32 +1,35 @@
-<% if @user %>
-  <h1 class="tenant-name"><%= @user.fname %> <%= @user.lname %></h1>
-  <p>phone: <%= @user.phone_number %></p>
-  <p>email: <%= @user.email %></p>
-<% end %></br>
-
-<% if user_signed_in? && current_user == @user %>
-  <%= link_to "Edit profile", edit_user_registration_path %>
-<% end %>
-
-<% if @user.tenant %>
-  <ul>
-    <% @user.tenant.attributes.each do |attribute, value| %>
-      <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
-        <span>
-          <h2>
-            <%= @user.tenant.class.human_attribute_name(attribute) %>
-          </h2>
-          <p>
-            <% if value.is_a?(Date) %>
-              <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
-            <% elsif attribute == 'amount_due' %>
-              <%= number_to_currency(value, unit: 'KES', precision: 0) %>
-            <% else %>
-              <%= value %>
-            <% end %>
-          </p>
-        </span>
+<% if @user || @user.tenant %>
+  <div>
+    <% if @user %>
+      <h1 class="text-3xl font-bold text-gray-800 mb-2 capitalize"><%= @user.fname %> <%= @user.lname %></h1>
+      <p class="text-gray-600"><%= @user.phone_number %></p>
+      <p class="text-gray-600"><%= @user.email %></p>
+      <% if user_signed_in? && current_user == @user %>
+        <%= link_to "Edit profile", edit_user_registration_path, class: "text-blue-500 hover:underline" %>
       <% end %>
     <% end %>
-  </ul>
+
+    <div class="mt-6">
+    <% if @user.tenant %>
+      <ul>
+        <% @user.tenant.attributes.each do |attribute, value| %>
+          <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
+            <li class="mb-4">
+              <h2 class="text-xl font-semibold text-gray-800"><%= @user.tenant.class.human_attribute_name(attribute) %></h2>
+              <p class="text-gray-600">
+                <% if value.is_a?(Date) %>
+                  <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
+                <% elsif attribute == 'amount_due' %>
+                  <%= number_to_currency(value, unit: 'KES', precision: 0) %>
+                <% else %>
+                  <%= value %>
+                <% end %>
+              </p>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  </div>
 <% end %>

@@ -1,15 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Requests</h1>
+<div class="w-full max-w-md mt-4">
+<h1 class="text-4xl font-bold mb-2">Requests</h1>
 
 <% if !current_user&.admin %>
-  <%= link_to "New request", new_user_request_path %>
+  <%= link_to "Submit a request", new_user_request_path, class: "text-blue-500 hover:underline" %>
 <% end %>
 
-  <div id="requests">
-    <% @requests.each do |request| %>
-      <% if current_user&.id == request.user_id || request.user.admin_id == current_user.id %>
-        <%= render "request_index", request: request %>
-      <% end %>
+<div id="requests" class="mt-4">
+  <% @requests.each do |request| %>
+    <% if current_user&.id == request.user_id || request.user.admin_id == current_user.id %>
+      <%= render "request_index", request: request %>
     <% end %>
-  </div>
+  <% end %>
+</div>
+</div>

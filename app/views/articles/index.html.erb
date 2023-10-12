@@ -1,19 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<div class="w-full max-w-md">
+  <h1 class="text-4xl font-bold mt-4 mb-2">Articles</h1>
 
-<h1>Articles</h1>
-
-<% if current_user&.admin? %>
-  <%= link_to "New article", new_article_path %>
-<% end%>
-
-<div id="articles">
-  <% @articles.each do |article| %>
-    <% if current_user&.id == article.admin_id %>
-      <%= render "article_index", article: article %>
-    <% end %>
-    <% if current_user&.admin_id == article.admin_id && article.published %>
-      <%= render "article_index", article: article %>
-    <% end %>
+  <% if current_user&.admin? %>
+    <%= link_to "Write an article", new_article_path, class:"text-blue-500 hover:underline"%>
   <% end %>
-</div>
 
+  <div id="articles" class="mt-4">
+    <% @articles.each do |article| %>
+      <% if current_user&.id == article.admin_id || (current_user&.admin_id == article.admin_id && article.published) %>
+        <%= render "article_index", article: article %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
