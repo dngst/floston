@@ -9,7 +9,11 @@ class RequestsController < ApplicationController
 
   # GET /requests or /requests.json
   def index
-    @requests = Request.all.reverse
+    @requests = if current_user&.admin?
+                  Request.joins(:user).where(users: { admin_id: current_user.id }).order(created_at: :desc).page(params[:page])
+                else
+                  Request.where(user_id: current_user.id).order(created_at: :desc).page(params[:page])
+                end
   end
 
   # GET /requests/1 or /requests/1.json

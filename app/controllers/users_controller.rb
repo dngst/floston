@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.where(admin: false, admin_id: current_user.id).reverse
+    @users = User.where(admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def show; end

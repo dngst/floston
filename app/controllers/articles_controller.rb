@@ -8,7 +8,11 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.where(admin_id: current_user.id).reverse
+    @articles = if current_user&.admin?
+                  Article.where(admin_id: current_user.id).order(created_at: :desc).page(params[:page])
+                else
+                  Article.where(admin_id: current_user.admin_id).order(created_at: :desc).page(params[:page])
+                end
   end
 
   # GET /articles/1 or /articles/1.json
