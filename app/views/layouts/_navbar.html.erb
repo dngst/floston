@@ -1,0 +1,34 @@
+<nav class="bg-white shadow-md fixed top-0 w-full">
+  <div class="container mx-auto flex items-center justify-between p-4">
+    <!-- Logo -->
+    <%= link_to root_path do %>
+      <p class="text-black text-2xl font-semibold">Propfolio</p>
+    <% end %>
+
+    <!-- Search Bar -->
+    <%= render 'search/form' %>
+
+    <!-- Navigation Links -->
+    <% if user_signed_in? %>
+    <div class="hidden md:flex space-x-6">
+      <% if current_user&.admin %>
+        <%= link_to "Users", users_path %>
+      <% end %>
+      <%= link_to "General Info", articles_path %>
+      <%= link_to "Requests", user_requests_path(current_user) %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+    </div>
+
+    <!-- Profile Icon -->
+    <%= link_to user_path(current_user) do %>
+      <div class="relative ml-3">
+        <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:ring focus:ring-blue-500">
+          <%= image_tag "bx-user.svg", alt: "User Profile", class: "h-8 w-8 rounded-full" %>
+        </button>
+      </div>
+    <% end %>
+    <% else %>
+      <%= button_to "Sign in", new_user_session_path %>
+    <% end %>
+  </div>
+</nav>
