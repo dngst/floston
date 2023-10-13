@@ -20,7 +20,7 @@
           <% if comment.user_id == @user.admin_id %>
             (Admin)
           <% end %>
-          <strong><%= comment.user.fname %></strong>: <%= comment.body %>
+          <strong class="capitalize"><%= comment.user.fname %></strong>: <%= comment.body %>
         </p>
       <% end %>
     <% end %>

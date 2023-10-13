@@ -23,7 +23,7 @@
             <%= link_to edit_user_path(user) do %>
               <%= image_tag "bx-edit.svg" %>
             <% end %>
-            <%= link_to user_path(user) do %>
+            <%= link_to user_path(user), method: :delete, data: { confirm: "Delete user?" } do %>
               <%= image_tag "bx-trash.svg" %>
             <% end %>
           </div>
