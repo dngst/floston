@@ -2,7 +2,7 @@ elrich = User.create!(
   fname: "Erlich",
   lname: "Bachman",
   phone_number: "0715948650",
-  email: "elrich@bachmanity.com",
+  email: "erlich@bachmanity.com",
   password: "password",
   admin: true
 )
@@ -16,17 +16,17 @@ richard = User.create!(
   admin: true
 )
 
-duckman = User.create!(
-  fname: "Duck",
-  lname: "Man",
+jackie = User.create!(
+  fname: "Jackie",
+  lname: "Brown",
   phone_number: "0715948650",
-  email: "duck@duckman.com",
+  email: "jackie@jackiebrown.com",
   password: "password",
   admin_id: richard.id
 )
 
 Tenant.create!(
-  user_id: duckman.id,
+  user_id: jackie.id,
   unit_number: "B29",
   unit_type: "1 Bedroom",
   moved_in: "15-11-2012",
@@ -96,4 +96,22 @@ Article.create!(
   body: "Jobs or... Jobs",
   admin_id: richard.id,
   published: true
+)
+
+Request.create!(
+  title: "Window repair",
+  description: "Woke up this morning to find a window pane in my bedroom had fallen down",
+  user_id: jane.id
+)
+
+Request.create!(
+  title: "Disturbance",
+  description: "The tenant at door no. 2E is constatly playing loud music since they moved in and are rude when asked to tone it down.",
+  user_id: jane.id
+)
+
+Request.create!(
+  title: "Key replacement",
+  description: "I lost my gate key. Could you please organise for me another one?",
+  user_id: john.id
 )
