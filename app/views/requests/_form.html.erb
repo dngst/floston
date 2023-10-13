@@ -1,27 +1,25 @@
 <%= form_with(model: [@user, @request], local: true) do |form| %>
-  <% if request.errors.any? %>
-    <div class="text-red-500">
-      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
-
-      <ul>
-        <% request.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="mb-4">
     <%= form.label :title, class: "block text-gray-800" %>
     <%= form.text_field :title, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+    <% if @request.errors.include?(:title) %>
+      <% @request.errors.full_messages_for(:title).each do |error| %>
+        <p class="text-red-500 mt-2"><%= error %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="mb-4">
     <%= form.label :description, class: "block text-gray-800" %>
     <%= form.text_area :description, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+    <% if @request.errors.include?(:description) %>
+      <% @request.errors.full_messages_for(:description).each do |error| %>
+        <p class="text-red-500 mt-2"><%= error %></p>
+      <% end %>
+    <% end %>
   </div>
 
-  <div>
+  <div class="mt-4">
     <%= form.submit class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
   </div>
 <% end %>

@@ -106,7 +106,7 @@ Request.create!(
 
 Request.create!(
   title: "Disturbance",
-  description: "The tenant at door no. 2E is constatly playing loud music since they moved in and are rude when asked to tone it down.",
+  description: "The tenant at door no. 2E is constatly playing loud music since they moved in and is rude when asked to tone it down.",
   user_id: jane.id
 )
 

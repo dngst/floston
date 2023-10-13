@@ -1,11 +1,21 @@
 <div class="mb-4">
   <%= f.label :unit_number, class: "block font-semibold text-gray-800" %>
   <%= f.text_field :unit_number, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+  <% if f.object.errors.include?(:unit_number) %>
+    <% f.object.errors.full_messages_for(:unit_number).each do |error| %>
+      <p class="text-red-500 mt-2"><%= error %></p>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="mb-4">
   <%= f.label :unit_type, class: "block font-semibold text-gray-800" %>
   <%= f.text_field :unit_type, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+  <% if f.object.errors.include?(:unit_type) %>
+    <% f.object.errors.full_messages_for(:unit_type).each do |error| %>
+      <p class="text-red-500 mt-2"><%= error %></p>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="mb-4">
