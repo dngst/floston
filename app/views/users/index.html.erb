@@ -8,7 +8,7 @@
   <%= link_to "+ Create user", new_user_registration_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
 </div>
 
-<% if @users %>
+<% if @users.any?  %>
   <% @users.each do |user| %>
     <% if current_user.id == user.admin_id %>
       <div class="mt-4">
@@ -29,8 +29,10 @@
           </div>
         </div>
       </div>
+    <% else %>
+      <p class="mt-4 text-gray-500">You haven't created any users yet</p>
     <% end %>
   <% end %>
 <% else %>
-  <p class="mt-4 text-gray-600">There are no registered users yet.</p>
+  <p class="mt-4 text-gray-500">You haven't created any users yet</p>
 <% end %>
