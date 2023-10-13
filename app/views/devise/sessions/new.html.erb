@@ -2,6 +2,10 @@
   <h2 class="text-4xl font-bold mb-4">Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <% if flash[:alert] %>
+      <div class="text-red-500 my-4"><%= flash[:alert] %></div>
+    <% end %>
+
     <div class="mb-4">
       <%= f.label :email, class: "block font-semibold text-gray-800" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-4 py-2 border rounded border-gray-300" %>

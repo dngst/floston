@@ -16,7 +16,7 @@
       <% end %>
       <%= link_to "General Info", articles_path %>
       <%= link_to "Requests", user_requests_path(current_user) %>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
     </div>
 
     <!-- Profile Icon -->
@@ -28,7 +28,7 @@
       </div>
     <% end %>
     <% else %>
-      <%= button_to "Sign in", new_user_session_path %>
+      <%= link_to "Sign in", new_user_session_path %>
     <% end %>
   </div>
 </nav>
