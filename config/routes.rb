@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'search', to: 'search#index'
+  get 'pricing', to: 'pricing#index'
   resources :articles
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :users do

@@ -10,7 +10,7 @@
 
     <!-- Navigation Links -->
     <% if user_signed_in? %>
-    <div class="hidden md:flex space-x-6">
+    <div class="space-x-6">
       <% if current_user&.admin %>
         <%= link_to "Tenants", users_path %>
       <% end %>
@@ -28,7 +28,10 @@
       </div>
     <% end %>
     <% else %>
+    <div class="space-x-6">
+      <%= link_to "Pricing", pricing_path %>
       <%= link_to "Sign in", new_user_session_path %>
+    </div>
     <% end %>
   </div>
 </nav>
