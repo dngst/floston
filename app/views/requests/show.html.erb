@@ -7,7 +7,7 @@
 
   <div class="my-4">
     <% if current_user&.admin? %>
-      <%= button_to "Delete this request", user_request_path(current_user, @request), method: :delete, class: "text-red-500 hover:underline" %>
+      <%= button_to "Delete this request", user_request_path(current_user, @request), method: :delete,  data: { confirm: "Delete request?" }, class: "text-red-500 hover:underline" %>
     <% end %>
   </div>
 
