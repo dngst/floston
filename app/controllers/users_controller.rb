@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.where(admin: false).reverse
+    @users = User.where(admin: false, admin_id: current_user.id).reverse
   end
 
   def show; end

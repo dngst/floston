@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.where(admin_id: current_user.id).reverse
   end
 
   # GET /articles/1 or /articles/1.json

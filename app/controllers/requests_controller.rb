@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
 
   # GET /requests or /requests.json
   def index
-    @requests = Request.all
+    @requests = Request.all.reverse
   end
 
   # GET /requests/1 or /requests/1.json
@@ -34,6 +34,7 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if @request.save
+        NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_now
         format.html { redirect_to user_request_url(@user, @request), notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else
