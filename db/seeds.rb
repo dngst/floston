@@ -79,7 +79,7 @@ Article.create!(
 
 Article.create!(
   title: "Key people at Argon Properties",
-  body: "Some of the names and contacts of the people involved in this propect...",
+  body: "Some of the names and contacts of the people involved in this project...",
   admin_id: elrich.id,
   published: true
 )
@@ -87,7 +87,7 @@ Article.create!(
 Article.create!(
   title: "Faulty tap at the parking lot near block D",
   body: "There's a licking tap near block D at the parking lot. Please refrain
-   from usung it while we organise for repairs to be made.",
+   from using it while we organise for repairs to be made.",
   admin_id: elrich.id
 )
 
