@@ -14,7 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
 
       if resource.save
         set_flash_message! :notice, :signed_up
-        NewUserMailer.login_credentials(resource, generated_password).deliver_now
+        NewUserMailer.login_credentials(resource, generated_password).deliver_later
         redirect_to after_sign_up_path_for(resource)
       else
         clean_up_passwords resource

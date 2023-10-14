@@ -37,7 +37,7 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if @request.save
-        NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_now
+        NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
         format.html { redirect_to user_request_url(@user, @request), notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else
