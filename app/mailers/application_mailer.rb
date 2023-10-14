@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Floston <eddieatse@gmail.com>'
+  default from: email_address_with_name('<eddieatse@gmail.com', 'Floston Notifications')
   layout 'mailer'
 end
