@@ -1,4 +1,4 @@
-# Propfolio
+# Floston
 
 > Property management & tenant relations
 

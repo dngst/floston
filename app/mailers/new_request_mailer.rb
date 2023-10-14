@@ -2,6 +2,6 @@ class NewRequestMailer < ApplicationMailer
   def request_notification(user, request)
     @user = user
     @request = request
-    mail(to: @user.email, subject: 'New tenant request - Propfolio')
+    mail(to: @user.email, subject: 'New tenant request')
   end
 end
