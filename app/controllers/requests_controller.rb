@@ -19,7 +19,6 @@ class RequestsController < ApplicationController
   # GET /requests/1 or /requests/1.json
   def show
     @request = Request.friendly.find(params[:id])
-    @comments = @request.comments
     @user =  @request.user
     @comment = @request.comments.build(user: @user)
   end

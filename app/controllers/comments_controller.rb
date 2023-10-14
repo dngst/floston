@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to user_request_path(@user, @request), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: user_request_comment_path(@user, @request, @comment) }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render 'requests/show', status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
