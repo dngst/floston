@@ -1,0 +1,9 @@
+Hello <%= @user.fname %>,
+
+This is a reminder about your upcoming payment.
+
+Please make sure to make the payment by the due date.
+
+Next payment: <%= @tenant.next_payment.strftime("%d %A, %B %Y") %>
+
+Amount due: <%= number_to_currency(@tenant.amount_due, unit: 'KES', precision: 0) %>
