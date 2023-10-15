@@ -24,6 +24,7 @@
 require 'rails_helper'
 
 RSpec.describe Tenant do
-  it { is_expected.to validate_presence_of :unit_number }
-  it { is_expected.to validate_presence_of :unit_type }
+  it { should validate_presence_of :unit_number }
+  it { should validate_presence_of :unit_type }
+  it { should belong_to :user }
 end

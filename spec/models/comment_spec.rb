@@ -22,5 +22,7 @@
 require 'rails_helper'
 
 RSpec.describe Comment do
-  it { is_expected.to validate_presence_of :body }
+  it { should validate_presence_of :body }
+  it { should belong_to :user }
+  it { should belong_to :request }
 end
