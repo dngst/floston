@@ -1,5 +1,5 @@
-<div class="max-w-md my-4">
-  <p class="text-4xl">Search results</p>
+<div class="max-w-md">
+  <p class="text-4xl mb-6">Search results</p>
   <div class="mb-20">
     <% if @requests.any? %>
       <% created_requests = @requests.select { |request| request.user.admin_id == current_user.id || request.user_id == current_user.id } %>
