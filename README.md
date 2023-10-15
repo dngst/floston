@@ -6,6 +6,10 @@ $ bin/setup
 
 $ bin/dev
 
+## Tests (89.83%)
+
+$ bundle exec rspec
+
 Propery owners or caretakers can create accounts for tenants. Tenants can sign in
 to to view their account details including next rent payment and ammount due.
 Tenants can also submit requests and view articles written by the admin.
