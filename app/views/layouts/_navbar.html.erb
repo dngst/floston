@@ -47,18 +47,18 @@
       <div class="flex justify-between">
         <div></div>
         <div data-action="click->navbar#close">
-          <%= image_tag "bx-x-circle.svg" %>
+          <%= image_tag "bx-x-circle.svg", class: "w-8" %>
         </div>
       </div>
       <ul class="text-right">
-        <li class="py-2 px-2"><%= link_to "Home", root_path %></li>
+        <li class="py-2 px-2 text-lg"><%= link_to "Home", root_path %></li>
         <% if current_user&.admin %>
-          <li class="py-2 px-2"><%= link_to "Tenants", users_path %></li>
+          <li class="py-2 px-2 text-lg"><%= link_to "Tenants", users_path %></li>
         <% end %>
-        <li class="py-2 px-2"><%= link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
-        <li class="py-2 px-2"><%= link_to "Requests", user_requests_path(current_user) %></li>
-        <li class="py-2 px-2"><%= link_to "Profile", user_path(current_user) %></li>
-        <li class="py-2 px-2"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <li class="py-2 px-2 text-lg"><%= link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
+        <li class="py-2 px-2 text-lg"><%= link_to "Requests", user_requests_path(current_user) %></li>
+        <li class="py-2 px-2 text-lg"><%= link_to "Profile", user_path(current_user) %></li>
+        <li class="py-2 px-2 text-lg"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       </ul>
     <% end %>
   </nav>
