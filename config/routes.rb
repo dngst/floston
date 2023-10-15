@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :users do
     resources :requests do
-      resources :comments, only: [:create]
+      resources :comments
     end
   end
   # Defines the root path route ("/")
