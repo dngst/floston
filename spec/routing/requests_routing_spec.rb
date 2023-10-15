@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Routing', type: :routing do
+RSpec.describe 'Routing' do
   it 'routes to requests#index' do
     expect(get: '/users/1/requests').to route_to('requests#index', user_id: '1')
   end
@@ -46,7 +46,8 @@ RSpec.describe 'Routing', type: :routing do
   end
 
   it 'routes to comments#edit' do
-    expect(get: '/users/1/requests/2/comments/3/edit').to route_to('comments#edit', user_id: '1', request_id: '2', id: '3')
+    expect(get: '/users/1/requests/2/comments/3/edit').to route_to('comments#edit', user_id: '1', request_id: '2',
+                                                                                    id: '3')
   end
 
   it 'routes to comments#create' do
@@ -58,10 +59,12 @@ RSpec.describe 'Routing', type: :routing do
   end
 
   it 'routes to comments#update via PATCH' do
-    expect(patch: '/users/1/requests/2/comments/3').to route_to('comments#update', user_id: '1', request_id: '2', id: '3')
+    expect(patch: '/users/1/requests/2/comments/3').to route_to('comments#update', user_id: '1', request_id: '2',
+                                                                                   id: '3')
   end
 
   it 'routes to comments#destroy' do
-    expect(delete: '/users/1/requests/2/comments/3').to route_to('comments#destroy', user_id: '1', request_id: '2', id: '3')
+    expect(delete: '/users/1/requests/2/comments/3').to route_to('comments#destroy', user_id: '1', request_id: '2',
+                                                                                     id: '3')
   end
 end

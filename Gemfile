@@ -49,14 +49,15 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 group :test do
+  gem 'database_cleaner-active_record'
   gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 6.0.0'
 end
 
 group :development do
@@ -67,6 +68,7 @@ group :development do
   # gem "rack-mini-profiler"
 
   gem 'annotate'
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -87,4 +89,4 @@ gem 'kaminari', '~> 1.2'
 
 gem 'whenever', require: false
 
-gem "faker", "~> 3.2"
+gem 'faker', '~> 3.2'

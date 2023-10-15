@@ -1,9 +1,7 @@
-require 'faker'
-
 FactoryBot.define do
   factory :user do
     admin { false }
-    email { Faker::Internet.email  }
+    email { Faker::Internet.email }
     password { Faker::Internet.password }
     fname { Faker::Internet.username }
     lname { Faker::Internet.username }
@@ -12,7 +10,7 @@ FactoryBot.define do
 
   factory :admin, class: 'User' do
     admin { true }
-    email { Faker::Internet.email  }
+    email { Faker::Internet.email }
     password { Faker::Internet.password }
     fname { Faker::Internet.username }
     lname { Faker::Internet.username }
