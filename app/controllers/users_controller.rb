@@ -15,11 +15,14 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    if @user.update(user_params) && @user.tenant.update(tenant_params)
-      flash[:notice] = 'User information updated successfully.'
-      redirect_to user_path(@user)
-    else
-      render 'edit'
+    respond_to do |format|
+      if @user.update(user_params) && @user.tenant.update(tenant_params)
+        format.html { redirect_to user_path(@user), notice: 'User information updated successfully.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
