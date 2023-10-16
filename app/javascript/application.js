@@ -2,8 +2,9 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-Turbo.setConfirmMethod(() => {
+Turbo.setConfirmMethod((message, element) => {
   let dialog = document.getElementById("turbo-confirm")
+  dialog.querySelector("p").textContent = message
   dialog.showModal()
 
   return new Promise((resolve, reject) => {
