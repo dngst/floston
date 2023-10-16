@@ -12,11 +12,7 @@
 
   <% if @requests.any? %>
     <div id="requests" class="mt-4">
-      <% @requests.each do |request| %>
-        <% if current_user&.id == request.user_id || request.user.admin_id == current_user.id %>
-          <%= render "request_index", request: request %>
-        <% end %>
-      <% end %>
+      <%= render partial: "request_index", collection: @requests, as: :request, cached: true %>
     </div>
     <div class="my-4">
       <%= paginate @requests %>

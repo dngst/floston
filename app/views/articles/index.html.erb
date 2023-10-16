@@ -12,11 +12,7 @@
 
   <% if @articles.any? %>
     <div id="articles" class="mt-4">
-      <% @articles.each do |article| %>
-        <% if current_user&.id == article.admin_id || (current_user&.admin_id == article.admin_id && article.published) %>
-          <%= render "article_index", article: article %>
-        <% end %>
-      <% end %>
+      <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
     </div>
     <div class="my-4">
       <%= paginate @articles %>
