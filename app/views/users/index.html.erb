@@ -2,7 +2,7 @@
   <h1 class="text-3xl">
     <div class="flex justify-normal">
       <%= image_tag "bxs-group.svg", class: "w-10 mr-2" %>
-      Tenants
+      Tenants (<%= @users.size %>)
     </div>
   </h1>
   <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
