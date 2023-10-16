@@ -1,10 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :set_query
-
-  # def set_query
-  #   @query = Ransack::Search.new(Request)
-  # end
 
   protected
 
@@ -37,7 +32,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if resource.admin?
+    if resource.admin? && resource.sign_in_count == 1
+      edit_user_registration_path
+    elsif resource.admin?
       users_path
     elsif !resource.admin? && resource.sign_in_count == 1
       edit_user_registration_path
