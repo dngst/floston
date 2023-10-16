@@ -8,15 +8,8 @@
   <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
 </div>
 
-
 <% if @users.any?  %>
-  <% @users.each do |user| %>
-    <% if current_user.id == user.admin_id %>
-      <%= render "user", user: user %>
-    <% else %>
-      <p class="mt-4 text-gray-500">You haven't added any tenants yet</p>
-    <% end %>
-  <% end %>
+  <%= render partial: "user", collection: @users, cached: true %>
   <div class="my-4">
     <%= paginate @users %>
   </div>

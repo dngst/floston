@@ -7,13 +7,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.where(admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page]).per(4)
-    @user_count = User.where(admin: false, admin_id: current_user.id).count
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
+    ids = Rails.cache.fetch('user_ids', expires_in: 12.hours) do
+      User.pluck(:id)
     end
+    @users = User.where(id: ids, admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page]).per(4)
+    @user_count = User.where(id: ids, admin: false, admin_id: current_user.id).count
   end
 
   def show; end

@@ -9,10 +9,13 @@ class RequestsController < ApplicationController
 
   # GET /requests or /requests.json
   def index
+    ids = Rails.cache.fetch('request_ids', expires_in: 12.hours) do
+      Request.pluck(:id)
+    end
     @requests = if current_user&.admin?
-                  Request.joins(:user).where(users: { admin_id: current_user.id }).order(created_at: :desc).page(params[:page])
+                  Request.joins(:user).where(id: ids, users: { admin_id: current_user.id }).order(created_at: :desc).page(params[:page])
                 else
-                  Request.where(user_id: current_user.id).order(created_at: :desc).page(params[:page])
+                  Request.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
                 end
   end
 
