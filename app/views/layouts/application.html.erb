@@ -9,11 +9,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag 'rails-ujs' %>
   </head>
 
   <body>
     <%= render "layouts/navbar" %>
+
+    <%= render "layouts/confirm_modal" %>
 
     <main class="flex flex-col mx-auto container <%= 'mt-28' if !@home_page %> px-5 h-screen container">
      <%= yield %>
