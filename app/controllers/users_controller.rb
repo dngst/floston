@@ -7,7 +7,13 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.where(admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page]).per(5)
+    @users = User.where(admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page]).per(4)
+    @user_count = User.where(admin: false, admin_id: current_user.id).count
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def show; end
@@ -27,9 +33,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    return unless @user.destroy
+    @user.destroy
 
-    redirect_to users_path, notice: 'User deleted.'
+    respond_to do |format|
+      flash.now[:notice] = 'Tenant deleted.'
+      format.turbo_stream
+      format.html { redirect_to users_path, notice: 'Tenant deleted.' }
+    end
   end
 
   private

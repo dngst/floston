@@ -1,0 +1,2 @@
+<%= turbo_stream.remove @user %>
+<%= turbo_stream.update "counter", User.where(admin_id: current_user.id).count %>
