@@ -18,6 +18,7 @@ RSpec.describe '/articles' do
 
   before do
     sign_in admin
+    article
   end
 
   describe 'GET /index' do
@@ -100,7 +101,7 @@ RSpec.describe '/articles' do
   end
 
   describe 'DELETE /destroy' do
-    xit 'destroys the requested article' do
+    it 'destroys the requested article' do
       expect do
         delete article_url(article)
       end.to change(Article, :count).by(-1)

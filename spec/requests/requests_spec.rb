@@ -19,6 +19,7 @@ RSpec.describe '/requests' do
 
   before do
     sign_in user
+    request
   end
 
   describe 'GET /index' do
@@ -108,7 +109,7 @@ RSpec.describe '/requests' do
   end
 
   describe 'DELETE /destroy' do
-    xit 'destroys the requested request' do
+    it 'destroys the requested request' do
       sign_in admin
 
       expect do
