@@ -3,9 +3,10 @@
 <div class="w-full max-w-md mt-4">
   <%= render @article %>
   <% if current_user&.admin? %>
-    <div class="mt-4">
-      <%= link_to "Edit this article", edit_article_path(@article), class: "text-blue-500 hover:underline" %>
-      <%= button_to "Delete this article", @article, method: :delete, data: { turbo_confirm: "Delete article?" }, class: "text-red-500 hover:underline" %>
+    <div class="mt-4 flex">
+      <%= link_to "Edit article", edit_article_path(@article), class: "text-blue-500 hover:underline mr-4" %>
+      <%= button_to "Delete article", @article, method: :delete, data: { turbo_confirm: "Delete article?" }, class: "text-red-500 hover:underline" %>
     </div>
   </div>
 <% end %>
+
