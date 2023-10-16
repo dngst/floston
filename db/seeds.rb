@@ -1,3 +1,5 @@
+require 'faker'
+
 elrich = User.create!(
   fname: "Erlich",
   lname: "Bachman",
@@ -115,3 +117,40 @@ Request.create!(
   description: "I lost my gate key. Could you please organise for me another one?",
   user_id: john.id
 )
+
+50.times do
+  user = User.create!(
+    fname: Faker::Internet.username,
+    lname: Faker::Internet.username,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    email: Faker::Internet.email,
+    password: "password",
+    admin_id: elrich.id
+  )
+
+  Tenant.create!(
+    user_id: user.id,
+    unit_number: Faker::Number.unique.number(digits: 3),
+    unit_type: "1 Bedroom",
+    moved_in: "15-11-2022",
+    next_payment: "15-12-2022",
+    amount_due: "10000"
+  )
+end
+
+50.times do
+  Request.create!(
+    title: Faker::Lorem.words(number: 5).join(' '),
+    description: Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
+    user_id: jane.id
+  )
+end
+
+50.times do
+  Article.create!(
+    title: Faker::Lorem.words(number: 7).join(' '),
+    body:  Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
+    admin_id: elrich.id,
+    published: true
+  )
+end
