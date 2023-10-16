@@ -18,13 +18,13 @@
 
     <% if devise_mapping.rememberable? %>
       <div class="mb-4">
-        <%= f.check_box :remember_me, class: "mr-2 border rounded" %>
+        <%= f.check_box :remember_me, class: "mr-2 border rounded hover:cursor-pointer" %>
         <%= f.label :remember_me, class: "text-gray-800" %>
       </div>
     <% end %>
 
     <div class="mt-4">
-      <%= f.submit "Log in", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+      <%= f.submit "Log in", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hover:cursor-pointer" %>
     </div>
   <% end %>
 
