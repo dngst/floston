@@ -32,9 +32,14 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    edit_user_registration_path if resource.sign_in_count == 1
-
-    users_path if resource.admin?
-    users_path(resource)
+    if resource.sign_in_count == 1 && resource.admin?
+      edit_user_registration_path
+    elsif resource.sign_in_count == 1 && !resource.admin?
+      edit_user_registration_path
+    elsif resource.admin?
+      users_path
+    else
+      users_path(resource)
+    end
   end
 end
