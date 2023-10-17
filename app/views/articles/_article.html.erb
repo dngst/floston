@@ -1,20 +1,25 @@
 <div id="<%= dom_id article %>" class="">
-  <h1 class="text-4xl font-bold text-gray-800 mb-4">
-    <%= article.title %>
-  </h1>
-
-  <p class="text-gray-600 mb-4">
-    <%= article.body %>
-  </p>
-
-  <% if current_user&.admin? %>
-    <span class="text-gray-600">
-      <strong>status:</strong>
-      <% if article.published? %>
-        published
+  <% Article::INLINE_EDITABLE_ATTRS.each do |attribute| %>
+    <%= turbo_frame_tag attribute do %>
+      <% if attribute == :title %>
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">
+          <%= link_to (article[attribute].presence || 'Edit'), [:edit, article, attribute: attribute] %>
+        </h1>
+      <% elsif attribute == :published %>
+        <% if current_user&.admin? %>
+          <%= link_to [:edit, article, attribute: attribute] do %>
+            <% if article.published? %>
+              published
+            <% else %>
+              not published
+            <% end %>
+          <% end %>
+        <% end %>
       <% else %>
-        not published
+        <p class="text-gray-600 mb-4">
+          <%= link_to (article[attribute].presence || 'Edit'), [:edit, article, attribute: attribute] %>
+        </p>
       <% end %>
-    </span>
+    <% end %>
   <% end %>
 </div>

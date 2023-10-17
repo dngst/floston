@@ -18,6 +18,8 @@
 class Article < ApplicationRecord
   extend FriendlyId
 
+  INLINE_EDITABLE_ATTRS = %i[title body published]
+
   validates :title, :body, :admin_id, presence: true
 
   friendly_id :generate_slug, use: :slugged
