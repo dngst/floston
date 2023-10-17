@@ -13,7 +13,8 @@ class RequestsController < ApplicationController
       Request.pluck(:id)
     end
     @requests = if current_user&.admin?
-                  Request.joins(:user).where(id: ids, users: { admin_id: current_user.id }).order(created_at: :desc).page(params[:page])
+                  Request.joins(:user).where(id: ids,
+                                             users: { admin_id: current_user.id }).order(created_at: :desc).page(params[:page])
                 else
                   Request.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
                 end

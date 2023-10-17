@@ -7,11 +7,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    ids = Rails.cache.fetch('user_ids', expires_in: 12.hours) do
-      User.pluck(:id)
-    end
-    @users = User.where(id: ids, admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page]).per(4)
-    @user_count = User.where(id: ids, admin: false, admin_id: current_user.id).count
+    users_list = User.where(admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page])
+    @users = users_list
+    set_page_and_extract_portion_from users_list
   end
 
   def show; end
@@ -32,6 +30,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    set_page_and_extract_portion_from User.where(admin: false,
+                                                 admin_id: current_user.id).order(created_at: :desc).page(params[:page])
 
     respond_to do |format|
       flash.now[:notice] = 'Tenant deleted.'

@@ -2,17 +2,16 @@
   <h1 class="text-3xl">
     <div class="flex justify-normal">
       <%= image_tag "bxs-group.svg", class: "w-10 mr-2" %>
-      Tenants (<span id="counter"><%= @user_count %></span>)
+      Tenants
     </div>
   </h1>
   <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
 </div>
 
 <% if @users.any?  %>
-  <%= render partial: "user", collection: @users, cached: true %>
-  <div class="my-4">
-    <%= paginate @users %>
-  </div>
+  <%= turbo_frame_tag "users", action: "advance" do %>
+    <%= render partial: "user", locals: { page: @page } %>
+  <%end%>
 <% else %>
   <p class="mt-4 text-gray-500">You haven't added any tenants yet</p>
 <% end %>

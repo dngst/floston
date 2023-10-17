@@ -1,0 +1,12 @@
+<% unless page.first? %>
+  <%= link_to "‹ Prev", users_path(page: page.number - 1 ) %>
+<% end %>
+
+<span>
+  Page <%= page.number %> of <%= page.recordset.page_count %>
+  (<%= page.recordset.records_count %> total)
+</span>
+
+<% unless page.last? %>
+  <%= link_to "Next ›", users_path(page: page.next_param) %>
+<% end %>

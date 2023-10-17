@@ -91,3 +91,5 @@ gem 'kaminari', '~> 1.2'
 gem 'whenever', require: false
 
 gem 'faker', '~> 3.2'
+
+gem 'geared_pagination', '~> 1.1'
