@@ -41,6 +41,7 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if @request.save
+        Rails.cache.delete('request_ids')
         NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
         format.html { redirect_to user_request_url(@user, @request), notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
@@ -56,6 +57,7 @@ class RequestsController < ApplicationController
     respond_to do |format|
       @request = @user.requests.friendly.find(params[:id])
       if @request.update(request_params)
+        Rails.cache.delete('request_ids')
         format.html { redirect_to user_request_url, notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, location: @request }
       else
@@ -68,6 +70,7 @@ class RequestsController < ApplicationController
   # DELETE /requests/1 or /requests/1.json
   def destroy
     @request.destroy
+    Rails.cache.delete('request_ids')
 
     respond_to do |format|
       format.html { redirect_to user_requests_url, notice: 'Request was successfully destroyed.' }
