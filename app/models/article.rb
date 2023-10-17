@@ -18,7 +18,7 @@
 class Article < ApplicationRecord
   extend FriendlyId
 
-  INLINE_EDITABLE_ATTRS = %i[title body published]
+  INLINE_EDITABLE_ATTRS = %i[title body published].freeze
 
   validates :title, :body, :admin_id, presence: true
 
