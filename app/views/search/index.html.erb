@@ -1,60 +1,75 @@
 <div class="max-w-md">
   <p class="text-4xl mb-6">Search results</p>
-  <div class="mb-20">
-    <% if @requests.any? %>
-      <% created_requests = @requests.select { |request| request.user.admin_id == current_user.id || request.user_id == current_user.id } %>
-      <% count_text = pluralize(created_requests.count, "Request") %>
-      <h2 class="text-xl mt-4"><%= count_text %></h2>
-      <% if created_requests.any? %>
-        <% created_requests.each do |request| %>
-          <div class="border border-gray-300 p-4 rounded mt-4">
-            <%= link_to user_request_path(request.user, request) do %>
-              <p class="text-xl font-semibold text-blue-500 hover:underline"><%= request.title %></p>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
-    <%else%>
-      <p class="mt-4 text-gray-600">No request found.</p>
-    <% end %>
-  </div>
-
-  <div class="mb-20">
-  <% if @articles.any? %>
-    <% created_articles = @articles.select { |article| article.admin_id == current_user.id || article.admin_id == current_user.admin_id } %>
-    <% count_text = pluralize(created_articles.count, "Article") %>
-    <h2 class="text-xl mt-4"><%= count_text %></h2>
-    <% if created_articles.any? %>
-      <% created_articles.each do |article| %>
-        <div class="border border-gray-300 p-4 rounded mt-4">
-          <%= link_to article_path(article) do %>
-            <p class="text-xl font-semibold text-blue-500 hover:underline"><%= article.title %></p>
+  <%= turbo_frame_tag "requests_results" do %>
+    <div class="mb-20">
+      <% if @requests.any? %>
+        <% created_requests = @requests.select { |request| request.user.admin_id == current_user.id || request.user_id == current_user.id } %>
+        <% count_text = pluralize(@requests_count.size, "Request") %>
+        <h2 class="text-xl mt-4"><%= count_text %></h2>
+        <% if created_requests.any? %>
+          <% created_requests.each do |request| %>
+            <div class="border border-gray-300 p-4 rounded mt-4">
+              <%= link_to user_request_path(request.user, request) do %>
+                <p class="text-xl font-semibold text-blue-500 hover:underline"><%= request.title %></p>
+              <% end %>
+            </div>
           <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  <%else%>
-    <p class="mt-4 text-gray-600">No article found.</p>
-  <% end %>
-</div>
-
-<div class="mb-20">
-<% if current_user&.admin && @users.any? %>
-  <% created_users = @users.select { |user| user.admin_id == current_user.id } %>
-  <% count_text = pluralize(created_users.count, "User") %>
-  <h2 class="text-xl mt-4"><%= count_text %></h2>
-  <% if created_users.any? %>
-    <% created_users.each do |user| %>
-      <div class="border border-gray-300 p-4 rounded mt-4">
-        <%= link_to user_path(user) do %>
-          <p class="text-xl font-semibold text-blue-500 hover:underline"><%= "#{user.fname} #{user.lname}" %></p>
         <% end %>
-        <p class="mt-2"><%= user.email %></p>
+      <%else%>
+        <p class="mt-4 text-gray-600">No request found.</p>
+      <% end %>
+      <div class="mt-4">
+        <%= paginate @requests %>
       </div>
-    <% end %>
-  <% else %>
-    <p class="mt-4 text-gray-600">No user found.</p>
+    </div>
   <% end %>
-<% end %>
-</div>
+
+  <%= turbo_frame_tag "articles_results" do %>
+    <div class="mb-20">
+      <% if @articles.any? %>
+        <% created_articles = @articles.select { |article| article.admin_id == current_user.id || article.admin_id == current_user.admin_id } %>
+        <% count_text = pluralize(@articles_count.size, "Article") %>
+        <h2 class="text-xl mt-4"><%= count_text %></h2>
+        <% if created_articles.any? %>
+          <% created_articles.each do |article| %>
+            <div class="border border-gray-300 p-4 rounded mt-4">
+              <%= link_to article_path(article) do %>
+                <p class="text-xl font-semibold text-blue-500 hover:underline"><%= article.title %></p>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <%else%>
+        <p class="mt-4 text-gray-600">No article found.</p>
+      <% end %>
+      <div class="mt-4">
+        <%= paginate @articles %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "users_results" do %>
+    <div class="mb-20">
+      <% if current_user&.admin && @users.any? %>
+        <% created_users = @users.select { |user| user.admin_id == current_user.id } %>
+        <% count_text = pluralize(@users_count.size, "User") %>
+        <h2 class="text-xl mt-4"><%= count_text %></h2>
+        <% if created_users.any? %>
+          <% created_users.each do |user| %>
+            <div class="border border-gray-300 p-4 rounded mt-4">
+              <%= link_to user_path(user) do %>
+                <p class="text-xl font-semibold text-blue-500 hover:underline"><%= "#{user.fname} #{user.lname}" %></p>
+              <% end %>
+              <p class="mt-2"><%= user.email %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="mt-4 text-gray-600">No user found.</p>
+        <% end %>
+      <% end %>
+      <div class="mt-4">
+        <%= paginate @users %>
+      </div>
+    </div>
+  <% end %>
 </div>
