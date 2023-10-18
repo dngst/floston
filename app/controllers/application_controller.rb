@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     elsif resource.admin?
       users_path
     else
-      users_path(resource)
+      user_path(resource)
     end
   end
 end
