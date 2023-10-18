@@ -1,0 +1,10 @@
+<%= link_to sanitize('&larr; Back'), :back, class: "text-gray-600" %>
+
+<p class="text-3xl font-semibold mt-4 mb-6">Stats</p>
+
+<p class="mb-4 text-gray-600">Sign in count — <span class="text-gray-800 font-semibold"><%= @user.sign_in_count %></span></p>
+<p class="mb-4 text-gray-600">
+  Last sign in — <span class="text-gray-800 font-semibold"><%= @user.last_sign_in_at.strftime("%A, #{ordinal(@user.last_sign_in_at.day)} %B %Y") if @user.last_sign_in_at %></span></p>
+<p class="mb-4 text-gray-600">
+  Added — <span class="text-gray-800 font-semibold"><%= @user.created_at.strftime("%A, #{ordinal(@user.created_at.day)} %B %Y") %></span></p>
+<%= link_to "Reminders", user_reminders_path(@user), class: "text-gray-600 underline mb-4" %>

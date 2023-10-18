@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
 
     resources :reminders, only: [:index]
+    resources :stats, only: [:index]
   end
   # Defines the root path route ("/")
   root "home#index"
