@@ -4,8 +4,8 @@
   <%= render @article %>
   <% if current_user&.admin? %>
     <div class="mt-4 flex">
-      <%= link_to "Edit article", edit_article_path(@article), class: "text-blue-500 hover:underline mr-4" %>
-      <%= button_to "Delete article", @article, method: :delete, data: { turbo_confirm: "Delete article?" }, class: "text-red-500 hover:underline" %>
+      <%= link_to "Edit article", edit_article_path(@article), class: "text-blue-500 underline mr-4" %>
+      <%= button_to "Delete article", @article, method: :delete, data: { turbo_confirm: "Delete article?" }, class: "text-red-500 underline" %>
     </div>
   </div>
 <% end %>

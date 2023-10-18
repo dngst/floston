@@ -5,7 +5,7 @@
       <p class="text-gray-600"><%= @user.phone_number %></p>
       <p class="text-gray-600"><%= @user.email %></p>
       <% if user_signed_in? && current_user == @user %>
-        <%= link_to "Edit profile", edit_user_registration_path, class: "text-blue-500 hover:underline" %>
+        <%= link_to "Edit profile", edit_user_registration_path, class: "text-blue-500 underline" %>
       <% end %>
     <% end %>
 
@@ -36,7 +36,7 @@
 
 <% if current_user&.admin? && current_user != @user %>
   <div class="mt-4 flex">
-    <%= link_to "Edit tenant", edit_user_path(@user), class: "text-blue-500 hover:underline mr-4" %>
-    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "text-red-500 hover:underline" %>
+    <%= link_to "Edit tenant", edit_user_path(@user), class: "text-blue-500 underline mr-4" %>
+    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "text-red-500 underline" %>
   </div>
 <% end %>
