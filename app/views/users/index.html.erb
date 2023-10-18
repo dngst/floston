@@ -2,12 +2,17 @@
   <h1 class="text-3xl">
     <div class="flex justify-normal">
       <% cache('bxs-group.svg') do %>
-        <%= image_tag "bxs-group.svg", class: "w-10 mr-2" %>
+        <%= image_tag "bxs-group.svg", class: "w-10 mr-2 hidden md:flex" %>
       <% end %>
       Tenants
     </div>
   </h1>
-  <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+  <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hidden md:flex" %>
+  <%= link_to new_user_registration_path, class: "lg:hidden" do %>
+    <% cache('bxs-file-plus.svg') do %>
+      <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+    <% end %>
+  <% end %>
 </div>
 
 <% if @users.any?  %>

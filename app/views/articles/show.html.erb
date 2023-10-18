@@ -1,6 +1,6 @@
 <%= link_to sanitize('&larr; Back to articles'), articles_path, class: "text-gray-600" %>
 
-<div class="w-full max-w-md mt-4">
+<div class="w-full max-w-xl mt-4">
   <%= render @article %>
   <% if current_user&.admin? %>
     <div class="mt-4 flex">

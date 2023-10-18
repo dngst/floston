@@ -75,7 +75,7 @@ class ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def authorize_article_access
     @article = Article.friendly.find(params[:id])
-    return if current_user&.id == @article&.user_id || current_user&.user_id == @article&.user_id
+    return if current_user&.id == @article&.user_id || current_user&.admin_id == @article&.user_id
 
     flash[:alert] = 'You do not have permission to access this page.'
     redirect_to root_path

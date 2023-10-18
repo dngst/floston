@@ -1,22 +1,29 @@
-<div class="w-full max-w-md">
-  <h1 class="text-4xl font-bold mb-6">
-    <div class="flex justify-normal">
-      <% cache('bx-book-open') do %>
-        <%= image_tag "bx-book-open.svg", class: "w-10 mr-2" %>
+<div class="w-full">
+  <div class="flex justify-between mb-4">
+    <h1 class="text-4xl font-bold">
+      <div class="flex justify-normal">
+        <% cache('bx-book-open') do %>
+          <%= image_tag "bx-book-open.svg", class: "w-10 mr-2 hidden md:flex" %>
+        <% end %>
+        Articles
+      </div>
+    </h1>
+    <% if current_user&.admin? %>
+      <%= link_to "+ Write an article", new_article_path, class: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hidden md:flex" %>
+      <%= link_to new_article_path, class: "lg:hidden" do %>
+        <% cache('bxs-file-plus.svg') do %>
+          <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+        <% end %>
       <% end %>
-      Articles
-    </div>
-  </h1>
+    <% end %>
+  </div>
 
-  <% if current_user&.admin? %>
-    <%= link_to "Write an article", new_article_path, class:"text-blue-500 hover:underline" %>
-  <% end %>
 
   <% if @articles.any? %>
-    <div id="articles" class="mt-4">
+    <div id="articles" class="mt-6">
       <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
     </div>
-    <div class="my-4">
+    <div class="my-6">
       <%= paginate @articles %>
     </div>
   <% else %>

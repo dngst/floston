@@ -1,7 +1,7 @@
 <%= form_with(model: [@user, @request, @comment], url: user_request_comments_path(@user, @request), local: true) do |form| %>
   <div>
     <div class="mt-4">
-      <%= form.text_area :body, class: "px-4 py-2 border rounded border-gray-300" %>
+      <%= form.text_area :body, class: "w-full border rounded border-gray-300" %>
       <% if @comment.errors.include?(:body) %>
         <% @comment.errors.full_messages_for(:body).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>

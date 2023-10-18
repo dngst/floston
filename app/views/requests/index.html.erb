@@ -1,22 +1,28 @@
-<div class="w-full max-w-md">
-  <h1 class="text-4xl font-bold mb-6">
-    <div class="flex justify-normal">
-      <% cache('bxs-hand.svg') do %>
-        <%= image_tag "bxs-hand.svg", class: "w-10 mr-2" %>
+<div class="w-full">
+  <div class="flex justify-between mb-4">
+    <h1 class="text-4xl font-bold">
+      <div class="flex justify-normal">
+        <% cache('bxs-hand.svg') do %>
+          <%= image_tag "bxs-hand.svg", class: "w-10 mr-2 hidden md:flex" %>
+        <% end %>
+        Requests
+      </div>
+    </h1>
+    <% if !current_user&.admin %>
+      <%= link_to "+ Submit a request", new_user_request_path, class: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hidden md:flex" %>
+      <%= link_to new_user_request_path, class: "lg:hidden" do %>
+        <% cache('bxs-file-plus.svg') do %>
+          <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+        <% end %>
       <% end %>
-      Requests
-    </div>
-  </h1>
-
-  <% if !current_user&.admin %>
-    <%= link_to "Submit a request", new_user_request_path, class: "text-blue-500 hover:underline" %>
-  <% end %>
+    <% end %>
+  </div>
 
   <% if @requests.any? %>
-    <div id="requests" class="mt-4">
+    <div id="requests" class="mt-6">
       <%= render partial: "request_index", collection: @requests, as: :request, cached: true %>
     </div>
-    <div class="my-4">
+    <div class="my-6">
       <%= paginate @requests %>
     </div>
   <% else %>
