@@ -27,7 +27,7 @@ class Article < ApplicationRecord
 
   INLINE_EDITABLE_ATTRS = %i[title body published].freeze
 
-  validates :title, :body, :user_id, presence: true
+  validates :title, :body, presence: true
 
   friendly_id :generate_slug, use: :slugged
 
