@@ -29,7 +29,7 @@ class Tenant < ApplicationRecord
   def self.send_due_date_reminders
     tenants_to_remind = where('next_payment <= ?', 5.days.from_now)
     tenants_to_remind.each do |tenant|
-      PaymentDueMailer.reminder_email(tenant.user, tenant).deliver_now
+      Reminder.create!(amount: tenant.amount_due, user_id: tenant.user.id) if PaymentDueMailer.reminder_email(tenant.user, tenant).deliver_now
     end
   end
 end

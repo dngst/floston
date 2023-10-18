@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :requests, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :articles, dependent: :destroy
+  has_many :reminders, dependent: :destroy
 
   accepts_nested_attributes_for :tenant
 

@@ -38,4 +38,5 @@ RSpec.describe User do
   it { is_expected.to have_many :requests }
   it { is_expected.to have_many :comments }
   it { is_expected.to have_many :articles }
+  it { is_expected.to have_many :reminders }
 end
