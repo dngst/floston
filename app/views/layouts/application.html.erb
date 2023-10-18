@@ -18,8 +18,13 @@
     <%= render "layouts/confirm_modal" %>
 
     <main class="flex flex-col mx-auto container <%= 'mt-24' if !@home_page %> px-5 h-screen container">
-      <p class="text-red-500 mb-2" data-controller="auto-remove-message"><%= alert %></p>
-      <p class="text-green-500 mb-2" data-controller="auto-remove-message"><%= notice %></p>
+      <% if alert.present? %>
+        <p class="text-red-500 mb-2" data-controller="auto-remove-message"><%= alert %></p>
+      <% end %>
+
+      <% if notice.present? %>
+        <p class="text-green-500 mb-2" data-controller="auto-remove-message"><%= notice %></p>
+      <% end %>
      <%= yield %>
     </main>
   </body>
