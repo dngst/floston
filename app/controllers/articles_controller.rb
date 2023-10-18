@@ -12,9 +12,9 @@ class ArticlesController < ApplicationController
       Article.pluck(:id)
     end
     @articles = if current_user&.admin?
-                  Article.where(id: ids, admin_id: current_user.id).order(created_at: :desc).page(params[:page])
+                  Article.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
                 else
-                  Article.where(id: ids, admin_id: current_user.admin_id).order(created_at: :desc).page(params[:page])
+                  Article.where(id: ids, user_id: current_user.admin_id).order(created_at: :desc).page(params[:page])
                 end
   end
 
@@ -75,7 +75,7 @@ class ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def authorize_article_access
     @article = Article.friendly.find(params[:id])
-    return if current_user&.id == @article&.admin_id || current_user&.admin_id == @article&.admin_id
+    return if current_user&.id == @article&.user_id || current_user&.user_id == @article&.user_id
 
     flash[:alert] = 'You do not have permission to access this page.'
     redirect_to root_path
@@ -87,6 +87,6 @@ class ArticlesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :body, :admin_id, :published)
+    params.require(:article).permit(:title, :body, :user_id, :published)
   end
 end

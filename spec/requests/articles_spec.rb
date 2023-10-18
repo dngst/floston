@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.describe '/articles' do
   let(:admin) { create(:admin) }
-  let(:article) { create(:article, admin_id: admin.id) }
+  let(:article) { create(:article, user_id: admin.id) }
 
   let(:valid_attributes) do
-    { title: 'New Article', body: 'Content', admin_id: admin.id }
+    { title: 'New Article', body: 'Content', user_id: admin.id }
   end
 
   let(:new_attributes) do
-    { title: 'Updated Article', body: 'New Content', admin_id: admin.id }
+    { title: 'Updated Article', body: 'New Content', user_id: admin.id }
   end
 
   let(:invalid_attributes) do
-    { title: '', body: '', admin_id: admin.id }
+    { title: '', body: '', user_id: admin.id }
   end
 
   before do

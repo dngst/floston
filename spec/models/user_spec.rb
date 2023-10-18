@@ -37,4 +37,5 @@ RSpec.describe User do
   it { is_expected.to have_one :tenant }
   it { is_expected.to have_many :requests }
   it { is_expected.to have_many :comments }
+  it { is_expected.to have_many :articles }
 end

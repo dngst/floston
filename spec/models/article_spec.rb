@@ -9,16 +9,22 @@
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  admin_id   :integer          not null
+#  user_id    :bigint           not null
 #
 # Indexes
 #
-#  index_articles_on_slug  (slug) UNIQUE
+#  index_articles_on_slug     (slug) UNIQUE
+#  index_articles_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 require 'rails_helper'
 
 RSpec.describe Article do
   it { is_expected.to validate_presence_of :title }
   it { is_expected.to validate_presence_of :body }
-  it { is_expected.to validate_presence_of :admin_id }
+  it { is_expected.to validate_presence_of :user_id }
+  it { is_expected.to belong_to :user }
 end

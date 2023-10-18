@@ -75,14 +75,14 @@ Tenant.create!(
 Article.create!(
   title: "Recent change of management",
   body: "Following a recent incident, some changes have been made...",
-  admin_id: elrich.id,
+  user_id: elrich.id,
   published: true
 )
 
 Article.create!(
   title: "Key people at Argon Properties",
   body: "Some of the names and contacts of the people involved in this project...",
-  admin_id: elrich.id,
+  user_id: elrich.id,
   published: true
 )
 
@@ -90,13 +90,13 @@ Article.create!(
   title: "Faulty tap at the parking lot near block D",
   body: "There's a licking tap near block D at the parking lot. Please refrain
    from using it while we organise for repairs to be made.",
-  admin_id: elrich.id
+  user_id: elrich.id
 )
 
 Article.create!(
   title: "Richard can also write some articles like this one",
   body: "Jobs or... Jobs",
-  admin_id: richard.id,
+  user_id: richard.id,
   published: true
 )
 
@@ -150,7 +150,7 @@ end
   Article.create!(
     title: Faker::Lorem.words(number: 7).join(' '),
     body:  Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
-    admin_id: elrich.id,
+    user_id: elrich.id,
     published: true
   )
 end

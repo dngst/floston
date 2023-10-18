@@ -11,9 +11,9 @@ class SearchController < ApplicationController
                        Request.where(user_id: current_user.id).order(created_at: :desc)
                      end
     @articles_list = if current_user&.admin?
-                       Article.where(admin_id: current_user.id).order(created_at: :desc)
+                       Article.where(user_id: current_user.id).order(created_at: :desc)
                      else
-                       Article.where(admin_id: current_user.admin_id).order(created_at: :desc)
+                       Article.where(user_id: current_user.admin_id).order(created_at: :desc)
                      end
 
     @users_count = User.where(admin_id: current_user.id).ransack(fname_or_lname_or_email_or_phone_number_cont: q).result(distinct: true)
