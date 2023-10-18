@@ -4,9 +4,12 @@
       <h1 class="text-3xl font-bold text-gray-800 mb-2 capitalize"><%= @user.fname %> <%= @user.lname %></h1>
       <p class="text-gray-600"><%= @user.phone_number %></p>
       <p class="text-gray-600"><%= @user.email %></p>
-      <% if user_signed_in? && current_user == @user %>
-        <%= link_to "Edit profile", edit_user_registration_path, class: "text-blue-500 underline" %>
-      <% end %>
+      <div class="mt-4">
+        <% if user_signed_in? && current_user == @user %>
+          <%= link_to "Edit profile", edit_user_registration_path, class: "text-blue-500 underline" %>
+          <%= link_to "Reminders", user_reminders_path(@user), class: "text-blue-500 underline" %>
+        <% end %>
+      </div>
     <% end %>
 
     <div class="mt-6">
@@ -20,7 +23,7 @@
                 <% if value.is_a?(Date) %>
                   <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
                 <% elsif attribute == 'amount_due' %>
-                  <%= number_to_currency(value, unit: 'KES', precision: 0) %>
+                  <%= number_to_currency(value, unit: 'KES ', precision: 0) %>
                 <% else %>
                   <%= value %>
                 <% end %>

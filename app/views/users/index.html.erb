@@ -7,6 +7,7 @@
       Tenants
     </div>
   </h1>
+
   <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hidden md:flex" %>
   <%= link_to new_user_registration_path, class: "lg:hidden" do %>
     <% cache('bxs-file-plus.svg') do %>
@@ -22,4 +23,3 @@
 <% else %>
   <p class="mt-4 text-gray-500">You haven't added any tenants yet</p>
 <% end %>
-
