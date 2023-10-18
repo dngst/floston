@@ -1,3 +1,5 @@
-<%= link_to user_request_path(current_user, request) do %>
-  <h2 class="text-xl mt-2 underline mb-4"><%= request.title %></h3>
-<% end %>
+<p class="text-xl mt-2 underline mb-4">
+  <%= link_to user_request_path(current_user, request) do %>
+    <%= request.title %>
+  <% end %>
+</p>
