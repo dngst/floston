@@ -40,6 +40,7 @@
 <% if current_user&.admin? && current_user != @user %>
   <div class="mt-4 flex">
     <%= link_to "Edit tenant", edit_user_path(@user), class: "text-blue-500 underline mr-4" %>
-    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "text-red-500 underline" %>
+    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "text-red-500 underline mr-4" %>
+    <%= link_to "Reminders", user_reminders_path(@user), class: "text-gray-500 underline mr-4" %>
   </div>
 <% end %>

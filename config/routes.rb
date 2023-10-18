@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :comments
     end
 
-    resources :reminders
+    resources :reminders, only: [:index]
   end
   # Defines the root path route ("/")
   root "home#index"

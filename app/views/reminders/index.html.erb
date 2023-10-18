@@ -1,5 +1,6 @@
-<div class="max-w-lg">
-  <p class="text-3xl font-semibold mb-6">Reminders</p>
+<div class="max-w-md">
+  <%= link_to sanitize('&larr; Back'), :back, class: "text-gray-600" %>
+  <p class="text-3xl font-semibold mt-4 mb-6">Reminders</p>
   <% if @reminders.any? %>
     <% @reminders.each do |reminder| %>
       <div class="border border-gray-300 p-4 rounded mb-4">
