@@ -39,7 +39,7 @@ class User < ApplicationRecord
   has_one :tenant, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
   accepts_nested_attributes_for :tenant
 
