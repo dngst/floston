@@ -3,9 +3,9 @@
 <% page.records.each do |user| %>
   <% if current_user&.id == user.admin_id %>
     <div id="<%= dom_id user%>" class="my-4">
-      <div class="border border-gray-300 p-4 rounded flex items-center justify-between max-w-md">
+      <div class="border border-gray-300 p-4 rounded flex items-center justify-between max-w-lg">
         <div>
-          <h3 class="text-xl font-semibold mb-2 capitalize"><%= user.fname %> <%= user.lname %></h3>
+          <h3 class="lg:text-xl md:text-lg font-semibold mb-2 capitalize truncate w-56 lg:w-full"><%= user.fname %> <%= user.lname %></h3>
           <%= link_to user_path(user), data: { turbo_frame: "_top" }, class: "hover:underline" do %>
             <p class="text-gray-600">View profile</p>
           <% end %>
