@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       flash.now[:notice] = 'Tenant deleted.'
-      format.turbo_stream
+      format.turbo_stream { redirect_to users_path }
       format.html { redirect_to users_path, notice: 'Tenant deleted.' }
     end
   end
