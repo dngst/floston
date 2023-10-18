@@ -4,12 +4,7 @@ export default class extends Controller {
   static targets = ["content"];
 
   connect() {
-    const savedState = localStorage.getItem("navbarState");
-    if (savedState === "open") {
-      this.open();
-    } else {
-      this.close()
-    }
+    this.close()
   }
 
   closeOnBigScreen(event) {
@@ -21,10 +16,8 @@ export default class extends Controller {
   toggle() {
     if (this.contentTarget.classList.contains('hidden')) {
       this.open();
-      localStorage.setItem("navbarState", "open");
     } else {
       this.close();
-      localStorage.setItem("navbarState", "closed");
     }
   }
 
@@ -34,6 +27,5 @@ export default class extends Controller {
 
   close() {
     this.contentTarget.classList.add('hidden');
-    localStorage.setItem("navbarState", "closed");
   }
 }
