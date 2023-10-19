@@ -36,6 +36,13 @@ FactoryBot.define do
     fname { Faker::Internet.username }
     lname { Faker::Internet.username }
     phone_number { Faker::PhoneNumber.cell_phone }
+
+    tenant_attributes do
+      {
+        unit_number: Faker::Number.unique.number(digits: 3),
+        unit_type: '3 Bedroom'
+      }
+    end
   end
 
   factory :admin, class: 'User' do

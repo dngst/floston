@@ -18,9 +18,19 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params) && @user.tenant.update(tenant_params)
-        format.html { redirect_to user_path(@user), notice: 'Tenant information updated' }
-        format.json { render :show, status: :ok, location: @user }
+      if @user.update(user_params)
+        if @user.tenant
+          if @user.tenant.update(tenant_params)
+            format.html { redirect_to user_path(@user), notice: 'Tenant information updated' }
+            format.json { render :show, status: :ok, location: @user }
+          else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @user.tenant.errors, status: :unprocessable_entity }
+          end
+        else
+          format.html { redirect_to user_path(@user), notice: 'User information updated' }
+          format.json { render :show, status: :ok, location: @user }
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
