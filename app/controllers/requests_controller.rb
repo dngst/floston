@@ -43,7 +43,7 @@ class RequestsController < ApplicationController
       if @request.save
         Rails.cache.delete('request_ids')
         NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
-        format.html { redirect_to user_request_url(@user, @request), notice: 'Request was successfully created.' }
+        format.html { redirect_to user_request_url(@user, @request), notice: 'Request submitted' }
         format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -58,7 +58,7 @@ class RequestsController < ApplicationController
       @request = @user.requests.friendly.find(params[:id])
       if @request.update(request_params)
         Rails.cache.delete('request_ids')
-        format.html { redirect_to user_request_url, notice: 'Request was successfully updated.' }
+        format.html { redirect_to user_request_url, notice: 'Request was successfully updated' }
         format.json { render :show, status: :ok, location: @request }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -73,7 +73,7 @@ class RequestsController < ApplicationController
     Rails.cache.delete('request_ids')
 
     respond_to do |format|
-      format.html { redirect_to user_requests_url, notice: 'Request was successfully destroyed.' }
+      format.html { redirect_to user_requests_url, notice: 'Request deleted' }
       format.json { head :no_content }
     end
   end
@@ -85,7 +85,7 @@ class RequestsController < ApplicationController
     @request = Request.friendly.find(params[:id])
     return if current_user&.id == @request.user_id || current_user&.id == @request.user.admin_id
 
-    flash[:alert] = 'You do not have permission to access this page.'
+    flash[:alert] = 'You do not have permission to access that page'
     redirect_to root_path
   end
 

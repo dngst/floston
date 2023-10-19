@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params) && @user.tenant.update(tenant_params)
-        format.html { redirect_to user_path(@user), notice: 'User information updated successfully.' }
+        format.html { redirect_to user_path(@user), notice: 'Tenant information updated' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def authorize_profile_access
     return if current_user&.id == @user.admin_id || current_user == @user
 
-    flash[:alert] = 'You do not have permission to access this page.'
+    flash[:alert] = 'You do not have permission to access that page'
     redirect_to root_path
   end
 

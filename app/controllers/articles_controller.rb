@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         Rails.cache.delete('article_ids')
-        format.html { redirect_to article_url(@article), notice: 'Article was successfully created.' }
+        format.html { redirect_to article_url(@article), notice: 'Article created' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update(article_params)
         Rails.cache.delete('article_ids')
-        format.html { redirect_to article_url(@article), notice: 'Article was successfully updated.' }
+        format.html { redirect_to article_url(@article), notice: 'Article updated' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ class ArticlesController < ApplicationController
     Rails.cache.delete('article_ids')
 
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to articles_url, notice: 'Article deleted' }
       format.json { head :no_content }
     end
   end
@@ -77,7 +77,7 @@ class ArticlesController < ApplicationController
     @article = Article.friendly.find(params[:id])
     return if current_user&.id == @article&.user_id || current_user&.admin_id == @article&.user_id
 
-    flash[:alert] = 'You do not have permission to access this page.'
+    flash[:alert] = 'You do not have permission to access that page'
     redirect_to root_path
   end
 

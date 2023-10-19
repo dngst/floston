@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
         respond_with resource
       end
     else
-      flash[:alert] = 'You do not have permission to create an account.'
+      flash[:alert] = 'You do not have permission to create an account'
       redirect_to root_path
     end
   end
