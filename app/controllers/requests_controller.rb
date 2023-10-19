@@ -13,14 +13,14 @@ class RequestsController < ApplicationController
       Request.pluck(:id)
     end
     @request_user = User.friendly.find(params[:user_id])
-    @requests = if current_user&.admin?
-                  Request.joins(:user)
-                         .where(id: ids, users: { admin_id: current_user.id })
-                         .where(requests: { user_id: @request_user.id })
-                         .order(created_at: :desc).page(params[:page])
-                else
-                  Request.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
-                end
+    if current_user&.admin?
+      query = Request.joins(:user)
+                     .where(id: ids, users: { admin_id: current_user.id })
+      query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
+      @requests = query.order(created_at: :desc).page(params[:page])
+    else
+      @requests = Request.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
+    end
   end
 
   # GET /requests/1 or /requests/1.json
