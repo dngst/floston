@@ -118,6 +118,13 @@ Request.create!(
   user_id: john.id
 )
 
+15.times do
+  Reminder.create!(
+    amount: "62104",
+    user_id: jane.id
+  )
+end
+
 50.times do
   user = User.create!(
     fname: Faker::Internet.username,
