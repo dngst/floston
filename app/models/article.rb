@@ -40,6 +40,6 @@ class Article < ApplicationRecord
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    []
+    %w[user]
   end
 end

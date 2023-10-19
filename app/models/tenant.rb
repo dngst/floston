@@ -32,4 +32,8 @@ class Tenant < ApplicationRecord
       Reminder.create!(amount: tenant.amount_due, user_id: tenant.user.id) if PaymentDueMailer.reminder_email(tenant.user, tenant).deliver_now
     end
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[unit_number unit_type]
+  end
 end

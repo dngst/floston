@@ -24,4 +24,8 @@ class Comment < ApplicationRecord
   belongs_to :user
 
   validates :body, presence: true
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[body]
+  end
 end
