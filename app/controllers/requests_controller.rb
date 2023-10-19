@@ -12,9 +12,12 @@ class RequestsController < ApplicationController
     ids = Rails.cache.fetch('request_ids', expires_in: 12.hours) do
       Request.pluck(:id)
     end
+    @request_user = User.friendly.find(params[:user_id])
     @requests = if current_user&.admin?
-                  Request.joins(:user).where(id: ids,
-                                             users: { admin_id: current_user.id }).order(created_at: :desc).page(params[:page])
+                  Request.joins(:user)
+                         .where(id: ids, users: { admin_id: current_user.id })
+                         .where(requests: { user_id: @request_user.id })
+                         .order(created_at: :desc).page(params[:page])
                 else
                   Request.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
                 end
