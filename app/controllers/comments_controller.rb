@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
         if @comment.user_id == @request.user.admin_id
           CommentNotificationMailer.comment_notification(@request.user, @request, @comment).deliver_later
         end
-        format.html { redirect_to user_request_path(@user, @request), notice: 'Comment posted' }
+        format.html { redirect_to user_request_path(@user, @request) }
         format.json { render :show, status: :created, location: user_request_comment_path(@user, @request, @comment) }
       else
         format.html { render 'requests/show', status: :unprocessable_entity }
