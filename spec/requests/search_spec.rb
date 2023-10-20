@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Searches' do
+  let(:admin) { create(:admin) }
+  let(:user) { create(:user) }
+
   before do
-    user = create(:user)
+    user
+    admin
     sign_in user
+    sign_in admin
   end
 
   describe 'GET /index' do
