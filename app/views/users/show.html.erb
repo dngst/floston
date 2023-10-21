@@ -41,8 +41,8 @@
 
 <% if current_user&.admin? && current_user != @user %>
   <div class="mt-4 flex">
-    <%= link_to "Edit tenant", edit_user_path(@user), class: "text-blue-500 underline mr-4" %>
-    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "text-red-500 underline mr-4" %>
-    <%= link_to "Tenant stats", user_stats_path(@user), class: "text-gray-500 underline mr-4" %>
+    <%= link_to "Edit tenant", edit_user_path(@user), class: "rounded-lg py-3 px-5 text-gray-600 bg-gray-100 inline-block font-medium mr-4" %>
+    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "text-red-500 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium mr-4" %>
+    <%= link_to "Tenant stats", user_stats_path(@user), class: "rounded-lg py-3 px-5 text-blue-500 bg-gray-100 inline-block font-medium" %>
   </div>
 <% end %>

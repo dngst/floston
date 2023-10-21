@@ -6,11 +6,12 @@
         <p class="text-black text-2xl font-semibold <%= 'hidden md:flex' if user_signed_in? %>">Floston</p>
       <% end %>
 
-      <!-- Search Bar -->
-
-      <!-- Navigation Links -->
       <% if user_signed_in? %>
+
+        <!-- Search Bar -->
         <%= render 'search/form' %>
+
+        <!-- Navigation Links -->
         <div class="space-x-6 hidden md:flex">
           <% if current_user&.admin %>
             <%= link_to "Tenants", users_path %>
@@ -33,7 +34,6 @@
         </div>
       <% else %>
         <div class="space-x-6">
-          <%= link_to "Pricing", pricing_path %>
           <%= link_to "Sign in", new_user_session_path %>
         </div>
       <% end %>
@@ -42,6 +42,7 @@
 
   <!-- Mobile Navigation -->
   <nav class="bg-white shadow-md fixed top-0 w-full px-4 py-6 hidden" data-navbar-target="content">
+
     <!-- Navigation Links -->
     <% if user_signed_in? %>
       <div class="flex justify-between">
