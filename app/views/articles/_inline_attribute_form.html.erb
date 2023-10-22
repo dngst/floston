@@ -23,10 +23,6 @@
       </div>
     <% end %>
 
-    <div class="mt-4">
-      <%= form.hidden_field :admin_id, value: current_user.id %>
-    </div>
-
     <% if params[:attribute].eql? 'published' %>
       <div class="mt-4">
         <%= form.check_box :published, class: "mr-2 border rounded hover:cursor-pointer", onfocusout: 'this.form.requestSubmit()' %>
