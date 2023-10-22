@@ -71,7 +71,6 @@ RSpec.describe '/articles' do
     context 'with valid parameters' do
       it 'creates a new Article' do
         sign_in admin
-
       end
 
       it 'redirects to the created article' do

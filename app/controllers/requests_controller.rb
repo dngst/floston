@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
   before_action :require_admin, only: %i[edit update destroy]
   before_action :authorize_request_access, only: [:show]
   before_action :set_user
-  before_action :set_request, only: %i[show edit update destroy]
+  before_action :set_request, only: %i[show edit update destroy close_request]
 
   # GET /requests or /requests.json
   def index
@@ -79,6 +79,11 @@ class RequestsController < ApplicationController
       format.html { redirect_to user_requests_url, notice: 'Request deleted' }
       format.json { head :no_content }
     end
+  end
+
+  def close_request
+    @request.update_attribute(:closed, true)
+    redirect_to user_request_path(current_user, @request)
   end
 
   private

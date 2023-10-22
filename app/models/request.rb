@@ -3,6 +3,7 @@
 # Table name: requests
 #
 #  id          :bigint           not null, primary key
+#  closed      :boolean          default(FALSE), not null
 #  description :text             not null
 #  slug        :string
 #  title       :string           not null

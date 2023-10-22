@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :requests do
       resources :comments
+      member do
+          patch 'close_request'
+        end
     end
 
     resources :reminders, only: [:index]
