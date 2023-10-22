@@ -43,6 +43,6 @@
   <div class="mt-4 flex flex-col sm:flex-row">
     <%= link_to "Tenant stats", user_stats_path(@user), class: "rounded-lg py-3 px-5 text-blue-500 bg-blue-100 inline-block mb-2 sm:mr-4 text-center" %>
     <%= link_to "Edit tenant", edit_user_path(@user), class: "rounded-lg py-3 px-5 text-gray-500 bg-gray-100 inline-block mb-2 sm:mr-4 text-center" %>
-    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-3 px-5 text-red-500 bg-red-100 inline-block mb-2 sm:mr-4 text-center" %>
+    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-3 px-5 text-red-500 bg-red-100 inline-block mb-2 text-center w-full" %>
   </div>
 <% end %>
