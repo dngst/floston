@@ -4,9 +4,10 @@
 
 <p class="mb-4 text-gray-600">Sign in count — <span class="text-gray-800 font-semibold"><%= @user.sign_in_count %></span></p>
 <p class="mb-4 text-gray-600">
-  Last sign in — <span class="text-gray-800 font-semibold"><%= @user.last_sign_in_at.strftime("%A, #{ordinal(@user.last_sign_in_at.day)} %B %Y") if @user.last_sign_in_at %></span></p>
+  Last sign in — <span class="text-gray-800 font-semibold"><%= @user.last_sign_in_at.strftime("%a, #{@user.last_sign_in_at.day} %b %Y at %I:%M %p") if @user.last_sign_in_at %>
+</span></p>
 <p class="mb-4 text-gray-600">
-  Added — <span class="text-gray-800 font-semibold"><%= @user.created_at.strftime("%A, #{ordinal(@user.created_at.day)} %B %Y") %></span></p>
+  Added — <span class="text-gray-800 font-semibold"><%= @user.created_at.strftime("%a, #{@user.created_at.day} %b %Y at %I:%M %p") %></span></p>
 
 
 <%= link_to "Requests", user_requests_path(@user), class: "text-gray-600 underline" %>
