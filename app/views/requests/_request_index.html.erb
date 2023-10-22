@@ -1,4 +1,4 @@
-<p class="text-xl mt-2 underline mb-4">
+<p class="text-xl mt-2 underline mb-4 <%= 'text-green-500' if request.closed %>">
   <%= link_to user_request_path(current_user, request) do %>
     <%= request.title %>
   <% end %>
