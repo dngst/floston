@@ -1,6 +1,6 @@
 <div class="max-w-md">
   <%= link_to sanitize('&larr; Back'), :back, class: "text-gray-600" %>
-  <h1 class="text-4xl font-bold my-4">Edit Profile</h1>
+  <h1 class="text-4xl font-bold my-4">Editing Tenant</h1>
 
   <%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
     <div class="mb-4">
@@ -38,7 +38,7 @@
     <% end %>
 
     <div class="mt-4 mb-6">
-      <%= f.submit "Edit", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hover:cursor-pointer" %>
+      <%= f.submit "Update Tenant", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hover:cursor-pointer" %>
     </div>
   <% end %>
 </div>
