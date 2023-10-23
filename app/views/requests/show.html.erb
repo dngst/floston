@@ -10,14 +10,13 @@
       <div class="flex space-x-4">
         <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "rounded-lg py-3 px-5 text-red-500 bg-red-100 inline-block font-medium" %>
         <% if !@request.closed? %>
-          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "rounded-lg py-3 px-5 text-red-500 bg-red-100 inline-block font-medium" %>
+          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "rounded-lg py-3 px-4 text-red-500 bg-red-100 inline-block font-medium" %>
         <% end %>
       </div>
     <% end %>
   </div>
 
-
-  <h2 class="text-2xl font-bold text-gray-600 mb-4">Comments</h2>
+  <h2 class="text-2xl font-bold text-gray-600">Comments</h2>
 
   <% if @request.comments&.any? %>
     <% @request.comments.each do |comment| %>
@@ -34,9 +33,9 @@
     <p>No comments</p>
   <% end %>
 
-  <% if !@request.closed? %>
-    <%= render "comments/form" %>
+  <% if @request.closed? %>
+    <p class="text-red-500 mt-2"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
   <% else %>
-    <p class="text-red-500"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
+    <%= render "comments/form" %>
   <% end %>
 </div>

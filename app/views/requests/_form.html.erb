@@ -1,7 +1,7 @@
 <%= form_with(model: [@user, @request], local: true) do |form| %>
   <div class="mb-4">
     <%= form.label :title, class: "block text-gray-800" %>
-    <%= form.text_field :title, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+    <%= form.text_field :title, class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
     <% if @request.errors.include?(:title) %>
       <% @request.errors.full_messages_for(:title).each do |error| %>
         <p class="text-red-500 mt-2"><%= error %></p>
@@ -11,7 +11,7 @@
 
   <div class="mb-4">
     <%= form.label :description, class: "block text-gray-800" %>
-    <%= form.text_area :description, class: "w-full px-4 py-2 border rounded border-gray-300" %>
+    <%= form.text_area :description, class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
     <% if @request.errors.include?(:description) %>
       <% @request.errors.full_messages_for(:description).each do |error| %>
         <p class="text-red-500 mt-2"><%= error %></p>
