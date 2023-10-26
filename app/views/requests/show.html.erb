@@ -18,6 +18,12 @@
 
   <h2 class="text-2xl font-bold text-gray-600">Comments</h2>
 
+  <% if @request.closed? %>
+    <p class="text-red-500 mt-2"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
+  <% else %>
+    <%= render "comments/form" %>
+  <% end %>
+
   <% if @request.comments&.any? %>
     <% @request.comments.each do |comment| %>
       <% if comment.id %>
@@ -33,9 +39,4 @@
     <p>No comments</p>
   <% end %>
 
-  <% if @request.closed? %>
-    <p class="text-red-500 mt-2"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
-  <% else %>
-    <%= render "comments/form" %>
-  <% end %>
 </div>
