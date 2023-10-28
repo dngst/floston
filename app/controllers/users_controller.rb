@@ -12,7 +12,9 @@ class UsersController < ApplicationController
     set_page_and_extract_portion_from users_list
   end
 
-  def show; end
+  def show
+    @payout = Tenant.total_amount_due(@user)
+  end
 
   def edit; end
 

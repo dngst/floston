@@ -46,3 +46,12 @@
     <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-3 px-5 text-red-500 bg-red-100 inline-block mb-2 text-center w-full" %>
   </div>
 <% end %>
+
+<% if current_user == @user %>
+  <div class="bg-white rounded-lg">
+    <p class="text-gray-500">Total Projected Payout</p>
+    <p class="text-2xl semi-bold mt-2">
+      <%= number_to_currency(@payout, unit: 'KES ', precision: 0) %>
+    </p>
+  </div>
+<% end %>
