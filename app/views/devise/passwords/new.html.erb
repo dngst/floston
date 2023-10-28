@@ -5,7 +5,7 @@
 
     <div class="mt-4">
       <%= f.label :email, class: "block font-semibold text-gray-800" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
       <% if resource.errors.include?(:email) %>
         <% resource.errors.full_messages_for(:email).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="mt-4">
-      <%= f.submit "Send me reset password instructions", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hover:cursor-pointer" %>
+      <%= f.submit "Send me reset password instructions", class: "bg-floston text-white px-4 py-2 rounded-lg hover:cursor-pointer" %>
     </div>
   <% end %>
 

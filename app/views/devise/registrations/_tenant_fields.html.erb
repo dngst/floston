@@ -1,6 +1,6 @@
 <div class="mb-4">
   <%= f.label :unit_number, class: "block font-semibold text-gray-800" %>
-  <%= f.text_field :unit_number, class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
+  <%= f.text_field :unit_number, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
   <% if f.object.errors.include?(:unit_number) %>
     <% f.object.errors.full_messages_for(:unit_number).each do |error| %>
       <p class="text-red-500 mt-2"><%= error %></p>
@@ -10,7 +10,7 @@
 
 <div class="mb-4">
   <%= f.label :unit_type, class: "block font-semibold text-gray-800" %>
-  <%= f.text_field :unit_type, class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
+  <%= f.text_field :unit_type, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
   <% if f.object.errors.include?(:unit_type) %>
     <% f.object.errors.full_messages_for(:unit_type).each do |error| %>
       <p class="text-red-500 mt-2"><%= error %></p>
@@ -20,15 +20,15 @@
 
 <div class="mb-4">
   <%= f.label :moved_in, class: "block font-semibold text-gray-800" %>
-  <%= f.date_field :moved_in, class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
+  <%= f.date_field :moved_in, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
 </div>
 
 <div class="mb-4">
   <%= f.label :next_payment, class: "block font-semibold text-gray-800" %>
-  <%= f.date_field :next_payment, class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
+  <%= f.date_field :next_payment, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
 </div>
 
 <div class="mb-4">
   <%= f.label :amount_due, class: "block font-semibold text-gray-800" %>
-  <%= f.number_field :amount_due, class: "w-full px-3 py-2 border rounded border-gray-200 mt-2" %>
+  <%= f.number_field :amount_due, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
 </div>
