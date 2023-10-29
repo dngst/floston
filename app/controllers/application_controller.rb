@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
                                                   unit_type
                                                   moved_in
                                                   next_payment
-                                                  amount_due] }])
+                                                  amount_due
+                                                  property_id] }])
 
     devise_parameter_sanitizer.permit(:account_update,
                                       keys: [:fname,

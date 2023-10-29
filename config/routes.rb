@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :properties, except: [:show]
   get 'search', to: 'search#index'
   get 'features', to: 'features#index'
   resources :articles

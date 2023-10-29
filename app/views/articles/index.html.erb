@@ -9,7 +9,7 @@
       </div>
     </h1>
     <% if current_user&.admin? %>
-      <%= link_to "+ Write an article", new_article_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex" %>
+      <%= link_to "+ Write an article", new_article_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" %>
       <%= link_to new_article_path, class: "lg:hidden" do %>
         <% cache('bxs-file-plus.svg') do %>
           <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>

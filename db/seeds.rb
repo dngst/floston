@@ -18,6 +18,13 @@ richard = User.create!(
   admin: true
 )
 
+50.times do
+  Property.create!(
+    name: Faker::Address.street_name,
+    user_id: elrich.id
+  )
+end
+
 jackie = User.create!(
   fname: "Jackie",
   lname: "Brown",
@@ -34,6 +41,7 @@ Tenant.create!(
   moved_in: "15-11-2012",
   next_payment: "15-11-2012",
   amount_due: "10000",
+  property_id: Property.last.id
 )
 
 john = User.create!(
@@ -51,7 +59,8 @@ Tenant.create!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
-  amount_due: "10000"
+  amount_due: "10000",
+  property_id: Property.last.id
 )
 
 jane = User.create!(
@@ -69,35 +78,40 @@ Tenant.create!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
-  amount_due: "10000"
+  amount_due: "10000",
+  property_id: Property.last.id
 )
 
 Article.create!(
   title: "Recent change of management",
   body: "Following a recent incident, some changes have been made...",
   user_id: elrich.id,
-  published: true
+  published: true,
+  property_id: Property.last.id
 )
 
 Article.create!(
   title: "Key people at Argon Properties",
   body: "Some of the names and contacts of the people involved in this project...",
   user_id: elrich.id,
-  published: true
+  published: true,
+  property_id: Property.last.id
 )
 
 Article.create!(
   title: "Faulty tap at the parking lot near block D",
   body: "There's a licking tap near block D at the parking lot. Please refrain
    from using it while we organise for repairs to be made.",
-  user_id: elrich.id
+  user_id: elrich.id,
+  property_id: Property.last.id
 )
 
 Article.create!(
   title: "Richard can also write some articles like this one",
   body: "Jobs or... Jobs",
   user_id: richard.id,
-  published: true
+  published: true,
+  property_id: Property.last.id
 )
 
 Request.create!(
@@ -141,9 +155,11 @@ end
     unit_type: "1 Bedroom",
     moved_in: "15-11-2022",
     next_payment: "15-12-2022",
-    amount_due: "10000"
+    amount_due: "10000",
+    property_id: Property.last.id
   )
 end
+
 
 50.times do
   Request.create!(
@@ -158,6 +174,7 @@ end
     title: Faker::Lorem.words(number: 7).join(' '),
     body:  Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
     user_id: elrich.id,
+    property_id: Property.last.id,
     published: true
   )
 end

@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     @articles = if current_user&.admin?
                   Article.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
                 else
-                  Article.where(id: ids, user_id: current_user.admin_id).order(created_at: :desc).page(params[:page])
+                  Article.where(id: ids, user_id: current_user.admin_id, property_id: current_user.tenant.property_id).order(created_at: :desc).page(params[:page])
                 end
   end
 
@@ -87,6 +87,6 @@ class ArticlesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :body, :user_id, :published)
+    params.require(:article).permit(:title, :body, :user_id, :published, :property_id)
   end
 end

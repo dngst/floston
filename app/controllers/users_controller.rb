@@ -70,6 +70,6 @@ class UsersController < ApplicationController
   end
 
   def tenant_params
-    params.require(:tenant).permit(:amount_due, :moved_in, :next_payment, :unit_number, :unit_type)
+    params.require(:tenant).permit(:amount_due, :moved_in, :next_payment, :unit_number, :unit_type, :property_id)
   end
 end

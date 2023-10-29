@@ -9,6 +9,8 @@
             <%= article.title %>
           <% end %>
         </h1>
+      <% elsif attribute == :property_id %>
+        <p class="mb-4">Property: <%= Property.find_by(id: article[attribute]).name %></p>
       <% elsif attribute == :published %>
         <% if current_user&.admin? %>
           <%= link_to [:edit, article, attribute: attribute] do %>

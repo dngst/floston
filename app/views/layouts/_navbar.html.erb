@@ -15,6 +15,7 @@
         <div class="space-x-6 hidden md:flex">
           <% if current_user&.admin %>
             <%= link_to "Tenants", users_path %>
+            <%= link_to "Properties", properties_path %>
           <% end %>
           <%= link_to "General Info", articles_path %>
           <%= link_to "Requests", user_requests_path(current_user) %>
@@ -56,6 +57,7 @@
         <li class="py-2 px-2 text-lg"><%= link_to "Home", root_path %></li>
         <% if current_user&.admin %>
           <li class="py-2 px-2 text-lg"><%= link_to "Tenants", users_path %></li>
+          <li class="py-2 px-2 text-lg"><%= link_to "Properties", properties_path %></li>
         <% end %>
         <li class="py-2 px-2 text-lg"><%= link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
         <li class="py-2 px-2 text-lg"><%= link_to "Requests", user_requests_path(current_user) %></li>

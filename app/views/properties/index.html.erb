@@ -1,0 +1,24 @@
+<div class="w-full">
+  <div class="flex justify-between mb-6">
+    <h1 class="text-4xl font-bold">
+      <div class="flex justify-normal">
+        <% cache('bx-building-house') do %>
+          <%= image_tag "bx-building-house.svg", class: "w-10 mr-2 hidden md:flex" %>
+        <% end %>
+        Properties
+      </div>
+    </h1>
+    <% if current_user&.admin? %>
+      <%= link_to "+ Add property", new_property_path, class: "bg-floston text-flostontext rounded-lg py-2 px-4 block font-medium hidden md:flex" %>
+      <%= link_to new_property_path, class: "lg:hidden" do %>
+        <% cache('bxs-file-plus.svg') do %>
+          <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="properties" class="max-w-lg">
+    <%= render @properties %>
+  </div>
+</div>

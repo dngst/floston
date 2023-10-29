@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_22_150224) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_29_160402) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_150224) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.index ["property_id"], name: "index_articles_on_property_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -45,6 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_150224) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "reminders", force: :cascade do |t|
@@ -76,6 +86,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_150224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.index ["property_id"], name: "index_tenants_on_property_id"
     t.index ["unit_number"], name: "index_tenants_on_unit_number", unique: true
     t.index ["user_id"], name: "index_tenants_on_user_id"
   end
@@ -104,10 +116,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_150224) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "articles", "properties"
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "requests"
   add_foreign_key "comments", "users"
+  add_foreign_key "properties", "users"
   add_foreign_key "reminders", "users"
   add_foreign_key "requests", "users"
+  add_foreign_key "tenants", "properties"
   add_foreign_key "tenants", "users"
 end

@@ -1,5 +1,5 @@
 <div class="flex justify-between mb-4">
-  <h1 class="text-4xl">
+  <h1 class="text-4xl font-bold">
     <div class="flex justify-normal">
       <% cache('bxs-group.svg') do %>
         <%= image_tag "bxs-group.svg", class: "w-10 mr-2 hidden md:flex" %>
@@ -8,7 +8,7 @@
     </div>
   </h1>
 
-  <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex" %>
+  <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" %>
   <%= link_to new_user_registration_path, class: "lg:hidden" do %>
     <% cache('bxs-file-plus.svg') do %>
       <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>

@@ -26,6 +26,8 @@
                   <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
                 <% elsif attribute == 'amount_due' %>
                   <%= number_to_currency(value, unit: 'KES ', precision: 0) %>
+                <% elsif attribute == 'property_id' %>
+                  <p class="text-gray-600 capitalize"><%= Property.find_by(id: value).name %></p>
                 <% else %>
                   <%= value %>
                 <% end %>
@@ -40,14 +42,14 @@
 <% end %>
 
 <% if current_user&.admin? && current_user != @user %>
-  <div class="mt-4 flex flex-col sm:flex-row">
-    <%= link_to "Tenant stats", user_stats_path(@user), class: "rounded-lg py-3 px-5 text-gray-500 bg-gray-100 inline-block mb-2 sm:mr-4 text-center" %>
-    <%= link_to "Edit tenant", edit_user_path(@user), class: "rounded-lg py-3 px-5 text-gray-500 bg-gray-100 inline-block mb-2 sm:mr-4 text-center" %>
-    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-3 px-5 text-red-500 bg-red-100 inline-block mb-2 text-center w-full" %>
+  <div class="flex flex-col sm:flex-row">
+    <%= link_to "Tenant stats", user_stats_path(@user), class: "rounded-lg py-2 px-4 text-gray-500 bg-gray-100 inline-block mb-2 sm:mr-4 text-center font-medium" %>
+    <%= link_to "Edit tenant", edit_user_path(@user), class: "rounded-lg py-2 px-4 text-gray-500 bg-gray-100 inline-block mb-2 sm:mr-4 text-center font-medium" %>
+    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 inline-block mb-2 text-center w-full font-medium" %>
   </div>
 <% end %>
 
-<% if current_user == @user %>
+<% if current_user&.admin? && current_user == @user %>
   <div class="bg-white rounded-lg">
     <p class="text-gray-500">Total Projected Payout</p>
     <p class="text-2xl semi-bold mt-2">

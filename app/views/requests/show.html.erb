@@ -8,9 +8,9 @@
   <div class="my-4">
     <% if current_user&.admin? %>
       <div class="flex space-x-4">
-        <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "rounded-lg py-3 px-5 text-red-500 bg-red-100 inline-block font-medium" %>
+        <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 inline-block font-medium" %>
         <% if !@request.closed? %>
-          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "rounded-lg py-3 px-4 text-red-500 bg-red-100 inline-block font-medium" %>
+          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 inline-block font-medium" %>
         <% end %>
       </div>
     <% end %>

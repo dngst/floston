@@ -1,70 +1,91 @@
-<div class="max-w-lg">
-  <p class="text-4xl mb-6">Search results</p>
-  <% if current_user&.admin && @users.any? %>
-    <%= turbo_frame_tag "users_results" do %>
-      <div class="mb-20">
-        <% created_users = @users %>
-        <% count_text = pluralize(@users_count.size, "User") %>
-        <h2 class="text-xl mt-4"><%= count_text %></h2>
-        <% if created_users.any? %>
-          <% created_users.each do |user| %>
-            <div class="border border-gray-300 p-4 rounded mt-4">
-              <%= link_to user_path(user), data: { turbo_frame: "_top" } do %>
-                <p class="text-xl font-semibold text-flostonlink hover:underline capitalize"><%= "#{user.fname} #{user.lname}" %></p>
-              <% end %>
-              <p class="mt-2"><%= user.email %></p>
+<%= turbo_frame_tag :results_list do %>
+  <div class="max-w-lg">
+    <p class="text-4xl mb-6">Search results</p>
+    <% if current_user&.admin && @users.any? %>
+      <%= turbo_frame_tag "users_results" do %>
+        <div class="mb-20">
+          <% created_users = @users %>
+          <% count_text = pluralize(@users_count.size, "User") %>
+          <h2 class="text-xl mt-4"><%= count_text %></h2>
+          <% if created_users.any? %>
+            <% created_users.each do |user| %>
+              <div class="border border-gray-300 p-4 rounded mt-4">
+                <%= link_to user_path(user), data: { turbo_frame: "_top" } do %>
+                  <p class="text-xl font-semibold text-flostonlink hover:underline capitalize"><%= "#{user.fname} #{user.lname}" %></p>
+                <% end %>
+                <p class="mt-2"><%= user.email %></p>
+              </div>
+            <% end %>
+            <div class="mt-4">
+              <%= paginate @users if @users_count.size > 9 %>
             </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if current_user&.admin && @properties.any? %>
+      <%= turbo_frame_tag "property_results" do %>
+        <div class="mb-20">
+          <% created_properties = @properties %>
+          <% count_text = pluralize(@properties_count.size, "Property") %>
+          <h2 class="text-xl mt-4"><%= count_text %></h2>
+          <% if created_properties.any? %>
+            <% created_properties.each do |property| %>
+              <div class="border border-gray-300 p-4 rounded mt-4">
+                <p class="text-xl font-semibold capitalize"><%= "#{property.name}" %></p>
+              </div>
+            <% end %>
+            <div class="mt-4">
+              <%= paginate @properties if @properties_count.size > 9 %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @requests.any? %>
+      <%= turbo_frame_tag "requests_results" do %>
+        <div class="mb-20">
+          <% created_requests = @requests %>
+          <% count_text = pluralize(@requests_count.size, "Request") %>
+          <h2 class="text-xl mt-4"><%= count_text %></h2>
+          <% if created_requests.any? %>
+            <% created_requests.each do |request| %>
+              <div class="border <%= 'border-gray-500' if request.closed %> border-gray-300 p-4 rounded mt-4">
+                <%= link_to user_request_path(request.user, request), data: { turbo_frame: "_top" } do %>
+                  <p class="text-xl font-semibold <%= 'text-gray-500' if request.closed %> text-flostonlink hover:underline"><%= request.title %></p>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
           <div class="mt-4">
-            <%= paginate @users if @users_count.size > 9 %>
+            <%= paginate @requests if @requests_count.size > 9 %>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
-
-  <% if @requests.any? %>
-    <%= turbo_frame_tag "requests_results" do %>
-      <div class="mb-20">
-        <% created_requests = @requests %>
-        <% count_text = pluralize(@requests_count.size, "Request") %>
-        <h2 class="text-xl mt-4"><%= count_text %></h2>
-        <% if created_requests.any? %>
-          <% created_requests.each do |request| %>
-            <div class="border <%= 'border-gray-500' if request.closed %> border-gray-300 p-4 rounded mt-4">
-              <%= link_to user_request_path(request.user, request), data: { turbo_frame: "_top" } do %>
-                <p class="text-xl font-semibold <%= 'text-gray-500' if request.closed %> text-flostonlink hover:underline"><%= request.title %></p>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-        <div class="mt-4">
-          <%= paginate @requests if @requests_count.size > 9 %>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <% if @articles.any? %>
-    <%= turbo_frame_tag "articles_results" do %>
-      <div class="mb-20">
-        <% created_articles = @articles %>
-        <% count_text = pluralize(@articles_count.size, "Article") %>
-        <h2 class="text-xl mt-4"><%= count_text %></h2>
-        <% if created_articles.any? %>
-          <% created_articles.each do |article| %>
-            <div class="border border-gray-300 p-4 rounded mt-4">
-              <%= link_to article_path(article), data: { turbo_frame: "_top" } do %>
-                <p class="text-xl font-semibold text-flostonlink hover:underline"><%= article.title %></p>
-              <% end %>
-            </div>
+    <% if @articles.any? %>
+      <%= turbo_frame_tag "articles_results" do %>
+        <div class="mb-20">
+          <% created_articles = @articles %>
+          <% count_text = pluralize(@articles_count.size, "Article") %>
+          <h2 class="text-xl mt-4"><%= count_text %></h2>
+          <% if created_articles.any? %>
+            <% created_articles.each do |article| %>
+              <div class="border border-gray-300 p-4 rounded mt-4">
+                <%= link_to article_path(article), data: { turbo_frame: "_top" } do %>
+                  <p class="text-xl font-semibold text-flostonlink hover:underline"><%= article.title %></p>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-        <div class="mt-4">
-          <%= paginate @articles if @articles_count.size > 9 %>
+          <div class="mt-4">
+            <%= paginate @articles if @articles_count.size > 9 %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-
-</div>
+  </div>
+<% end %>

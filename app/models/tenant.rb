@@ -10,19 +10,23 @@
 #  unit_type    :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  property_id  :bigint           not null
 #  user_id      :bigint           not null
 #
 # Indexes
 #
+#  index_tenants_on_property_id  (property_id)
 #  index_tenants_on_unit_number  (unit_number) UNIQUE
 #  index_tenants_on_user_id      (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (property_id => properties.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class Tenant < ApplicationRecord
   belongs_to :user
+  belongs_to :property
 
   validates :unit_number, :unit_type, presence: true
 
@@ -39,6 +43,10 @@ class Tenant < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[unit_number unit_type]
+    %w[unit_number unit_type property]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["property", "user"]
   end
 end
