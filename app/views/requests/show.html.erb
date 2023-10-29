@@ -28,10 +28,8 @@
     <% @request.comments.each do |comment| %>
       <% if comment.id %>
         <p class="mb-2">
-          <% if comment.user_id == @user.admin_id %>
-            (Admin)
-          <% end %>
           <strong class="capitalize"><%= comment.user.fname %></strong>: <%= comment.body %>
+          <span class="text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</span>
         </p>
       <% end %>
     <% end %>
