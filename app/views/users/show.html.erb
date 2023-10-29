@@ -6,9 +6,9 @@
       <p class="text-gray-600"><%= @user.email %></p>
       <div class="mt-4">
         <% if user_signed_in? && current_user == @user %>
-          <%= link_to "Edit profile", edit_user_registration_path, class: "text-floston underline" %>
+          <%= link_to "Edit profile", edit_user_registration_path, class: "text-flostonlink underline" %>
           <% if !current_user.admin? %>
-            <%= link_to "Reminders", user_reminders_path(@user), class: "text-floston underline" %>
+            <%= link_to "Reminders", user_reminders_path(@user), class: "text-flostonlink underline" %>
           <% end %>
         <% end %>
       </div>

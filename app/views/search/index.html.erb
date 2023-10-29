@@ -10,7 +10,7 @@
           <% created_users.each do |user| %>
             <div class="border border-gray-300 p-4 rounded mt-4">
               <%= link_to user_path(user), data: { turbo_frame: "_top" } do %>
-                <p class="text-xl font-semibold text-floston hover:underline capitalize"><%= "#{user.fname} #{user.lname}" %></p>
+                <p class="text-xl font-semibold text-flostonlink hover:underline capitalize"><%= "#{user.fname} #{user.lname}" %></p>
               <% end %>
               <p class="mt-2"><%= user.email %></p>
             </div>
@@ -33,7 +33,7 @@
           <% created_requests.each do |request| %>
             <div class="border <%= 'border-gray-500' if request.closed %> border-gray-300 p-4 rounded mt-4">
               <%= link_to user_request_path(request.user, request), data: { turbo_frame: "_top" } do %>
-                <p class="text-xl font-semibold <%= 'text-gray-500' if request.closed %> text-floston hover:underline"><%= request.title %></p>
+                <p class="text-xl font-semibold <%= 'text-gray-500' if request.closed %> text-flostonlink hover:underline"><%= request.title %></p>
               <% end %>
             </div>
           <% end %>
@@ -55,7 +55,7 @@
           <% created_articles.each do |article| %>
             <div class="border border-gray-300 p-4 rounded mt-4">
               <%= link_to article_path(article), data: { turbo_frame: "_top" } do %>
-                <p class="text-xl font-semibold text-floston hover:underline"><%= article.title %></p>
+                <p class="text-xl font-semibold text-flostonlink hover:underline"><%= article.title %></p>
               <% end %>
             </div>
           <% end %>

@@ -13,7 +13,9 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        floston: '#41d88c'
+        floston: '#93E9BE',
+        flostontext: '#393E41',
+        flostonlink: '#3F88C5'
       },
     },
   },
