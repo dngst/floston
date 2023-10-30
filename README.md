@@ -6,7 +6,7 @@ $ bin/setup
 
 $ bin/dev
 
-## Tests (93.7%)
+## Tests (94.34%)
 
 $ bundle exec rspec
 

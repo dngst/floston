@@ -25,6 +25,11 @@ richard = User.create!(
   )
 end
 
+richards_property = Property.create!(
+  name: Faker::Address.unique.street_name,
+  user_id: richard.id
+)
+
 jackie = User.create!(
   fname: "Jackie",
   lname: "Brown",
@@ -41,7 +46,7 @@ Tenant.create!(
   moved_in: "15-11-2012",
   next_payment: "15-11-2012",
   amount_due: "10000",
-  property_id: Property.last.id
+  property_id: richards_property.id
 )
 
 john = User.create!(

@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe '/comments' do
   let(:admin) { create(:admin) }
-  let(:user) { create(:user, admin_id: admin.id) }
   let(:request) { create(:request, user_id: user.id) }
+  let(:property) { create(:property, user_id: admin.id) }
+  let(:user) { create(:user, admin_id: admin.id, tenant_attributes_override: { property_id: property.id }) }
 
   let(:valid_attributes) do
     { body: 'Content', user_id: user.id }

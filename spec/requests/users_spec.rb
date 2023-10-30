@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Users' do
   let(:admin) { create(:admin) }
-  let(:user) { create(:user, admin_id: admin.id) }
+  let(:property) { create(:property, user_id: admin.id) }
+  let(:user) { create(:user, admin_id: admin.id, tenant_attributes_override: { property_id: property.id }) }
 
   let(:valid_user_attributes) do
     {

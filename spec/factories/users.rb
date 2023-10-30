@@ -37,11 +37,15 @@ FactoryBot.define do
     lname { Faker::Internet.username }
     phone_number { Faker::PhoneNumber.cell_phone }
 
+    transient do
+      tenant_attributes_override { {} }
+    end
+
     tenant_attributes do
       {
         unit_number: Faker::Number.unique.number(digits: 3),
         unit_type: '3 Bedroom'
-      }
+      }.merge(tenant_attributes_override)
     end
   end
 

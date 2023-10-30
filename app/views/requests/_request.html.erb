@@ -7,6 +7,11 @@
     <%= request.description %>
   </p>
 
-  <p class="capitalize">by: <%= request.user.fname %> <%= request.user.lname %></p>
+  <p class="capitalize">
+    by:
+    <%= link_to user_path(request.user), class: "text-flostonlink underline" do %>
+      <%= request.user.fname %> <%= request.user.lname %>
+    <% end %>
+  </p>
 </div>
 

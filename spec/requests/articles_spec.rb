@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe '/articles' do
   let(:admin) { create(:admin) }
-  let(:user) { create(:user, admin_id: admin.id) }
-  let(:article) { create(:article, user_id: admin.id) }
+  let(:property) { create(:property, user_id: admin.id) }
+  let(:article) { create(:article, user_id: admin.id, property_id: property.id) }
+  let(:user) { create(:user, admin_id: admin.id, tenant_attributes_override: { property_id: property.id }) }
 
   let(:valid_attributes) do
-    { title: 'New Article', body: 'Content', user_id: admin.id }
+    { title: 'New Article', body: 'Content', user_id: admin.id, property_id: property.id }
   end
 
   let(:new_attributes) do

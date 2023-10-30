@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationController, type: :controller do
+RSpec.describe ApplicationController do
   controller do
     def after_sign_in_path_for(resource)
       super(resource)
@@ -8,8 +8,9 @@ RSpec.describe ApplicationController, type: :controller do
   end
 
   describe '#after_sign_in_path_for' do
-    let(:user) { create(:user) }
     let(:admin) { create(:admin) }
+    let(:property) { create(:property, user_id: admin.id) }
+    let(:user) { create(:user, tenant_attributes_override: { property_id: property.id }) }
 
     it 'returns the edit_user_registration_path for a first-time regular user' do
       user.sign_in_count = 1
