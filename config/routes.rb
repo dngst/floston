@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :users do
     resources :requests do
-      resources :comments
+      resources :comments, except: [:show]
       member do
           patch 'close_request'
         end

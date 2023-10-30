@@ -17,7 +17,7 @@
 </div>
 
 <% if @users.any?  %>
-  <%= turbo_frame_tag "users", action: "advance" do %>
+  <%= turbo_frame_tag "users" do %>
     <%= render partial: "user", locals: { page: @page } %>
   <%end%>
 <% else %>

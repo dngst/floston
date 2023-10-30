@@ -1,12 +1,18 @@
-<div class="mb-4">
-  <%= f.label :property, class: "block font-semibold text-gray-800" %>
-  <%= f.collection_select(:property_id, Property.my_properties(current_user), :id, :name, { prompt: "Select a property" }, { class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" }) %>
-  <% if f.object.errors.include?(:property) %>
-    <% f.object.errors.full_messages_for(:property).each do |error| %>
-      <p class="text-red-500 mt-2"><%= error %></p>
+<% if Property.my_properties(current_user).present? %>
+  <div class="mb-4">
+    <%= f.label :property, class: "block font-semibold text-gray-800" %>
+    <%= f.collection_select(:property_id, Property.my_properties(current_user), :id, :name, { prompt: "Select a property" }, { class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" }) %>
+    <% if f.object.errors.include?(:property) %>
+      <% f.object.errors.full_messages_for(:property).each do |error| %>
+        <p class="text-red-500 mt-2"><%= error %></p>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <div class="mb-4">
+    <%= link_to "Create a property first", new_property_path, class: "text-flostonlink underline" %>
+  </div>
+<% end %>
 
 <div class="mb-4">
   <%= f.label :unit_number, class: "block font-semibold text-gray-800" %>

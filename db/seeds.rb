@@ -26,7 +26,7 @@ richard = User.create!(
 end
 
 richards_property = Property.create!(
-  name: Faker::Address.unique.street_name,
+  name: "Viraj, Laikipia Road",
   user_id: richard.id
 )
 
@@ -65,7 +65,7 @@ Tenant.create!(
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
   amount_due: "10000",
-  property_id: Property.last.id
+  property_id: 10
 )
 
 jane = User.create!(
@@ -84,7 +84,7 @@ Tenant.create!(
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
   amount_due: "10000",
-  property_id: Property.last.id
+  property_id: 10
 )
 
 Article.create!(
@@ -92,7 +92,7 @@ Article.create!(
   body: "Following a recent incident, some changes have been made...",
   user_id: elrich.id,
   published: true,
-  property_id: Property.last.id
+  property_id: 10
 )
 
 Article.create!(
@@ -100,7 +100,7 @@ Article.create!(
   body: "Some of the names and contacts of the people involved in this project...",
   user_id: elrich.id,
   published: true,
-  property_id: Property.last.id
+  property_id: 10
 )
 
 Article.create!(
@@ -108,7 +108,7 @@ Article.create!(
   body: "There's a licking tap near block D at the parking lot. Please refrain
    from using it while we organise for repairs to be made.",
   user_id: elrich.id,
-  property_id: Property.last.id
+  property_id: 10
 )
 
 Article.create!(
@@ -116,7 +116,7 @@ Article.create!(
   body: "Jobs or... Jobs",
   user_id: richard.id,
   published: true,
-  property_id: Property.last.id
+  property_id: 10
 )
 
 Request.create!(
@@ -161,7 +161,7 @@ end
     moved_in: "15-11-2022",
     next_payment: "15-12-2022",
     amount_due: "10000",
-    property_id: Property.last.id
+    property_id: 10
   )
 end
 
@@ -179,7 +179,7 @@ end
     title: Faker::Lorem.words(number: 7).join(' '),
     body:  Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
     user_id: elrich.id,
-    property_id: Property.last.id,
+    property_id: 10,
     published: true
   )
 end

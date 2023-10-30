@@ -41,10 +41,6 @@ RSpec.describe 'Routing' do
     expect(get: '/users/1/requests/2/comments/new').to route_to('comments#new', user_id: '1', request_id: '2')
   end
 
-  it 'routes to comments#show' do
-    expect(get: '/users/1/requests/2/comments/3').to route_to('comments#show', user_id: '1', request_id: '2', id: '3')
-  end
-
   it 'routes to comments#edit' do
     expect(get: '/users/1/requests/2/comments/3/edit').to route_to('comments#edit', user_id: '1', request_id: '2',
                                                                                     id: '3')

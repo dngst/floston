@@ -10,10 +10,6 @@ RSpec.describe CommentsController do
       expect(get: '/users/1/requests/1/comments/new').to route_to('comments#new', user_id: '1', request_id: '1')
     end
 
-    it 'routes to #show' do
-      expect(get: '/users/1/requests/1/comments/1').to route_to('comments#show', user_id: '1', request_id: '1', id: '1')
-    end
-
     it 'routes to #edit' do
       expect(get: '/users/1/requests/1/comments/1/edit').to route_to('comments#edit', user_id: '1', request_id: '1',
                                                                                       id: '1')

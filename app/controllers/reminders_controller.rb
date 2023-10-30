@@ -1,4 +1,6 @@
 class RemindersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @user = User.friendly.find(params[:user_id])
     @reminders = if current_user&.admin?

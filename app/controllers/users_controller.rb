@@ -46,8 +46,10 @@ class UsersController < ApplicationController
                                                  admin_id: current_user.id).order(created_at: :desc).page(params[:page])
 
     respond_to do |format|
-      flash.now[:notice] = 'Tenant deleted.'
-      format.turbo_stream { redirect_to users_path }
+      format.turbo_stream do
+        flash.now[:notice] = 'Tenant deleted.'
+        redirect_to users_path
+      end
       format.html { redirect_to users_path, notice: 'Tenant deleted.' }
     end
   end
