@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.order(created_at: :desc)
+    @properties = Property.where(user_id: current_user.id).order(created_at: :desc)
   end
 
   # GET /properties/1 or /properties/1.json
