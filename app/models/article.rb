@@ -40,10 +40,10 @@ class Article < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[body title]
+    %w[body title property]
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[user]
+    %w[user property]
   end
 end

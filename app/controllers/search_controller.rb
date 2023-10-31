@@ -21,7 +21,7 @@ class SearchController < ApplicationController
                    .ransack(fname_or_lname_or_email_or_phone_number_or_tenant_unit_number_or_tenant_unit_type_or_tenant_property_name_cont: q)
                    .result(distinct: true)
     @requests_count = @requests_list.ransack(title_or_description_or_comments_body_cont: q).result(distinct: true)
-    @articles_count = @articles_list.ransack(title_or_body_cont: q).result(distinct: true)
+    @articles_count = @articles_list.ransack(title_or_body_or_property_name_cont: q).result(distinct: true)
     @properties_count = @properties_list.ransack(name_cont: q).result(distinct: true)
 
     @users = User
@@ -30,7 +30,7 @@ class SearchController < ApplicationController
              .result(distinct: true)
              .page(params[:page])
     @requests = @requests_list.ransack(title_or_description_or_comments_body_cont: q).result(distinct: true).page(params[:page])
-    @articles = @articles_list.ransack(title_or_body_cont: q).result(distinct: true).page(params[:page])
+    @articles = @articles_list.ransack(title_or_body_or_property_name_cont: q).result(distinct: true).page(params[:page])
     @properties = @properties_list.ransack(name_cont: q).result(distinct: true).page(params[:page])
   end
 end
