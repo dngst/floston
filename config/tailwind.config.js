@@ -17,6 +17,13 @@ module.exports = {
         flostontext: '#393E41',
         flostonlink: '#3F88C5'
       },
+      spacing: {
+        flostonpmd: '5%',
+        flostonp: '1%'
+      },
+      zIndex: {
+        '1': 1
+      }
     },
   },
   plugins: [

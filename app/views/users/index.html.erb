@@ -1,25 +1,27 @@
-<div class="flex justify-between mb-4">
-  <h1 class="text-4xl font-bold">
-    <div class="flex justify-normal">
-      <% cache('bxs-group.svg') do %>
-        <%= image_tag "bxs-group.svg", class: "w-10 mr-2 hidden md:flex" %>
-      <% end %>
-      Tenants
-    </div>
-  </h1>
+<div class="w-full">
+  <div class="flex justify-between mb-4 sticky top-[4.6rem] bg-white lg:pt-flostonp lg:pb-flostonp pb-flostonpmd">
+    <h1 class="text-4xl font-bold">
+      <div class="flex justify-normal">
+        <% cache('bxs-group.svg') do %>
+          <%= image_tag "bxs-group.svg", class: "w-10 mr-2 hidden md:flex" %>
+        <% end %>
+        Tenants
+      </div>
+    </h1>
 
-  <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" %>
-  <%= link_to new_user_registration_path, class: "lg:hidden" do %>
-    <% cache('bxs-file-plus.svg') do %>
-      <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+    <%= link_to "+ Add tenant", new_user_registration_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" %>
+    <%= link_to new_user_registration_path, class: "lg:hidden" do %>
+      <% cache('bxs-file-plus.svg') do %>
+        <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+      <% end %>
     <% end %>
+  </div>
+
+  <% if @users.any?  %>
+    <%= turbo_frame_tag "users" do %>
+      <%= render partial: "user", locals: { page: @page } %>
+    <%end%>
+  <% else %>
+    <p class="text-gray-500">You haven't added any tenants yet</p>
   <% end %>
 </div>
-
-<% if @users.any?  %>
-  <%= turbo_frame_tag "users" do %>
-    <%= render partial: "user", locals: { page: @page } %>
-  <%end%>
-<% else %>
-  <p class="text-gray-500">You haven't added any tenants yet</p>
-<% end %>

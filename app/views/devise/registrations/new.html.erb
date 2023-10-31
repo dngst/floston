@@ -1,5 +1,7 @@
 <div class="max-w-md">
-  <h1 class="text-4xl font-bold mb-4">New Tenant</h1>
+  <%= link_to sanitize('&larr; Back to tenants'), users_path, class: "text-gray-600" %>
+
+  <h1 class="text-4xl font-bold my-4">New Tenant</h1>
 
   <%= nested_form_for([resource_name, resource.with_tenant], url: registration_path(resource_name), html: { class: "mt-4" }) do |f| %>
     <div class="mb-4">
