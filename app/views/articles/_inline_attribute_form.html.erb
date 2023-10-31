@@ -3,7 +3,7 @@
 
     <% if params[:attribute].eql? 'title' %>
       <div class="my-4">
-        <%= form.text_field :title, class: "w-full px-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:border-floston focus:ring-0", onfocusout: 'this.form.requestSubmit()' %>
+        <%= form.text_field :title, autofocus: true, class: "w-full px-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:border-floston focus:ring-0", onfocusout: 'this.form.requestSubmit()' %>
         <% if @article.errors.include?(:title) %>
           <% @article.errors.full_messages_for(:title).each do |error| %>
             <p class="text-red-500 mt-2"><%= error %></p>
@@ -14,7 +14,7 @@
 
     <% if params[:attribute].eql? 'body' %>
       <div class="mt-4">
-        <%= form.text_area :body, class: "w-full px-4 py-2 border rounded-lg border-gray-300 h-64 focus:outline-none focus:border-floston focus:ring-0", onfocusout: 'this.form.requestSubmit()' %>
+        <%= form.text_area :body, autofocus: true, class: "w-full px-4 py-2 border rounded-lg border-gray-300 h-64 focus:outline-none focus:border-floston focus:ring-0", onfocusout: 'this.form.requestSubmit()' %>
         <% if @article.errors.include?(:body) %>
           <% @article.errors.full_messages_for(:body).each do |error| %>
             <p class="text-red-500 mt-2"><%= error %></p>
@@ -25,7 +25,7 @@
 
     <% if params[:attribute].eql? 'published' %>
       <div class="mt-4">
-        <%= form.check_box :published, class: "text-floston mr-2 border rounded-lg hover:cursor-pointer", onfocusout: 'this.form.requestSubmit()' %>
+        <%= form.check_box :published, class: "text-flostonlink mr-2 border rounded-lg hover:cursor-pointer", onfocusout: 'this.form.requestSubmit()' %>
         <span class="text-gray-800">Publish</span>
       </div>
     <% end %>
