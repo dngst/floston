@@ -1,7 +1,7 @@
 <%= form_with(model: property, class: "contents") do |form| %>
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
     <% if property.errors.include?(:name) %>
       <% property.errors.full_messages_for(:name).each do |error| %>
         <p class="text-red-500 mt-2"><%= error %></p>

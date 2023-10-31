@@ -54,7 +54,7 @@
             <% created_requests.each do |request| %>
               <div class="border <%= 'border-gray-500' if request.closed %> border-gray-300 p-4 rounded mt-4">
                 <%= link_to user_request_path(request.user, request), data: { turbo_frame: "_top" } do %>
-                  <p class="text-xl font-semibold <%= 'text-gray-500' if request.closed %> text-flostonlink hover:underline"><%= request.title %></p>
+                  <p class="text-xl font-semibold <%= 'text-gray-500 line-through' if request.closed %> text-flostonlink hover:underline"><%= request.title %></p>
                 <% end %>
               </div>
             <% end %>

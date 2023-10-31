@@ -10,7 +10,12 @@
           <% end %>
         </h1>
       <% elsif attribute == :property_id %>
-        <p class="mb-4">Property: <%= Property.find_by(id: article[attribute]).name %></p>
+        <p class="mb-4 flex items-center">
+          <% cache('bx-building-house.svg') do %>
+            <%= image_tag "bx-building-house.svg", class: "w-6 mr-2" %>
+          <% end %>
+         <%= Property.find_by(id: article[attribute]).name %>
+        </p>
       <% elsif attribute == :published %>
         <% if current_user&.admin? %>
           <%= link_to [:edit, article, attribute: attribute] do %>
@@ -22,7 +27,7 @@
           <% end %>
         <% end %>
       <% else %>
-        <p class="text-gray-600 mb-4">
+        <p class="text-gray-600 mb-4 leading-[1.75em]">
           <% if current_user&.admin? %>
             <%= link_to (article[attribute].presence || 'Edit'), [:edit, article, attribute: attribute] %>
           <% else %>

@@ -4,7 +4,7 @@
   <div class="mt-4">
     <div class="mb-4">
       <h3 class="text-lg font-semibold">Tenants</h3>
-      <p class="text-base">
+      <p class="text-base leading-[1.75em]">
         Create and manage tenant accounts. Tenants can sign in to view their
         account details including next payment date and ammount due.
     </p>
@@ -12,14 +12,14 @@
 
     <div class="mb-4">
       <h3 class="text-lg font-semibold">Requests</h3>
-      <p class="text-base">
+      <p class="text-base leading-[1.75em]">
         Accept and respond to tenant requests. Repairs, inquiry.
       </p>
     </div>
 
     <div class="mb-4">
       <h3 class="text-lg font-semibold">Articles</h3>
-      <p class="text-base">
+      <p class="text-base leading-[1.75em]">
         Write articles for tenant reference. Onboarding checklist for new tenants,
         property rules, routines; garbage collection.
       </p>
@@ -27,15 +27,19 @@
 
     <div class="mb-4">
       <h3 class="text-lg font-semibold">Payment Reminders</h3>
-      <p class="text-base">Tenants receive reminders 5 days before the due date.</p>
+      <p class="text-base leading-[1.75em]">
+        Tenants receive reminders 5 days before the due date.
+      </p>
     </div>
   </div>
 
 
   <section class="mt-6">
     <h2 class="text-2xl font-semibold">Ready to get started?</h2>
-    <p class="mt-2">Try Floston today for only $1.99/month</p>
-    <p class="mt-2"><%= link_to "Process", onboarding_process_path, class: "text-flostonlink underline" %></p>
+    <p class="mt-2">
+      Try Floston today for only $1.99/month.
+      <%= link_to "Process", onboarding_process_path, class: "text-flostonlink underline" %>
+    </p>
     <%= link_to "mailto:dngst@proton.me", class: "bg-floston text-flostontext font-semibold py-2 px-4 rounded-lg inline-block mt-4" do %>
       Contact Us
     <% end %>
