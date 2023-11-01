@@ -9,7 +9,12 @@
       </div>
     </h1>
     <% if current_user&.admin? %>
-      <%= link_to "+ Add property", new_property_path, class: "bg-floston text-flostontext rounded-lg py-2 px-4 block font-medium hidden md:flex" %>
+      <%= link_to new_property_path, class: "bg-floston text-flostontext rounded-lg py-2 px-4 block font-medium hidden md:flex" do %>
+        <% cache('bx-plus-circle.svg') do %>
+          <%= image_tag "bx-plus-circle.svg", class: "w-5 mr-2" %>
+        <% end %>
+        Add property
+      <% end %>
       <%= link_to new_property_path, class: "lg:hidden" do %>
         <% cache('bxs-file-plus.svg') do %>
           <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
