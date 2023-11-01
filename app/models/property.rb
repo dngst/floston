@@ -32,6 +32,10 @@ class Property < ApplicationRecord
     SecureRandom.hex(4)
   end
 
+  def can_delete_property?
+    tenants.empty? && articles.empty?
+  end
+
   def self.my_properties(current_user)
     Property.where(user_id: current_user.id)
   end
