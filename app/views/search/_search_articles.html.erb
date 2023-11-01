@@ -9,7 +9,7 @@
           <div class="border border-gray-300 p-4 rounded mt-4">
             <%= link_to article_path(article), data: { turbo_frame: "_top" } do %>
               <p class="text-xl font-semibold text-flostonlink hover:underline"><%= article.title %></p>
-              <p class="mt-2 text-flostontext"><%= article.property.name %></p>
+              <p class="mt-2 text-gray-800"><%= article.property.name %></p>
             <% end %>
           </div>
         <% end %>

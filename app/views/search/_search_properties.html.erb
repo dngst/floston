@@ -6,7 +6,7 @@
       <h2 class="text-xl mt-4"><%= count_text %></h2>
       <% if created_properties.any? %>
         <% created_properties.each do |property| %>
-          <div class="border border-gray-300 p-4 rounded mt-4 text-flostontext">
+          <div class="border border-gray-300 p-4 rounded mt-4 text-gray-800">
             <p class="text-xl font-semibold capitalize flex justify-normal">
               <% cache('bx-building-house.svg') do %>
                 <%= image_tag "bx-building-house.svg", class: "w-6 mr-2" %>
