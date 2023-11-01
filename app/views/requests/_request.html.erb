@@ -7,11 +7,14 @@
     <%= request.description %>
   </p>
 
-  <p class="capitalize">
+  <p>
     by:
-    <%= link_to user_path(request.user), class: "text-flostonlink underline" do %>
-      <%= request.user.fname %> <%= request.user.lname %>
+    <% if request.user == current_user %>
+      You
+    <% else %>
+      <%= link_to user_path(request.user), class: "text-flostonlink underline capitalize" do %>
+        <%= request.user.fname %> <%= request.user.lname %>
+      <% end %>
     <% end %>
   </p>
 </div>
-
