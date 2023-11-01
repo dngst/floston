@@ -1,0 +1,22 @@
+<% if current_user&.admin && @users.any? %>
+  <%= turbo_frame_tag "users_results" do %>
+    <div class="mb-20">
+      <% created_users = @users %>
+      <% count_text = pluralize(@users_count.size, "User") %>
+      <h2 class="text-xl mt-4"><%= count_text %></h2>
+      <% if created_users.any? %>
+        <% created_users.each do |user| %>
+          <div class="border border-gray-300 p-4 rounded mt-4">
+            <%= link_to user_path(user), data: { turbo_frame: "_top" } do %>
+              <p class="text-xl font-semibold text-flostonlink hover:underline capitalize"><%= "#{user.fname} #{user.lname}" %></p>
+            <% end %>
+            <p class="mt-2"><%= user.phone_number %></p>
+          </div>
+        <% end %>
+        <div class="mt-4">
+          <%= paginate @users if @users_count.size > 9 %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

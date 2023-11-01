@@ -1,0 +1,6 @@
+<div class="border border-gray-300 p-4 rounded mb-4">
+  <p>
+    <span class="text-orange-500 font-semibold"><%= number_to_currency(reminder.amount, unit: 'KES ', precision: 0) %></span>
+     &mdash; <%= reminder.created_at.strftime("%A, #{ordinal(reminder.created_at.day)} %B %Y") %>
+  </p>
+</div>

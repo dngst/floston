@@ -1,0 +1,21 @@
+<% if @articles.any? %>
+  <%= turbo_frame_tag "articles_results" do %>
+    <div class="mb-20">
+      <% created_articles = @articles %>
+      <% count_text = pluralize(@articles_count.size, "Article") %>
+      <h2 class="text-xl mt-4"><%= count_text %></h2>
+      <% if created_articles.any? %>
+        <% created_articles.each do |article| %>
+          <div class="border border-gray-300 p-4 rounded mt-4">
+            <%= link_to article_path(article), data: { turbo_frame: "_top" } do %>
+              <p class="text-xl font-semibold text-flostonlink hover:underline"><%= article.title %></p>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="mt-4">
+        <%= paginate @articles if @articles_count.size > 9 %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
