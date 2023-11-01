@@ -1,18 +1,10 @@
 <% if @requests.any? %>
   <%= turbo_frame_tag "requests_results" do %>
     <div class="mb-20">
-      <% created_requests = @requests %>
       <% count_text = pluralize(@requests_count.size, "Request") %>
       <h2 class="text-xl mt-4"><%= count_text %></h2>
-      <% if created_requests.any? %>
-        <% created_requests.each do |request| %>
-          <div class="border border-gray-300 p-4 rounded mt-4">
-            <%= link_to user_request_path(request.user, request), data: { turbo_frame: "_top" } do %>
-              <p class="text-xl font-semibold <%= 'text-gray-500 line-through' if request.closed %> text-flostonlink hover:underline"><%= request.title %></p>
-              <p class="mt-2 text-gray-800"><%= request.user.fname %> <%= request.user.lname %></p>
-            <% end %>
-          </div>
-        <% end %>
+      <% if @requests.any? %>
+        <%= render partial: "request", collection: @requests, as: :request, cached: true %>
       <% end %>
       <div class="mt-4">
         <%= paginate @requests if @requests_count.size > 9 %>

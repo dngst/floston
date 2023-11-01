@@ -1,0 +1,8 @@
+<div class="border border-gray-300 p-4 rounded mt-4 text-gray-800">
+  <p class="text-xl font-semibold capitalize flex justify-normal">
+    <% cache('bx-building-house.svg') do %>
+      <%= image_tag "bx-building-house.svg", class: "w-6 mr-2" %>
+    <% end %>
+    <%= "#{property.name}" %>
+  </p>
+</div>
