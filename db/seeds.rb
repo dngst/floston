@@ -150,27 +150,34 @@ Request.find_or_create_by!(
 end
 
 50.times do
-  user = User.find_or_create_by!(
-    fname: Faker::Internet.username,
-    lname: Faker::Internet.username,
-    phone_number: Faker::PhoneNumber.cell_phone,
-    email: Faker::Internet.email,
-    admin_id: elrich.id
-  ) do |user|
-    user.password = "password"
+  unit_number = Faker::Number.unique.number(digits: 3)
+
+  existing_tenant = Tenant.find_by(unit_number: unit_number)
+
+  if existing_tenant.nil?
+    user = User.find_or_create_by!(
+      fname: Faker::Internet.username,
+      lname: Faker::Internet.username,
+      phone_number: Faker::PhoneNumber.cell_phone,
+      email: Faker::Internet.email,
+      admin_id: elrich.id
+    ) do |user|
+      user.password = "password"
+    end
+
+    Tenant.create!(
+      user_id: user.id,
+      unit_number: unit_number,
+      unit_type: "1 Bedroom",
+      moved_in: "15-11-2022",
+      next_payment: "15-12-2022",
+      amount_due: "10000",
+      property_id: 10
+    )
+  else
+    puts "Tenant with unit_number #{unit_number} already exists. Skipping..."
   end
-
-  Tenant.find_or_create_by!(
-    user_id: user.id,
-    unit_number: Faker::Number.unique.number(digits: 3),
-    unit_type: "1 Bedroom",
-    moved_in: "15-11-2022",
-    next_payment: "15-12-2022",
-    amount_due: "10000",
-    property_id: 10
-  )
 end
-
 
 50.times do
   Request.find_or_create_by!(
