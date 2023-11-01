@@ -10,7 +10,7 @@
       <% end %>
       <%= f.text_field :fname, autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
       <% if resource.errors.include?(:fname) %>
-        <% resource.errors.full_messages_for(:fname).each do |error| %>
+        <% resource.errors.messages_for(:fname).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>
         <% end %>
       <% end %>
@@ -22,7 +22,7 @@
       <% end %>
       <%= f.text_field :lname, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
       <% if resource.errors.include?(:lname) %>
-        <% resource.errors.full_messages_for(:lname).each do |error| %>
+        <% resource.errors.messages_for(:lname).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>
         <% end %>
       <% end %>
