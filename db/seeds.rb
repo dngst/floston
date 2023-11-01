@@ -121,7 +121,7 @@ Article.find_or_create_by!(
   body: "Jobs or... Jobs",
   user_id: richard.id,
   published: true,
-  property_id: 10
+  property_id: richards_property.id
 )
 
 Request.find_or_create_by!(
