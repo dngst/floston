@@ -39,7 +39,7 @@ class Tenant < ApplicationRecord
 
   def self.total_amount_due(current_user)
     tenants = Tenant.joins(:user).where(users: { admin_id: current_user.id })
-    tenants.sum(:amount_due)
+    total_amount_due ||= tenants.sum(:amount_due)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
