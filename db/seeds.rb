@@ -21,7 +21,7 @@ richard = User.find_or_create_by!(
 end
 
 50.times do
-  Property.find_or_create_by!(
+  Property.create!(
     name: Faker::Address.street_name,
     user_id: elrich.id
   )
@@ -143,7 +143,7 @@ Request.find_or_create_by!(
 )
 
 15.times do
-  Reminder.find_or_create_by!(
+  Reminder.create!(
     amount: "62104",
     user_id: jane.id
   )
@@ -155,7 +155,7 @@ end
   existing_tenant = Tenant.find_by(unit_number: unit_number)
 
   if existing_tenant.nil?
-    user = User.find_or_create_by!(
+    user = User.create!(
       fname: Faker::Internet.username,
       lname: Faker::Internet.username,
       phone_number: Faker::PhoneNumber.cell_phone,
@@ -180,7 +180,7 @@ end
 end
 
 50.times do
-  Request.find_or_create_by!(
+  Request.create!(
     title: Faker::Lorem.words(number: 5).join(' '),
     description: Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
     user_id: jane.id
@@ -188,7 +188,7 @@ end
 end
 
 50.times do
-  Article.find_or_create_by!(
+  Article.create!(
     title: Faker::Lorem.words(number: 7).join(' '),
     body:  Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
     user_id: elrich.id,
