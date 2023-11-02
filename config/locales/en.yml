@@ -39,3 +39,7 @@ en:
               blank: "First name can't be blank"
             lname:
               blank: "Last name can't be blank"
+        comment:
+          attributes:
+            body:
+              blank: "Comment can't be blank"
