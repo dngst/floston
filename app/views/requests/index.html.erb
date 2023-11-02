@@ -27,9 +27,7 @@
     <div id="requests">
       <%= render partial: "request_index", collection: @requests, as: :request, cached: true %>
     </div>
-    <div class="my-6">
-      <%= paginate @requests %>
-    </div>
+
   <% else %>
     <% if current_user&.admin %>
       <p class="mt-4 text-gray-500">You haven't received any requests yet</p>

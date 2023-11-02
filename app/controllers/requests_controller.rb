@@ -17,9 +17,9 @@ class RequestsController < ApplicationController
       query = Request.joins(:user)
                      .where(id: ids, users: { admin_id: current_user.id })
       query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
-      @requests = query.order(created_at: :desc).page(params[:page])
+      @requests = query.order(created_at: :desc)
     else
-      @requests = Request.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
+      @requests = Request.where(id: ids, user_id: current_user.id).order(created_at: :desc)
     end
   end
 

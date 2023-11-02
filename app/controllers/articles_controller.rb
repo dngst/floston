@@ -12,10 +12,10 @@ class ArticlesController < ApplicationController
       Article.pluck(:id)
     end
     @articles = if current_user&.admin?
-                  Article.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
+                  Article.where(id: ids, user_id: current_user.id).order(created_at: :desc)
                 else
                   Article.where(id: ids, user_id: current_user.admin_id,
-                                property_id: current_user.tenant.property_id).order(created_at: :desc).page(params[:page])
+                                property_id: current_user.tenant.property_id).order(created_at: :desc)
                 end
   end
 

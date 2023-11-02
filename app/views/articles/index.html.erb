@@ -28,9 +28,7 @@
     <div id="articles">
       <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
     </div>
-    <div class="my-6">
-      <%= paginate @articles %>
-    </div>
+
   <% else %>
     <% if current_user&.admin %>
       <p class="mt-2 text-gray-500">Articles you write will be listed here</p>
