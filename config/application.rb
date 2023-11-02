@@ -33,5 +33,10 @@ module Floston
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.load_defaults 7.0
+
+    config.exceptions_app = ->(env) {
+      ErrorsController.action(:show).call(env)
+    }
   end
 end

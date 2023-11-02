@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <%= render "layouts/head" %>
+  </head>
+
+  <body>
+    <%= render "layouts/navbar" %>
+
+    <main class="flex flex-col mx-auto container mt-24 px-5 h-screen container">
+     <%= yield %>
+    </main>
+  </body>
+</html>
