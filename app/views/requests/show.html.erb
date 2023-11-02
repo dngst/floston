@@ -5,35 +5,37 @@
     <%= render @request %>
   </div>
 
-  <div class="my-4">
+  <div class="my-8">
     <% if current_user&.admin? %>
       <div class="flex space-x-4">
-        <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 inline-block font-medium" %>
+        <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "rounded-lg py-2 px-4 text-red-400 border border-red-400 hover:bg-red-100 inline-block font-medium" %>
         <% if !@request.closed? %>
-          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 inline-block font-medium" %>
+          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "rounded-lg py-2 px-4 text-red-400 border border-red-400 hover:bg-red-100 inline-block font-medium" %>
         <% end %>
       </div>
     <% end %>
   </div>
 
-  <h2 class="text-2xl font-bold text-gray-600 mt-6">Comments</h2>
+  <h2 class="text-3xl font-bold text-gray-600 mt-6">Comments</h2>
+
+  <div class="<%= 'mt-4' if @request.closed? %>">
+    <% if @request.comments&.any? %>
+      <% @request.comments.each do |comment| %>
+        <% if comment.id %>
+          <p class="mb-2">
+            <strong class="capitalize"><%= comment.user.fname %></strong>: <%= comment.body %>
+            <span class="text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</span>
+          </p>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>No comments</p>
+    <% end %>
+  </div>
 
   <% if @request.closed? %>
-    <p class="text-red-500 my-4 bg-red-100 py-2 px-3 rounded-lg"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
+    <p class="text-red-500 my-4"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
   <% else %>
     <%= render "comments/form" %>
-  <% end %>
-
-  <% if @request.comments&.any? %>
-    <% @request.comments.each do |comment| %>
-      <% if comment.id %>
-        <p class="mb-2">
-          <strong class="capitalize"><%= comment.user.fname %></strong>: <%= comment.body %>
-          <span class="text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</span>
-        </p>
-      <% end %>
-    <% end %>
-  <% else %>
-    <p>No comments</p>
   <% end %>
 </div>

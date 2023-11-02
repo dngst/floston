@@ -25,7 +25,7 @@
                 <% if value.is_a?(Date) %>
                   <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
                 <% elsif attribute == 'amount_due' %>
-                  <%= number_to_currency(value, unit: 'KES ', precision: 0) %>
+                  <%= number_to_currency(value, unit: 'USD ', precision: 0) %>
                 <% elsif attribute == 'property_id' %>
                   <p class="text-gray-600 capitalize"><%= Property.find_by(id: value).name %></p>
                 <% else %>
@@ -43,17 +43,17 @@
 
 <% if current_user&.admin? && current_user != @user %>
   <div class="flex flex-col sm:flex-row">
-    <%= link_to "Tenant stats", user_stats_path(@user), class: "rounded-lg py-2 px-4 text-gray-500 bg-gray-100 inline-block mb-2 sm:mr-4 text-center font-medium" %>
-    <%= link_to "Edit tenant", edit_user_path(@user), class: "rounded-lg py-2 px-4 text-gray-500 bg-gray-100 inline-block mb-2 sm:mr-4 text-center font-medium" %>
-    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 inline-block mb-2 text-center w-full font-medium" %>
+    <%= link_to "Tenant stats", user_stats_path(@user), class: "rounded-lg py-2 px-4 text-blue-400 border border-blue-400 hover:bg-blue-100 inline-block mb-3 sm:mr-4 text-center font-medium" %>
+    <%= link_to "Edit tenant", edit_user_path(@user), class: "rounded-lg py-2 px-4 text-blue-400 border border-blue-400 hover:bg-blue-100 inline-block mb-3 sm:mr-4 text-center font-medium" %>
+    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-400 border border-red-400 hover:bg-red-100 inline-block mb-2 text-center w-full font-medium" %>
   </div>
 <% end %>
 
 <% if current_user&.admin? && current_user == @user %>
   <div class="bg-white rounded-lg">
-    <p class="text-gray-500">Total Projected Payout</p>
-    <p class="text-xl semi-bold mt-2">
-      <%= number_to_currency(@payout, unit: 'KES ', precision: 0) %>
+    <p class="text-lg font-semibold text-gray-800">Total Projected Payout</p>
+    <p class="text-gray-600">
+      <%= number_to_currency(@payout, unit: 'USD ', precision: 0) %>
     </p>
   </div>
 <% end %>
