@@ -1,4 +1,4 @@
 <p>Hello <%= @user.fname %>,</p>
-<p>A new comment has been posted on your request:</p>
+<p><%= @comment.user.fname %> has responded to your request:</p>
 <h2><%= @request.title %></h2>
 <p><%= @comment.user.fname %>: <%= @comment.body %></p>
