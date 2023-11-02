@@ -16,7 +16,7 @@
     <% end %>
   </div>
 
-  <h2 class="text-2xl font-bold text-gray-600">Comments</h2>
+  <h2 class="text-2xl font-bold text-gray-600 mt-6">Comments</h2>
 
   <% if @request.closed? %>
     <p class="text-red-500 my-4 bg-red-100 py-2 px-3 rounded-lg"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
