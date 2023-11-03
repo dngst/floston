@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         Rails.cache.delete('article_ids')
-        format.html { redirect_to article_url(@article), notice: 'Article created' }
+        format.html { redirect_to article_url(@article), notice: 'Article saved' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new, status: :unprocessable_entity }
