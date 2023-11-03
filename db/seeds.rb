@@ -20,7 +20,7 @@ richard = User.find_or_create_by!(
   user.password = "password"
 end
 
-50.times do
+500.times do
   Property.create!(
     name: Faker::Address.street_name,
     user_id: elrich.id
@@ -142,14 +142,14 @@ Request.find_or_create_by!(
   user_id: john.id
 )
 
-15.times do
+24.times do
   Reminder.create!(
     amount: "67",
     user_id: jane.id
   )
 end
 
-50.times do
+500.times do
   unit_number = Faker::Number.unique.number(digits: 3)
 
   existing_tenant = Tenant.find_by(unit_number: unit_number)
@@ -179,7 +179,7 @@ end
   end
 end
 
-50.times do
+500.times do
   Request.create!(
     title: Faker::Lorem.words(number: 5).join(' '),
     description: Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
@@ -187,7 +187,7 @@ end
   )
 end
 
-50.times do
+500.times do
   Article.create!(
     title: Faker::Lorem.words(number: 7).join(' '),
     body:  Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
