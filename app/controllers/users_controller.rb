@@ -42,15 +42,18 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+
+    flash.now[:notice] = 'Tenant deleted'
     set_page_and_extract_portion_from User.where(admin: false,
                                                  admin_id: current_user.id).order(created_at: :desc).page(params[:page])
 
     respond_to do |format|
       format.turbo_stream do
-        flash.now[:notice] = 'Tenant deleted.'
-        redirect_to users_path
+        render turbo_stream: [
+          turbo_stream.remove(@user),
+          turbo_stream.replace("flash-messages", partial: "layouts/flash")
+        ]
       end
-      format.html { redirect_to users_path, notice: 'Tenant deleted.' }
     end
   end
 

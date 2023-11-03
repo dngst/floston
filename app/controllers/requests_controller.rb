@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
 
   # GET /requests or /requests.json
   def index
-    ids = Rails.cache.fetch('request_ids', expires_in: 12.hours) do
+    ids = Rails.cache.fetch('request_ids') do
       Request.pluck(:id)
     end
     @request_user = User.friendly.find(params[:user_id])

@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    ids = Rails.cache.fetch('article_ids', expires_in: 12.hours) do
+    ids = Rails.cache.fetch('article_ids') do
       Article.pluck(:id)
     end
     @articles = if current_user&.admin?
