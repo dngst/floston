@@ -144,7 +144,7 @@ Request.find_or_create_by!(
 
 15.times do
   Reminder.create!(
-    amount: "62104",
+    amount: "67",
     user_id: jane.id
   )
 end
