@@ -31,7 +31,7 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       if @property.save
         Rails.cache.delete('property_ids')
-        format.html { redirect_to properties_url, notice: 'Property was successfully created.' }
+        format.html { redirect_to properties_url, notice: 'Property was successfully created' }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +45,7 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       if @property.update(property_params)
         Rails.cache.delete('property_ids')
-        format.html { redirect_to property_url(@property), notice: 'Property was successfully updated.' }
+        format.html { redirect_to property_url(@property), notice: 'Property was successfully updated' }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,7 +60,8 @@ class PropertiesController < ApplicationController
     Rails.cache.delete('property_ids')
 
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully deleted.' }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@property) }
+      format.html { redirect_to properties_url, notice: 'Property was successfully deleted' }
       format.json { head :no_content }
     end
   end
