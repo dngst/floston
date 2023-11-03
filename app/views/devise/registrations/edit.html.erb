@@ -1,5 +1,8 @@
 <div class="w-full max-w-md">
-  <%= link_to sanitize('&larr; Back'), :back, class: "text-gray-600" %>
+  <% if current_user&.sign_in_count > 1 %>
+    <%= link_to sanitize('&larr; Back'), :back, class: "text-gray-600" %>
+  <% end %>
+
   <div class="p-4">
     <h1 class="text-3xl font-bold text-gray-800 mb-4">Edit Profile</h1>
 
