@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   include RequireAdmin
 
+  caches_action :index
+
   before_action :authenticate_user!
   before_action :authorize_article_access, only: [:show]
   before_action :set_article, only: %i[show edit update destroy]
@@ -36,7 +38,10 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+
         Rails.cache.delete('article_ids')
+        expire_action :action => :index
+
         format.html { redirect_to article_url(@article), notice: 'Article saved' }
         format.json { render :show, status: :created, location: @article }
       else
@@ -50,7 +55,10 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+
         Rails.cache.delete('article_ids')
+        expire_action :action => :index
+
         format.html { redirect_to article_url(@article), notice: 'Article updated' }
         format.json { render :show, status: :ok, location: @article }
       else
@@ -63,7 +71,9 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1 or /articles/1.json
   def destroy
     @article.destroy
+
     Rails.cache.delete('article_ids')
+    expire_action :action => :index
 
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article deleted' }

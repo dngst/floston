@@ -1,6 +1,8 @@
 class RequestsController < ApplicationController
   include RequireAdmin
 
+  caches_action :index
+
   before_action :authenticate_user!
   before_action :require_admin, only: %i[edit update destroy]
   before_action :authorize_request_access, only: [:show]
@@ -44,7 +46,10 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if @request.save
+
         Rails.cache.delete('request_ids')
+        expire_action :action => :index
+
         NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
         format.html { redirect_to user_request_url(@user, @request), notice: 'Request submitted' }
         format.json { render :show, status: :created, location: @request }
@@ -60,7 +65,10 @@ class RequestsController < ApplicationController
     respond_to do |format|
       @request = @user.requests.friendly.find(params[:id])
       if @request.update(request_params)
+
         Rails.cache.delete('request_ids')
+        expire_action :action => :index
+
         format.html { redirect_to user_request_url, notice: 'Request was successfully updated' }
         format.json { render :show, status: :ok, location: @request }
       else
@@ -73,7 +81,9 @@ class RequestsController < ApplicationController
   # DELETE /requests/1 or /requests/1.json
   def destroy
     @request.destroy
+
     Rails.cache.delete('request_ids')
+    expire_action :action => :index
 
     respond_to do |format|
       format.html { redirect_to user_requests_url, notice: 'Request deleted' }

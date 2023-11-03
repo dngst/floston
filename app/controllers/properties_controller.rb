@@ -1,6 +1,8 @@
 class PropertiesController < ApplicationController
   include RequireAdmin
 
+  caches_action :index
+
   before_action :authenticate_user!
   before_action :require_admin
   before_action :set_property, only: %i[show edit update destroy]
@@ -32,6 +34,7 @@ class PropertiesController < ApplicationController
       if @property.save
 
         Rails.cache.delete('property_ids')
+        expire_action :action => :index
 
         format.html { redirect_to properties_url, notice: 'Property saved' }
         format.json { render :show, status: :created, location: @property }
@@ -48,6 +51,7 @@ class PropertiesController < ApplicationController
       flash.now[:notice] = 'Property updated'
 
       Rails.cache.delete('property_ids')
+      expire_action :action => :index
 
       respond_to do |format|
         format.turbo_stream do
@@ -67,7 +71,9 @@ class PropertiesController < ApplicationController
     @property.destroy
 
     flash.now[:notice] = 'Property deleted'
+
     Rails.cache.delete('property_ids')
+    expire_action :action => :index
 
     respond_to do |format|
       format.turbo_stream do
