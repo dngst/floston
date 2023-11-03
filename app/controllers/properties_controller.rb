@@ -42,15 +42,15 @@ class PropertiesController < ApplicationController
 
   # PATCH/PUT /properties/1 or /properties/1.json
   def update
-    respond_to do |format|
-      if @property.update(property_params)
-        Rails.cache.delete('property_ids')
-        format.html { redirect_to property_url(@property), notice: 'Property updated' }
-        format.json { render :show, status: :ok, location: @property }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
+    if @property.update(property_params)
+      Rails.cache.delete('property_ids')
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("update-property-form", partial: "form", locals: { property: @property })
+        end
       end
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
