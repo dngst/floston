@@ -1,9 +1,5 @@
 <div class="w-full max-w-xl">
-  <%= link_to sanitize('&larr; Back to requests'), 'javascript:history.back()', class: "text-gray-600" %>
-
-  <div class="mt-4">
-    <%= render @request %>
-  </div>
+  <%= render @request %>
 
   <div class="my-8">
     <% if current_user&.admin? %>
