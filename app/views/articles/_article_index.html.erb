@@ -1,5 +1,5 @@
 <% if current_user&.id == article.user_id || (current_user&.admin_id == article.user_id && article.published) %>
-  <p class="text-xl mt-2 underline underline-offset-4 mb-4">
+  <p class="text-xl pl-2 mt-2 underline underline-offset-4 mb-4">
     <%= link_to article do %>
       <%= article.title %>
     <% end %>
