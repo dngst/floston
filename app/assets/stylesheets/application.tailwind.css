@@ -5,7 +5,7 @@
 
 @layer components {
   .turbo-progress-bar {
-    height: 5px !important;
+    height: 3px !important;
     background-color: #93E9BE !important;
   }
 
