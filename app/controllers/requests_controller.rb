@@ -48,7 +48,7 @@ class RequestsController < ApplicationController
       if @request.save
 
         Rails.cache.delete('request_ids')
-        expire_action :action => :index
+        expire_action action: :index
 
         NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
         format.html { redirect_to user_request_url(@user, @request), notice: 'Request submitted' }
@@ -67,7 +67,7 @@ class RequestsController < ApplicationController
       if @request.update(request_params)
 
         Rails.cache.delete('request_ids')
-        expire_action :action => :index
+        expire_action action: :index
 
         format.html { redirect_to user_request_url, notice: 'Request was successfully updated' }
         format.json { render :show, status: :ok, location: @request }
@@ -83,7 +83,7 @@ class RequestsController < ApplicationController
     @request.destroy
 
     Rails.cache.delete('request_ids')
-    expire_action :action => :index
+    expire_action action: :index
 
     respond_to do |format|
       format.html { redirect_to user_requests_url, notice: 'Request deleted' }

@@ -34,7 +34,7 @@ class PropertiesController < ApplicationController
       if @property.save
 
         Rails.cache.delete('property_ids')
-        expire_action :action => :index
+        expire_action action: :index
 
         format.html { redirect_to properties_url, notice: 'Property saved' }
         format.json { render :show, status: :created, location: @property }
@@ -51,13 +51,14 @@ class PropertiesController < ApplicationController
       flash.now[:notice] = 'Property updated'
 
       Rails.cache.delete('property_ids')
-      expire_action :action => :index
+      expire_action action: :index
 
       respond_to do |format|
+        format.html { redirect_to property_url(@property), notice: 'Property updated' }
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("update-property-form", partial: "form", locals: { property: @property }),
-            turbo_stream.replace("flash-messages", partial: "layouts/flash")
+            turbo_stream.replace('update-property-form', partial: 'form', locals: { property: @property }),
+            turbo_stream.replace('flash-messages', partial: 'layouts/flash')
           ]
         end
       end
@@ -73,13 +74,14 @@ class PropertiesController < ApplicationController
     flash.now[:notice] = 'Property deleted'
 
     Rails.cache.delete('property_ids')
-    expire_action :action => :index
+    expire_action action: :index
 
     respond_to do |format|
+      format.html { redirect_to properties_url, notice: 'Property deleted' }
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@property),
-          turbo_stream.replace("flash-messages", partial: "layouts/flash")
+          turbo_stream.replace('flash-messages', partial: 'layouts/flash')
         ]
       end
     end

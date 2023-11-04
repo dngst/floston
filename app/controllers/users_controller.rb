@@ -48,10 +48,11 @@ class UsersController < ApplicationController
                                                  admin_id: current_user.id).order(created_at: :desc).page(params[:page])
 
     respond_to do |format|
+      format.html { redirect_to users_path, notice: 'Tenant deleted' }
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@user),
-          turbo_stream.replace("flash-messages", partial: "layouts/flash")
+          turbo_stream.replace('flash-messages', partial: 'layouts/flash')
         ]
       end
     end
