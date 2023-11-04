@@ -26,7 +26,7 @@
     border-radius: 5px;
   }
 
-  .home-link:hover, .sign-out:hover {
+  .home-link:hover, .sign-out:hover, .sign-in:hover  {
     text-decoration: none;
   }
 
