@@ -11,7 +11,7 @@
 
   /* Firefox */
   html {
-    scrollbar-color: #93E9BE white;
+    scrollbar-color: grey white;
   }
 
   /* WebKit and Chromiums */
@@ -22,7 +22,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #93E9BE;
+    background: grey;
     border-radius: 5px;
   }
 }
