@@ -2,7 +2,7 @@
   <nav class="bg-white fixed top-0 w-full">
     <div class="container mx-auto flex items-center justify-between p-4">
       <!-- Logo -->
-      <%= link_to root_path do %>
+      <%= link_to root_path, class: "home-link" do %>
         <p class="text-black text-2xl font-semibold <%= 'hidden md:flex' if user_signed_in? %>">Floston</p>
       <% end %>
 
@@ -14,12 +14,12 @@
         <!-- Navigation Links -->
         <div class="space-x-6 hidden lg:flex">
           <% if current_user&.admin %>
-            <%= link_to "Tenants", users_path %>
-            <%= link_to "Properties", properties_path %>
+            <%= active_link_to "Tenants", users_path %>
+            <%= active_link_to "Properties", properties_path %>
           <% end %>
-          <%= link_to "General Info", articles_path %>
-          <%= link_to "Requests", user_requests_path(current_user) %>
-          <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+          <%= active_link_to "General Info", articles_path %>
+          <%= active_link_to "Requests", user_requests_path(current_user) %>
+          <%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %>
         </div>
 
         <!-- Profile Icon -->
@@ -35,8 +35,8 @@
         </div>
       <% else %>
         <div class="space-x-6">
-          <%= link_to "Features", features_path %>
-          <%= link_to "Sign in", new_user_session_path %>
+          <%= active_link_to "Features", features_path %>
+          <%= active_link_to "Sign in", new_user_session_path %>
         </div>
       <% end %>
     </div>
@@ -56,13 +56,13 @@
       <ul class="text-right">
         <li class="py-2 px-2 text-lg"><%= link_to "Home", root_path %></li>
         <% if current_user&.admin %>
-          <li class="py-2 px-2 text-lg"><%= link_to "Tenants", users_path %></li>
-          <li class="py-2 px-2 text-lg"><%= link_to "Properties", properties_path %></li>
+          <li class="py-2 px-2 text-lg"><%= active_link_to "Tenants", users_path %></li>
+          <li class="py-2 px-2 text-lg"><%= active_link_to "Properties", properties_path %></li>
         <% end %>
-        <li class="py-2 px-2 text-lg"><%= link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
-        <li class="py-2 px-2 text-lg"><%= link_to "Requests", user_requests_path(current_user) %></li>
-        <li class="py-2 px-2 text-lg"><%= link_to "Profile", user_path(current_user) %></li>
-        <li class="py-2 px-2 text-lg"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <li class="py-2 px-2 text-lg"><%= active_link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
+        <li class="py-2 px-2 text-lg"><%= active_link_to "Requests", user_requests_path(current_user) %></li>
+        <li class="py-2 px-2 text-lg"><%= active_link_to "Profile", user_path(current_user) %></li>
+        <li class="py-2 px-2 text-lg sign-out"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       </ul>
     <% end %>
   </nav>
