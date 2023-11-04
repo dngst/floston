@@ -27,10 +27,10 @@
   }
 
   .home-link:hover, .sign-out:hover, .sign-in:hover  {
-    text-decoration: none;
+    text-decoration: none !important;
   }
 
-  nav a:hover, .active {
+  div.navbar > nav a:hover, .active {
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-decoration-color: #93E9BE;
