@@ -93,5 +93,3 @@ gem 'whenever', require: false
 gem 'faker', '~> 3.2'
 
 gem 'geared_pagination', '~> 1.1'
-
-gem 'actionpack-action_caching', '~> 1.2'

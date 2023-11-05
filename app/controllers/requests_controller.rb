@@ -1,8 +1,6 @@
 class RequestsController < ApplicationController
   include RequireAdmin
 
-  caches_action :index
-
   before_action :authenticate_user!
   before_action :require_admin, only: %i[edit update destroy]
   before_action :authorize_request_access, only: [:show]
@@ -19,9 +17,9 @@ class RequestsController < ApplicationController
       query = Request.joins(:user)
                      .where(id: ids, users: { admin_id: current_user.id })
       query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
-      @requests = query.order(created_at: :desc)
+      @requests = query.order(created_at: :desc).page(params[:page])
     else
-      @requests = Request.where(id: ids, user_id: current_user.id).order(created_at: :desc)
+      @requests = Request.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
     end
   end
 
@@ -48,7 +46,6 @@ class RequestsController < ApplicationController
       if @request.save
 
         Rails.cache.delete('request_ids')
-        expire_action action: :index
 
         NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
         format.html { redirect_to user_request_url(@user, @request), notice: 'Request submitted' }
@@ -67,7 +64,6 @@ class RequestsController < ApplicationController
       if @request.update(request_params)
 
         Rails.cache.delete('request_ids')
-        expire_action action: :index
 
         format.html { redirect_to user_request_url, notice: 'Request was successfully updated' }
         format.json { render :show, status: :ok, location: @request }
@@ -83,7 +79,6 @@ class RequestsController < ApplicationController
     @request.destroy
 
     Rails.cache.delete('request_ids')
-    expire_action action: :index
 
     respond_to do |format|
       format.html { redirect_to user_requests_url, notice: 'Request deleted' }

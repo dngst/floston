@@ -1,7 +1,7 @@
-<% if current_user&.id == article.user_id || (current_user&.admin_id == article.user_id && article.published) %>
+<div id="<%= dom_id article %>">
   <p class="text-xl pl-2 mt-2 underline underline-offset-4 mb-4">
-    <%= link_to article do %>
+    <%= link_to article, data: { turbo_frame: "_top" } do %>
       <%= article.title %>
     <% end %>
   </p>
-<% end %>
+</div>

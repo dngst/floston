@@ -24,9 +24,14 @@
   </div>
 
   <% if @properties.any? %>
-    <div id="properties" class="max-w-lg mb-4">
+    <%= turbo_frame_tag "properties_#{@properties.current_page}", class: "max-w-lg mb-4" do %>
       <%= render partial: "property", collection: @properties, as: :property, cached: true %>
-    </div>
+      <% unless @properties.current_page == @properties.total_pages %>
+        <%= turbo_frame_tag "properties_#{@properties.current_page + 1}", src: properties_path(page: @properties.current_page + 1), loading: "lazy" do %>
+          <div class="pl-2 text-flostontext">Loading...</div>
+        <% end %>
+      <% end %>
+    <% end %>
   <% else %>
     <p class="text-gray-500">You haven't added any properties yet</p>
   <% end %>

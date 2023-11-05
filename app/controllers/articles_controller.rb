@@ -1,8 +1,6 @@
 class ArticlesController < ApplicationController
   include RequireAdmin
 
-  caches_action :index
-
   before_action :authenticate_user!
   before_action :authorize_article_access, only: [:show]
   before_action :set_article, only: %i[show edit update destroy]
@@ -14,10 +12,11 @@ class ArticlesController < ApplicationController
       Article.pluck(:id)
     end
     @articles = if current_user&.admin?
-                  Article.where(id: ids, user_id: current_user.id).order(created_at: :desc)
+                  Article.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
                 else
                   Article.where(id: ids, user_id: current_user.admin_id,
-                                property_id: current_user.tenant.property_id).order(created_at: :desc)
+                                published: true,
+                                property_id: current_user.tenant.property_id).order(created_at: :desc).page(params[:page])
                 end
   end
 
@@ -40,7 +39,6 @@ class ArticlesController < ApplicationController
       if @article.save
 
         Rails.cache.delete('article_ids')
-        expire_action action: :index
 
         format.html { redirect_to article_url(@article), notice: 'Article saved' }
         format.json { render :show, status: :created, location: @article }
@@ -57,7 +55,6 @@ class ArticlesController < ApplicationController
       if @article.update(article_params)
 
         Rails.cache.delete('article_ids')
-        expire_action action: :index
 
         format.html { redirect_to article_url(@article), notice: 'Article updated' }
         format.json { render :show, status: :ok, location: @article }
@@ -73,7 +70,6 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     Rails.cache.delete('article_ids')
-    expire_action action: :index
 
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article deleted' }

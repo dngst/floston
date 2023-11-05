@@ -1,8 +1,6 @@
 class PropertiesController < ApplicationController
   include RequireAdmin
 
-  caches_action :index
-
   before_action :authenticate_user!
   before_action :require_admin
   before_action :set_property, only: %i[show edit update destroy]
@@ -12,7 +10,7 @@ class PropertiesController < ApplicationController
     ids = Rails.cache.fetch('property_ids') do
       Property.pluck(:id)
     end
-    @properties = Property.where(id: ids, user_id: current_user.id).order(created_at: :desc)
+    @properties = Property.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
   end
 
   # GET /properties/1 or /properties/1.json
@@ -34,7 +32,6 @@ class PropertiesController < ApplicationController
       if @property.save
 
         Rails.cache.delete('property_ids')
-        expire_action action: :index
 
         format.html { redirect_to properties_url, notice: 'Property saved' }
         format.json { render :show, status: :created, location: @property }
@@ -51,7 +48,6 @@ class PropertiesController < ApplicationController
       flash.now[:notice] = 'Property updated'
 
       Rails.cache.delete('property_ids')
-      expire_action action: :index
 
       respond_to do |format|
         format.html { redirect_to property_url(@property), notice: 'Property updated' }
@@ -70,11 +66,9 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1 or /properties/1.json
   def destroy
     @property.destroy
-
     flash.now[:notice] = 'Property deleted'
 
     Rails.cache.delete('property_ids')
-    expire_action action: :index
 
     respond_to do |format|
       format.html { redirect_to properties_url, notice: 'Property deleted' }

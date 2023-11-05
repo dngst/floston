@@ -24,10 +24,14 @@
   </div>
 
   <% if @requests.any? %>
-    <div id="requests">
+    <%= turbo_frame_tag "requests_#{@requests.current_page}" do %>
       <%= render partial: "request_index", collection: @requests, as: :request, cached: true %>
-    </div>
-
+      <% unless @requests.current_page == @requests.total_pages %>
+        <%= turbo_frame_tag "requests_#{@requests.current_page + 1}", src: user_requests_path(current_user, page: @requests.current_page + 1), loading: "lazy" do %>
+          <div class="pl-2 text-flostontext">Loading...</div>
+        <% end %>
+      <% end %>
+    <% end %>
   <% else %>
     <% if current_user&.admin %>
       <p class="mt-4 text-gray-500">You haven't received any requests yet</p>

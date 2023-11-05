@@ -25,10 +25,14 @@
 
 
   <% if @articles.any? %>
-    <div id="articles">
+    <%= turbo_frame_tag "articles_#{@articles.current_page}" do %>
       <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
-    </div>
-
+      <% unless @articles.current_page == @articles.total_pages %>
+        <%= turbo_frame_tag "articles_#{@articles.current_page + 1}", src: articles_path(page: @articles.current_page + 1), loading: "lazy" do %>
+          <div class="pl-2 text-flostontext">Loading...</div>
+        <% end %>
+      <% end %>
+    <% end %>
   <% else %>
     <% if current_user&.admin %>
       <p class="mt-2 text-gray-500">Articles you write will be listed here</p>
