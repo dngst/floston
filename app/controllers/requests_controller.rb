@@ -12,14 +12,17 @@ class RequestsController < ApplicationController
     ids = Rails.cache.fetch('request_ids') do
       Request.pluck(:id)
     end
+
+    items_per_page = 20
+
     @request_user = User.friendly.find(params[:user_id])
     if current_user&.admin?
       query = Request.joins(:user)
                      .where(id: ids, users: { admin_id: current_user.id })
       query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
-      @pagy, @requests = pagy(query.order(created_at: :desc))
+      @pagy, @requests = pagy(query.order(created_at: :desc), items: items_per_page)
     else
-      @pagy, @requests = pagy(Request.where(id: ids, user_id: current_user.id).order(created_at: :desc))
+      @pagy, @requests = pagy(Request.where(id: ids, user_id: current_user.id).order(created_at: :desc), items: items_per_page)
     end
   end
 

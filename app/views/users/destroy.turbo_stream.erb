@@ -1,5 +1,0 @@
-<%= turbo_stream.replace "users" do %>
-  <%= turbo_frame_tag "users", action: "advance" do %>
-    <%= render partial: 'user', locals: { page: @page } %>
-  <% end %>
-<% end %>

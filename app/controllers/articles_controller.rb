@@ -11,12 +11,15 @@ class ArticlesController < ApplicationController
     ids = Rails.cache.fetch('article_ids') do
       Article.pluck(:id)
     end
+
+    items_per_page = 20
+
     @pagy, @articles = if current_user&.admin?
-                         pagy(Article.where(id: ids, user_id: current_user.id).order(created_at: :desc))
+                         pagy(Article.where(id: ids, user_id: current_user.id).order(created_at: :desc), items: items_per_page)
                        else
                          pagy(Article.where(id: ids, user_id: current_user.admin_id,
                                             published: true,
-                                            property_id: current_user.tenant.property_id).order(created_at: :desc))
+                                            property_id: current_user.tenant.property_id).order(created_at: :desc), items: items_per_page)
                        end
   end
 
