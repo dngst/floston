@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def ordinal(number)
     if (11..13).cover?(number % 100)
       "#{number}th"

@@ -11,13 +11,13 @@ class ArticlesController < ApplicationController
     ids = Rails.cache.fetch('article_ids') do
       Article.pluck(:id)
     end
-    @articles = if current_user&.admin?
-                  Article.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
-                else
-                  Article.where(id: ids, user_id: current_user.admin_id,
-                                published: true,
-                                property_id: current_user.tenant.property_id).order(created_at: :desc).page(params[:page])
-                end
+    @pagy, @articles = if current_user&.admin?
+                         pagy(Article.where(id: ids, user_id: current_user.id).order(created_at: :desc))
+                       else
+                         pagy(Article.where(id: ids, user_id: current_user.admin_id,
+                                            published: true,
+                                            property_id: current_user.tenant.property_id).order(created_at: :desc))
+                       end
   end
 
   # GET /articles/1 or /articles/1.json

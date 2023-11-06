@@ -7,9 +7,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    users_list = User.where(admin: false, admin_id: current_user.id).order(created_at: :desc).page(params[:page])
-    @users = users_list
-    set_page_and_extract_portion_from users_list
+    ids = Rails.cache.fetch('tenant_ids') do
+      User.pluck(:id)
+    end
+    tenants_list = User.where(id: ids, admin: false, admin_id: current_user.id).order(created_at: :desc)
+    @pagy, @users = pagy(tenants_list)
   end
 
   def show
@@ -21,8 +23,10 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        Rails.cache.delete('tenant_ids')
         if @user.tenant
           if @user.tenant.update(tenant_params)
+            Rails.cache.delete('tenant_ids')
             format.html { redirect_to user_path(@user), notice: 'Tenant information updated' }
             format.json { render :show, status: :ok, location: @user }
           else
@@ -44,8 +48,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     flash.now[:notice] = 'Tenant deleted'
-    set_page_and_extract_portion_from User.where(admin: false,
-                                                 admin_id: current_user.id).order(created_at: :desc).page(params[:page])
+    Rails.cache.delete('tenant_ids')
 
     respond_to do |format|
       format.html { redirect_to users_path, notice: 'Tenant deleted' }

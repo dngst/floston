@@ -16,8 +16,8 @@
         Write an article
       <% end %>
       <%= link_to new_article_path, class: "md:hidden" do %>
-        <% cache('bxs-file-plus.svg') do %>
-          <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+        <% cache('bx-plus-circle-mobile-svg') do %>
+          <%= image_tag "bx-plus-circle.svg", class: "w-10 mr-2" %>
         <% end %>
       <% end %>
     <% end %>
@@ -25,10 +25,10 @@
 
 
   <% if @articles.any? %>
-    <%= turbo_frame_tag "articles_#{@articles.current_page}" do %>
+    <%= turbo_frame_tag "articles_#{@pagy.page}" do %>
       <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
-      <% unless @articles.current_page == @articles.total_pages %>
-        <%= turbo_frame_tag "articles_#{@articles.current_page + 1}", src: articles_path(page: @articles.current_page + 1), loading: "lazy" do %>
+      <% unless @pagy.page == @pagy.pages %>
+        <%= turbo_frame_tag "articles_#{@pagy.next}", src: articles_path(page: @pagy.next), loading: "lazy" do %>
           <div class="pl-2 text-flostontext">Loading...</div>
         <% end %>
       <% end %>

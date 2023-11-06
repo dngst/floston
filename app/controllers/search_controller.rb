@@ -24,13 +24,12 @@ class SearchController < ApplicationController
     @articles_count = @articles_list.ransack(title_or_body_or_property_name_cont: q).result(distinct: true)
     @properties_count = @properties_list.ransack(name_cont: q).result(distinct: true)
 
-    @users = User
+    @pagy, @users = pagy(User
              .where(admin_id: current_user.id)
              .ransack(fname_or_lname_or_email_or_phone_number_or_tenant_unit_number_or_tenant_unit_type_or_tenant_property_name_cont: q)
-             .result(distinct: true)
-             .page(params[:page])
-    @requests = @requests_list.ransack(title_or_description_or_comments_body_or_user_fname_or_user_lname_cont: q).result(distinct: true).page(params[:page])
-    @articles = @articles_list.ransack(title_or_body_or_property_name_cont: q).result(distinct: true).page(params[:page])
-    @properties = @properties_list.ransack(name_cont: q).result(distinct: true).page(params[:page])
+             .result(distinct: true))
+    @pagy, @requests = pagy(@requests_list.ransack(title_or_description_or_comments_body_or_user_fname_or_user_lname_cont: q).result(distinct: true))
+    @pagy, @articles = pagy(@articles_list.ransack(title_or_body_or_property_name_cont: q).result(distinct: true))
+    @pagy, @properties = pagy(@properties_list.ransack(name_cont: q).result(distinct: true))
   end
 end

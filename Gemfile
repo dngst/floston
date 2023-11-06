@@ -86,10 +86,8 @@ gem 'ransack', '~> 4.0'
 
 gem 'tailwindcss-rails', '~> 2.0'
 
-gem 'kaminari', '~> 1.2'
-
 gem 'whenever', require: false
 
 gem 'faker', '~> 3.2'
 
-gem 'geared_pagination', '~> 1.1'
+gem 'pagy', '~> 6.1'

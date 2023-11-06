@@ -1,13 +1,13 @@
 <% if @requests.any? %>
   <%= turbo_frame_tag "requests_results" do %>
-    <div class="mb-20">
+    <div class="mb-14">
       <% count_text = pluralize(@requests_count.size, "Request") %>
       <h2 class="text-xl mt-4"><%= count_text %></h2>
       <% if @requests.any? %>
         <%= render partial: "request", collection: @requests, as: :request, cached: true %>
       <% end %>
       <div class="mt-4">
-        <%= paginate @requests if @requests_count.size > 9 %>
+        <%== pagy_nav(@pagy) if @requests_count.size > 9 %>
       </div>
     </div>
   <% end %>

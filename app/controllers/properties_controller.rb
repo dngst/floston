@@ -10,7 +10,7 @@ class PropertiesController < ApplicationController
     ids = Rails.cache.fetch('property_ids') do
       Property.pluck(:id)
     end
-    @properties = Property.where(id: ids, user_id: current_user.id).order(created_at: :desc).page(params[:page])
+    @pagy, @properties = pagy(Property.where(id: ids, user_id: current_user.id).order(created_at: :desc))
   end
 
   # GET /properties/1 or /properties/1.json

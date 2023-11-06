@@ -16,18 +16,18 @@
         Add property
       <% end %>
       <%= link_to new_property_path, class: "md:hidden" do %>
-        <% cache('bxs-file-plus.svg') do %>
-          <%= image_tag "bxs-file-plus.svg", class: "w-10 mr-2" %>
+        <% cache('bx-plus-circle-mobile-svg') do %>
+          <%= image_tag "bx-plus-circle.svg", class: "w-10 mr-2" %>
         <% end %>
       <% end %>
     <% end %>
   </div>
 
   <% if @properties.any? %>
-    <%= turbo_frame_tag "properties_#{@properties.current_page}", class: "max-w-lg mb-4" do %>
+    <%= turbo_frame_tag "properties_#{@pagy.page}" do %>
       <%= render partial: "property", collection: @properties, as: :property, cached: true %>
-      <% unless @properties.current_page == @properties.total_pages %>
-        <%= turbo_frame_tag "properties_#{@properties.current_page + 1}", src: properties_path(page: @properties.current_page + 1), loading: "lazy" do %>
+      <% unless @pagy.page == @pagy.pages %>
+        <%= turbo_frame_tag "properties_#{@pagy.next}", src: properties_path(page: @pagy.next), loading: "lazy" do %>
           <div class="pl-2 text-flostontext">Loading...</div>
         <% end %>
       <% end %>
