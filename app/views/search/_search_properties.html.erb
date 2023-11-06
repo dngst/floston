@@ -1,12 +1,12 @@
 <% if current_user&.admin && @properties.any? %>
   <%= turbo_frame_tag "property_results" do %>
     <div class="mb-14">
-      <% count_text = pluralize(@properties_count.size, "Property") %>
+      <% count_text = pluralize(@properties.total_count, "Property") %>
       <h2 class="text-xl mt-4"><%= count_text %></h2>
       <% if @properties.any? %>
         <%= render partial: "property", collection: @properties, as: :property, cached: true %>
         <div class="mt-4">
-          <%== pagy_nav(@pagy) if @properties_count.size > 9 %>
+          <%= paginate @properties if @properties.total_count > 9 %>
         </div>
       <% end %>
     </div>

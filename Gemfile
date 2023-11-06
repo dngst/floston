@@ -91,3 +91,5 @@ gem 'whenever', require: false
 gem 'faker', '~> 3.2'
 
 gem 'pagy', '~> 6.1'
+
+gem 'kaminari', '~> 1.2'
