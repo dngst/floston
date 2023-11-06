@@ -49,7 +49,7 @@
     <% if user_signed_in? %>
       <div class="flex justify-between">
         <div></div>
-        <div data-action="click->navbar#close">
+        <div data-action="click->navbar#close" class="hover:cursor-pointer">
           <%= image_tag "bx-x-circle.svg", class: "w-8" %>
         </div>
       </div>

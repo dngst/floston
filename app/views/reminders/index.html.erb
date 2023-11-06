@@ -4,7 +4,7 @@
   <% if @reminders.any? %>
     <%= render partial: "reminder", collection: @reminders, as: :reminder, cached: true %>
     <div class="my-6">
-      <%= paginate @reminders %>
+      <%== pagy_nav(@pagy) %>
     </div>
   <% else %>
     <% if current_user.admin? %>
