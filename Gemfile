@@ -69,6 +69,7 @@ group :development do
   gem 'rack-mini-profiler'
 
   gem 'annotate'
+  gem 'bullet'
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false

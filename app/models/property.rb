@@ -33,7 +33,7 @@ class Property < ApplicationRecord
   end
 
   def can_delete_property?
-    can_delete_property ||= tenants.empty? && articles.empty?
+    can_delete_property ||= tenants.includes([:tenants]).empty? && articles.includes([:articles]).empty?
   end
 
   def self.my_properties(current_user)

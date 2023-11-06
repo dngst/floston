@@ -20,15 +20,15 @@ class RequestsController < ApplicationController
       query = Request.joins(:user)
                      .where(id: ids, users: { admin_id: current_user.id })
       query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
-      @pagy, @requests = pagy(query.order(created_at: :desc), items: items_per_page)
+      @pagy, @requests = pagy(query.includes([:user]).order(created_at: :desc), items: items_per_page)
     else
-      @pagy, @requests = pagy(Request.where(id: ids, user_id: current_user.id).order(created_at: :desc), items: items_per_page)
+      @pagy, @requests = pagy(Request.where(id: ids, user_id: current_user.id).includes([:user]).order(created_at: :desc), items: items_per_page)
     end
   end
 
   # GET /requests/1 or /requests/1.json
   def show
-    @request = Request.friendly.find(params[:id])
+    @request = Request.includes(comments: :user).friendly.find(params[:id])
     @user =  @request.user
     @comment = @request.comments.build(user: @user)
   end

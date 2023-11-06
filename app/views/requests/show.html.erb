@@ -14,7 +14,7 @@
 
   <h2 class="text-3xl font-bold text-gray-600 mt-6">Discussion</h2>
 
-  <div class="<%= 'mt-4' if @request.closed? %>">
+  <div class="mt-4">
     <% if @request.comments&.any? %>
       <% @request.comments.each do |comment| %>
         <% if comment.id %>
