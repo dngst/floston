@@ -36,7 +36,7 @@
       <% else %>
         <div class="space-x-6">
           <%= active_link_to "Features", features_path %>
-          <%= active_link_to "Sign in", new_user_session_path, class: "sign-in" %>
+          <%= link_to "Sign in", new_user_session_path, class: "sign-in" %>
         </div>
       <% end %>
     </div>

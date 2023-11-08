@@ -1,6 +1,6 @@
 <%= form_with(model: [@user, @request, @comment], url: user_request_comments_path(@user, @request), local: true) do |form| %>
   <div class="mb-4">
-    <%= form.text_area :body, placeholder: "Add a comment", autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
+    <%= form.text_area :body, placeholder: "Add a comment", autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
     <% if @comment.errors.include?(:body) %>
       <% @comment.errors.messages_for(:body).each do |error| %>
         <p class="text-red-500 mt-2"><%= error %></p>

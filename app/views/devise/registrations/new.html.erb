@@ -8,7 +8,7 @@
       <%= f.label :fname, class: "block font-semibold text-gray-800" do %>
         First name <span class="text-red-500">*</span>
       <% end %>
-      <%= f.text_field :fname, placeholder: "Jane", autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
+      <%= f.text_field :fname, placeholder: "Jane", autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
       <% if resource.errors.include?(:fname) %>
         <% resource.errors.messages_for(:fname).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>
@@ -20,7 +20,7 @@
       <%= f.label :lname, class: "block font-semibold text-gray-800" do %>
         Last name <span class="text-red-500">*</span>
       <% end %>
-      <%= f.text_field :lname, placeholder: "Doe", class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
+      <%= f.text_field :lname, placeholder: "Doe", class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
       <% if resource.errors.include?(:lname) %>
         <% resource.errors.messages_for(:lname).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>
@@ -32,7 +32,7 @@
       <%= f.label :phone_number, class: "block font-semibold text-gray-800" do %>
         Phone number <span class="text-red-500">*</span>
       <% end %>
-      <%= f.text_field :phone_number, placeholder: "0700000000", class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
+      <%= f.text_field :phone_number, placeholder: "0700000000", class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
       <% if resource.errors.include?(:phone_number) %>
         <% resource.errors.full_messages_for(:phone_number).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>
@@ -44,7 +44,7 @@
       <%= f.label :email, class: "block font-semibold text-gray-800" do %>
         Email <span class="text-red-500">*</span>
       <% end %>
-      <%= f.email_field :email, placeholder: "jane.doe@example.com", autocomplete: "email", class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
+      <%= f.email_field :email, placeholder: "jane.doe@example.com", autocomplete: "email", class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
       <% if resource.errors.include?(:email) %>
         <% resource.errors.full_messages_for(:email).each do |error| %>
           <p class="text-red-500 mt-2"><%= error %></p>

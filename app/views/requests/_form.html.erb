@@ -3,7 +3,7 @@
     <%= form.label :title, class: "block text-gray-800" do %>
       Title <span class="text-red-500">*</span>
     <% end %>
-    <%= form.text_field :title, placeholder: "Untitled", autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
+    <%= form.text_field :title, placeholder: "Untitled", autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
     <% if @request.errors.include?(:title) %>
       <% @request.errors.full_messages_for(:title).each do |error| %>
         <p class="text-red-500 mt-2"><%= error %></p>
@@ -15,7 +15,7 @@
     <%= form.label :description, class: "block text-gray-800" do %>
       Description <span class="text-red-500">*</span>
     <% end %>
-    <%= form.text_area :description, placeholder: "Write your request", class: "w-full px-3 py-2 border rounded-lg border-gray-200 mt-2 focus:outline-none focus:border-floston focus:ring-0" %>
+    <%= form.text_area :description, placeholder: "Write your request", class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston h-64" %>
     <% if @request.errors.include?(:description) %>
       <% @request.errors.full_messages_for(:description).each do |error| %>
         <p class="text-red-500 mt-2"><%= error %></p>
@@ -24,6 +24,6 @@
   </div>
 
   <div class="mt-4">
-    <%= form.submit class: "bg-floston font-medium text-flostontext px-4 py-2 rounded-lg hover:cursor-pointer focus:outline-none focus:border-floston focus:ring-0" %>
+    <%= form.submit "Post request", class: "bg-floston font-medium text-flostontext px-4 py-2 rounded-lg hover:cursor-pointer focus:outline-none focus:border-floston focus:ring-0" %>
   </div>
 <% end %>

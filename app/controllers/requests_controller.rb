@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
     if current_user&.admin?
       query = Request.joins(:user)
                      .where(id: ids, users: { admin_id: current_user.id })
-      query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
+      query = query.where(requests: { user_id: @request_user.id }).includes([:user]) unless @request_user.admin?
       @pagy, @requests = pagy(query.includes([:user]).order(created_at: :desc), items: items_per_page)
     else
       @pagy, @requests = pagy(Request.where(id: ids, user_id: current_user.id).includes([:user]).order(created_at: :desc), items: items_per_page)
