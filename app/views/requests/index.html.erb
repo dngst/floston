@@ -28,7 +28,7 @@
       <%= render partial: "request_index", collection: @requests, as: :request, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "requests_#{@pagy.next}", src: user_requests_path(current_user, page: @pagy.next), loading: "lazy" do %>
-          <div class="pl-2 text-flostontext">Loading...</div>
+          <div class="pl-2 font-light">Loading...</div>
         <% end %>
       <% end %>
     <% end %>

@@ -1,11 +1,15 @@
 <div class="max-w-md">
-  <%= link_to sanitize('&larr; Back'), user_path(@user), class: "text-gray-600" %>
+  <%= link_to sanitize('&larr; back'), user_path(@user), class: "text-gray-600" %>
   <p class="text-4xl font-semibold mt-4 mb-6 text-gray-800">Reminders</p>
   <% if @reminders.any? %>
+  <%= turbo_frame_tag "reminders_#{@pagy.page}" do %>
     <%= render partial: "reminder", collection: @reminders, as: :reminder, cached: true %>
-    <div class="my-6">
-      <%== pagy_nav(@pagy) %>
-    </div>
+    <% unless @pagy.page == @pagy.pages %>
+      <%= turbo_frame_tag "reminders_#{@pagy.next}", src: user_reminders_path(@user, page: @pagy.next), loading: "lazy" do %>
+        <div class="pl-2 font-light">Loading...</div>
+      <% end %>
+    <% end %>
+  <% end %>
   <% else %>
     <% if current_user.admin? %>
       <p class="text-gray-600">This tenant doesn't have any payment reminders yet</p>

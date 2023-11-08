@@ -29,7 +29,7 @@
       <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "articles_#{@pagy.next}", src: articles_path(page: @pagy.next), loading: "lazy" do %>
-          <div class="pl-2 text-flostontext">Loading...</div>
+          <div class="pl-2 font-light">Loading...</div>
         <% end %>
       <% end %>
     <% end %>

@@ -28,7 +28,7 @@
       <%= render partial: "property", collection: @properties, as: :property, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "properties_#{@pagy.next}", src: properties_path(page: @pagy.next), loading: "lazy" do %>
-          <div class="pl-2 text-flostontext">Loading...</div>
+          <div class="pl-2 font-light">Loading...</div>
         <% end %>
       <% end %>
     <% end %>
