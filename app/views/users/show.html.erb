@@ -56,4 +56,18 @@
       <%= number_to_currency(@payout, unit: 'USD ', precision: 0) %>
     </p>
   </div>
+
+  <% if @subscribed&.empty? || @subscribed.nil? %>
+    <%= link_to 'Billing', subscribe_path, class: 'text-gray-800 border border-gray-500 py-2 px-4 rounded-lg mt-4 w-20' %>
+  <% else %>
+    <%= link_to 'Manage subscription', manage_subscription_path, class: 'underline my-4' %>
+    <% if @card_details %>
+      <%= @card_details['card_type'] %> card ending in ...<%= @card_details['last4'] %>
+      <p>Started on <%= Time.parse(@subscription_details['createdAt']).strftime("%a, %b %d, %Y %H:%M:%S") %></p>
+      <p>Next payment on <%= Time.parse(@subscription_details['next_payment_date']).strftime("%a, %b %d, %Y %H:%M:%S") %></p>
+    <% end %>
+    <% if session[:manage_subscription_link] %>
+      <%= link_to "Replace card or cancel", session[:manage_subscription_link], class: 'underline text-flostonlink mt-4' %>
+    <% end %>
+  <% end %>
 <% end %>
