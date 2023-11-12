@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :articles
   # payments
   get '/subscribe', to: 'subscriptions#handle_payments'
-  post '/paystack_callback', to: 'subscriptions#paystack_callback'
+  get '/paystack_callback', to: 'subscriptions#paystack_callback'
   get '/subscribe/manage', to: 'subscriptions#manage_subscription', as: 'manage_subscription'
   # public
   get 'features', to: 'features#index'

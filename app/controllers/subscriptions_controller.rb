@@ -22,7 +22,6 @@ class SubscriptionsController < ApplicationController
     response = @paystack_service.initialize_transaction(current_user)
 
     if response['status'] == true
-      session[:transaction_reference] = response['data']['reference']
       payment_link = response['data']['authorization_url']
       redirect_to payment_link, allow_other_host: true
     else
@@ -31,8 +30,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def paystack_callback
-    transaction_reference = session[:transaction_reference]
-    response = @paystack_service.verify_transaction(transaction_reference)
+    response = @paystack_service.verify_transaction(params[:reference])
 
     if response['status'] == true
       handle_subscription_creation
@@ -46,9 +44,9 @@ class SubscriptionsController < ApplicationController
 
     if response['status'] == true
       session[:transaction_reference] = nil
-      flash[:notice] = 'Subscription successful'
+      redirect_to user_path(current_user), notice: 'Subscription successful'
     else
-      flash[:alert] = 'Subscription unsuccessful'
+      redirect_to user_path(current_user), alert: 'Subscription unsuccessful'
     end
   end
 
