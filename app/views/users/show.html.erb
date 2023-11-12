@@ -51,7 +51,7 @@
 
 <% if current_user&.admin? && current_user == @user %>
   <div class="bg-white rounded-lg">
-    <p class="text-lg font-semibold text-gray-800">Total Projected Payout</p>
+    <p class="text-lg font-semibold text-gray-800">Total projected payout</p>
     <p class="text-gray-600">
       <%= number_to_currency(@payout, unit: 'USD ', precision: 0) %>
     </p>
@@ -60,11 +60,11 @@
   <% if @subscribed&.empty? || @subscribed.nil? %>
     <%= link_to 'Billing', subscribe_path, class: 'text-gray-800 border border-gray-500 py-2 px-4 rounded-lg mt-4 w-20' %>
   <% else %>
-    <%= link_to 'Manage subscription', manage_subscription_path, class: 'underline my-4' %>
+    <%= link_to 'Manage subscription', manage_subscription_path, class: 'text-lg font-semibold text-gray-800 underline mt-4' %>
     <% if @card_details %>
-      <%= @card_details['card_type'] %> card ending in ...<%= @card_details['last4'] %>
-      <p>Started on <%= Time.parse(@subscription_details['createdAt']).strftime("%a, %b %d, %Y %H:%M:%S") %></p>
-      <p>Next payment on <%= Time.parse(@subscription_details['next_payment_date']).strftime("%a, %b %d, %Y %H:%M:%S") %></p>
+      <p><%= @card_details['card_type'] %> card ending in <span class="text-gray-600">...<%= @card_details['last4'] %></span></p>
+      <p>Started on <span class="text-gray-600"><%= Time.parse(@subscription_details['createdAt']).strftime("%a, %b %d, %Y %H:%M:%S") %></p></span>
+      <p>Next payment on <span class="text-gray-600"><%= Time.parse(@subscription_details['next_payment_date']).strftime("%a, %b %d, %Y %H:%M:%S") %></p></span>
     <% end %>
     <% if session[:manage_subscription_link] %>
       <%= link_to "Replace card or cancel", session[:manage_subscription_link], class: 'underline text-flostonlink mt-4' %>
