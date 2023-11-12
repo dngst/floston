@@ -1,4 +1,8 @@
 class SubscriptionsController < ApplicationController
+  include RequireAdmin
+
+  before_action :require_admin
+  before_action :authenticate_user!
   before_action :initialize_paystack_service
 
   def handle_payments

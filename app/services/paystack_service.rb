@@ -24,7 +24,7 @@ class PaystackService
   def initialize_transaction(current_user)
     body = {
       email: current_user.email,
-      amount: 14900
+      amount: 605.49 * 100
     }.to_json
 
     self.class.post('/transaction/initialize', headers: @headers, body: body)
