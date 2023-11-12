@@ -52,6 +52,12 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def manage_subscription
+    response = @paystack_service.get_manage_subscription_link(current_user)
+    session[:manage_subscription_link] = response
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def initialize_paystack_service
