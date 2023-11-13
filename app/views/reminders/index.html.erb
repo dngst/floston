@@ -6,7 +6,7 @@
     <%= render partial: "reminder", collection: @reminders, as: :reminder, cached: true %>
     <% unless @pagy.page == @pagy.pages %>
       <%= turbo_frame_tag "reminders_#{@pagy.next}", src: user_reminders_path(@user, page: @pagy.next), loading: "lazy" do %>
-        <div class="pl-2 font-light">Loading...</div>
+        <%= render "layouts/loader" %>
       <% end %>
     <% end %>
   <% end %>
