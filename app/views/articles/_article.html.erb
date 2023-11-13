@@ -2,7 +2,7 @@
   <% Article::INLINE_EDITABLE_ATTRS.each do |attribute| %>
     <%= turbo_frame_tag attribute do %>
       <% if attribute == :title %>
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">
+        <h1 class="text-4xl font-bold <%= article.published ? 'text-gray-800' : 'text-orange-500' %> mb-4">
           <% if current_user&.admin? %>
             <%= link_to (article[attribute].presence || 'Edit'), [:edit, article, attribute: attribute] %>
           <% else %>
