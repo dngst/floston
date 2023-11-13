@@ -8,21 +8,21 @@ class SubscriptionsController < ApplicationController
   def handle_payments
     response = @paystack_service.fetch_customer_details(current_user)
     if response['status'] == true
-      handle_initiate_transaction
+      initialize_transaction
     else
-      handle_customer_creation
+      create_customer
     end
   end
 
-  def handle_customer_creation
+  def create_customer
     response = @paystack_service.create_customer(current_user)
 
     return unless response['status'] == true
 
-    handle_initiate_transaction
+    initialize_transaction
   end
 
-  def handle_initiate_transaction
+  def initialize_transaction
     response = @paystack_service.initialize_transaction(current_user)
 
     if response['status'] == true
@@ -37,13 +37,13 @@ class SubscriptionsController < ApplicationController
     response = @paystack_service.verify_transaction(params[:reference])
 
     if response['status'] == true
-      handle_subscription_creation
+      create_subscription
     else
       redirect_to user_path(current_user), alert: 'Transaction verification unsuccessful'
     end
   end
 
-  def handle_subscription_creation
+  def create_subscription
     response = @paystack_service.create_subscription(current_user, ENV.fetch('PLAN_ID', nil))
 
     if response['status'] == true
