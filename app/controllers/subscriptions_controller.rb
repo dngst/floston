@@ -47,7 +47,6 @@ class SubscriptionsController < ApplicationController
     response = @paystack_service.create_subscription(current_user, ENV.fetch('PLAN_ID', nil))
 
     if response['status'] == true
-      session[:transaction_reference] = nil
       redirect_to user_path(current_user), notice: 'Subscription successful'
     else
       redirect_to user_path(current_user), alert: 'Subscription unsuccessful'
