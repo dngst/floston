@@ -1,20 +1,20 @@
 <div class="flex justify-between mb-6 sticky top-[4.6rem] bg-white lg:pt-flostonp lg:pb-flostonp pb-flostonpmd">
   <h1 class="text-4xl font-bold">
     <div class="flex justify-normal text-gray-800">
-      <% cache(icon_title) do %>
-        <%= image_tag icon_title, class: "w-10 mr-2 hidden md:flex" %>
+      <% cache(icon) do %>
+        <%= image_tag icon, class: "w-10 mr-2 hidden md:flex" %>
       <% end %>
-      <%= header_text %>
+      <%= title %>
     </div>
   </h1>
   <% if authorization %>
-    <%= link_to new_record, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
+    <%= link_to route, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
       <% cache('bx-plus-circle.svg') do %>
         <%= image_tag "bx-plus-circle.svg", class: "w-5 mr-2" %>
       <% end %>
-      <%= new_button_text %>
+      <%= button_text %>
     <% end %>
-    <%= link_to new_record, class: "md:hidden" do %>
+    <%= link_to route, class: "md:hidden" do %>
       <% cache('bx-plus-circle-mobile-svg') do %>
         <%= image_tag "bx-plus-circle.svg", class: "w-10 mr-2" %>
       <% end %>

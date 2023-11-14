@@ -1,9 +1,9 @@
 <div class="w-full">
   <%= render 'layouts/header',
-            header_text: "Requests",
-            icon_title: "bxs-hand.svg",
-            new_record: new_user_request_path,
-            new_button_text: "Submit a request",
+            title: "Requests",
+            icon: "bxs-hand.svg",
+            route: new_user_request_path,
+            button_text: "Submit a request",
             authorization: !current_user&.admin? %>
 
   <% if @requests.any? %>

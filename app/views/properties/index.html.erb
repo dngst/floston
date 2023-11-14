@@ -1,9 +1,9 @@
 <div class="w-full">
   <%= render 'layouts/header',
-            header_text: "Properties",
-            icon_title: "bx-building-house.svg",
-            new_record: new_property_path,
-            new_button_text: "Add property",
+            title: "Properties",
+            icon: "bx-building-house.svg",
+            route: new_property_path,
+            button_text: "Add property",
             authorization: current_user&.admin? %>
 
   <% if @properties.any? %>

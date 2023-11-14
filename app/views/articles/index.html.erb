@@ -1,9 +1,9 @@
 <div class="w-full">
   <%= render 'layouts/header',
-            header_text: "Articles",
-            icon_title: "bx-book-open.svg",
-            new_record: new_article_path,
-            new_button_text: "Write an article",
+            title: "Articles",
+            icon: "bx-book-open.svg",
+            route: new_article_path,
+            button_text: "Write an article",
             authorization: current_user&.admin? %>
 
   <% if @articles.any? %>

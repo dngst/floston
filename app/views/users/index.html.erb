@@ -1,9 +1,9 @@
 <div class="w-full">
   <%= render 'layouts/header',
-            header_text: "Tenants",
-            icon_title: "bxs-group.svg",
-            new_record: new_user_registration_path,
-            new_button_text: "Add tenant",
+            title: "Tenants",
+            icon: "bxs-group.svg",
+            route: new_user_registration_path,
+            button_text: "Add tenant",
             authorization: current_user&.admin? %>
 
   <% if @users.any?  %>
