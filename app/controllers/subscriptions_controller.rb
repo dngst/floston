@@ -6,26 +6,28 @@ class SubscriptionsController < ApplicationController
   before_action :initialize_paystack_service
 
   def handle_payments
-    response = @paystack_service.fetch_customer_details(current_user)
-    if response['status'] == true
+    if customer_exists
       initialize_transaction
     else
       create_customer
     end
   end
 
+  def customer_exists
+    response = @paystack_service.fetch_customer_details(current_user)
+    return response['status']
+  end
+
   def create_customer
     response = @paystack_service.create_customer(current_user)
-
-    return unless response['status'] == true
-
+    return unless response['status']
     initialize_transaction
   end
 
   def initialize_transaction
     response = @paystack_service.initialize_transaction(current_user)
 
-    if response['status'] == true
+    if response['status']
       payment_link = response['data']['authorization_url']
       redirect_to payment_link, allow_other_host: true
     else
@@ -36,7 +38,7 @@ class SubscriptionsController < ApplicationController
   def paystack_callback
     response = @paystack_service.verify_transaction(params[:reference])
 
-    if response['status'] == true
+    if response['status']
       create_subscription
     else
       redirect_to user_path(current_user), alert: t('subscriptions.failed_verification')
@@ -46,10 +48,10 @@ class SubscriptionsController < ApplicationController
   def create_subscription
     response = @paystack_service.create_subscription(current_user, ENV.fetch('PLAN_ID', nil))
 
-    if response['status'] == true
-      redirect_to user_path(current_user), notice: t('subscriptions.success')
+    if response['status']
+      notice: t('subscriptions.success')
     else
-      redirect_to user_path(current_user), alert: t('subscriptions.failed')
+      alert: t('subscriptions.failed')
     end
   end
 
