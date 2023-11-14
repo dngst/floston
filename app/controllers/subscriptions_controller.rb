@@ -49,9 +49,9 @@ class SubscriptionsController < ApplicationController
     response = @paystack_service.create_subscription(current_user, ENV.fetch('PLAN_ID', nil))
 
     if response['status']
-      flash[:notice] = t('subscriptions.success')
+      redirect_to user_path(current_user), notice: t('subscriptions.success')
     else
-      flash[:alert] = t('subscriptions.failed')
+      redirect_to user_path(current_user), alert: t('subscriptions.failed')
     end
   end
 
