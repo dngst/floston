@@ -10,47 +10,51 @@ class PaystackService
     }
   end
 
-  def create_customer(current_user)
+  def create_customer(user)
     body = {
-      first_name: current_user.fname,
-      last_name: current_user.lname,
-      phone: current_user.phone_number,
-      email: current_user.email
+      first_name: user.fname,
+      last_name: user.lname,
+      phone: user.phone_number,
+      email: user.email
     }.to_json
 
-    self.class.post('/customer', headers: @headers, body: body)
+    self.class.post('/customer', headers: @headers, body:)
   end
 
-  def initialize_transaction(current_user)
+  def initialize_transaction(user)
     body = {
-      email: current_user.email,
+      email: user.email,
       amount: 605.49 * 100
     }.to_json
 
-    self.class.post('/transaction/initialize', headers: @headers, body: body)
+    self.class.post('/transaction/initialize', headers: @headers, body:)
   end
 
   def verify_transaction(transaction_reference)
     self.class.get("/transaction/verify/#{transaction_reference}", headers: @headers)
   end
 
-  def create_subscription(current_user, plan_id)
-    customer_code = fetch_customer_details(current_user)['data']['customer_code']
+  def create_subscription(user, plan_id)
+    customer_code = fetch_customer_details(user)['data']['customer_code']
     body = {
       customer: customer_code,
       plan: plan_id
     }.to_json
 
-    self.class.post('/subscription', headers: @headers, body: body)
+    self.class.post('/subscription', headers: @headers, body:)
   end
 
-  def fetch_customer_details(current_user)
-    response = self.class.get("/customer/#{current_user.email}", headers: @headers)
+  def fetch_customer_details(user)
+    response = self.class.get("/customer/#{user.email}", headers: @headers)
     response if response['status'] == true
   end
 
-  def get_manage_subscription_link(current_user)
-    subscription_code = fetch_customer_details(current_user)['data']['subscriptions'][0]['subscription_code']
+  def get_subscription_code(user)
+    fetch_customer_details(user)['data']['subscriptions'][0]['subscription_code']
+  end
+
+  def get_manage_subscription_link(user)
+    subscription_code = get_subscription_code(user)
     response = self.class.get("/subscription/#{subscription_code}/manage/link", headers: @headers)
     response['data']['link']
   end

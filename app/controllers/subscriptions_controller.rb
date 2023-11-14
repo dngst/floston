@@ -29,7 +29,7 @@ class SubscriptionsController < ApplicationController
       payment_link = response['data']['authorization_url']
       redirect_to payment_link, allow_other_host: true
     else
-      redirect_to user_path(current_user), alert: 'Failed to initialize transaction'
+      redirect_to user_path(current_user), alert: t('subscriptions.failed_to_initialize')
     end
   end
 
@@ -39,7 +39,7 @@ class SubscriptionsController < ApplicationController
     if response['status'] == true
       create_subscription
     else
-      redirect_to user_path(current_user), alert: 'Transaction verification unsuccessful'
+      redirect_to user_path(current_user), alert: t('subscriptions.failed_verification')
     end
   end
 
@@ -47,9 +47,9 @@ class SubscriptionsController < ApplicationController
     response = @paystack_service.create_subscription(current_user, ENV.fetch('PLAN_ID', nil))
 
     if response['status'] == true
-      redirect_to user_path(current_user), notice: 'Subscription successful'
+      redirect_to user_path(current_user), notice: t('subscriptions.success')
     else
-      redirect_to user_path(current_user), alert: 'Subscription unsuccessful'
+      redirect_to user_path(current_user), alert: t('subscriptions.failed')
     end
   end
 

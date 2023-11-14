@@ -3,6 +3,6 @@ class CommentNotificationMailer < ApplicationMailer
     @user = user
     @request = request
     @comment = comment
-    mail(to: @user.email, subject: 'New comment on your request')
+    mail(to: @user.email, subject: t('mailer.new_comment'))
   end
 end

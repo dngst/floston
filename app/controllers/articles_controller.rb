@@ -15,7 +15,8 @@ class ArticlesController < ApplicationController
     items_per_page = 20
 
     @pagy, @articles = if current_user&.admin?
-                         pagy(Article.where(id: ids, user_id: current_user.id).order(created_at: :desc), items: items_per_page)
+                         pagy(Article.where(id: ids, user_id: current_user.id).order(created_at: :desc),
+                              items: items_per_page)
                        else
                          pagy(Article.where(id: ids, user_id: current_user.admin_id,
                                             published: true,
@@ -43,7 +44,7 @@ class ArticlesController < ApplicationController
 
         Rails.cache.delete('article_ids')
 
-        format.html { redirect_to article_url(@article), notice: 'Article saved' }
+        format.html { redirect_to article_url(@article), notice: t('articles.saved') }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,7 +60,7 @@ class ArticlesController < ApplicationController
 
         Rails.cache.delete('article_ids')
 
-        format.html { redirect_to article_url(@article), notice: 'Article updated' }
+        format.html { redirect_to article_url(@article), notice: t('articles.updated') }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -75,7 +76,7 @@ class ArticlesController < ApplicationController
     Rails.cache.delete('article_ids')
 
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article deleted' }
+      format.html { redirect_to articles_url, notice: t('articles.deleted') }
       format.json { head :no_content }
     end
   end
@@ -87,7 +88,7 @@ class ArticlesController < ApplicationController
     @article = Article.friendly.find(params[:id])
     return if current_user&.id == @article&.user_id || current_user&.admin_id == @article&.user_id
 
-    flash[:alert] = 'You do not have permission to access that page'
+    flash[:alert] = t('permission_denied')
     redirect_to root_path
   end
 

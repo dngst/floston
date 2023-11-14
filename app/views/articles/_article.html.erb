@@ -9,7 +9,7 @@
             <%= article.title %>
           <% end %>
         </h1>
-        <p class="text-gray-600 text-sm"><%=  article.created_at.strftime("%b %d, %Y") %></p>
+        <p class="text-gray-600 text-sm"><%= date_format(article.created_at) %></p>
       <% elsif attribute == :property_id %>
         <p class="mb-4 flex items-center">
           <% cache('bx-building-house.svg') do %>

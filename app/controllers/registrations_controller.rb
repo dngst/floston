@@ -8,8 +8,8 @@ class RegistrationsController < Devise::RegistrationsController
     if current_user&.admin?
       # Create a user without automatically signing them in
       self.resource = resource_class.new(sign_up_params)
-      generated_password = Devise.friendly_token.first(8) # Generate an 8-character random password
-
+      # Generate an 8-character random password
+      generated_password = Devise.friendly_token.first(8)
       resource.password = generated_password
 
       if resource.save
@@ -23,7 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
         respond_with resource
       end
     else
-      flash[:alert] = 'You do not have permission to create an account'
+      flash[:alert] = t('registrations.permission_denied')
       redirect_to root_path
     end
   end

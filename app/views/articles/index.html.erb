@@ -1,28 +1,10 @@
 <div class="w-full">
-  <div class="flex justify-between mb-6 sticky top-[4.6rem] bg-white lg:pt-flostonp lg:pb-flostonp pb-flostonpmd">
-    <h1 class="text-4xl font-bold">
-      <div class="flex justify-normal text-gray-800">
-        <% cache('bx-book-open') do %>
-          <%= image_tag "bx-book-open.svg", class: "w-10 mr-2 hidden md:flex" %>
-        <% end %>
-        Articles
-      </div>
-    </h1>
-    <% if current_user&.admin? %>
-      <%= link_to new_article_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
-        <% cache('bx-plus-circle.svg') do %>
-          <%= image_tag "bx-plus-circle.svg", class: "w-5 mr-2" %>
-        <% end %>
-        Write an article
-      <% end %>
-      <%= link_to new_article_path, class: "md:hidden" do %>
-        <% cache('bx-plus-circle-mobile-svg') do %>
-          <%= image_tag "bx-plus-circle.svg", class: "w-10 mr-2" %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-
+  <%= render 'layouts/header',
+            header_text: "Articles",
+            icon_title: "bx-book-open.svg",
+            new_record: new_article_path,
+            new_button_text: "Write an article",
+            authorization: current_user&.admin? %>
 
   <% if @articles.any? %>
     <%= turbo_frame_tag "articles_#{@pagy.page}" do %>

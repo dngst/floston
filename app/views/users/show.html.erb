@@ -15,29 +15,29 @@
     <% end %>
 
     <div class="mt-6">
-    <% if @user.tenant %>
-      <ul>
-        <% @user.tenant.attributes.each do |attribute, value| %>
-          <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
-            <li class="mb-4">
-              <h2 class="text-xl font-semibold text-gray-800"><%= @user.tenant.class.human_attribute_name(attribute) %></h2>
-              <p class="text-gray-600">
-                <% if value.is_a?(Date) %>
-                  <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
-                <% elsif attribute == 'amount_due' %>
-                  <%= number_to_currency(value, unit: 'USD ', precision: 0) %>
-                <% elsif attribute == 'property_id' %>
-                  <p class="text-gray-600 capitalize"><%= Property.find_by(id: value).name %></p>
-                <% else %>
-                  <%= value %>
-                <% end %>
-              </p>
-            </li>
+      <% if @user.tenant %>
+        <ul>
+          <% @user.tenant.attributes.each do |attribute, value| %>
+            <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
+              <li class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-800"><%= @user.tenant.class.human_attribute_name(attribute) %></h2>
+                <p class="text-gray-600">
+                  <% if value.is_a?(Date) %>
+                    <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
+                  <% elsif attribute == 'amount_due' %>
+                    <%= number_to_currency(value, unit: 'USD ', precision: 0) %>
+                  <% elsif attribute == 'property_id' %>
+                    <p class="text-gray-600 capitalize"><%= Property.find_by(id: value).name %></p>
+                  <% else %>
+                    <%= value %>
+                  <% end %>
+                </p>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
+        </ul>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
