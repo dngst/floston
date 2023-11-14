@@ -15,12 +15,13 @@ class SubscriptionsController < ApplicationController
 
   def customer_exists
     response = @paystack_service.fetch_customer_details(current_user)
-    return response['status']
+    response['status']
   end
 
   def create_customer
     response = @paystack_service.create_customer(current_user)
     return unless response['status']
+
     initialize_transaction
   end
 
