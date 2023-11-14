@@ -33,11 +33,11 @@ class Property < ApplicationRecord
   end
 
   def can_delete_property?
-    can_delete_property ||= tenants.includes([:tenants]).empty? && articles.includes([:articles]).empty?
+    tenants.includes([:tenants]).empty? && articles.includes([:articles]).empty?
   end
 
   def self.my_properties(current_user)
-    my_properties ||= Property.where(user_id: current_user.id)
+    Property.where(user_id: current_user.id)
   end
 
   def self.ransackable_attributes(_auth_object = nil)

@@ -33,7 +33,7 @@ class PropertiesController < ApplicationController
 
         Rails.cache.delete('property_ids')
 
-        format.html { redirect_to properties_url, notice: 'Property saved' }
+        format.html { redirect_to properties_url, notice: t('properties.saved') }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,12 +45,12 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1 or /properties/1.json
   def update
     if @property.update(property_params)
-      flash.now[:notice] = 'Property updated'
+      flash.now[:notice] = t('properties.updated')
 
       Rails.cache.delete('property_ids')
 
       respond_to do |format|
-        format.html { redirect_to property_url(@property), notice: 'Property updated' }
+        format.html { redirect_to property_url(@property), notice: t('properties.updated') }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace('update-property-form', partial: 'form', locals: { property: @property }),
@@ -66,12 +66,12 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1 or /properties/1.json
   def destroy
     @property.destroy
-    flash.now[:notice] = 'Property deleted'
+    flash.now[:notice] = t('properties.deleted')
 
     Rails.cache.delete('property_ids')
 
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property deleted' }
+      format.html { redirect_to properties_url, notice: t('properties.deleted') }
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@property),

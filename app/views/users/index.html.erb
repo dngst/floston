@@ -1,26 +1,10 @@
 <div class="w-full">
-  <div class="flex justify-between mb-4 sticky top-[4.6rem] bg-white lg:pt-flostonp lg:pb-flostonp pb-flostonpmd">
-    <h1 class="text-4xl font-bold">
-      <div class="flex justify-normal text-gray-800">
-        <% cache('bxs-group.svg') do %>
-          <%= image_tag "bxs-group.svg", class: "w-10 mr-2 hidden md:flex" %>
-        <% end %>
-        Tenants
-      </div>
-    </h1>
-
-    <%= link_to new_user_registration_path, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
-      <% cache('bx-plus-circle.svg') do %>
-        <%= image_tag "bx-plus-circle.svg", class: "w-5 mr-2" %>
-      <% end %>
-      Add tenant
-    <% end %>
-    <%= link_to new_user_registration_path, class: "md:hidden" do %>
-      <% cache('bx-plus-circle-mobile-svg') do %>
-        <%= image_tag "bx-plus-circle.svg", class: "w-10 mr-2" %>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render 'layouts/header',
+            header_text: "Tenants",
+            icon_title: "bxs-group.svg",
+            new_record: new_user_registration_path,
+            new_button_text: "Add tenant",
+            authorization: current_user&.admin? %>
 
   <% if @users.any?  %>
     <%= turbo_frame_tag "users_#{@pagy.page}" do %>
@@ -35,4 +19,3 @@
     <p class="text-gray-500">You haven't added any tenants yet</p>
   <% end %>
 </div>
-

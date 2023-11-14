@@ -29,14 +29,14 @@ class UsersController < ApplicationController
         if @user.tenant
           if @user.tenant.update(tenant_params)
             Rails.cache.delete('tenant_ids')
-            format.html { redirect_to user_path(@user), notice: 'Tenant information updated' }
+            format.html { redirect_to user_path(@user), notice: t('users.updated') }
             format.json { render :show, status: :ok, location: @user }
           else
             format.html { render :edit, status: :unprocessable_entity }
             format.json { render json: @user.tenant.errors, status: :unprocessable_entity }
           end
         else
-          format.html { redirect_to user_path(@user), notice: 'User information updated' }
+          format.html { redirect_to user_path(@user), notice: t('users.updated') }
           format.json { render :show, status: :ok, location: @user }
         end
       else
@@ -49,11 +49,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
 
-    flash.now[:notice] = 'Tenant deleted'
+    flash.now[:notice] = t('users.deleted')
     Rails.cache.delete('tenant_ids')
 
     respond_to do |format|
-      format.html { redirect_to users_path, notice: 'Tenant deleted' }
+      format.html { redirect_to users_path, notice: t('users.deleted') }
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@user),
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   def authorize_profile_access
     return if current_user&.id == @user.admin_id || current_user == @user
 
-    flash[:alert] = 'You do not have permission to access that page'
+    flash[:alert] = t('permission_denied')
     redirect_to root_path
   end
 

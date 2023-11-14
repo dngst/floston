@@ -1,27 +1,10 @@
 <div class="w-full">
-  <div class="flex justify-between mb-6 sticky top-[4.6rem] bg-white lg:pt-flostonp lg:pb-flostonp pb-flostonpmd">
-    <h1 class="text-4xl font-bold">
-      <div class="flex justify-normal text-gray-800">
-        <% cache('bx-building-house') do %>
-          <%= image_tag "bx-building-house.svg", class: "w-10 mr-2 hidden md:flex" %>
-        <% end %>
-        Properties
-      </div>
-    </h1>
-    <% if current_user&.admin? %>
-      <%= link_to new_property_path, class: "bg-floston text-flostontext rounded-lg py-2 px-4 block font-medium hidden md:flex" do %>
-        <% cache('bx-plus-circle.svg') do %>
-          <%= image_tag "bx-plus-circle.svg", class: "w-5 mr-2" %>
-        <% end %>
-        Add property
-      <% end %>
-      <%= link_to new_property_path, class: "md:hidden" do %>
-        <% cache('bx-plus-circle-mobile-svg') do %>
-          <%= image_tag "bx-plus-circle.svg", class: "w-10 mr-2" %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render 'layouts/header',
+            header_text: "Properties",
+            icon_title: "bx-building-house.svg",
+            new_record: new_property_path,
+            new_button_text: "Add property",
+            authorization: current_user&.admin? %>
 
   <% if @properties.any? %>
     <%= turbo_frame_tag "properties_#{@pagy.page}" do %>

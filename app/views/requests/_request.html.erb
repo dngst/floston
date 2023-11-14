@@ -3,7 +3,7 @@
     <%= request.title %>
   </h1 >
 
-  <p class="text-gray-600 text-sm"><%=  request.created_at.strftime("%b %d, %Y") %></p>
+  <p class="text-gray-600 text-sm"><%= date_format(request.created_at) %></p>
 
   <p class="my-4 leading-[1.75em]">
     <%= request.description %>

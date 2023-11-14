@@ -22,7 +22,10 @@ class RequestsController < ApplicationController
       query = query.where(requests: { user_id: @request_user.id }).includes([:user]) unless @request_user.admin?
       @pagy, @requests = pagy(query.includes([:user]).order(created_at: :desc), items: items_per_page)
     else
-      @pagy, @requests = pagy(Request.where(id: ids, user_id: current_user.id).includes([:user]).order(created_at: :desc), items: items_per_page)
+      @pagy, @requests = pagy(
+        Request.where(id: ids,
+                      user_id: current_user.id).includes([:user]).order(created_at: :desc), items: items_per_page
+      )
     end
   end
 
@@ -51,7 +54,7 @@ class RequestsController < ApplicationController
         Rails.cache.delete('request_ids')
 
         NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
-        format.html { redirect_to user_request_url(@user, @request), notice: 'Request submitted' }
+        format.html { redirect_to user_request_url(@user, @request), notice: t('requests.saved') }
         format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,7 +71,7 @@ class RequestsController < ApplicationController
 
         Rails.cache.delete('request_ids')
 
-        format.html { redirect_to user_request_url, notice: 'Request was successfully updated' }
+        format.html { redirect_to user_request_url, notice: t('requests.updated') }
         format.json { render :show, status: :ok, location: @request }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -84,13 +87,17 @@ class RequestsController < ApplicationController
     Rails.cache.delete('request_ids')
 
     respond_to do |format|
-      format.html { redirect_to user_requests_url, notice: 'Request deleted' }
+      format.html { redirect_to user_requests_url, notice: t('requests.deleted') }
       format.json { head :no_content }
     end
   end
 
   def close_request
-    @request.update_attribute(:closed, true)
+    if @request.update(closed: true)
+      flash[:notice] = t('requests.closed')
+    else
+      flash[:alert] = t('requests.failed_to_close')
+    end
     redirect_to user_request_path(current_user, @request)
   end
 
@@ -101,7 +108,7 @@ class RequestsController < ApplicationController
     @request = Request.friendly.find(params[:id])
     return if current_user&.id == @request.user_id || current_user&.id == @request.user.admin_id
 
-    flash[:alert] = 'You do not have permission to access that page'
+    flash[:alert] = t('permission_denied')
     redirect_to root_path
   end
 
