@@ -3,6 +3,8 @@
     <% cache('bx-building-house.svg') do %>
       <%= image_tag "bx-building-house.svg", class: "w-6 mr-2" %>
     <% end %>
-    <%= "#{property.name}" %>
+    <%= link_to edit_property_path(property), data: { turbo_frame: "_top" }, class: "hover:underline" do %>
+      <%= property.name %>
+    <% end %>
   </p>
 </div>
