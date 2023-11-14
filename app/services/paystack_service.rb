@@ -45,8 +45,7 @@ class PaystackService
   end
 
   def fetch_customer_details(user)
-    response = self.class.get("/customer/#{user.email}", headers: @headers)
-    response if response['status'] == true
+    self.class.get("/customer/#{user.email}", headers: @headers)
   end
 
   def get_subscription_code(user)
