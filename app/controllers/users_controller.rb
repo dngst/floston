@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 
   def handle_customer_details
     response = @paystack_service.fetch_customer_details(current_user)
-    return unless response
+    return unless response && response['status'] == true
 
     @subscribed = response['data']['subscriptions']
     @card_details = response['data']['authorizations'][0]
