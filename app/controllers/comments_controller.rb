@@ -27,9 +27,14 @@ class CommentsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.append(
-              'comments', # ID of the element to update
-              partial: 'comments/comment', # Name of the partial to render for the new comment
+              'comments',
+              partial: 'comments/comment',
               locals: { comment: @comment }
+            ),
+            turbo_stream.replace(
+              'comment_counter',
+              partial: 'requests/comment_counter',
+              locals: { counter: @request.comments.size }
             )
           ]
         end

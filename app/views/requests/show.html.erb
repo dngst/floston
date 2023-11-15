@@ -12,7 +12,10 @@
     <% end %>
   </div>
 
-  <h2 class="text-3xl font-bold text-gray-600 mt-6">Discussion (<%= @comment_count %>)</h2>
+  <h2 class="text-3xl font-bold text-gray-600 mt-6">
+    Discussion
+    <%= render "requests/comment_counter", counter: @comment_count %>
+  </h2>
 
   <div class="mt-4" id="comments">
     <% if @request.comments&.any? %>
