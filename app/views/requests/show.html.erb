@@ -14,14 +14,11 @@
 
   <h2 class="text-3xl font-bold text-gray-600 mt-6">Discussion (<%= @comment_count %>)</h2>
 
-  <div class="mt-4">
+  <div class="mt-4" id="comments">
     <% if @request.comments&.any? %>
       <% @request.comments.each do |comment| %>
         <% if comment.id %>
-          <p class="mb-2">
-            <strong class="capitalize"><%= comment.user.fname %></strong>: <%= comment.body %>
-            <span class="text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</span>
-          </p>
+          <%= render "comments/comment", comment: comment %>
         <% end %>
       <% end %>
     <% else %>

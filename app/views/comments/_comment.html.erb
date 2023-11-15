@@ -1,17 +1,4 @@
-<div id="<%= dom_id comment %>">
-  <p>
-    <strong>Body:</strong>
-    <%= comment.body %>
-  </p>
-
-  <p>
-    <strong>Request:</strong>
-    <%= comment.request_id %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
-
+<div id="<%= dom_id comment %>" class="mb-2">
+  <strong class="capitalize"><%= comment.user.fname %></strong>: <%= comment.body %>
+  <span class="text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</span>
 </div>

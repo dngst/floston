@@ -24,6 +24,15 @@ class CommentsController < ApplicationController
           CommentNotificationMailer.comment_notification(@request.user, @request, @comment).deliver_later
         end
         format.html { redirect_to user_request_path(@user, @request) }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.append(
+              'comments', # ID of the element to update
+              partial: 'comments/comment', # Name of the partial to render for the new comment
+              locals: { comment: @comment }
+            )
+          ]
+        end
         format.json { render :show, status: :created, location: user_request_comment_path(@user, @request, @comment) }
       else
         format.html { render 'requests/show', status: :unprocessable_entity }
