@@ -19,11 +19,12 @@
         </p>
       <% elsif attribute == :published %>
         <% if current_user&.admin? %>
-          <%= link_to [:edit, article, attribute: attribute] do %>
-            <% if article.published? %>
-              published
-            <% else %>
-              not published
+          <%= turbo_frame_tag "published_checkbox" do %>
+            <%= form_with(model: article, url: [article, attribute: :published], method: :patch) do |form| %>
+              <div class="mt-4">
+                <%= form.check_box :published, class: "text-flostonlink mr-2 border rounded-lg hover:cursor-pointer", onchange: 'this.form.requestSubmit()' %>
+                <span class="text-gray-800">Published</span>
+              </div>
             <% end %>
           <% end %>
         <% end %>
