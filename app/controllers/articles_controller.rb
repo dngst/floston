@@ -60,6 +60,17 @@ class ArticlesController < ApplicationController
 
         Rails.cache.delete('article_ids')
 
+        flash.now[:notice] = t('articles.updated')
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              @article,
+              partial: 'articles/article',
+              locals: { article: @article }
+            ),
+            turbo_stream.replace('flash-messages', partial: 'layouts/flash')
+          ]
+        end
         format.html { redirect_to article_url(@article), notice: t('articles.updated') }
         format.json { render :show, status: :ok, location: @article }
       else

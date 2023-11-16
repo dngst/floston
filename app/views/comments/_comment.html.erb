@@ -1,4 +1,4 @@
 <div id="<%= dom_id comment %>" class="mb-2">
-  <strong class="capitalize"><%= comment.user.fname %></strong>: <%= comment.body %>
+  <strong class="capitalize <%= 'text-gray-600' if comment.user.admin? %>"><%= comment.user.fname %></strong>: <%= comment.body %>
   <span class="text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</span>
 </div>
