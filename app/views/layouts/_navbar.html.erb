@@ -43,27 +43,5 @@
   </nav>
 
   <!-- Mobile Navigation -->
-  <nav class="bg-white shadow-md fixed top-0 w-full px-4 py-6 hidden z-1" data-navbar-target="content">
-
-    <!-- Navigation Links -->
-    <% if user_signed_in? %>
-      <div class="flex justify-between">
-        <div></div>
-        <div data-action="click->navbar#close" class="hover:cursor-pointer">
-          <%= image_tag "bx-x-circle.svg", class: "w-8" %>
-        </div>
-      </div>
-      <ul class="text-right">
-        <li class="py-2 px-2 text-lg"><%= link_to "Home", root_path %></li>
-        <li class="py-2 px-2 text-lg"><%= active_link_to "Profile", user_path(current_user) %></li>
-        <li class="py-2 px-2 text-lg"><%= active_link_to "Requests", user_requests_path(current_user) %></li>
-        <li class="py-2 px-2 text-lg"><%= active_link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
-        <% if current_user&.admin %>
-          <li class="py-2 px-2 text-lg"><%= active_link_to "Tenants", users_path %></li>
-          <li class="py-2 px-2 text-lg"><%= active_link_to "Properties", properties_path %></li>
-        <% end %>
-        <li class="py-2 px-2 text-lg sign-out"><%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %></li>
-      </ul>
-    <% end %>
-  </nav>
+  <%= render "layouts/mobile_nav" %>
 </div>
