@@ -22,14 +22,14 @@
         <div class="mx-2">
           <%= link_to edit_user_path(user), data: { turbo_frame: "_top" } do %>
             <% cache('bx-edit.svg') do %>
-              <%= image_tag "bx-edit.svg" %>
+              <%= image_tag "bx-edit.svg", class: "w-8" %>
             <% end %>
           <% end %>
         </div>
         <div class="mx-1">
           <%= link_to user_path(user), data: { 'turbo-method': :delete, turbo_confirm: "Delete tenant?" } do %>
             <% cache('bx-trash.svg') do %>
-              <%= image_tag "bx-trash.svg" %>
+              <%= image_tag "bx-trash.svg", class: "w-8" %>
             <% end %>
           <% end %>
         </div>
