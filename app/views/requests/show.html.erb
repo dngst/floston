@@ -30,7 +30,9 @@
   </div>
 
   <% if @request.closed? %>
-    <p class="text-red-500 my-4"><%= User.friendly.find(@user.admin_id).fname %> closed this request</p>
+    <p class="text-red-500 my-4">
+      <%= current_user&.admin ? "You" : User.friendly.find(@user.admin_id).fname %> closed this request
+    </p>
   <% else %>
     <%= render "comments/form" %>
   <% end %>
