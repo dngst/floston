@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update(comment_params)
         format.html do
-          redirect_to user_request_comment_path(@user, @request, @comment), notice: 'Comment was successfully updated.'
+          redirect_to user_request_comment_path(@user, @request, @comment), notice: t('comments.updated')
         end
         format.json { render :show, status: :ok, location: user_request_comment_path(@user, @request, @comment) }
       else
@@ -66,7 +66,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_request_path(@user, @request), notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to user_request_path(@user, @request), notice: t('comments.deleted') }
       format.json { head :no_content }
     end
   end

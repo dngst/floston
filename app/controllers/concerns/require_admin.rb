@@ -6,7 +6,7 @@ module RequireAdmin
   def require_admin
     return if current_user&.admin?
 
-    flash[:alert] = 'You do not have permission to access that page'
+    flash[:alert] = t('permission_denied')
     redirect_to root_path
   end
 end
