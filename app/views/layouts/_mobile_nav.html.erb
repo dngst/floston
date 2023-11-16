@@ -1,5 +1,4 @@
-<nav class="bg-white shadow-md fixed top-0 w-full px-4 py-6 hidden z-1" data-navbar-target="content">
-
+<nav class="bg-white shadow-md fixed top-0 w-full px-4 py-4 hidden z-1" data-navbar-target="content">
   <!-- Navigation Links -->
   <% if user_signed_in? %>
     <div class="flex justify-between">
@@ -17,7 +16,7 @@
         <li class="py-2 px-2 text-lg"><%= active_link_to "Tenants", users_path %></li>
         <li class="py-2 px-2 text-lg"><%= active_link_to "Properties", properties_path %></li>
       <% end %>
-      <li class="py-2 px-2 text-lg sign-out"><%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %></li>
+      <li class="py-4 px-2 text-lg sign-out text-gray-500"><%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %></li>
     </ul>
   <% end %>
 </nav>
