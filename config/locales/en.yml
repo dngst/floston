@@ -13,6 +13,8 @@ en:
     deleted: 'Request deleted'
     closed: 'Request closed'
     failed_to_close: 'Failed to close the request'
+    reopened: 'Request reopened'
+    failed_to_reopen: 'Failed to reopen the request'
   comments:
     updated: 'Comment updated'
     deleted: 'Comment deleted'

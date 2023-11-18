@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :comments, except: [:show]
       member do
           patch 'close_request'
+          patch 'reopen_request'
         end
     end
     resources :reminders, only: [:index]

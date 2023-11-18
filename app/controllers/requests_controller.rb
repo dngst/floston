@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
   before_action :require_admin, only: %i[edit update destroy]
   before_action :authorize_request_access, only: [:show]
   before_action :set_user
-  before_action :set_request, only: %i[show edit update destroy close_request]
+  before_action :set_request, only: %i[show edit update destroy close_request reopen_request]
 
   # GET /requests or /requests.json
   def index
@@ -98,6 +98,15 @@ class RequestsController < ApplicationController
       flash[:notice] = t('requests.closed')
     else
       flash[:alert] = t('requests.failed_to_close')
+    end
+    redirect_to user_request_path(current_user, @request)
+  end
+
+  def reopen_request
+    if @request.update(closed: false)
+      flash[:notice] = t('requests.reopened')
+    else
+      flash[:alert] = t('requests.failed_to_reopen')
     end
     redirect_to user_request_path(current_user, @request)
   end
