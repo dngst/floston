@@ -4,6 +4,10 @@
 
 
 @layer components {
+  * {
+    transition: all 800ms ease 0s;
+  }
+
   .turbo-progress-bar {
     height: 3px !important;
     background-color: #93E9BE !important;
