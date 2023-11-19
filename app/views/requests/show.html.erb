@@ -19,7 +19,7 @@
     <%= render "requests/comment_counter", counter: @comment_count %>
   </h2>
 
-  <div class="mt-4" id="comments">
+  <div class="mb-2" id="comments">
     <% if @request.comments&.any? %>
       <% @request.comments.each do |comment| %>
         <% if comment.id %>
