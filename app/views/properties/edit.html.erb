@@ -6,4 +6,14 @@
   <div id="update-property-form">
     <%= render partial: "form", locals: { property: @property } %>
   </div>
+
+  <% if @property.can_delete_property? %>
+    <%= button_to property_path(@property),
+      method: :delete, data: { turbo_confirm: "Delete property?" },
+      class: "mt-6 py-2" do %>
+      <% cache('bx-trash.svg') do %>
+        <%= image_tag "bx-trash.svg", class: "w-6" %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

@@ -66,18 +66,11 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1 or /properties/1.json
   def destroy
     @property.destroy
-    flash.now[:notice] = t('properties.deleted')
 
     Rails.cache.delete('property_ids')
 
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: t('properties.deleted') }
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.remove(@property),
-          turbo_stream.replace('flash-messages', partial: 'layouts/flash')
-        ]
-      end
+      format.html { redirect_to properties_url }
     end
   end
 
