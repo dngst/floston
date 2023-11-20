@@ -72,17 +72,31 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def connected_to_the_internet?
+    system('ping -c 1 www.google.com')
+  rescue StandardError
+    false
+  end
+
   def initialize_paystack_service
     @paystack_service = PaystackService.new(ENV.fetch('PAYSTACK_SECRET_KEY', nil))
   end
 
   def handle_customer_details
-    response = @paystack_service.fetch_customer_details(current_user)
-    return unless response && response['status'] == true
+    @internet_connected = connected_to_the_internet?
 
-    @subscribed = response['data']['subscriptions']
-    @card_details = response['data']['authorizations'][0]
-    @subscription_details = response['data']['subscriptions'][0]
+    return unless @internet_connected
+
+    begin
+      response = @paystack_service.fetch_customer_details(current_user)
+      return unless response && response['status'] == true
+
+      @subscribed = response['data']['subscriptions']
+      @card_details = response['data']['authorizations'][0]
+      @subscription_details = response['data']['subscriptions'][0]
+    rescue SocketError => e
+      Rails.logger.error("SocketError: #{e.message}")
+    end
   end
 
   def set_user
