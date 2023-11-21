@@ -33,7 +33,7 @@
 
   <% if @request.closed? %>
     <p class="text-red-500 my-4">
-      <%= current_user&.admin ? "You" : User.friendly.find(@user.admin_id).fname %> closed this request
+      <%= current_user&.admin ? "You" : User.where(id: @user.admin_id).pluck(:fname).join('') %> closed this request
     </p>
   <% else %>
     <%= render "comments/form" %>
