@@ -24,7 +24,7 @@ class RequestsController < ApplicationController
     else
       @pagy, @requests = pagy(
         Request.where(id: ids,
-                      user_id: current_user.id).includes([:user]).order(created_at: :desc), items: items_per_page
+                      user_id: current_user.id).order(created_at: :desc), items: items_per_page
       )
     end
   end
