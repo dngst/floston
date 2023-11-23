@@ -57,29 +57,25 @@
     </p>
   </div>
 
-  <% if @internet_connected %>
-    <% if @subscribed&.empty? || @subscribed.nil? %>
-      <%= link_to 'Billing', subscribe_path, class: 'text-gray-800 border border-gray-500 py-2 px-4 rounded-lg mt-4 w-20' %>
+  <% if @subscribed&.empty? || @subscribed.nil? %>
+    <%= link_to 'Billing', subscribe_path, class: 'text-gray-800 border border-gray-500 py-2 px-4 rounded-lg mt-4 w-20' %>
 
-    <% else %>
-      <%= link_to 'Manage subscription', manage_subscription_path, class: 'text-lg font-semibold text-gray-800 underline mt-4' %>
-
-      <% if @card_details %>
-        <p>
-          <%= @card_details['card_type'] %> card ending in <span class="text-gray-600">...<%= @card_details['last4'] %></span>
-        </p>
-        <p>Started on <span class="text-gray-600">
-          <%= subscription_time(@subscription_details['createdAt']) %></span>
-        </p>
-        <p>
-          Next payment on <span class="text-gray-600"><%= subscription_time(@subscription_details['next_payment_date']) %></span>
-        </p>
-      <% end %>
-      <% if session[:manage_subscription_link] %>
-        <%= link_to "Replace card or cancel", session[:manage_subscription_link], class: 'underline text-flostonlink mt-4' %>
-      <% end %>
-    <% end %>
   <% else %>
-    <p class="py-2 text-red-400">Connect to the internet to see billing information</p>
+    <%= link_to 'Manage subscription', manage_subscription_path, class: 'text-lg font-semibold text-gray-800 underline mt-4' %>
+
+    <% if @card_details %>
+      <p>
+        <%= @card_details['card_type'] %> card ending in <span class="text-gray-600">...<%= @card_details['last4'] %></span>
+      </p>
+      <p>Started on <span class="text-gray-600">
+        <%= subscription_time(@subscription_details['createdAt']) %></span>
+      </p>
+      <p>
+        Next payment on <span class="text-gray-600"><%= subscription_time(@subscription_details['next_payment_date']) %></span>
+      </p>
+    <% end %>
+    <% if session[:manage_subscription_link] %>
+      <%= link_to "Replace card or cancel", session[:manage_subscription_link], class: 'underline text-flostonlink mt-4' %>
+    <% end %>
   <% end %>
 <% end %>
