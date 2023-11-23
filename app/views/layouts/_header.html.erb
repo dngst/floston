@@ -2,15 +2,15 @@
   <h1 class="text-4xl font-bold">
     <div class="flex justify-normal text-gray-800">
       <% cache(icon) do %>
-        <%= image_tag icon, class: "w-10 mr-2 hidden md:flex" %>
+        <%= image_tag icon, class: "w-10 mr-2 hidden md:flex", draggable: false %>
       <% end %>
       <%= title %>
     </div>
   </h1>
   <% if authorization %>
-    <%= link_to route, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
+    <%= link_to route, draggable:false, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
       <% cache('bx-plus-circle.svg') do %>
-        <%= image_tag "bx-plus-circle.svg", class: "w-5 mr-2" %>
+        <%= image_tag "bx-plus-circle.svg", class: "w-5 mr-2", draggable:false %>
       <% end %>
       <%= button_text %>
     <% end %>

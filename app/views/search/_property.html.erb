@@ -1,9 +1,9 @@
 <div class="border border-gray-300 p-4 rounded mt-4 text-gray-800">
   <p class="text-xl font-semibold capitalize flex justify-normal">
     <% cache('bx-building-house.svg') do %>
-      <%= image_tag "bx-building-house.svg", class: "w-6 mr-2" %>
+      <%= image_tag "bx-building-house.svg", class: "w-6 mr-2", draggable: false %>
     <% end %>
-    <%= link_to edit_property_path(property), data: { turbo_frame: "_top" }, class: "hover:underline" do %>
+    <%= link_to edit_property_path(property), draggable:false, data: { turbo_frame: "_top" }, class: "hover:underline" do %>
       <%= property.name %>
     <% end %>
   </p>

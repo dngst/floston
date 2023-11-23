@@ -13,8 +13,9 @@
 
 <p class="mb-4 text-gray-600">
   <%= link_to "Requests", user_requests_path(@user),
+    draggable:false,
     class: "text-gray-600 underline" %> — <span class="text-gray-800 font-semibold"><%= @requests_count %></span></p>
 
 <p class="mb-4 text-gray-600">
-   <%= link_to "Reminders", user_reminders_path(@user),class: "text-gray-600 underline mt-4" %>
+   <%= link_to "Reminders", user_reminders_path(@user), draggable:false, class: "text-gray-600 underline mt-4" %>
 </p>
