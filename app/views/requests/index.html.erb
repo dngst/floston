@@ -4,7 +4,7 @@
             icon: "bxs-hand.svg",
             route: new_user_request_path,
             button_text: "Submit a request",
-            authorization: !current_user&.admin? %>
+            authorization: !user_is_admin? %>
 
   <% if @requests.any? %>
     <%= turbo_frame_tag "requests_#{@pagy.page}" do %>
@@ -16,7 +16,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <% if current_user&.admin %>
+    <% if user_is_admin? %>
       <p class="mt-4 text-gray-500">You haven't received any requests yet</p>
     <% else %>
       <p class="mt-4 text-gray-500">You haven't submitted any requests yet</p>

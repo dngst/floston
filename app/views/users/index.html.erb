@@ -4,7 +4,7 @@
             icon: "bx-group.svg",
             route: new_user_registration_path,
             button_text: "Add tenant",
-            authorization: current_user&.admin? %>
+            authorization: user_is_admin? %>
 
   <% if @users.any?  %>
     <%= turbo_frame_tag "users_#{@pagy.page}" do %>

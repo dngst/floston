@@ -4,7 +4,7 @@
             icon: "bx-book-open.svg",
             route: new_article_path,
             button_text: "Write an article",
-            authorization: current_user&.admin? %>
+            authorization: user_is_admin? %>
 
   <% if @articles.any? %>
     <%= turbo_frame_tag "articles_#{@pagy.page}" do %>
@@ -16,7 +16,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <% if current_user&.admin %>
+    <% if user_is_admin? %>
       <p class="mt-2 text-gray-500">Articles you write will be listed here</p>
     <% else %>
       <p class="mt-2 text-gray-500">New articles will be listed here</p>

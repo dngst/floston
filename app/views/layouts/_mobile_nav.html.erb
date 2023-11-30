@@ -12,7 +12,7 @@
       <li class="py-2 px-2 text-lg"><%= active_link_to "Profile", user_path(current_user) %></li>
       <li class="py-2 px-2 text-lg"><%= active_link_to "Requests", user_requests_path(current_user) %></li>
       <li class="py-2 px-2 text-lg"><%= active_link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
-      <% if current_user&.admin %>
+      <% if user_is_admin? %>
         <li class="py-2 px-2 text-lg"><%= active_link_to "Tenants", users_path %></li>
         <li class="py-2 px-2 text-lg"><%= active_link_to "Properties", properties_path %></li>
       <% end %>

@@ -4,7 +4,7 @@
             icon: "bx-building-house.svg",
             route: new_property_path,
             button_text: "Add property",
-            authorization: current_user&.admin? %>
+            authorization: user_is_admin? %>
 
   <% if @properties.any? %>
     <%= turbo_frame_tag "properties_#{@pagy.page}" do %>

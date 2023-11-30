@@ -13,7 +13,7 @@
 
         <!-- Navigation Links -->
         <div class="space-x-6 hidden lg:flex">
-          <% if current_user&.admin %>
+          <% if user_is_admin? %>
             <%= active_link_to "Tenants", users_path, draggable:false %>
             <%= active_link_to "Properties", properties_path, draggable:false %>
           <% end %>

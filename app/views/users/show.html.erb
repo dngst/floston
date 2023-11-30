@@ -41,7 +41,7 @@
   </div>
 <% end %>
 
-<% if current_user&.admin? && current_user != @user %>
+<% if user_is_admin? && current_user != @user %>
   <div class="flex flex-col sm:flex-row">
     <%= link_to "Tenant stats", user_stats_path(@user), draggable:false, class: "rounded-lg py-2 px-4 text-blue-400 border border-blue-400 hover:bg-blue-100 inline-block lg:mb-0 mb-2 sm:mr-4 text-center font-medium" %>
     <%= link_to "Edit tenant", edit_user_path(@user), draggable:false, class: "rounded-lg py-2 px-4 text-gray-500 border border-gray-500 hover:bg-gray-100 inline-block lg:mb-0 mb-2 sm:mr-4 text-center font-medium" %>
@@ -49,7 +49,7 @@
   </div>
 <% end %>
 
-<% if current_user&.admin? && current_user == @user %>
+<% if user_is_admin? && current_user == @user %>
   <div class="bg-white rounded-lg">
     <p class="text-lg font-semibold text-gray-800">Total projected payout</p>
     <p class="text-gray-600">

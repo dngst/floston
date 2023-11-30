@@ -1,4 +1,4 @@
-<% if current_user&.admin && @properties.any? %>
+<% if user_is_admin? && @properties.any? %>
   <%= turbo_frame_tag "property_results" do %>
     <div class="mb-14">
       <% count_text = pluralize(@properties.total_count, "Property") %>
