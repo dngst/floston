@@ -77,19 +77,17 @@ class UsersController < ApplicationController
   end
 
   def handle_customer_details
-    begin
-      response = @paystack_service.fetch_customer_details(current_user)
-      return unless response && response['status'] == true
+    response = @paystack_service.fetch_customer_details(current_user)
+    return unless response && response['status'] == true
 
-      @subscribed = response['data']['subscriptions']
-      @card_details = response['data']['authorizations'][0]
-      @subscription_details = response['data']['subscriptions'][0]
-    rescue SocketError => e
-      error_message = "You're offline. #{e.message}"
-      Rails.logger.error(error_message)
+    @subscribed = response['data']['subscriptions']
+    @card_details = response['data']['authorizations'][0]
+    @subscription_details = response['data']['subscriptions'][0]
+  rescue SocketError => e
+    error_message = "You're offline. #{e.message}"
+    Rails.logger.error(error_message)
 
-      flash[:alert] = error_message
-    end
+    flash[:alert] = error_message
   end
 
   def set_user
