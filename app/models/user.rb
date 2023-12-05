@@ -52,6 +52,10 @@ class User < ApplicationRecord
     self
   end
 
+  def name
+    @name ||= "#{fname} #{lname}"
+  end
+
   friendly_id :generate_slug, use: :slugged
 
   def generate_slug
