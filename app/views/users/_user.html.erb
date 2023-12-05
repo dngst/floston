@@ -2,7 +2,7 @@
   <div id="<%= dom_id user%>" class="my-4">
     <div class="border border-gray-300 p-4 rounded flex items-center justify-between max-w-lg">
      <div class="w-full">
-        <h3 class="lg:text-xl text-lg font-semibold capitalize w-full"><%= user.fname %> <%= user.lname %></h3>
+        <h3 class="lg:text-xl text-lg font-semibold capitalize w-full"><%= user.name %></h3>
         <div class="hidden lg:flex">
           <%= link_to user_path(user), draggable:false, data: { turbo_frame: "_top" }, class: "hover:underline" do %>
             <p class="text-gray-600 mt-2">View profile</p>
