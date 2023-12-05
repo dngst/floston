@@ -11,7 +11,7 @@
     <% end %>
   <% end %>
   <% else %>
-    <% if current_user.admin? %>
+    <% if user_is_admin? %>
       <p class="text-gray-600">This tenant doesn't have any payment reminders yet</p>
     <% else %>
     <p class="text-gray-600">You don't have any payment reminders</p>
