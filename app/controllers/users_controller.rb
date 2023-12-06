@@ -77,7 +77,7 @@ class UsersController < ApplicationController
   end
 
   def handle_customer_details
-    return unless current_user&.admin?
+    return unless current_user&.admin? && current_user == @user
 
     response = @paystack_service.fetch_customer_details(current_user)
     return unless response && response['status'] == true
@@ -85,11 +85,11 @@ class UsersController < ApplicationController
     @subscribed = response['data']['subscriptions']
     @card_details = response['data']['authorizations'][0]
     @subscription_details = response['data']['subscriptions'][0]
-  rescue SocketError => e
-    error_message = "You're offline. #{e.message}"
+  rescue SocketError
+    error_message = "You're offline. Failed to connect to Paystack"
     Rails.logger.error(error_message)
 
-    flash[:alert] = error_message
+    flash.now[:alert] = error_message
   end
 
   def set_user
