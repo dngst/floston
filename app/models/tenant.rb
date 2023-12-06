@@ -40,6 +40,8 @@ class Tenant < ApplicationRecord
   end
 
   def self.total_amount_due(current_user)
+    return unless current_user&.admin?
+
     tenants = Tenant.joins(:user).where(users: { admin_id: current_user.id })
     tenants.sum(:amount_due)
   end

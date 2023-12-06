@@ -77,6 +77,8 @@ class UsersController < ApplicationController
   end
 
   def handle_customer_details
+    return unless current_user&.admin?
+
     response = @paystack_service.fetch_customer_details(current_user)
     return unless response && response['status'] == true
 
