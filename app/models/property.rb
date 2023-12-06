@@ -21,10 +21,10 @@
 class Property < ApplicationRecord
   extend FriendlyId
 
-  validates :name, presence: true
-
   has_many :tenants
   has_many :articles
+
+  validates :name, presence: true
 
   friendly_id :generate_slug, use: :slugged
 

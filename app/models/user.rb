@@ -33,9 +33,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   extend FriendlyId
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
-
   has_one :tenant, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -46,6 +43,9 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :tenant
 
   validates :fname, :lname, :phone_number, presence: true
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :trackable
 
   def with_tenant
     build_tenant if tenant.nil?

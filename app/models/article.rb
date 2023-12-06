@@ -29,9 +29,9 @@ class Article < ApplicationRecord
   belongs_to :user
   belongs_to :property
 
-  INLINE_EDITABLE_ATTRS = %i[title body property_id published].freeze
-
   validates :title, :body, presence: true
+
+  INLINE_EDITABLE_ATTRS = %i[title body property_id published].freeze
 
   friendly_id :generate_slug, use: :slugged
 
