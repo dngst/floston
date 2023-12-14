@@ -31,7 +31,7 @@ class RequestsController < ApplicationController
 
   # GET /requests/1 or /requests/1.json
   def show
-    @request = Request.includes(comments: :user).friendly.find(params[:id])
+    @request = Request.friendly.find(params[:id])
     @user =  @request.user
     @comment_count ||= @request.comments.length
     @comment = @request.comments.build(user: @user)
