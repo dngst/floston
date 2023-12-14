@@ -6,7 +6,7 @@
             button_text: "Add property",
             authorization: user_is_admin? %>
 
-  <% if @properties.any? %>
+  <% if @properties.present? %>
     <%= turbo_frame_tag "properties_#{@pagy.page}" do %>
       <%= render partial: "property", collection: @properties, as: :property, cached: true %>
       <% unless @pagy.page == @pagy.pages %>

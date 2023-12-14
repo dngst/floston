@@ -20,7 +20,7 @@
   </h2>
 
   <div class="mb-2" id="comments">
-    <% if @request.comments&.any? %>
+    <% if @request.comments&.present? %>
       <% comments_to_render = @request.comments.select { |comment| comment.id.present? } %>
       <%= render partial: "comments/comment", collection: comments_to_render, cached: true %>
     <% end %>

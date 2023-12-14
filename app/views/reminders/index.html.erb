@@ -1,7 +1,7 @@
 <div class="max-w-md">
   <%= link_to sanitize('&larr; back'), user_path(@user), class: "text-gray-600" %>
   <p class="text-4xl font-semibold mt-4 mb-6 text-gray-800">Reminders</p>
-  <% if @reminders.any? %>
+  <% if @reminders.present? %>
   <%= turbo_frame_tag "reminders_#{@pagy.page}" do %>
     <%= render partial: "reminder", collection: @reminders, as: :reminder, cached: true %>
     <% unless @pagy.page == @pagy.pages %>

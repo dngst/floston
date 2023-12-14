@@ -6,7 +6,7 @@
             button_text: "Add tenant",
             authorization: user_is_admin? %>
 
-  <% if @users.any?  %>
+  <% if @users.present?  %>
     <%= turbo_frame_tag "users_#{@pagy.page}" do %>
       <%= render partial: "user", collection: @users, as: :user, cached: true %>
       <% unless @pagy.page == @pagy.pages %>

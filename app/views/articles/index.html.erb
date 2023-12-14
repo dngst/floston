@@ -6,7 +6,7 @@
             button_text: "Write an article",
             authorization: user_is_admin? %>
 
-  <% if @articles.any? %>
+  <% if @articles.present? %>
     <%= turbo_frame_tag "articles_#{@pagy.page}" do %>
       <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
