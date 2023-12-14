@@ -28,7 +28,7 @@
 
   <% if @request.closed? %>
     <p class="text-red-500 my-4">
-      <%= user_is_admin? ? "You" : User.where(id: @user.admin_id).pluck(:fname).join('') %> closed this request
+      <%= user_is_admin? ? "You" : User.find(@user.admin_id)&.fname.to_s %> closed this request
     </p>
   <% else %>
     <%= render "comments/form" %>
