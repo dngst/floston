@@ -33,7 +33,7 @@ class RequestsController < ApplicationController
   def show
     @request = Request.includes(comments: :user).friendly.find(params[:id])
     @user =  @request.user
-    @comment_count ||= @request.comments.size
+    @comment_count ||= @request.comments.length
     @comment = @request.comments.build(user: @user)
   end
 

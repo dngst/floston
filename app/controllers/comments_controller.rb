@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
             turbo_stream.replace(
               'comment_counter',
               partial: 'requests/comment_counter',
-              locals: { counter: @request.comments.size }
+              locals: { counter: @request.comments.length }
             )
           ]
         end
