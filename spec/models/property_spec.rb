@@ -1,3 +1,11 @@
+require 'rails_helper'
+
+RSpec.describe Property do
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to have_many :tenants }
+  it { is_expected.to have_many :articles }
+end
+
 # == Schema Information
 #
 # Table name: properties
@@ -18,10 +26,3 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
-
-RSpec.describe Property do
-  it { is_expected.to validate_presence_of :name }
-  it { is_expected.to have_many :tenants }
-  it { is_expected.to have_many :articles }
-end

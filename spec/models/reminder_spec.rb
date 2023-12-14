@@ -1,3 +1,10 @@
+require 'rails_helper'
+
+RSpec.describe Reminder do
+  it { is_expected.to validate_presence_of :amount }
+  it { is_expected.to belong_to :user }
+end
+
 # == Schema Information
 #
 # Table name: reminders
@@ -16,9 +23,3 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
-
-RSpec.describe Reminder do
-  it { is_expected.to validate_presence_of :amount }
-  it { is_expected.to belong_to :user }
-end

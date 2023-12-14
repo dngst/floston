@@ -1,3 +1,10 @@
+FactoryBot.define do
+  factory :article do
+    title { Faker::Lorem.word }
+    body { Faker::Lorem.paragraph }
+  end
+end
+
 # == Schema Information
 #
 # Table name: articles
@@ -23,9 +30,3 @@
 #  fk_rails_...  (property_id => properties.id)
 #  fk_rails_...  (user_id => users.id)
 #
-FactoryBot.define do
-  factory :article do
-    title { Faker::Lorem.word }
-    body { Faker::Lorem.paragraph }
-  end
-end

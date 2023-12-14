@@ -1,3 +1,12 @@
+require 'rails_helper'
+
+RSpec.describe Tenant do
+  it { is_expected.to validate_presence_of :unit_number }
+  it { is_expected.to validate_presence_of :unit_type }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :property }
+end
+
 # == Schema Information
 #
 # Table name: tenants
@@ -24,11 +33,3 @@
 #  fk_rails_...  (property_id => properties.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
-
-RSpec.describe Tenant do
-  it { is_expected.to validate_presence_of :unit_number }
-  it { is_expected.to validate_presence_of :unit_type }
-  it { is_expected.to belong_to :user }
-  it { is_expected.to belong_to :property }
-end

@@ -1,3 +1,9 @@
+class Reminder < ApplicationRecord
+  belongs_to :user
+
+  validates :amount, presence: true
+end
+
 # == Schema Information
 #
 # Table name: reminders
@@ -16,8 +22,3 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class Reminder < ApplicationRecord
-  belongs_to :user
-
-  validates :amount, presence: true
-end

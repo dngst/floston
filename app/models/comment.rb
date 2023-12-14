@@ -1,3 +1,14 @@
+class Comment < ApplicationRecord
+  belongs_to :request
+  belongs_to :user
+
+  validates :body, presence: true
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[body]
+  end
+end
+
 # == Schema Information
 #
 # Table name: comments
@@ -19,13 +30,3 @@
 #  fk_rails_...  (request_id => requests.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class Comment < ApplicationRecord
-  belongs_to :request
-  belongs_to :user
-
-  validates :body, presence: true
-
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[body]
-  end
-end

@@ -1,3 +1,9 @@
+FactoryBot.define do
+  factory :property do
+    name { Faker::Address.street_name }
+  end
+end
+
 # == Schema Information
 #
 # Table name: properties
@@ -18,8 +24,3 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-FactoryBot.define do
-  factory :property do
-    name { Faker::Address.street_name }
-  end
-end

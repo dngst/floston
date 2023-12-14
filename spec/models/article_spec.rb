@@ -1,3 +1,12 @@
+require 'rails_helper'
+
+RSpec.describe Article do
+  it { is_expected.to validate_presence_of :title }
+  it { is_expected.to validate_presence_of :body }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :property }
+end
+
 # == Schema Information
 #
 # Table name: articles
@@ -23,11 +32,3 @@
 #  fk_rails_...  (property_id => properties.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
-
-RSpec.describe Article do
-  it { is_expected.to validate_presence_of :title }
-  it { is_expected.to validate_presence_of :body }
-  it { is_expected.to belong_to :user }
-  it { is_expected.to belong_to :property }
-end

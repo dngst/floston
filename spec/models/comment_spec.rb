@@ -1,3 +1,11 @@
+require 'rails_helper'
+
+RSpec.describe Comment do
+  it { is_expected.to validate_presence_of :body }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :request }
+end
+
 # == Schema Information
 #
 # Table name: comments
@@ -19,10 +27,3 @@
 #  fk_rails_...  (request_id => requests.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
-
-RSpec.describe Comment do
-  it { is_expected.to validate_presence_of :body }
-  it { is_expected.to belong_to :user }
-  it { is_expected.to belong_to :request }
-end

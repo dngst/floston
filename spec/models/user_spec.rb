@@ -1,3 +1,17 @@
+require 'rails_helper'
+
+RSpec.describe User do
+  it { is_expected.to validate_presence_of :fname }
+  it { is_expected.to validate_presence_of :lname }
+  it { is_expected.to validate_presence_of :phone_number }
+  it { is_expected.to have_one :tenant }
+  it { is_expected.to have_many :requests }
+  it { is_expected.to have_many :comments }
+  it { is_expected.to have_many :articles }
+  it { is_expected.to have_many :reminders }
+  it { is_expected.to have_many :properties }
+end
+
 # == Schema Information
 #
 # Table name: users
@@ -12,6 +26,7 @@
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  lname                  :string           not null
+#  paid                   :boolean          default(FALSE), not null
 #  phone_number           :string           not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -28,16 +43,3 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_slug                  (slug) UNIQUE
 #
-require 'rails_helper'
-
-RSpec.describe User do
-  it { is_expected.to validate_presence_of :fname }
-  it { is_expected.to validate_presence_of :lname }
-  it { is_expected.to validate_presence_of :phone_number }
-  it { is_expected.to have_one :tenant }
-  it { is_expected.to have_many :requests }
-  it { is_expected.to have_many :comments }
-  it { is_expected.to have_many :articles }
-  it { is_expected.to have_many :reminders }
-  it { is_expected.to have_many :properties }
-end

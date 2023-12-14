@@ -1,3 +1,28 @@
+class Article < ApplicationRecord
+  extend FriendlyId
+
+  belongs_to :user
+  belongs_to :property
+
+  validates :title, :body, presence: true
+
+  INLINE_EDITABLE_ATTRS = %i[title body property_id published].freeze
+
+  friendly_id :generate_slug, use: :slugged
+
+  def generate_slug
+    SecureRandom.hex(4)
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[body title property]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[user property]
+  end
+end
+
 # == Schema Information
 #
 # Table name: articles
@@ -23,27 +48,3 @@
 #  fk_rails_...  (property_id => properties.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class Article < ApplicationRecord
-  extend FriendlyId
-
-  belongs_to :user
-  belongs_to :property
-
-  validates :title, :body, presence: true
-
-  INLINE_EDITABLE_ATTRS = %i[title body property_id published].freeze
-
-  friendly_id :generate_slug, use: :slugged
-
-  def generate_slug
-    SecureRandom.hex(4)
-  end
-
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[body title property]
-  end
-
-  def self.ransackable_associations(_auth_object = nil)
-    %w[user property]
-  end
-end
