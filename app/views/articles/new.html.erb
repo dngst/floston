@@ -2,6 +2,11 @@
 
 <div class="w-full max-w-xl mt-4">
   <h1 class="text-4xl font-bold text-gray-800 mb-6">New article</h1>
-
-  <%= render "form", article: @article %>
+  <% if !Property.my_properties(current_user).present? %>
+    <div class="mb-4">
+      <%= link_to "Create a property first", new_property_path, class: "text-flostonlink underline" %>
+    </div>
+  <% else %>
+    <%= render "form", article: @article %>
+  <% end %>
 </div>
