@@ -1,7 +1,7 @@
 <%= turbo_frame_tag :results_list do %>
   <div class="max-w-lg">
     <p class="text-4xl mb-8 text-gray-800">
-      Search results <%= params[:q].present? ? "for #{params[:q]}" : "" %>
+      Search results <%= params[:q].present? ? "for '#{params[:q]}'" : "" %>
     </p>
 
     <%= render "search_tenants" %>
