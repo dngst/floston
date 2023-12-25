@@ -52,3 +52,14 @@ div.navbar .active {
   text-underline-position: under;
   text-underline-offset: 0.4em;
 }
+
+/* scroll to top */
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: #393E41;
+  padding: 10px;
+  cursor: pointer;
+}

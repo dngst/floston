@@ -4,7 +4,7 @@
    <%= render "layouts/head" %>
   </head>
 
-  <body>
+  <body data-controller="back-to-top">
     <%= render "layouts/navbar" %>
 
     <%= render "layouts/confirm_modal" %>
@@ -15,6 +15,17 @@
       </div>
 
      <%= yield %>
+
+      <div data-target="back-to-top" class="back-to-top" data-action="click->back-to-top#scrollToTop">
+        <span class="hidden lg:flex">Scroll to Top</span>
+        <span class="lg:hidden">
+          <% cache('bx-up-arrow-alt.svg') do %>
+            <%= image_tag "bx-up-arrow-alt.svg", class: "w-10", draggable:false %>
+          <% end %>
+        </span>
+      </div>
     </main>
   </body>
 </html>
+
+
