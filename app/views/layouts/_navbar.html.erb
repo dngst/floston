@@ -17,8 +17,8 @@
             <%= active_link_to "Tenants", users_path, draggable:false %>
             <%= active_link_to "Properties", properties_path, draggable:false %>
           <% end %>
-          <%= active_link_to "General Info", articles_path, draggable:false %>
           <%= active_link_to "Requests", user_requests_path(current_user), draggable:false %>
+          <%= active_link_to "General Info", articles_path, draggable:false %>
           <%= link_to "Sign out", destroy_user_session_path, draggable:false, class: "sign-out", data: { turbo_method: :delete } %>
         </div>
 
