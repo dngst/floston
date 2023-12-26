@@ -1,7 +1,7 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["content"];
+  static targets = ["content"]
 
   connect() {
     this.close()
@@ -15,17 +15,17 @@ export default class extends Controller {
 
   toggle() {
     if (this.contentTarget.classList.contains('hidden')) {
-      this.open();
+      this.open()
     } else {
-      this.close();
+      this.close()
     }
   }
 
   open() {
-    this.contentTarget.classList.remove('hidden');
+    this.contentTarget.classList.remove('hidden')
   }
 
   close() {
-    this.contentTarget.classList.add('hidden');
+    this.contentTarget.classList.add('hidden')
   }
 }
