@@ -58,8 +58,8 @@ div.navbar .active {
 .back-to-top {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 8px;
   color: #393E41;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
 }
