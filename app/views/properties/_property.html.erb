@@ -12,7 +12,7 @@
       <div class="my-4">
         <%= link_to "Edit property", edit_property_path(property),
           draggable:false,
-          class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium",
+          class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium",
             data: { turbo_frame: "_top" } %>
          <div class="inline-block ml-2">
           <% if property.can_delete_property? %>
