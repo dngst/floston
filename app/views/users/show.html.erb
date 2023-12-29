@@ -43,9 +43,9 @@
 
 <% if user_is_admin? && current_user != @user %>
   <div class="flex flex-col sm:flex-row">
-    <%= link_to "Tenant stats", user_stats_path(@user), draggable:false, class: "rounded-lg py-2 px-4 text-blue-400 border border-blue-400 hover:bg-blue-100 inline-block lg:mb-0 mb-2 sm:mr-4 text-center font-medium" %>
-    <%= link_to "Edit tenant", edit_user_path(@user), draggable:false, class: "rounded-lg py-2 px-4 text-gray-500 border border-gray-500 hover:bg-gray-100 inline-block lg:mb-0 mb-2 sm:mr-4 text-center font-medium" %>
-    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-400 border border-red-400 hover:bg-red-100 inline-block lg:mb-0 mb-4 text-center w-full font-medium" %>
+    <%= link_to "Tenant stats", user_stats_path(@user), draggable:false, class: "rounded-lg py-2 px-4 text-blue-500 bg-blue-100 lg:mb-0 mb-2 sm:mr-4 text-center font-medium" %>
+    <%= link_to "Edit tenant", edit_user_path(@user), draggable:false, class: "rounded-lg py-2 px-4 text-gray-500 bg-gray-100 lg:mb-0 mb-2 sm:mr-4 text-center font-medium" %>
+    <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 inline-block lg:mb-0 mb-4 text-center w-full font-medium" %>
   </div>
 <% end %>
 

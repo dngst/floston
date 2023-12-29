@@ -12,13 +12,13 @@
       <div class="my-4">
         <%= link_to "Edit property", edit_property_path(property),
           draggable:false,
-          class: "rounded-lg py-2 ml-2 px-4 text-gray-500 border border-gray-500 hover:bg-gray-100 inline-block font-medium",
+          class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium",
             data: { turbo_frame: "_top" } %>
          <div class="inline-block ml-2">
           <% if property.can_delete_property? %>
             <%= button_to "Delete property", property_path(property),
               method: :delete, data: { turbo_confirm: "Delete property?" },
-              class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-400 border border-red-400 hover:bg-red-100" %>
+              class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium text-red-500 bg-red-100" %>
           <% end %>
         </div>
         <hr class="mt-4  max-w-lg">
