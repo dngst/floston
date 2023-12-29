@@ -10,6 +10,10 @@ RSpec.describe PropertiesController do
       expect(get: '/properties/new').to route_to('properties#new')
     end
 
+    it 'routes to #show' do
+      expect(get: '/properties/1').to route_to('properties#show', id: '1')
+    end
+
     it 'routes to #edit' do
       expect(get: '/properties/1/edit').to route_to('properties#edit', id: '1')
     end

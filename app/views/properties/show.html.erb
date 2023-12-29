@@ -1,7 +1,7 @@
 <div class="md:w-2/3 w-full">
   <%= link_to sanitize('&larr; back to properties'), properties_path, class: "text-gray-600" %>
 
-  <div class="mx-auto">
+  <div class="mx-auto my-4">
     <%= render @property %>
 
     <%= link_to "Edit property", edit_property_path(@property), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

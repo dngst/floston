@@ -50,9 +50,9 @@ RSpec.describe '/properties' do
         end.to change(Property, :count).by(1)
       end
 
-      it 'redirects to properties' do
+      it 'redirects to created property' do
         post properties_url, params: { property: valid_attributes }
-        expect(response).to redirect_to(properties_url)
+        expect(response).to redirect_to(property_url(Property.last))
       end
     end
 

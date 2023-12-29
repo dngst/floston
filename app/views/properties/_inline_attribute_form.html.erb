@@ -1,0 +1,15 @@
+<%= turbo_frame_tag params[:attribute] do %>
+  <%= form_with(model: property, url: [property, attribute: params[:attribute]], method: :patch, class: "flex") do |form| %>
+
+    <% if params[:attribute].eql? 'name' %>
+      <div class="mr-2">
+        <%= form.text_field :name, placeholder: "Fhloston Paradise", autofocus: true, class: "px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston", onfocusout: 'this.form.requestSubmit()' %>
+        <% if property.errors.include?(:name) %>
+          <% property.errors.full_messages_for(:name).each do |error| %>
+            <p class="text-red-500 mt-2"><%= error %></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

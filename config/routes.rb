@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :reminders, only: [:index]
     resources :stats, only: [:index]
   end
-  resources :properties, except: [:show]
+  resources :properties
   get 'search', to: 'search#index'
   resources :articles
   # payments

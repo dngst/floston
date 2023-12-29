@@ -4,16 +4,10 @@
   <h1 class="font-bold text-4xl my-4">Editing property</h1>
 
   <div id="update-property-form">
-    <%= render partial: "form", locals: { property: @property } %>
-  </div>
-
-  <% if @property.can_delete_property? %>
-    <%= button_to property_path(@property),
-      method: :delete, data: { turbo_confirm: "Delete property?" },
-      class: "mt-6 py-2" do %>
-      <% cache('bx-trash.svg') do %>
-        <%= image_tag "bx-trash.svg", class: "w-6" %>
-      <% end %>
+    <% if params[:attribute].present? %>
+      <%= render "inline_attribute_form", property: @property %>
+    <% else %>
+      <%= render partial: "form", locals: { property: @property } %>
     <% end %>
-  <% end %>
+  </div>
 </div>
