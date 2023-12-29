@@ -3,10 +3,11 @@
     <div class="border border-gray-300 p-4 rounded flex items-center justify-between max-w-lg">
      <div class="w-full">
         <h3 class="lg:text-xl text-lg font-semibold capitalize w-full"><%= user.name %></h3>
-        <p class="py-1"><%= user.tenant.unit_type %> <span class="text-lg align-text-bottom">.</span> <%= user.tenant.property.name %></p>
+        <% tenant_info = User.includes([:tenant]).find(user.id) %>
+        <p class="py-1"><%= tenant_info.tenant.unit_type %> <span class="text-lg align-text-bottom">.</span> <%= tenant_info.tenant.property.name %></p>
         <div class="hidden lg:flex">
           <%= link_to user_path(user), draggable:false, data: { turbo_frame: "_top" }, class: "hover:underline" do %>
-            <p class="text-gray-600 mt-2">View profile</p>
+            <p class="text-gray-600 mt-2 underline">View profile</p>
           <% end %>
         </div>
         <!-- Mobile Buttons -->
