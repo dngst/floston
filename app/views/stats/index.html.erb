@@ -2,8 +2,10 @@
 
 <p class="text-3xl font-semibold mt-4 mb-6 text-gray-800">Tenant Stats</p>
 
-<p class="mb-4 text-gray-600">
-  Last sign in — <span class="text-gray-800 font-semibold"><%= format_stats_datetime(@user.last_sign_in_at) %></span></p>
+  <% if @sign_in_count > 0 %>
+    <p class="mb-4 text-gray-600">
+      Last sign in — <span class="text-gray-800 font-semibold"><%= format_stats_datetime(@user.last_sign_in_at) %></span></p>
+  <% end %>
 
 <p class="mb-4 text-gray-600">
   <%= link_to "Requests", user_requests_path(@user),
