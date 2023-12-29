@@ -17,7 +17,7 @@ class SearchController < ApplicationController
                        Article.where(user_id: current_user.id).order(created_at: :desc)
                      else
                        Article.where(user_id: current_user.admin_id, published: true,
-                                     property_id: current_user.tenant.property_id).includes([:property]).order(created_at: :desc)
+                                     property_id: current_user.tenant.property_id).order(created_at: :desc)
                      end
     @properties_list = Property.where(user_id: current_user.id)
 
