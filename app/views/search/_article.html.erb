@@ -1,6 +1,7 @@
 <div class="border border-gray-300 p-4 rounded mt-4">
   <%= link_to article_path(article), draggable:false, data: { turbo_frame: "_top" } do %>
     <p class="text-xl font-semibold <%= article.published ? 'text-flostonlink' : 'text-orange-500' %> hover:underline"><%= article.title %></p>
-    <p class="mt-2 text-gray-800"><%= article.property.name %></p>
+    <% preloaded_article = Article.includes([:property]).find_by(id: article.id) %>
+    <p class="mt-2 text-gray-800"><%= preloaded_article.property.name %></p>
   <% end %>
 </div>
