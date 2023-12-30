@@ -11,7 +11,10 @@
         </h1>
         <p class="text-gray-600 text-sm font-light">
           <%= date_format(article.created_at) %>
-          <span class="text-lg align-text-bottom">.</span> <%= display_timestamp(article) %>
+          <% if article.updated_at != article.created_at %>
+            <span class="text-lg align-text-bottom">.</span>
+          <% end %>
+          <%= display_timestamp(article) %>
         </p>
       <% elsif attribute == :property_id %>
         <p class="mt-8 flex items-center">
