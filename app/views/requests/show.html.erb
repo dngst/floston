@@ -4,11 +4,11 @@
   <div class="my-8">
     <% if user_is_admin? %>
       <div class="flex space-x-4">
-        <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium text-red-500 bg-red-100" %>
+        <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
         <% if @request.closed? %>
-          <%= button_to "Reopen request", reopen_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Reopen request?" }, class: "mt-2 rounded-lg py-2 px-4 bg-green-100 font-medium text-green-500 bg-green-100" %>
+          <%= button_to "Reopen request", reopen_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Reopen request?" }, class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium" %>
         <% else %>
-          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium text-red-500 bg-red-100" %>
+          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
         <% end %>
       </div>
     <% end %>
