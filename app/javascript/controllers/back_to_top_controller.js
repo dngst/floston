@@ -1,9 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  static targets = ["scrollToTop"]
+
   connect() {
     this.setupScrollListener()
-    this.hideButton()
+    this.toggleButtonVisibility()
   }
 
   setupScrollListener() {
@@ -11,25 +13,19 @@ export default class extends Controller {
   }
 
   scrollFunction() {
-    const mybutton = document.getElementById("scrollToTop")
+    this.toggleButtonVisibility()
+  }
 
-    if (window.scrollY > 600) {
-      mybutton.style.display = "block"
-    } else {
-      mybutton.style.display = "none"
-    }
+  toggleButtonVisibility() {
+    const scrollToTop = this.scrollToTopTarget
+    scrollToTop.style.display = window.scrollY > 600 ? "block" : "none"
   }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
-  hideButton() {
-    const mybutton = document.getElementById("scrollToTop")
-    mybutton.style.display = "none"
-  }
-
   disconnect() {
-     window.removeEventListener('scroll', () => this.scrollFunction())
-   }
+    window.removeEventListener('scroll', () => this.scrollFunction())
+  }
 }
