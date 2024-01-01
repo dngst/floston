@@ -20,6 +20,5 @@ Rails.application.routes.draw do
   get '/subscribe/manage', to: 'subscriptions#manage_subscription', as: 'manage_subscription'
   # public
   get 'features', to: 'features#index'
-  get 'onboarding/process', to: 'features#onboarding'
   root "home#index" # ("/")
 end
