@@ -14,7 +14,7 @@ class Property < ApplicationRecord
     SecureRandom.hex(4)
   end
 
-  def can_delete_property?
+  def can_be_deleted?
     tenants.includes([:tenants]).empty? && articles.includes([:articles]).empty?
   end
 
