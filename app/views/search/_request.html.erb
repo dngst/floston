@@ -1,5 +1,5 @@
 <div class="border border-gray-300 p-4 rounded mt-4">
-    <p class="text-xl font-semibold <%= 'text-gray-500 line-through' if request.closed %> text-flostonlink hover:underline">
+    <p class="text-xl font-semibold <%= 'text-gray-500 line-through' if request.closed %> text-flostonlink">
       <%= link_to user_request_path(request.user, request), draggable:false, data: { turbo_frame: "_top" } do %>
         <%= request.title %>
       <% end %>

@@ -1,5 +1,5 @@
 <div id="<%= dom_id request %>">
-  <p class="text-xl pl-2 w mt-2 mb-6 <%= 'line-through hover:underline underline-offset-4' if request.closed %>">
+  <p class="text-xl pl-2 w mt-2 mb-6 <%= 'line-through' if request.closed %>">
     <% preloaded_request = Request.includes([:comments]).find_by(id: request.id) %>
     <% if preloaded_request.comments.length > 0 %>
       <span class="text-flostonlink">[<%= preloaded_request.comments.length %>]</span>
