@@ -7,15 +7,14 @@
         <%= image_tag "bx-x-circle.svg", class: "w-8", draggable: false %>
       </div>
     </div>
-    <ul class="text-right">
-      <li class="py-2 px-2 text-lg"><%= link_to "Home", root_path %></li>
-      <li class="py-2 px-2 text-lg"><%= active_link_to "Profile", user_path(current_user) %></li>
-      <li class="py-2 px-2 text-lg"><%= active_link_to "Requests", user_requests_path(current_user) %></li>
-      <li class="py-2 px-2 text-lg"><%= active_link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
+    <ul class="text-right py-3">
       <% if user_is_admin? %>
         <li class="py-2 px-2 text-lg"><%= active_link_to "Tenants", users_path %></li>
         <li class="py-2 px-2 text-lg"><%= active_link_to "Properties", properties_path %></li>
       <% end %>
+      <li class="py-2 px-2 text-lg"><%= active_link_to "Requests", user_requests_path(current_user) %></li>
+      <li class="py-2 px-2 text-lg"><%= active_link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
+      <li class="py-2 px-2 text-lg"><%= active_link_to "Profile", user_path(current_user) %></li>
       <li class="py-4 px-2 text-lg sign-out text-gray-500"><%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %></li>
     </ul>
   <% end %>
