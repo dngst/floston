@@ -2,7 +2,7 @@
   <p class="text-xl pl-2 w mt-2 mb-6 <%= 'line-through' if request.closed %>">
     <% preloaded_request = Request.includes([:comments]).find_by(id: request.id) %>
     <% if preloaded_request.comments.length > 0 %>
-      <span class="text-flostonlink">[<%= preloaded_request.comments.length %>]</span>
+      <span class="text-flostonlink">(<%= preloaded_request.comments.length %>)</span>
     <% end %>
     <%= link_to user_request_path(current_user, request), class: ("underline underline-offset-4" if !request.closed), draggable: false, data: { turbo_frame: "_top" } do %>
       <%= request.title %>
