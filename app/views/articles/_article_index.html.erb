@@ -1,5 +1,5 @@
 <div id="<%= dom_id article %>">
-  <p class="text-xl <%= 'text-orange-500' if !article.published %> pl-2 mt-2 underline underline-offset-4 mb-4">
+  <p class="text-xl <%= 'text-orange-500' if !article.published %> pl-2 mt-2 underline underline-offset-4 mb-6">
     <%= link_to article, draggable:false, data: { turbo_frame: "_top" } do %>
       <%= article.title %>
     <% end %>
