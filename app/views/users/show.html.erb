@@ -2,7 +2,7 @@
   <div>
     <% if @user %>
       <h1 class="text-4xl font-bold text-gray-800 mb-2 capitalize"><%= @user.name %></h1>
-      <div class="my-3">
+      <div class="lg:my-3 my-6">
         <p class="text-gray-600"><%= @user.phone_number %></p>
         <p class="text-gray-600"><%= @user.email %></p>
       </div>
@@ -21,7 +21,7 @@
         <ul>
           <% @user.tenant.attributes.each do |attribute, value| %>
             <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
-              <li class="mb-3.5">
+              <li class="lg:mb-3.5 mb-4">
                 <h2 class="text-xl font-semibold text-gray-800"><%= @user.tenant.class.human_attribute_name(attribute) %></h2>
                 <p class="text-gray-600">
                   <% if value.is_a?(Date) %>
