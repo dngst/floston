@@ -1,9 +1,9 @@
 <%= turbo_frame_tag :results_list do %>
-  <div class="max-w-lg">
-    <p class="text-4xl mb-8 text-gray-800">
-      Search results <%= params[:q].present? ? "for \"<span class='font-semibold'>#{params[:q]}</span>\"".html_safe : "" %>
-    </p>
+  <p class="text-4xl mb-8 text-gray-800">
+    Search results <%= params[:q].present? ? "for \"<span class='font-semibold'>#{params[:q]}</span>\"".html_safe : "" %>
+  </p>
 
+  <div class="max-w-lg">
     <%= render "search_tenants" %>
 
     <%= render "search_properties" %>
