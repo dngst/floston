@@ -16,8 +16,8 @@ class Tenant < ApplicationRecord
   def self.total_amount_due(current_user)
     return unless current_user&.admin?
 
-    tenants = Tenant.joins(:user).where(users: { admin_id: current_user.id }).pluck(:amount_due)
-    tenants.sum
+    tenants = Tenant.joins(:user).where(users: { admin_id: current_user.id }).where.not(amount_due: nil)
+    tenants.sum(:amount_due)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
