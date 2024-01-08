@@ -19,7 +19,7 @@
       <% elsif attribute == :property_id %>
         <p class="mt-8 flex items-center mb-2">
           <% cache('bx-building-house.svg') do %>
-            <%= image_tag "bx-building-house.svg", class: "w-6 mr-2", draggable: false %>
+            <%= image_tag "bx-building-house.svg", alt: "Property", class: "w-6 mr-2", draggable: false %>
           <% end %>
          <%= Property.find_by(id: article[attribute]).name %>
         </p>

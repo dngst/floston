@@ -3,7 +3,7 @@
 
   <p style="display: flex; align-items: center;">
     <%= cache("bx-show-alt.svg") do %>
-      <%= image_tag "bx-show-alt.svg", alt: "Views", class: "w-6", draggable: false %>
+      <%= image_tag "bx-show-alt.svg", class: "w-6", draggable: false %>
     <% end %>
     <span class="ml-1"><%= pluralize(@article.view_count, "view") %></span>
   </p>
