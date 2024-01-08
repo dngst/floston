@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["scrollToTop"]
+  static targets = ["backToTop"]
 
   connect() {
     this.setupScrollListener()
@@ -17,15 +17,11 @@ export default class extends Controller {
   }
 
   toggleButtonVisibility() {
-    const scrollToTop = this.scrollToTopTarget
+    const scrollToTop = this.backToTopTarget
     scrollToTop.style.display = window.scrollY > 600 ? "block" : "none"
   }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
-  disconnect() {
-    window.removeEventListener('scroll', () => this.scrollFunction())
   }
 }
