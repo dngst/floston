@@ -1,6 +1,13 @@
 <div class="w-full max-w-xl">
   <%= render @article %>
 
+  <p style="display: flex; align-items: center;">
+    <%= cache("bx-show-alt.svg") do %>
+      <%= image_tag "bx-show-alt.svg", alt: "Views", class: "w-6", draggable: false %>
+    <% end %>
+    <span class="ml-1"><%= pluralize(@article.view_count, "view") %></span>
+  </p>
+
   <% if user_is_admin? %>
     <div class="my-4 flex">
       <%= link_to "Edit article", edit_article_path(@article), draggable:false, class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium mr-4" %>

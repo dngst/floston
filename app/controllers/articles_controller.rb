@@ -25,7 +25,9 @@ class ArticlesController < ApplicationController
   end
 
   # GET /articles/1 or /articles/1.json
-  def show; end
+  def show
+    @article.mark_as_viewed_by_user(current_user) if user_signed_in?
+  end
 
   # GET /articles/new
   def new

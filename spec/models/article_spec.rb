@@ -11,15 +11,17 @@ end
 #
 # Table name: articles
 #
-#  id          :bigint           not null, primary key
-#  body        :text             not null
-#  published   :boolean          default(FALSE), not null
-#  slug        :string
-#  title       :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  property_id :bigint           not null
-#  user_id     :bigint           not null
+#  id              :bigint           not null, primary key
+#  body            :text             not null
+#  published       :boolean          default(FALSE), not null
+#  slug            :string
+#  title           :string           not null
+#  view_count      :integer
+#  viewed_user_ids :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  property_id     :bigint           not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #

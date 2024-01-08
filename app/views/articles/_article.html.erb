@@ -17,7 +17,7 @@
           <%= display_timestamp(article) %>
         </p>
       <% elsif attribute == :property_id %>
-        <p class="mt-8 flex items-center">
+        <p class="mt-8 flex items-center mb-2">
           <% cache('bx-building-house.svg') do %>
             <%= image_tag "bx-building-house.svg", class: "w-6 mr-2", draggable: false %>
           <% end %>
@@ -27,7 +27,7 @@
         <% if user_is_admin? %>
           <%= turbo_frame_tag "published_checkbox" do %>
             <%= form_with(model: article, url: [article, attribute: :published], method: :patch) do |form| %>
-              <div class="mt-3 mb-8">
+              <div class="mb-8">
                 <%= form.check_box :published, class: "text-flostonlink mr-2 border rounded-lg hover:cursor-pointer", onchange: 'this.form.requestSubmit()' %>
                 <span class="text-gray-800 align-middle">Published</span>
               </div>

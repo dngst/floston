@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   extend FriendlyId
+  serialize :viewed_user_ids, Array
 
   belongs_to :user
   belongs_to :property
@@ -12,6 +13,17 @@ class Article < ApplicationRecord
 
   def generate_slug
     SecureRandom.hex(4)
+  end
+
+  def user_has_viewed?(user)
+    viewed_user_ids.include?(user.id)
+  end
+
+  def mark_as_viewed_by_user(user)
+    return if user_has_viewed?(user) || user.admin?
+
+    new_view_count = view_count + 1
+    update(view_count: new_view_count, viewed_user_ids: viewed_user_ids << user.id)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -27,15 +39,16 @@ end
 #
 # Table name: articles
 #
-#  id          :bigint           not null, primary key
-#  body        :text             not null
-#  published   :boolean          default(FALSE), not null
-#  slug        :string
-#  title       :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  property_id :bigint           not null
-#  user_id     :bigint           not null
+#  id              :bigint           not null, primary key
+#  body            :text             not null
+#  published       :boolean          default(FALSE), not null
+#  slug            :string
+#  title           :string           not null
+#  viewed_user_ids :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  property_id     :bigint           not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #
