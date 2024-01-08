@@ -19,18 +19,26 @@
           <% end %>
           <%= active_link_to "Requests", user_requests_path(current_user), draggable:false %>
           <%= active_link_to "General Info", articles_path, draggable:false %>
-          <%= link_to "Sign out", destroy_user_session_path, draggable:false, class: "sign-out", data: { turbo_method: :delete } %>
+          <%= link_to destroy_user_session_path, draggable:false, class: "sign-out", data: { turbo_method: :delete } do %>
+            <% cache("bx-log-out-circle.svg") do %>
+              <%= image_tag "bx-log-out-circle.svg", class: "w-6", draggable:false %>
+            <% end %>
+          <% end %>
         </div>
 
         <!-- Profile Icon -->
         <%= link_to user_path(current_user), draggable:false do %>
         <div class="flex items-center">
           <div class="relative ml-3 hidden lg:flex">
-            <%= image_tag "bx-user.svg", alt: "Profile", class: "h-8 w-8", draggable:false %>
+            <% cache("bx-user.svg") do %>
+              <%= image_tag "bx-user.svg", alt: "Profile", class: "h-8 w-8", draggable:false %>
+            <% end %>
           </div>
         <% end %>
           <div class="lg:hidden" role="button" data-action="click->navbar#toggle">
-            <%= image_tag "bx-menu.svg", alt: "Menu", class: "h-8 w-8", draggable:false %>
+            <% cache("bx-menu.svg") do %>
+              <%= image_tag "bx-menu.svg", alt: "Menu", class: "h-8 w-8", draggable:false %>
+            <% end %>
           </div>
         </div>
       <% else %>
