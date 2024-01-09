@@ -9,12 +9,14 @@
             <%= article.title %>
           <% end %>
         </h1>
-        <p class="text-gray-600 text-sm font-light">
+        <p class="text-gray-600 lg:text-sm text-xs font-light">
           <%= date_format(article.created_at) %>
           <% if article.updated_at != article.created_at %>
             <span class="text-lg align-text-bottom">.</span>
           <% end %>
           <%= display_timestamp(article) %>
+          <span class="text-lg align-text-bottom">.</span>
+          <span class="ml-1"><%= pluralize(@article.view_count, "view") %></span>
         </p>
       <% elsif attribute == :property_id %>
         <p class="mt-8 flex items-center mb-2">
