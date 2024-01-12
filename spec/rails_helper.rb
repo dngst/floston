@@ -32,6 +32,7 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
 RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -77,6 +78,8 @@ RSpec.configure do |config|
   config.after do
     DatabaseCleaner.clean
   end
+
+  config.include FactoryBot::Syntax::Methods
 end
 
 Shoulda::Matchers.configure do |config|
@@ -84,8 +87,4 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
-end
-
-RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
 end
