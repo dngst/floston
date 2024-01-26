@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NewRequestMailer < ApplicationMailer
   def request_notification(user, request)
     @user = user

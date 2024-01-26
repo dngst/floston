@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PaystackService
   include HTTParty
   base_uri 'https://api.paystack.co'

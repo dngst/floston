@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Article < ApplicationRecord
   extend FriendlyId
   serialize :viewed_user_ids, Array

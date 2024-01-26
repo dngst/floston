@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OrdinalHelper
   def ordinal(number)
     suffix = if (11..13).cover?(number % 100)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CountHelper
   def format_count(count)
     return count if count < 1_000

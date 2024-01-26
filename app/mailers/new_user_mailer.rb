@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NewUserMailer < ApplicationMailer
   def login_credentials(user, password)
     @user = user

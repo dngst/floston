@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentNotificationMailer < ApplicationMailer
   def comment_notification(user, request, comment)
     @user = user

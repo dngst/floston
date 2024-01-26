@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PaymentDueMailer < ApplicationMailer
   def reminder_email(user, tenant)
     @user = user
