@@ -10,10 +10,10 @@
 <p class="mb-4 text-gray-600">
   <%= link_to "Requests", user_requests_path(@user),
     draggable:false,
-    class: "text-gray-600 underline" %> — <span class="text-gray-800 font-semibold"><%= @index %></span></p>
+    class: "text-gray-600 underline" %> — <span class="text-gray-800 font-semibold"><%= format_count(@index) %></span></p>
 
 <p class="mb-4 text-gray-600">
-  Sign in count — <span class="text-gray-800 font-semibold"><%= @sign_in_count %></span></p>
+  Sign in count — <span class="text-gray-800 font-semibold"><%= format_count(@sign_in_count) %></span></p>
 
 <p class="mb-4 text-gray-600">
    <%= link_to "Reminders", user_reminders_path(@user), draggable:false, class: "text-gray-600 underline mt-4" %>
