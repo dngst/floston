@@ -4,10 +4,7 @@
   data-action="click->scroll-to-top#scrollToTop"
   data-scroll-to-top-target="backToTop"
 >
-  <span class="hidden lg:flex">Scroll to Top</span>
-  <span class="lg:hidden">
-    <% cache('bx-up-arrow-alt.svg') do %>
-      <%= image_tag "bx-up-arrow-alt.svg", alt: "Up", class: "w-10", draggable: false %>
-    <% end %>
-  </span>
+  <% cache('bx-up-arrow-alt.svg') do %>
+    <%= image_tag "bx-up-arrow-alt.svg", alt: "Scroll to Top", class: "w-10", draggable: false %>
+  <% end %>
 </div>
