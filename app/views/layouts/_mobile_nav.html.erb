@@ -1,21 +1,34 @@
-<nav class="bg-white shadow-md fixed top-0 w-full px-4 py-4 hidden z-1" data-navbar-target="content">
-  <!-- Navigation Links -->
+<nav
+  class="bg-white shadow-md fixed top-0 w-full hidden z-1"
+  data-navbar-target="content">
   <% if user_signed_in? %>
     <div class="flex justify-between">
       <div></div>
-      <div data-action="click->navbar#close" class="hover:cursor-pointer">
-        <%= image_tag "bx-x-circle.svg", alt: "Close", class: "w-8", draggable: false %>
+      <div
+        data-action="click->navbar#close"
+        class="hover:cursor-pointer px-5 pt-4">
+        <% cache("bx-x-circle.svg") do %>
+          <%= image_tag "bx-x-circle.svg", alt: "Close", class: "w-8", draggable: false %>
+        <% end %>
       </div>
     </div>
-    <ul class="text-right py-3">
+    <ul class="text-right">
       <% if user_is_admin? %>
-        <li class="py-2 px-2 text-lg"><%= active_link_to "Tenants", users_path %></li>
-        <li class="py-2 px-2 text-lg"><%= active_link_to "Properties", properties_path %></li>
+        <li class="py-2 px-5 text-lg"><%= link_to "Tenants", users_path %></li>
+        <li class="py-2 px-5 text-lg"><%= link_to "Properties", properties_path %></li>
       <% end %>
-      <li class="py-2 px-2 text-lg"><%= active_link_to "Requests", user_requests_path(current_user) %></li>
-      <li class="py-2 px-2 text-lg"><%= active_link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %></li>
-      <li class="py-2 px-2 text-lg"><%= active_link_to "Profile", user_path(current_user) %></li>
-      <li class="py-4 px-2 text-lg sign-out text-gray-500"><%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %></li>
+      <li class="py-2 px-5 text-lg">
+        <%= link_to "Requests", user_requests_path(current_user) %>
+      </li>
+      <li class="py-2 px-5 text-lg">
+        <%= link_to "General Info", articles_path, data: { action: "click->navbar#linkClicked" } %>
+      </li>
+      <li class="py-2 px-5 text-lg">
+        <%= link_to "Profile", user_path(current_user) %>
+      </li>
+      <li class="py-2 px-5 text-lg sign-out text-gray-500 bg-gray-100 border-t border-gray-200">
+        <%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %>
+      </li>
     </ul>
   <% end %>
 </nav>
