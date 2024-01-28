@@ -22,11 +22,11 @@
   background-color: #93E9BE !important;
 }
 
-html {
-  scrollbar-color: #888DA7 white;
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #E2DFE9 white;
 }
 
-/* WebKit and Chromiums */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -34,7 +34,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888DA7;
+  background: #E2DFE9;
   border-radius: 5px;
 }
 

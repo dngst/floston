@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   # public
   get 'features', to: 'features#index'
   root "home#index" # ("/")
+  get '/service-worker.js' => 'service_worker#service_worker'
+  get '/manifest.json' => 'service_worker#manifest'
 end
