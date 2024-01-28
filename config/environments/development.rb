@@ -77,17 +77,18 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.action_mailer.default_url_options = {
-    host: 'localhost:3000',
-    protocol: 'http'
-  }
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = {
+    host: 'localhost:3000', protocol: 'http'
+  }
   config.action_mailer.smtp_settings = {
-    address: 'smtp.elasticemail.com',
-    port: 2525,
-    user_name: "floston.relations@gmail.com",
-    password: "61A2F3CAC4D4941C29F7E995DC22000C21A8",
-    authentication: :login,
-    enable_starttls_auto: true
- }
+    address: ENV.fetch('SMTP_ADDRESS', nil),
+    port: ENV.fetch('SMTP_PORT', nil),
+    user_name: ENV.fetch('SMTP_USERNAME', nil),
+    password: ENV.fetch('SMTP_PASSWORD', nil),
+    authentication: "plain",
+    enable_starttls_auto: true,
+    open_timeout:    5,
+    read_timeout:    5
+  }
 end

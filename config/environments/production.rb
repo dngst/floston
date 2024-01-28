@@ -61,19 +61,6 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "floston_production"
-
-  config.action_mailer.delivery_method = :smtp
-  host = 'floston.onrender.com'
-  config.action_mailer.default_url_options = { host: host }
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.elasticemail.com',
-    port: 2525,
-    user_name: "floston.relations@gmail.com",
-    password: "61A2F3CAC4D4941C29F7E995DC22000C21A8",
-    authentication: :login,
-    enable_starttls_auto: true
- }
-
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
@@ -100,4 +87,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: ENV['SMTP_HOST'] }
+  config.action_mailer.smtp_settings = {
+    address: ENV.fetch('SMTP_ADDRESS', nil),
+    port: ENV.fetch('SMTP_PORT', nil),
+    user_name: ENV.fetch('SMTP_USERNAME', nil),
+    password: ENV.fetch('SMTP_PASSWORD', nil),
+    authentication: "plain",
+    enable_starttls_auto: true,
+    open_timeout:    5,
+    read_timeout:    5
+  }
 end
