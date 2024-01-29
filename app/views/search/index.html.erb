@@ -1,3 +1,5 @@
+<% content_for :title, "Search results" %>
+
 <%= turbo_frame_tag :results_list do %>
   <p class="text-4xl mb-8 text-gray-800">
     Search results <%= params[:q].present? ? "for \"<span class='font-semibold'>#{params[:q]}</span>\"".html_safe : "" %>

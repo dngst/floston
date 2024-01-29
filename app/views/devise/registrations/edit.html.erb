@@ -1,3 +1,5 @@
+<% content_for :title, "Edit profile" %>
+
 <div class="w-full max-w-md">
   <% if current_user&.sign_in_count > 1 %>
     <%= link_to sanitize('&larr; back'), :back, class: "text-gray-600" %>
