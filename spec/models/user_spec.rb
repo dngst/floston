@@ -28,7 +28,6 @@ end
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  lname                  :string           not null
-#  paid                   :boolean          default(FALSE), not null
 #  phone_number           :string           not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
