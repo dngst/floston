@@ -16,7 +16,7 @@ end
 #  published       :boolean          default(FALSE), not null
 #  slug            :string
 #  title           :string           not null
-#  view_count      :integer
+#  view_count      :integer          default(0)
 #  viewed_user_ids :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

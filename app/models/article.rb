@@ -24,8 +24,7 @@ class Article < ApplicationRecord
   def mark_as_viewed_by_user(user)
     return if user_has_viewed?(user) || user.admin?
 
-    new_view_count = view_count + 1
-    update(view_count: new_view_count, viewed_user_ids: viewed_user_ids << user.id)
+    update(view_count: view_count + 1, viewed_user_ids: viewed_user_ids << user.id)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -46,6 +45,7 @@ end
 #  published       :boolean          default(FALSE), not null
 #  slug            :string
 #  title           :string           not null
+#  view_count      :integer          default(0)
 #  viewed_user_ids :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
