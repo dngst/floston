@@ -2,19 +2,36 @@
 
 > Property management & tenant relations
 
+[![Ruby on Rails CI](https://github.com/raisondata/floston/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/raisondata/floston/actions/workflows/rubyonrails.yml)
+
+Propery owners can create accounts for tenants. Tenants can sign in to to view
+their account details including next rent payment and ammount due. Tenants can
+also submit requests and read articles.
+
+## Requirements
+
+- Ruby
+
+- Bundler
+
+- Ruby on Rails
+
+- PostgreSQL
+
+- Redis
+
+See [Gemfile](./Gemfile)
+
+## Install
+
 $ bin/setup
 
 $ bin/dev
 
+## Caching
+
+Run $ bin/rails dev:cache to toggle caching
+
 ## Tests
 
 $ bundle exec rspec
-
-Propery owners or caretakers can create accounts for tenants. Tenants can sign in
-to to view their account details including next rent payment and ammount due.
-Tenants can also submit requests and view articles written by the admin.
-
-Requests can be about needed repairs, disturbance from a neighbour or inquiry.
-Articles written by the admin can be about an onboarding checklist for new
-tenants, key people in relation to the property, property rules, routines; garbage
-collection and key areas on the property.
