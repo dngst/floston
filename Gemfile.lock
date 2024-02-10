@@ -74,10 +74,15 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    brakeman (6.1.2)
+      racc
     builder (3.2.4)
     bullet (7.1.6)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     chronic (0.10.2)
     concurrent-ruby (1.2.3)
     crass (1.0.6)
@@ -325,7 +330,9 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bootsnap
+  brakeman
   bullet
+  bundler-audit
   database_cleaner-active_record
   debug
   devise (~> 4.9)
