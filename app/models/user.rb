@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   validates :fname, :lname, :phone_number, presence: true
 
+  broadcasts_refreshes
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 

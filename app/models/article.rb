@@ -9,6 +9,8 @@ class Article < ApplicationRecord
 
   validates :title, :body, presence: true
 
+  broadcasts_refreshes
+
   INLINE_EDITABLE_ATTRS = %i[title body property_id published].freeze
 
   friendly_id :generate_slug, use: :slugged

@@ -6,6 +6,8 @@ class Tenant < ApplicationRecord
 
   validates :unit_number, :unit_type, presence: true
 
+  broadcasts_refreshes
+
   def self.send_due_date_reminders
     tenants_to_remind = where('next_payment <= ?', 5.days.from_now)
     tenants_to_remind.find_each do |tenant|

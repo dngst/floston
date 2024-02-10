@@ -1,3 +1,5 @@
+<%= turbo_stream_from article %>
+
 <div id="<%= dom_id article %>" class="">
   <% Article::INLINE_EDITABLE_ATTRS.each do |attribute| %>
     <%= turbo_frame_tag attribute do %>

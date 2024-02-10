@@ -4,6 +4,8 @@ class Reminder < ApplicationRecord
   belongs_to :user
 
   validates :amount, presence: true
+
+  broadcasts_refreshes
 end
 
 # == Schema Information

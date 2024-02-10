@@ -1,3 +1,5 @@
+<%= turbo_stream_from property %>
+
 <div id="<%= dom_id property %>" class="my-12">
   <% Property::INLINE_EDITABLE_ATTRS.each do |attribute| %>
     <%= turbo_frame_tag attribute do %>

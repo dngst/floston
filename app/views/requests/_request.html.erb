@@ -1,3 +1,5 @@
+<%= turbo_stream_from request %>
+
 <div id="<%= dom_id request %>">
   <h1 class="text-4xl font-bold text-gray-800 mb-4 <%= 'line-through' if request.closed %>">
     <%= request.title %>
