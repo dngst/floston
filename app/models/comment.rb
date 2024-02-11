@@ -6,6 +6,8 @@ class Comment < ApplicationRecord
 
   validates :body, presence: true
 
+  broadcasts_refreshes_to :request
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[body]
   end
