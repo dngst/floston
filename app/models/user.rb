@@ -32,12 +32,18 @@ class User < ApplicationRecord
 
   friendly_id :generate_slug, use: :slugged
 
+  ransacker :full_name do |parent|
+    Arel::Nodes::NamedFunction.new('CONCAT_WS', [
+                                     Arel::Nodes.build_quoted(' '), parent.table[:fname], parent.table[:lname]
+                                   ])
+  end
+
   def generate_slug
     SecureRandom.hex(4)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[email fname lname phone_number]
+    %w[email fname lname phone_number full_name]
   end
 
   def self.ransackable_associations(_auth_object = nil)
