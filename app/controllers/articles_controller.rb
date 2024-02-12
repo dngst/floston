@@ -57,30 +57,16 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    respond_to do |format|
-      if @article.update(article_params)
+    if @article.update(article_params)
 
-        Rails.cache.delete('article_ids')
+      Rails.cache.delete('article_ids')
 
-        flash.now[:notice] = t('articles.updated')
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace(
-              @article,
-              partial: 'articles/article',
-              locals: { article: @article }
-            ),
-            turbo_stream.replace('flash-messages', partial: 'layouts/flash')
-          ]
-        end
-        format.html { redirect_to article_url(@article), notice: t('articles.updated') }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        format.html { redirect_to article_url(@article) }
       end
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
