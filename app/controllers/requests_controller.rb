@@ -90,27 +90,25 @@ class RequestsController < ApplicationController
     Rails.cache.delete('request_ids')
 
     respond_to do |format|
-      format.html { redirect_to user_requests_url, notice: t('requests.deleted') }
+      format.html { redirect_to user_requests_url }
       format.json { head :no_content }
     end
   end
 
   def close_request
     if @request.update(closed: true)
-      flash[:notice] = t('requests.closed')
+      redirect_to user_request_path(current_user, @request)
     else
       flash[:alert] = t('requests.failed_to_close')
     end
-    redirect_to user_request_path(current_user, @request)
   end
 
   def reopen_request
     if @request.update(closed: false)
-      flash[:notice] = t('requests.reopened')
+      redirect_to user_request_path(current_user, @request)
     else
       flash[:alert] = t('requests.failed_to_reopen')
     end
-    redirect_to user_request_path(current_user, @request)
   end
 
   private

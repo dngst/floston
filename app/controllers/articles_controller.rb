@@ -77,7 +77,7 @@ class ArticlesController < ApplicationController
     Rails.cache.delete('article_ids')
 
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: t('articles.deleted') }
+      format.html { redirect_to articles_url }
       format.json { head :no_content }
     end
   end
