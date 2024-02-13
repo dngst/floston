@@ -3,7 +3,7 @@
 <div id="<%= dom_id article %>">
   <p class="text-xl <%= 'text-orange-500' if !article.published %> pl-2 mt-2 underline underline-offset-4 mb-6">
     <%= link_to article, draggable:false, data: { turbo_frame: "_top" } do %>
-      <%= article.title %>
+      <span class="text-gray-600"><%= date_format(article.created_at) %> &middot; </span><%= article.title %>
     <% end %>
   </p>
 </div>
