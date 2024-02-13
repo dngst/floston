@@ -26,24 +26,10 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        Rails.cache.delete('tenant_ids')
-        if @user.tenant
-          if @user.tenant.update(tenant_params)
-            Rails.cache.delete('tenant_ids')
-            format.html { redirect_to user_path(@user), notice: t('users.updated') }
-            format.json { render :show, status: :ok, location: @user }
-          else
-            format.html { render :edit, status: :unprocessable_entity }
-            format.json { render json: @user.tenant.errors, status: :unprocessable_entity }
-          end
+      if @user.update(user_params) && @user.tenant&.update(tenant_params)
+        format.html { redirect_to user_path(@user) }
         else
-          format.html { redirect_to user_path(@user), notice: t('users.updated') }
-          format.json { render :show, status: :ok, location: @user }
-        end
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+          format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
@@ -51,17 +37,10 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
 
-    flash.now[:notice] = t('users.deleted')
     Rails.cache.delete('tenant_ids')
 
     respond_to do |format|
-      format.html { redirect_to users_path, notice: t('users.deleted') }
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.remove(@user),
-          turbo_stream.replace('flash-messages', partial: 'layouts/flash')
-        ]
-      end
+      format.html { redirect_to users_path }
     end
   end
 
@@ -89,8 +68,6 @@ class UsersController < ApplicationController
     @subscription_details = response['data']['subscriptions'][0]
   rescue SocketError
     error_message = "You're offline. Failed to connect to Paystack"
-    Rails.logger.error(error_message)
-
     flash.now[:alert] = error_message
   end
 
