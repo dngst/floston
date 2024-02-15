@@ -90,7 +90,7 @@ class RequestsController < ApplicationController
     Rails.cache.delete('request_ids')
 
     respond_to do |format|
-      format.html { redirect_to user_requests_url }
+      format.html { redirect_to user_requests_url, notice: t('requests.deleted') }
       format.json { head :no_content }
     end
   end

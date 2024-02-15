@@ -74,13 +74,13 @@ div.navbar .active {
 
 .flash {
   position: fixed;
-  top: 5.5rem;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 100%;
-  width: max-content
+  width: max-content;
   animation: appear-then-fade 4s both;
 }

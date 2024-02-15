@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
       Rails.cache.delete('article_ids')
 
       respond_to do |format|
-        format.html { redirect_to article_url(@article) }
+        format.html { redirect_to article_url(@article), notice: t('articles.updated') }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -77,7 +77,7 @@ class ArticlesController < ApplicationController
     Rails.cache.delete('article_ids')
 
     respond_to do |format|
-      format.html { redirect_to articles_url }
+      format.html { redirect_to articles_url, notice: t('articles.deleted') }
       format.json { head :no_content }
     end
   end

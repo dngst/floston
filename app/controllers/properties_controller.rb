@@ -51,7 +51,7 @@ class PropertiesController < ApplicationController
       Rails.cache.delete('property_ids')
 
       respond_to do |format|
-        format.html { redirect_to property_url(@property) }
+        format.html { redirect_to property_url(@property), notice: t('properties.updated') }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -65,7 +65,7 @@ class PropertiesController < ApplicationController
     Rails.cache.delete('property_ids')
 
     respond_to do |format|
-      format.html { redirect_to properties_url }
+      format.html { redirect_to properties_url, notice: t('properties.deleted') }
     end
   end
 

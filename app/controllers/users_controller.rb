@@ -27,9 +27,9 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params) && @user.tenant&.update(tenant_params)
-        format.html { redirect_to user_path(@user) }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to user_path(@user), notice: t('users.updated') }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     Rails.cache.delete('tenant_ids')
 
     respond_to do |format|
-      format.html { redirect_to users_path }
+      format.html { redirect_to users_path, notice: t('users.deleted') }
     end
   end
 
