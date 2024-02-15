@@ -23,6 +23,7 @@ en:
     failed: 'Subscription unsuccessful'
     failed_to_initialize: 'Failed to initialize transaction'
     failed_verification: 'Transaction verification unsuccessful'
+    offline: "You're offline. Failed to connect to Paystack"
   users:
     saved:
     updated: 'Tenant updated'

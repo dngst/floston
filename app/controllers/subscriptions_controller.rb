@@ -3,6 +3,8 @@
 class SubscriptionsController < ApplicationController
   include RequireAdmin
 
+  rescue_from SocketError, with: :handle_offline
+
   before_action :require_admin
   before_action :authenticate_user!
   before_action :initialize_paystack_service
@@ -68,5 +70,9 @@ class SubscriptionsController < ApplicationController
 
   def initialize_paystack_service
     @paystack_service = PaystackService.new(ENV.fetch('PAYSTACK_SECRET_KEY', nil))
+  end
+
+  def handle_offline
+    redirect_to user_path(current_user), alert: t('subscriptions.offline')
   end
 end
