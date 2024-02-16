@@ -1,7 +1,7 @@
 <% content_for :title, "Requests" %>
 
 <div class="w-full">
-  <%= render 'layouts/header',
+  <%= render 'shared/header',
             title: "Requests",
             icon: "bxs-hand.svg",
             route: new_user_request_path,
@@ -13,7 +13,7 @@
       <%= render partial: "request_index", collection: @requests, as: :request %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "requests_#{@pagy.next}", src: user_requests_path(current_user, page: @pagy.next), loading: "lazy" do %>
-          <%= render "layouts/loader" %>
+          <%= render "shared/loader" %>
         <% end %>
       <% end %>
     <% end %>

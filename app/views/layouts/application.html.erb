@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   <%= render "layouts/head" %>
+   <%= render "shared/head" %>
   </head>
 
   <body data-controller="back-to-top">
-    <%= render "layouts/navbar" %>
+    <%= render "shared/navbar" %>
 
-    <%= render "layouts/confirm_modal" %>
+    <%= render "shared/confirm_modal" %>
 
-    <main class="flex flex-col mx-auto container <%= 'mt-24' if !@home_page %> px-5 h-screen container">
+    <main class="flex flex-col mx-auto container <%= 'mt-24' if !@home_page %> px-5 h-screen">
       <div class="flash">
-        <%= render "layouts/flash" %>
+        <%= render "shared/flash" %>
       </div>
 
       <%= yield %>
 
     </main>
-    <%= render "layouts/scroll_to_top" %>
+    <%= render "shared/scroll_to_top" %>
   </body>
 </html>
 

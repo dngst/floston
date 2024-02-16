@@ -1,7 +1,7 @@
 <% content_for :title, "Properties" %>
 
 <div class="w-full">
-  <%= render 'layouts/header',
+  <%= render 'shared/header',
             title: "Properties",
             icon: "bx-building-house.svg",
             route: new_property_path,
@@ -13,7 +13,7 @@
       <%= render partial: "property", collection: @properties, as: :property, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "properties_#{@pagy.next}", src: properties_path(page: @pagy.next), loading: "lazy" do %>
-          <%= render "layouts/loader" %>
+          <%= render "shared/loader" %>
         <% end %>
       <% end %>
     <% end %>

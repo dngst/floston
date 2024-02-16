@@ -1,7 +1,7 @@
 <% content_for :title, "Tenants" %>
 
 <div class="w-full">
-  <%= render 'layouts/header',
+  <%= render 'shared/header',
             title: "Tenants",
             icon: "bx-group.svg",
             route: new_user_registration_path,
@@ -13,7 +13,7 @@
       <%= render partial: "user", collection: @users, as: :user, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "users_#{@pagy.next}", src: users_path(page: @pagy.next), loading: "lazy" do %>
-          <%= render "layouts/loader" %>
+          <%= render "shared/loader" %>
         <% end %>
       <% end %>
     <% end %>

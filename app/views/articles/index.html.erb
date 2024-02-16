@@ -1,7 +1,7 @@
 <% content_for :title, "Articles" %>
 
 <div class="w-full">
-  <%= render 'layouts/header',
+  <%= render 'shared/header',
             title: "Articles",
             icon: "bx-book-open.svg",
             route: new_article_path,
@@ -13,7 +13,7 @@
       <%= render partial: "article_index", collection: @articles, as: :article, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "articles_#{@pagy.next}", src: articles_path(page: @pagy.next), loading: "lazy" do %>
-          <%= render "layouts/loader" %>
+          <%= render "shared/loader" %>
         <% end %>
       <% end %>
     <% end %>
