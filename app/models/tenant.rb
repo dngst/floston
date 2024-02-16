@@ -8,6 +8,21 @@ class Tenant < ApplicationRecord
 
   broadcasts_refreshes
 
+  def self.unit_types
+    [
+      'Studio',
+      'Bedsitter',
+      '1 Bedroom',
+      '2 Bedroom',
+      '3 Bedroom',
+      '4 Bedroom',
+      '5 Bedroom',
+      '6 Bedroom',
+      '7 Bedroom',
+      '8 Bedroom +'
+    ].freeze
+  end
+
   def self.send_due_date_reminders
     tenants_to_remind = where('next_payment <= ?', 5.days.from_now)
     tenants_to_remind.find_each do |tenant|
