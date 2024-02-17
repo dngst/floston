@@ -18,16 +18,20 @@ class Property < ApplicationRecord
     SecureRandom.hex(4)
   end
 
+  def name
+    self[:name].split.map(&:capitalize).join(' ') if self[:name]
+  end
+
   def can_be_deleted?
-    tenants.includes([:tenants]).empty? && articles.includes([:articles]).empty?
+    tenants.empty? && articles.empty?
   end
 
   def self.my_properties(current_user)
-    Property.where(user_id: current_user.id)
+    where(user_id: current_user.id)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    ['name']
+    %w[name]
   end
 end
 

@@ -5,7 +5,7 @@
 <% if @user || @user.tenant %>
   <div>
     <% if @user %>
-      <h1 class="text-4xl font-bold text-gray-800 mb-2 capitalize"><%= @user.name %></h1>
+      <h1 class="text-4xl font-bold text-gray-800 mb-2"><%= @user.name %></h1>
       <div class="lg:my-3 my-6">
         <p class="text-gray-600"><%= @user.phone_number %></p>
         <p class="text-gray-600"><%= @user.email %></p>
@@ -32,9 +32,9 @@
                    <% if value.is_a?(Date) %>
                      <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
                    <% elsif attribute == 'amount_due' %>
-                     <%= number_to_currency(value, unit: 'USD ', precision: 0) %>
+                     <%= number_to_currency(value, unit: 'USD ') %>
                    <% elsif attribute == 'property_id' %>
-                     <p class="text-gray-600 capitalize"><%= Property.find_by(id: value)&.name %></p>
+                     <p class="text-gray-600"><%= Property.find_by(id: value)&.name %></p>
                    <% else %>
                      <%= value %>
                    <% end %>

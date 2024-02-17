@@ -10,11 +10,7 @@ class SubscriptionsController < ApplicationController
   before_action :initialize_paystack_service
 
   def handle_payments
-    if customer_exists
-      initialize_transaction
-    else
-      create_customer
-    end
+    customer_exists ? initialize_transaction : create_customer
   end
 
   def customer_exists
@@ -24,45 +20,37 @@ class SubscriptionsController < ApplicationController
 
   def create_customer
     response = @paystack_service.create_customer(current_user)
-    return unless response['status']
-
-    initialize_transaction
+    initialize_transaction if response['status']
   end
 
   def initialize_transaction
     response = @paystack_service.initialize_transaction(current_user)
 
     if response['status']
-      payment_link = response['data']['authorization_url']
-      redirect_to payment_link, allow_other_host: true
+      redirect_to response['data']['authorization_url'], allow_other_host: true
     else
-      redirect_to user_path(current_user), alert: t('subscriptions.failed_to_initialize')
+      redirect_with_alert('subscriptions.failed_to_initialize')
     end
   end
 
   def paystack_callback
     response = @paystack_service.verify_transaction(params[:reference])
 
-    if response['status']
-      create_subscription
-    else
-      redirect_to user_path(current_user), alert: t('subscriptions.failed_verification')
-    end
+    response['status'] ? create_subscription : redirect_with_alert('subscriptions.failed_verification')
   end
 
   def create_subscription
     response = @paystack_service.create_subscription(current_user, ENV.fetch('PLAN_ID', nil))
 
     if response['status']
-      redirect_to user_path(current_user), notice: t('subscriptions.success')
+      redirect_with_notice('subscriptions.success')
     else
-      redirect_to user_path(current_user), alert: t('subscriptions.failed')
+      redirect_with_alert('subscriptions.failed')
     end
   end
 
   def manage_subscription
-    response = @paystack_service.get_manage_subscription_link(current_user)
-    session[:manage_subscription_link] = response
+    session[:manage_subscription_link] = @paystack_service.get_manage_subscription_link(current_user)
     redirect_to user_path(current_user)
   end
 
@@ -73,6 +61,14 @@ class SubscriptionsController < ApplicationController
   end
 
   def handle_offline
-    redirect_to user_path(current_user), alert: t('subscriptions.offline')
+    redirect_with_alert('subscriptions.offline')
+  end
+
+  def redirect_with_alert(key)
+    redirect_to user_path(current_user), alert: t(key)
+  end
+
+  def redirect_with_notice(key)
+    redirect_to user_path(current_user), notice: t(key)
   end
 end

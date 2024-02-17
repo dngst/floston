@@ -3,10 +3,10 @@
 class UsersController < ApplicationController
   include RequireAdmin
 
-  before_action :require_admin, only: %i[index edit update destroy]
-  before_action :set_user, only: %i[show edit update destroy authorize_profile_access]
-  before_action :authorize_profile_access, only: [:show]
   before_action :authenticate_user!
+  before_action :set_user, only: %i[show edit update destroy authorize_profile_access]
+  before_action :require_admin, only: %i[index edit update destroy]
+  before_action :authorize_profile_access, only: [:show]
   before_action :initialize_paystack_service, only: [:show]
   before_action :handle_customer_details, only: [:show]
 
@@ -25,23 +25,17 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params) && @user.tenant&.update(tenant_params)
-        format.html { redirect_to user_path(@user), notice: t('users.updated') }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @user.update(user_params) && @user.tenant&.update(tenant_params)
+      redirect_to user_path(@user), notice: t('users.updated')
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @user.destroy
-
-    Rails.cache.delete('tenant_ids')
-
-    respond_to do |format|
-      format.html { redirect_to users_path, notice: t('users.deleted') }
-    end
+    delete_tenant_ids_cache
+    redirect_to users_path, notice: t('users.deleted')
   end
 
   private
@@ -54,21 +48,18 @@ class UsersController < ApplicationController
   end
 
   def initialize_paystack_service
-    @paystack_service = PaystackService.new(ENV.fetch('PAYSTACK_SECRET_KEY', nil))
+    @paystack_service = PaystackService.new(ENV.fetch('PAYSTACK_SECRET_KEY'))
   end
 
   def handle_customer_details
     return unless current_user&.admin? && current_user == @user
 
     response = @paystack_service.fetch_customer_details(current_user)
-    return unless response && response['status'] == true
+    return unless response && response['status']
 
     @subscribed = response['data']['subscriptions']
     @card_details = response['data']['authorizations'][0]
     @subscription_details = response['data']['subscriptions'][0]
-  rescue SocketError
-    error_message = "You're offline. Failed to connect to Paystack"
-    flash.now[:alert] = error_message
   end
 
   def set_user
@@ -81,5 +72,9 @@ class UsersController < ApplicationController
 
   def tenant_params
     params.require(:tenant).permit(:amount_due, :moved_in, :next_payment, :unit_number, :unit_type, :property_id)
+  end
+
+  def delete_tenant_ids_cache
+    Rails.cache.delete('tenant_ids')
   end
 end

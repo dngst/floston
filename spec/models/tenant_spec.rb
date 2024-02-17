@@ -14,7 +14,7 @@ end
 # Table name: tenants
 #
 #  id           :bigint           not null, primary key
-#  amount_due   :integer
+#  amount_due   :decimal(8, 2)
 #  moved_in     :date
 #  next_payment :date
 #  unit_number  :string           not null

@@ -77,7 +77,7 @@ RSpec.describe '/properties' do
       it 'updates the requested property' do
         patch property_url(property), params: { property: new_attributes }
         property.reload
-        expect(property.name).to eq('Updated property')
+        expect(property.name).to eq('Updated Property')
       end
 
       it 'redirects to the property' do

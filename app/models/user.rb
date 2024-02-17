@@ -22,12 +22,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   def with_tenant
-    build_tenant if tenant.nil?
+    build_tenant unless tenant
     self
   end
 
   def name
-    @name ||= "#{fname} #{lname}"
+    "#{fname.capitalize} #{lname.capitalize}"
   end
 
   friendly_id :generate_slug, use: :slugged

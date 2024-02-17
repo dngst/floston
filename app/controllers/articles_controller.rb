@@ -10,20 +10,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    ids = Rails.cache.fetch('article_ids') do
-      Article.pluck(:id)
-    end
-
-    items_per_page = 20
-
-    @pagy, @articles = if current_user&.admin?
-                         pagy(Article.where(id: ids, user_id: current_user.id).order(created_at: :desc),
-                              items: items_per_page)
-                       else
-                         pagy(Article.where(id: ids, user_id: current_user.admin_id,
-                                            published: true,
-                                            property_id: current_user.tenant.property_id).order(created_at: :desc), items: items_per_page)
-                       end
+    @pagy, @articles = pagy(fetch_articles_for_current_user, items: 20)
   end
 
   # GET /articles/1 or /articles/1.json
@@ -42,29 +29,18 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
-
-    respond_to do |format|
-      if @article.save
-
-        Rails.cache.delete('article_ids')
-
-        format.html { redirect_to article_url(@article), notice: t('articles.saved') }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    if @article.save
+      delete_article_ids_cache
+      redirect_to article_url(@article), notice: t('articles.saved')
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @article.update(article_params)
-
-      Rails.cache.delete('article_ids')
-
-      respond_to do |format|
-        format.html { redirect_to article_url(@article), notice: t('articles.updated') }
-      end
+      delete_article_ids_cache
+      redirect_to article_url(@article), notice: t('articles.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -73,18 +49,18 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1 or /articles/1.json
   def destroy
     @article.destroy
-
-    Rails.cache.delete('article_ids')
-
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: t('articles.deleted') }
-      format.json { head :no_content }
-    end
+    delete_article_ids_cache
+    redirect_to articles_url, notice: t('articles.deleted')
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def fetch_articles_for_current_user
+    ids = Rails.cache.fetch('article_ids', expires_in: 12.hours) { Article.pluck(:id) }
+    query = current_user.admin? ? Article.where(id: ids, user_id: current_user.id) : Article.where(id: ids, user_id: current_user.admin_id, published: true, property_id: current_user.tenant.property_id)
+    query.order(created_at: :desc)
+  end
+
   def authorize_article_access
     @article = Article.friendly.find(params[:id])
     return if current_user&.id == @article&.user_id || current_user&.admin_id == @article&.user_id
@@ -97,8 +73,11 @@ class ArticlesController < ApplicationController
     @article = Article.friendly.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def article_params
     params.require(:article).permit(:title, :body, :user_id, :published, :property_id)
+  end
+
+  def delete_article_ids_cache
+    Rails.cache.delete('article_ids')
   end
 end

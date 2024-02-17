@@ -16,7 +16,7 @@
     <% if request.user == current_user %>
       You
     <% else %>
-      <%= link_to user_path(request.user), class: "text-flostonlink underline capitalize" do %>
+      <%= link_to user_path(request.user), class: "text-flostonlink underline" do %>
         <%= request.user.name %>
       <% end %>
     <% end %>

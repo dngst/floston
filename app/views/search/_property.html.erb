@@ -1,7 +1,7 @@
 <%= turbo_stream_from property %>
 
 <div class="border border-gray-300 p-4 rounded mt-4 text-gray-800">
-  <p class="text-xl font-semibold capitalize flex justify-normal">
+  <p class="text-xl font-semibold flex justify-normal">
     <% cache('bx-building-house.svg') do %>
       <%= image_tag "bx-building-house.svg", alt: "Property", class: "w-6 mr-2", draggable: false %>
     <% end %>

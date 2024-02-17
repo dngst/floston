@@ -1,7 +1,7 @@
 <%= turbo_stream_from user %>
 
 <div class="border border-gray-300 p-4 rounded mt-4">
-    <p class="text-xl font-semibold text-flostonlink hover:underline capitalize">
+    <p class="text-xl font-semibold text-flostonlink hover:underline">
       <%= link_to user_path(user), draggable:false, data: { turbo_frame: "_top" } do %>
         <%= user.name %>
       <% end %>

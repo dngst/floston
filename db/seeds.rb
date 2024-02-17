@@ -48,7 +48,7 @@ Tenant.find_or_create_by!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2012",
   next_payment: "15-11-2012",
-  amount_due: "67",
+  amount_due: 68.90,
   property_id: richards_property.id
 )
 
@@ -68,7 +68,7 @@ Tenant.find_or_create_by!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
-  amount_due: "67",
+  amount_due: 68.90,
   property_id: 10
 )
 
@@ -88,7 +88,7 @@ Tenant.find_or_create_by!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
-  amount_due: "67",
+  amount_due: 68.90,
   property_id: 10
 )
 
@@ -110,8 +110,7 @@ Article.find_or_create_by!(
 
 Article.find_or_create_by!(
   title: "Faulty tap at the parking lot near block D",
-  body: "There's a licking tap near block D at the parking lot. Please refrain
-   from using it while we organise for repairs to be made.",
+  body: "There's a leaking tap near block D at the parking lot. Please refrain from using it while we organize for repairs to be made.",
   user_id: elrich.id,
   property_id: 10
 )
@@ -132,19 +131,19 @@ Request.find_or_create_by!(
 
 Request.find_or_create_by!(
   title: "Disturbance",
-  description: "The tenant at door no. 2E is constatly playing loud music since they moved in and is rude when asked to tone it down.",
+  description: "The tenant at door no. 2E is constantly playing loud music since they moved in and is rude when asked to tone it down.",
   user_id: jane.id
 )
 
 Request.find_or_create_by!(
   title: "Key replacement",
-  description: "I lost my gate key. Could you please organise for me another one?",
+  description: "I lost my gate key. Could you please organize for me another one?",
   user_id: john.id
 )
 
 24.times do
   Reminder.create!(
-    amount: "67",
+    amount: 68.90,
     user_id: jane.id
   )
 end
@@ -156,8 +155,8 @@ end
 
   if existing_tenant.nil?
     user = User.create!(
-      fname: Faker::Internet.username,
-      lname: Faker::Internet.username,
+      fname: Faker::Name.first_name,
+      lname: Faker::Name.last_name,
       phone_number: Faker::PhoneNumber.cell_phone,
       email: Faker::Internet.email,
       admin_id: elrich.id
@@ -171,7 +170,7 @@ end
       unit_type: "1 Bedroom",
       moved_in: "15-11-2022",
       next_payment: "15-12-2022",
-      amount_due: "67",
+      amount_due: 68.90,
       property_id: 10
     )
   else

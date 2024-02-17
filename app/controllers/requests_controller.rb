@@ -18,24 +18,19 @@ class RequestsController < ApplicationController
     items_per_page = 20
 
     @request_user = User.friendly.find(params[:user_id])
-    if current_user&.admin?
-      query = Request.joins(:user)
-                     .where(id: ids, users: { admin_id: current_user.id })
-      query = query.where(requests: { user_id: @request_user.id }).includes([:user]) unless @request_user.admin?
-      @pagy, @requests = pagy(query.includes([:user]).order(created_at: :desc), items: items_per_page)
-    else
-      @pagy, @requests = pagy(
-        Request.where(id: ids,
-                      user_id: current_user.id).order(created_at: :desc), items: items_per_page
-      )
-    end
+    @requests = if current_user&.admin?
+                  admin_requests_query(ids).includes([:user]).order(created_at: :desc)
+                else
+                  user_requests_query(ids).order(created_at: :desc)
+                end
+
+    @pagy, @requests = pagy(@requests, items: items_per_page)
   end
 
   # GET /requests/1 or /requests/1.json
   def show
-    @request = Request.friendly.find(params[:id])
-    @user =  @request.user
-    @comment_count ||= @request.comments.length
+    @user = @request.user
+    @comment_count ||= @request.comments.count
     @comment = @request.comments.build(user: @user)
   end
 
@@ -51,48 +46,31 @@ class RequestsController < ApplicationController
   def create
     @request = @user.requests.new(request_params)
 
-    respond_to do |format|
-      if @request.save
-
-        Rails.cache.delete('request_ids')
-
-        NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
-        format.html { redirect_to user_request_url(@user, @request), notice: t('requests.saved') }
-        format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
+    if @request.save
+      delete_request_ids_cache
+      NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
+      redirect_to user_request_url(@user, @request), notice: t('requests.saved')
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /requests/1 or /requests/1.json
   def update
-    respond_to do |format|
-      @request = @user.requests.friendly.find(params[:id])
-      if @request.update(request_params)
-
-        Rails.cache.delete('request_ids')
-
-        format.html { redirect_to user_request_url, notice: t('requests.updated') }
-        format.json { render :show, status: :ok, location: @request }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
+    @request = @user.requests.friendly.find(params[:id])
+    if @request.update(request_params)
+      delete_request_ids_cache
+      redirect_to user_request_url, notice: t('requests.updated')
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /requests/1 or /requests/1.json
   def destroy
     @request.destroy
-
-    Rails.cache.delete('request_ids')
-
-    respond_to do |format|
-      format.html { redirect_to user_requests_url, notice: t('requests.deleted') }
-      format.json { head :no_content }
-    end
+    delete_request_ids_cache
+    redirect_to user_requests_url, notice: t('requests.deleted')
   end
 
   def close_request
@@ -100,6 +78,7 @@ class RequestsController < ApplicationController
       redirect_to user_request_path(current_user, @request)
     else
       flash[:alert] = t('requests.failed_to_close')
+      render :show
     end
   end
 
@@ -108,12 +87,13 @@ class RequestsController < ApplicationController
       redirect_to user_request_path(current_user, @request)
     else
       flash[:alert] = t('requests.failed_to_reopen')
+      render :show
     end
+    delete_request_ids_cache
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def authorize_request_access
     @request = Request.friendly.find(params[:id])
     return if current_user&.id == @request.user_id || current_user&.id == @request.user.admin_id
@@ -130,8 +110,21 @@ class RequestsController < ApplicationController
     @request = Request.friendly.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def request_params
     params.require(:request).permit(:title, :description, :user_id)
+  end
+
+  def delete_request_ids_cache
+    Rails.cache.delete('request_ids')
+  end
+
+  def admin_requests_query(ids)
+    query = Request.joins(:user).where(id: ids, users: { admin_id: current_user.id })
+    query = query.where(requests: { user_id: @request_user.id }).includes([:user]) unless @request_user.admin?
+    query
+  end
+
+  def user_requests_query(ids)
+    Request.where(id: ids, user_id: current_user.id)
   end
 end

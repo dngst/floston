@@ -14,22 +14,30 @@ RSpec.describe ApplicationController do
     let(:property) { create(:property, user_id: admin.id) }
     let(:user) { create(:user, tenant_attributes_override: { property_id: property.id }) }
 
-    it 'returns the edit_user_registration_path for a first-time regular user' do
-      user.sign_in_count = 1
-      expect(controller.after_sign_in_path_for(user)).to eq(edit_user_registration_path)
+    context 'when first-time regular user' do
+      it 'returns the edit_user_registration_path' do
+        user.sign_in_count = 1
+        expect(controller.after_sign_in_path_for(user)).to eq(edit_user_registration_path)
+      end
     end
 
-    it 'returns the edit_user_registration_path for a first-time admin user' do
-      admin.sign_in_count = 1
-      expect(controller.after_sign_in_path_for(admin)).to eq(edit_user_registration_path)
+    context 'when first-time admin user' do
+      it 'returns the edit_user_registration_path' do
+        admin.sign_in_count = 1
+        expect(controller.after_sign_in_path_for(admin)).to eq(edit_user_registration_path)
+      end
     end
 
-    it 'returns the users_path for an admin user' do
-      expect(controller.after_sign_in_path_for(admin)).to eq(users_path)
+    context 'when admin user' do
+      it 'returns the users_path' do
+        expect(controller.after_sign_in_path_for(admin)).to eq(users_path)
+      end
     end
 
-    it 'returns the user_path for a regular user' do
-      expect(controller.after_sign_in_path_for(user)).to eq(user_path(user))
+    context 'when regular user' do
+      it 'returns the user_path' do
+        expect(controller.after_sign_in_path_for(user)).to eq(user_path(user))
+      end
     end
   end
 end

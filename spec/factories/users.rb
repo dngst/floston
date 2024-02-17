@@ -5,8 +5,8 @@ FactoryBot.define do
     admin { false }
     email { Faker::Internet.email }
     password { Faker::Internet.password }
-    fname { Faker::Internet.username }
-    lname { Faker::Internet.username }
+    fname { Faker::Name.first_name }
+    lname { Faker::Name.last_name }
     phone_number { Faker::PhoneNumber.cell_phone }
 
     transient do
@@ -25,8 +25,8 @@ FactoryBot.define do
     admin { true }
     email { Faker::Internet.email }
     password { Faker::Internet.password }
-    fname { Faker::Internet.username }
-    lname { Faker::Internet.username }
+    fname { Faker::Name.first_name }
+    lname { Faker::Name.last_name }
     phone_number { Faker::PhoneNumber.cell_phone }
   end
 end

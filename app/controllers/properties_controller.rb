@@ -32,14 +32,10 @@ class PropertiesController < ApplicationController
 
     respond_to do |format|
       if @property.save
-
-        Rails.cache.delete('property_ids')
-
+        delete_property_ids_cache
         format.html { redirect_to property_url(@property), notice: t('properties.saved') }
-        format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,9 +43,7 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1 or /properties/1.json
   def update
     if @property.update(property_params)
-
-      Rails.cache.delete('property_ids')
-
+      delete_property_ids_cache
       respond_to do |format|
         format.html { redirect_to property_url(@property), notice: t('properties.updated') }
       end
@@ -61,9 +55,7 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1 or /properties/1.json
   def destroy
     @property.destroy
-
-    Rails.cache.delete('property_ids')
-
+    delete_property_ids_cache
     respond_to do |format|
       format.html { redirect_to properties_url, notice: t('properties.deleted') }
     end
@@ -79,5 +71,9 @@ class PropertiesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def property_params
     params.require(:property).permit(:name, :user_id)
+  end
+
+  def delete_property_ids_cache
+    Rails.cache.delete('property_ids')
   end
 end
