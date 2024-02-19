@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def initialize_paystack_service
-    @paystack_service = PaystackService.new(ENV.fetch('PAYSTACK_SECRET_KEY'))
+    @paystack_service = PaystackService.new(ENV.fetch('PAYSTACK_SECRET_KEY', nil))
   end
 
   def handle_customer_details
