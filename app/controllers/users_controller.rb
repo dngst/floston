@@ -11,10 +11,7 @@ class UsersController < ApplicationController
   before_action :handle_customer_details, only: [:show]
 
   def index
-    ids = Rails.cache.fetch('tenant_ids') do
-      User.pluck(:id)
-    end
-    tenants_list = User.where(id: ids, admin: false, admin_id: current_user.id).order(created_at: :desc)
+    tenants_list = User.where(id: user_ids, admin: false, admin_id: current_user.id).order(created_at: :desc)
     @pagy, @users = pagy(tenants_list)
   end
 
@@ -34,7 +31,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    delete_tenant_ids_cache
+    clear_cache
     redirect_to users_path, notice: t('users.deleted')
   end
 
@@ -74,7 +71,13 @@ class UsersController < ApplicationController
     params.require(:tenant).permit(:amount_due, :moved_in, :next_payment, :unit_number, :unit_type, :property_id)
   end
 
-  def delete_tenant_ids_cache
+  def clear_cache
     Rails.cache.delete('tenant_ids')
+  end
+
+  def user_ids
+    Rails.cache.fetch('tenant_ids') do
+      User.pluck(:id)
+    end
   end
 end

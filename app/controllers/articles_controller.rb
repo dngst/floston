@@ -8,29 +8,24 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :require_admin, only: %i[new create edit update destroy]
 
-  # GET /articles or /articles.json
   def index
     @pagy, @articles = pagy(fetch_articles_for_current_user, items: 20)
   end
 
-  # GET /articles/1 or /articles/1.json
   def show
     @article.mark_as_viewed_by_user(current_user) if user_signed_in?
   end
 
-  # GET /articles/new
   def new
     @article = Article.new
   end
 
-  # GET /articles/1/edit
   def edit; end
 
-  # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
     if @article.save
-      delete_article_ids_cache
+      clear_cache
       redirect_to article_url(@article), notice: t('articles.saved')
     else
       render :new, status: :unprocessable_entity
@@ -39,17 +34,16 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      delete_article_ids_cache
+      clear_cache
       redirect_to article_url(@article), notice: t('articles.updated')
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /articles/1 or /articles/1.json
   def destroy
     @article.destroy
-    delete_article_ids_cache
+    clear_cache
     redirect_to articles_url, notice: t('articles.deleted')
   end
 
@@ -77,7 +71,7 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :body, :user_id, :published, :property_id)
   end
 
-  def delete_article_ids_cache
+  def clear_cache
     Rails.cache.delete('article_ids')
   end
 end

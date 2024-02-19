@@ -9,45 +9,33 @@ class RequestsController < ApplicationController
   before_action :set_user
   before_action :set_request, only: %i[show edit update destroy close_request reopen_request]
 
-  # GET /requests or /requests.json
   def index
-    ids = Rails.cache.fetch('request_ids') do
-      Request.pluck(:id)
-    end
-
-    items_per_page = 20
-
     @request_user = User.friendly.find(params[:user_id])
     @requests = if current_user&.admin?
-                  admin_requests_query(ids).includes([:user]).order(created_at: :desc)
+                  admin_requests_query(request_ids).includes([:user]).order(created_at: :desc)
                 else
-                  user_requests_query(ids).order(created_at: :desc)
+                  user_requests_query(request_ids).order(created_at: :desc)
                 end
-
-    @pagy, @requests = pagy(@requests, items: items_per_page)
+    @pagy, @requests = pagy(@requests, items: 20)
   end
 
-  # GET /requests/1 or /requests/1.json
   def show
     @user = @request.user
     @comment_count ||= @request.comments.count
     @comment = @request.comments.build(user: @user)
   end
 
-  # GET /requests/new
   def new
     @request = Request.new
   end
 
-  # GET /requests/1/edit
   def edit; end
 
-  # POST /requests or /requests.json
   def create
     @request = @user.requests.new(request_params)
 
     if @request.save
-      delete_request_ids_cache
+      clear_cache
       NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
       redirect_to user_request_url(@user, @request), notice: t('requests.saved')
     else
@@ -55,21 +43,19 @@ class RequestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /requests/1 or /requests/1.json
   def update
     @request = @user.requests.friendly.find(params[:id])
     if @request.update(request_params)
-      delete_request_ids_cache
+      clear_cache
       redirect_to user_request_url, notice: t('requests.updated')
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /requests/1 or /requests/1.json
   def destroy
     @request.destroy
-    delete_request_ids_cache
+    clear_cache
     redirect_to user_requests_url, notice: t('requests.deleted')
   end
 
@@ -89,7 +75,7 @@ class RequestsController < ApplicationController
       flash[:alert] = t('requests.failed_to_reopen')
       render :show
     end
-    delete_request_ids_cache
+    clear_cache
   end
 
   private
@@ -114,7 +100,7 @@ class RequestsController < ApplicationController
     params.require(:request).permit(:title, :description, :user_id)
   end
 
-  def delete_request_ids_cache
+  def clear_cache
     Rails.cache.delete('request_ids')
   end
 
@@ -126,5 +112,11 @@ class RequestsController < ApplicationController
 
   def user_requests_query(ids)
     Request.where(id: ids, user_id: current_user.id)
+  end
+
+  def request_ids
+    Rails.cache.fetch('request_ids') do
+      Request.pluck(:id)
+    end
   end
 end

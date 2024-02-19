@@ -7,73 +7,61 @@ class PropertiesController < ApplicationController
   before_action :require_admin
   before_action :set_property, only: %i[show edit update destroy]
 
-  # GET /properties or /properties.json
   def index
-    ids = Rails.cache.fetch('property_ids') do
-      Property.pluck(:id)
-    end
-    @pagy, @properties = pagy(Property.where(id: ids, user_id: current_user.id).order(created_at: :desc))
+    @pagy, @properties = pagy(Property.where(id: property_ids, user_id: current_user.id).order(created_at: :desc))
   end
 
-  # GET /properties/1 or /properties/1.json
   def show; end
 
-  # GET /properties/new
   def new
     @property = Property.new
   end
 
-  # GET /properties/1/edit
   def edit; end
 
-  # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
 
-    respond_to do |format|
-      if @property.save
-        delete_property_ids_cache
-        format.html { redirect_to property_url(@property), notice: t('properties.saved') }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @property.save
+      clear_cache
+      redirect_to property_url(@property), notice: t('properties.saved')
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /properties/1 or /properties/1.json
   def update
     if @property.update(property_params)
-      delete_property_ids_cache
-      respond_to do |format|
-        format.html { redirect_to property_url(@property), notice: t('properties.updated') }
-      end
+      clear_cache
+      redirect_to property_url(@property), notice: t('properties.updated')
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /properties/1 or /properties/1.json
   def destroy
     @property.destroy
-    delete_property_ids_cache
-    respond_to do |format|
-      format.html { redirect_to properties_url, notice: t('properties.deleted') }
-    end
+    clear_cache
+    redirect_to properties_url, notice: t('properties.deleted')
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_property
     @property = Property.friendly.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def property_params
     params.require(:property).permit(:name, :user_id)
   end
 
-  def delete_property_ids_cache
+  def clear_cache
     Rails.cache.delete('property_ids')
+  end
+
+  def property_ids
+    Rails.cache.fetch('property_ids') do
+      Property.pluck(:id)
+    end
   end
 end
