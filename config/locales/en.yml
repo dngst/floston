@@ -42,6 +42,10 @@ en:
   activerecord:
     errors:
       models:
+        comment:
+          attributes:
+            body:
+              blank: "Comment can't be blank"
         user:
           attributes:
             fname:
