@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   before_action :require_admin, only: %i[new create edit update destroy]
 
   def index
-    @pagy, @articles = pagy(fetch_articles_for_current_user, items: 20)
+    @pagy, @articles = pagy(fetch_articles_for_current_user.includes(:user), items: 20)
   end
 
   def show
@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
   def fetch_articles_for_current_user
     ids = Rails.cache.fetch('article_ids', expires_in: 12.hours) { Article.pluck(:id) }
     query = current_user.admin? ? Article.where(id: ids, user_id: current_user.id) : Article.where(id: ids, user_id: current_user.admin_id, published: true, property_id: current_user.tenant.property_id)
-    query.order(created_at: :desc)
+    query.includes(:user).order(created_at: :desc)
   end
 
   def authorize_article_access
@@ -64,7 +64,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_article
-    @article = Article.friendly.find(params[:id])
+    @article = Article.includes(:user).friendly.find(params[:id])
   end
 
   def article_params

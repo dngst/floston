@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   before_action :handle_customer_details, only: [:show]
 
   def index
-    tenants_list = User.where(id: user_ids, admin: false, admin_id: current_user.id).order(created_at: :desc)
+    tenants_list = User.where(id: user_ids, admin: false, admin_id: current_user.id).order(created_at: :desc).includes(:tenant)
     @pagy, @users = pagy(tenants_list)
   end
 

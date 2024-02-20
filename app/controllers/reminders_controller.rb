@@ -9,11 +9,13 @@ class RemindersController < ApplicationController
                           pagy(Reminder.joins(:user)
                                   .where(users: { admin_id: current_user.id })
                                   .where(reminders: { user_id: @user.id })
-                                  .order(created_at: :desc))
+                                  .order(created_at: :desc)
+                                  .includes(:user))
                         else
                           pagy(Reminder
                             .where(user_id: current_user.id)
-                            .order(created_at: :desc))
+                            .order(created_at: :desc)
+                            .includes(:user))
                         end
   end
 end

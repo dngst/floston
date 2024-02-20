@@ -7,7 +7,7 @@ class StatsController < ApplicationController
 
   def index
     @user = User.friendly.find(params[:user_id])
-    @sign_in_count ||= @user.sign_in_count
-    @index ||= @user.requests.length
+    @sign_in_count = @user.sign_in_count
+    @index = @user.requests.length
   end
 end

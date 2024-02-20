@@ -12,9 +12,9 @@ class RequestsController < ApplicationController
   def index
     @request_user = User.friendly.find(params[:user_id])
     @requests = if current_user&.admin?
-                  admin_requests_query(request_ids).includes([:user]).order(created_at: :desc)
+                  admin_requests_query(request_ids).order(created_at: :desc).includes(:user)
                 else
-                  user_requests_query(request_ids).order(created_at: :desc)
+                  user_requests_query(request_ids).order(created_at: :desc).includes(:user)
                 end
     @pagy, @requests = pagy(@requests, items: 20)
   end
@@ -106,7 +106,7 @@ class RequestsController < ApplicationController
 
   def admin_requests_query(ids)
     query = Request.joins(:user).where(id: ids, users: { admin_id: current_user.id })
-    query = query.where(requests: { user_id: @request_user.id }).includes([:user]) unless @request_user.admin?
+    query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
     query
   end
 

@@ -5,6 +5,7 @@ class Property < ApplicationRecord
 
   has_many :tenants
   has_many :articles
+  belongs_to :user
 
   validates :name, presence: true
 
