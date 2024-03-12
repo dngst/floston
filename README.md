@@ -4,7 +4,7 @@
 
 [![Ruby on Rails CI](https://github.com/raisondata/floston/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/raisondata/floston/actions/workflows/rubyonrails.yml)
 
-Propery owners can create accounts for tenants. Tenants can sign in to to view
+Property owners can create accounts for tenants. Tenants can sign in to to view
 their account details including next rent payment and ammount due. Tenants can
 also submit requests and read articles.
 
