@@ -2,11 +2,13 @@
 
 <%= link_to sanitize('&larr; back to article'), article_path(@article), class: "text-gray-600" %>
 
-<div class="w-full max-w-xl mt-4">
-  <h1 class="text-4xl font-bold text-gray-800 mb-6">Editing article</h1>
-  <% if params[:attribute].present? %>
-    <%= render "inline_attribute_form", article: @article %>
-  <% else %>
-    <%= render "form", article: @article %>
-  <% end %>
+<div class="flex justify-center items-center">
+  <div class="max-w-xl mt-4">
+    <h1 class="text-4xl font-bold text-gray-800 mb-6">Editing article</h1>
+    <% if params[:attribute].present? %>
+      <%= render "inline_attribute_form", article: @article %>
+    <% else %>
+      <%= render "form", article: @article %>
+    <% end %>
+  </div>
 </div>

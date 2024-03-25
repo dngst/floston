@@ -1,37 +1,38 @@
 <% content_for :title, @request.title %>
 
-<div class="w-full max-w-xl">
-  <%= render @request %>
+<div class="flex items-center justify-center">
+  <div class="max-w-xl mt-2">
+    <%= render @request %>
+    <div class="my-8">
+      <% if user_is_admin? %>
+        <div class="flex space-x-4">
+          <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
+          <% if @request.closed? %>
+            <%= button_to "Reopen request", reopen_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Reopen request?" }, class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium" %>
+          <% else %>
+            <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="my-8">
-    <% if user_is_admin? %>
-      <div class="flex space-x-4">
-        <%= button_to "Delete request", user_request_path(current_user, @request), method: :delete, data: { turbo_confirm: "Delete request?" }, class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
-        <% if @request.closed? %>
-          <%= button_to "Reopen request", reopen_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Reopen request?" }, class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium" %>
-        <% else %>
-          <%= button_to "Close request", close_request_user_request_path(current_user, @request), method: :patch, data: { turbo_confirm: "Close request?" }, class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+    <h2 class="text-3xl font-bold text-gray-600">
+      <%= render "requests/comment_counter", counter: @comment_count %>
+    </h2>
 
-  <h2 class="text-3xl font-bold text-gray-600">
-    <%= render "requests/comment_counter", counter: @comment_count %>
-  </h2>
+    <div class="mb-2" id="comments">
+      <% if @request.comments&.present? %>
+        <% comments_to_render = @request.comments.select { |comment| comment.id.present? } %>
+        <%= render partial: "comments/comment", collection: comments_to_render, cached: true %>
+      <% end %>
+    </div>
 
-  <div class="mb-2" id="comments">
-    <% if @request.comments&.present? %>
-      <% comments_to_render = @request.comments.select { |comment| comment.id.present? } %>
-      <%= render partial: "comments/comment", collection: comments_to_render, cached: true %>
-    <% end %>
-  </div>
-
-  <% if @request.closed? %>
-    <p class="text-red-500 my-4">
+    <% if @request.closed? %>
+      <p class="text-red-500 my-4">
       <%= user_is_admin? ? "You" : User.find(@user.admin_id)&.fname.to_s %> closed this request
-    </p>
-  <% else %>
-    <%= render "comments/form" %>
-  <% end %>
+      </p>
+    <% else %>
+      <%= render "comments/form" %>
+    <% end %>
+  </div>
 </div>
