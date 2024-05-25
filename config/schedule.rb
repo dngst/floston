@@ -22,3 +22,8 @@
 every 1.day do
   runner 'Tenant.send_due_date_reminders'
 end
+
+every 1.month do
+  runner 'Tenant.update_due_dates'
+end
+

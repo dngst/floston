@@ -41,6 +41,12 @@ class Tenant < ApplicationRecord
     tenants.sum(:amount_due)
   end
 
+  def self.update_due_dates
+    Tenant.where.not(next_payment: nil).find_each do |tenant|
+      tenant.update!(next_payment: tenant.next_payment.next_month)
+    end
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[unit_number unit_type property]
   end
