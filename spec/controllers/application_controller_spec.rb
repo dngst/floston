@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ApplicationController do
   controller do
     def after_sign_in_path_for(resource)
-      super(resource)
+      super
     end
   end
 

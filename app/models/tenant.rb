@@ -26,7 +26,7 @@ class Tenant < ApplicationRecord
     UNIT_TYPES
   end
 
-  scope :due_for_reminder, -> { where('next_payment <= ?', 5.days.from_now) }
+  scope :due_for_reminder, -> { where(next_payment: ..5.days.from_now) }
 
   def self.send_due_date_reminders
     due_for_reminder.find_each do |tenant|
