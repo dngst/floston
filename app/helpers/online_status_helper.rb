@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 module OnlineStatusHelper
-  require 'net/http'
+  require 'httparty'
 
   def online?
-    url = URI.parse('https://www.google.com')
-    response = Net::HTTP.get_response(url)
-    response.is_a?(Net::HTTPSuccess)
+    response = HTTParty.get('https://www.google.com')
+    response.success?
   rescue StandardError
     false
   end
