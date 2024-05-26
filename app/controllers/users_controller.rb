@@ -3,6 +3,9 @@
 class UsersController < ApplicationController
   include RequireAdmin
 
+  include UserIsAdminHelper
+  helper_method :user_is_admin?
+
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy authorize_profile_access]
   before_action :require_admin, only: %i[index edit update destroy]
@@ -49,10 +52,15 @@ class UsersController < ApplicationController
   end
 
   def handle_customer_details
-    return unless current_user&.admin? && current_user == @user
+    return unless user_is_admin?
+
+    unless online?
+      flash[:alert] = t('subscriptions.offline')
+      return
+    end
 
     response = @paystack_service.fetch_customer_details(current_user)
-    return unless response && response['status']
+    return unless response&.dig('status')
 
     @subscribed = response['data']['subscriptions']
     @card_details = response['data']['authorizations'][0]
