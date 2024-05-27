@@ -2,7 +2,7 @@
 
 class Tenant < ApplicationRecord
   belongs_to :user
-  belongs_to :property
+  belongs_to :property, counter_cache: true
 
   validates :unit_number, presence: true, uniqueness: true
   validates :unit_type, presence: true

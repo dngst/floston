@@ -7,6 +7,11 @@
         <p class="text-2xl capitalize mb-8">
           <%= link_to (property[attribute].presence || 'Edit'), [:edit, property, attribute: attribute] %>
         </p>
+        <% if property.tenants_count > 0 %>
+          <%= pluralize(format_count(property.tenants_count), 'Tenant') %>
+        <% else %>
+          <p class="text-gray-500">No tenants yet</p>
+        <% end %>
       <% end %>
     <% end %>
 
@@ -28,3 +33,4 @@
     <% end %>
   <% end %>
 </div>
+
