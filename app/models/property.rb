@@ -28,7 +28,7 @@ class Property < ApplicationRecord
   end
 
   def self.my_properties(current_user)
-    where(user_id: current_user.id)
+    where(user_id: current_user.id).order(:name)
   end
 
   def self.ransackable_attributes(_auth_object = nil)
