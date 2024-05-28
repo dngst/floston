@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+        maxWidth: {
+            '1/2': '65%',
+        },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
