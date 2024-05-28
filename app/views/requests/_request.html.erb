@@ -21,11 +21,11 @@
       <%= link_to user_path(request.user)  do %>
         <%= request.user.name %>
       <% end %>
-      <% cache('bx-building-house.svg') do %>
-        <%= image_tag "bx-building-house.svg", alt: "User", class: "w-6 ml-4 mr-2", draggable: false %>
-      <% end %>
-      <%= request.user.tenant.property.name %>
     <% end %>
+    <% cache('bx-building-house.svg') do %>
+      <%= image_tag "bx-building-house.svg", alt: "User", class: "w-6 ml-4 mr-2", draggable: false %>
+    <% end %>
+    <%= request.user.tenant.property.name %>
   </div>
 </div>
 
