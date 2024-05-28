@@ -11,14 +11,21 @@
     <%= request.description %>
   </p>
 
-  <p>
-    by:
+  <div class="flex pt-5">
+    <% cache('bx-building-house.svg') do %>
+      <%= image_tag "bx-user.svg", alt: "User", class: "w-6 mr-2", draggable: false %>
+    <% end %>
     <% if request.user == current_user %>
       You
     <% else %>
-      <%= link_to user_path(request.user), class: "text-flostonlink underline" do %>
+      <%= link_to user_path(request.user)  do %>
         <%= request.user.name %>
       <% end %>
+      <% cache('bx-building-house.svg') do %>
+        <%= image_tag "bx-building-house.svg", alt: "User", class: "w-6 ml-4 mr-2", draggable: false %>
+         <%= request.user.tenant.property.name %>
+      <% end %>
     <% end %>
-  </p>
+  </div>
 </div>
+
