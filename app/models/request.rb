@@ -5,6 +5,7 @@ class Request < ApplicationRecord
 
   belongs_to :user
   has_many :comments, dependent: :destroy
+  belongs_to :property
 
   validates :title, :description, presence: true
 
@@ -36,6 +37,7 @@ end
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  property_id :integer
 #  user_id     :bigint           not null
 #
 # Indexes

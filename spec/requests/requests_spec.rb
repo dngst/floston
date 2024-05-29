@@ -4,20 +4,20 @@ require 'rails_helper'
 
 RSpec.describe '/requests' do
   let(:admin) { create(:admin) }
-  let(:request) { create(:request, user_id: user.id) }
   let(:property) { create(:property, user_id: admin.id) }
+  let(:request) { create(:request, user_id: user.id, property_id: property.id) }
   let(:user) { create(:user, admin_id: admin.id, tenant_attributes_override: { property_id: property.id }) }
 
   let(:valid_attributes) do
-    { title: 'New Request', description: 'Content', user_id: user.id }
+    { title: 'New Request', description: 'Content', user_id: user.id, property_id: property.id }
   end
 
   let(:new_attributes) do
-    { title: 'Updated Request', description: 'New Content', user_id: user.id }
+    { title: 'Updated Request', description: 'New Content', user_id: user.id, property_id: property.id }
   end
 
   let(:invalid_attributes) do
-    { title: '', description: '', user_id: user.id }
+    { title: '', description: '', user_id: user.id, property_id: property.id }
   end
 
   before do
