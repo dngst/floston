@@ -92,55 +92,6 @@ Tenant.find_or_create_by!(
   property_id: 10
 )
 
-Article.find_or_create_by!(
-  title: "Recent change of management",
-  body: "Following a recent incident, some changes have been made...",
-  user_id: elrich.id,
-  published: true,
-  property_id: 10
-)
-
-Article.find_or_create_by!(
-  title: "Key people at Argon Properties",
-  body: "Some of the names and contacts of the people involved in this project...",
-  user_id: elrich.id,
-  published: true,
-  property_id: 10
-)
-
-Article.find_or_create_by!(
-  title: "Faulty tap at the parking lot near block D",
-  body: "There's a leaking tap near block D at the parking lot. Please refrain from using it while we organize for repairs to be made.",
-  user_id: elrich.id,
-  property_id: 10
-)
-
-Article.find_or_create_by!(
-  title: "Richard can also write some articles like this one",
-  body: "Jobs or... Jobs",
-  user_id: richard.id,
-  published: true,
-  property_id: richards_property.id
-)
-
-Request.find_or_create_by!(
-  title: "Window repair",
-  description: "Woke up this morning to find a window pane in my bedroom had fallen down",
-  user_id: jane.id
-)
-
-Request.find_or_create_by!(
-  title: "Disturbance",
-  description: "The tenant at door no. 2E is constantly playing loud music since they moved in and is rude when asked to tone it down.",
-  user_id: jane.id
-)
-
-Request.find_or_create_by!(
-  title: "Key replacement",
-  description: "I lost my gate key. Could you please organize for me another one?",
-  user_id: john.id
-)
-
 24.times do
   Reminder.create!(
     amount: 68.90,
@@ -182,7 +133,8 @@ end
   Request.create!(
     title: Faker::Lorem.words(number: 5).join(' '),
     description: Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
-    user_id: jane.id
+    user_id: jane.id,
+    property_id: 10
   )
 end
 
