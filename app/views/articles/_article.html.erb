@@ -23,7 +23,7 @@
       <% elsif attribute == :property_id %>
         <div class="mt-8 flex items-center mb-2">
           <% cache('bx-building-house.svg') do %>
-            <%= image_tag "bx-building-house.svg", alt: "Property", class: "w-5 mr-2", draggable: false %>
+            <%= image_tag "bx-building-house.svg", alt: "Property", class: "w-5 mr-1", draggable: false %>
           <% end %>
          <%= content_tag :p, Property.find_by(id: article[attribute]).name, class: "text-sm" %>
         </div>

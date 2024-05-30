@@ -13,7 +13,7 @@
 
   <div class="flex pt-5">
     <% cache('bx-user.svg') do %>
-      <%= image_tag "bx-user.svg", alt: "User", class: "w-5 mr-2", draggable: false %>
+      <%= image_tag "bx-user.svg", alt: "User", class: "w-5 mr-1", draggable: false %>
     <% end %>
     <% if request.user == current_user %>
       You
@@ -23,7 +23,7 @@
       <% end %>
     <% end %>
     <% cache('bx-building-house.svg') do %>
-      <%= image_tag "bx-building-house.svg", alt: "User", class: "w-5 ml-4 mr-2", draggable: false %>
+      <%= image_tag "bx-building-house.svg", alt: "User", class: "w-5 ml-4 mr-1", draggable: false %>
     <% end %>
     <%= content_tag :p, request.user.tenant.property.name, class: "text-sm" %>
   </div>
