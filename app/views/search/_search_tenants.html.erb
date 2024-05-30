@@ -6,7 +6,7 @@
       <% if @users.present? %>
         <%= render partial: "tenant", collection: @users, as: :user, cached: true %>
         <div class="mt-4">
-          <%= paginate @users if @requests.total_count > 9 %>
+          <%= paginate @users if @users.total_count > 9 %>
         </div>
       <% end %>
     </div>
