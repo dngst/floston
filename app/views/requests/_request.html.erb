@@ -16,7 +16,7 @@
       <%= image_tag "bx-user.svg", alt: "User", class: "w-5 mr-1", draggable: false %>
     <% end %>
     <% if request.user == current_user %>
-      You
+      <p class="text-sm">You</p>
     <% else %>
       <%= link_to user_path(request.user)  do %>
         <%= content_tag :p, request.user.name, class: "text-sm" %>
