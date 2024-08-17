@@ -28,6 +28,7 @@ $ bin/setup
 
 $ bin/dev
 
+
 ## Caching
 
 Run $ bin/rails dev:cache to toggle caching
@@ -35,3 +36,8 @@ Run $ bin/rails dev:cache to toggle caching
 ## Tests
 
 $ bundle exec rspec
+
+## [Sample Credentials](https://gist.github.com/dngst/950b02df6d6f789309a113cef0ae01a2)
+
+[floston.onrender.com](https://floston.onrender.com/)
+
