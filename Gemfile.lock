@@ -108,10 +108,15 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
+    ffi (1.17.1-x86_64-linux-gnu)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hotwire-spark (0.1.12)
+      listen
+      rails (>= 7.0.0)
+      zeitwerk
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -142,6 +147,9 @@ GEM
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
+    listen (3.9.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -221,6 +229,9 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    rb-fsevent (0.11.2)
+    rb-inotify (0.11.1)
+      ffi (~> 1.0)
     rdoc (6.7.0)
       psych (>= 4.0.0)
     redis (4.8.1)
@@ -329,6 +340,7 @@ DEPENDENCIES
   factory_bot_rails
   faker (~> 3.2)
   friendly_id (~> 5.5)
+  hotwire-spark (~> 0.1.12)
   httparty (~> 0.21.0)
   importmap-rails
   jbuilder

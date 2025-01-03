@@ -99,3 +99,5 @@ gem 'pagy', '~> 6.1'
 gem 'kaminari', '~> 1.2'
 
 gem 'httparty', '~> 0.21.0'
+
+gem "hotwire-spark", "~> 0.1.12", :group => :development
