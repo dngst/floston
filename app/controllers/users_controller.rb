@@ -10,8 +10,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy authorize_profile_access]
   before_action :require_admin, only: %i[index edit update destroy]
   before_action :authorize_profile_access, only: [:show]
-  before_action :initialize_paystack_service, only: [:show]
-  before_action :handle_customer_details, only: [:show]
 
   def index
     tenants_list = User.where(id: user_ids, admin: false, admin_id: current_user.id).order(created_at: :desc).includes(:tenant)
@@ -45,26 +43,6 @@ class UsersController < ApplicationController
 
     flash[:alert] = t('permission_denied')
     redirect_to root_path
-  end
-
-  def initialize_paystack_service
-    @paystack_service = PaystackService.new(ENV.fetch('PAYSTACK_SECRET_KEY', nil))
-  end
-
-  def handle_customer_details
-    return unless user_is_admin?
-
-    unless online?
-      flash[:alert] = t('subscriptions.offline')
-      return
-    end
-
-    response = @paystack_service.fetch_customer_details(current_user)
-    return unless response&.dig('status')
-
-    @subscribed = response['data']['subscriptions']
-    @card_details = response['data']['authorizations'][0]
-    @subscription_details = response['data']['subscriptions'][0]
   end
 
   def set_user
