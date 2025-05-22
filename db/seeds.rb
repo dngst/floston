@@ -137,13 +137,3 @@ end
     property_id: 10
   )
 end
-
-50.times do
-  Article.create!(
-    title: Faker::Lorem.words(number: 7).join(' '),
-    body:  Faker::Lorem.paragraphs(number: 5, supplemental: true).join("\n\n"),
-    user_id: elrich.id,
-    property_id: 10,
-    published: true
-  )
-end

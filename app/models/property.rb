@@ -4,7 +4,6 @@ class Property < ApplicationRecord
   extend FriendlyId
 
   has_many :tenants
-  has_many :articles
   has_many :requests
   belongs_to :user
 
@@ -25,7 +24,7 @@ class Property < ApplicationRecord
   end
 
   def can_be_deleted?
-    tenants.empty? && articles.empty?
+    tenants.empty?
   end
 
   def self.my_properties(current_user)

@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_one :tenant, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :articles, dependent: :destroy
   has_many :reminders, dependent: :destroy
   has_many :properties, dependent: :destroy
 
