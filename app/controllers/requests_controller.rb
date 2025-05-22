@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
       NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
       redirect_to user_request_url(@user, @request), notice: t('requests.saved')
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -49,7 +49,7 @@ class RequestsController < ApplicationController
       clear_cache
       redirect_to user_request_url, notice: t('requests.updated')
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

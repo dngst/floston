@@ -67,7 +67,7 @@ RSpec.describe '/properties' do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post properties_url, params: { property: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -90,7 +90,7 @@ RSpec.describe '/properties' do
     context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         patch property_url(property), params: { property: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

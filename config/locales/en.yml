@@ -1,9 +1,5 @@
 en:
   permission_denied: 'You do not have permission to access that page'
-  articles:
-    saved: 'Article saved'
-    updated: 'Article updated'
-    deleted: 'Article deleted'
   properties:
     saved: 'Property saved'
     updated: 'Property updated'

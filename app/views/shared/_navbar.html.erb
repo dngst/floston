@@ -18,7 +18,6 @@
             <%= active_link_to "Properties", properties_path, draggable:false %>
           <% end %>
           <%= active_link_to "Requests", user_requests_path(current_user), draggable:false %>
-          <%= active_link_to "General Info", articles_path, draggable:false %>
           <%= link_to destroy_user_session_path, draggable:false, class: "sign-out", data: { turbo_method: :delete } do %>
             <% cache("bx-log-out-circle.svg") do %>
               <%= image_tag "bx-log-out-circle.svg", alt: "Sign out", class: "w-6", draggable:false %>

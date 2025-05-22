@@ -26,7 +26,7 @@ class PropertiesController < ApplicationController
       clear_cache
       redirect_to property_url(@property), notice: t('properties.saved')
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -35,7 +35,7 @@ class PropertiesController < ApplicationController
       clear_cache
       redirect_to property_url(@property), notice: t('properties.updated')
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

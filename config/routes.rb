@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   end
   resources :properties
   get 'search', to: 'search#index'
-  resources :articles
   # public
   get 'features', to: 'features#index'
   root "home#index" # ("/")

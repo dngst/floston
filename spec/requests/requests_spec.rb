@@ -76,7 +76,7 @@ RSpec.describe '/requests' do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post user_requests_url(user), params: { request: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe '/requests' do
         sign_in admin
 
         patch user_request_url(user, request), params: { request: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

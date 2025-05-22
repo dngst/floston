@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       send_new_comment_email(@request, @comment)
       handle_create_success
     else
-      render 'requests/show', status: :unprocessable_entity
+      render 'requests/show', status: :unprocessable_content
     end
   end
 
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to user_request_comment_path(@user, @request, @comment), notice: t('comments.updated')
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
