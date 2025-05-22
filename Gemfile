@@ -103,5 +103,3 @@ gem 'httparty', '~> 0.21.0'
 gem 'hotwire-spark', '~> 0.1.12', group: :development
 
 gem "csv", "~> 3.3"
-
-gem "pry", "~> 0.15.2"
