@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if @user.update(user_params) && @user.tenant&.update(tenant_params)
       redirect_to user_path(@user), notice: t('users.updated')
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

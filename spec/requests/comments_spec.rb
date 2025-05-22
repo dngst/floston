@@ -43,7 +43,7 @@ RSpec.describe '/comments' do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post user_request_comments_url(user, request), params: { comment: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
       clear_cache
       redirect_to article_url(@article), notice: t('articles.saved')
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
       clear_cache
       redirect_to article_url(@article), notice: t('articles.updated')
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

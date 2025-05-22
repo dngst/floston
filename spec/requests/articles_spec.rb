@@ -105,7 +105,7 @@ RSpec.describe '/articles' do
         sign_in admin
 
         post articles_url, params: { article: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -142,7 +142,7 @@ RSpec.describe '/articles' do
         sign_in admin
 
         patch article_url(article), params: { article: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

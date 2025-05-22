@@ -131,7 +131,7 @@ RSpec.describe 'Users' do
         sign_in admin
 
         post user_registration_path, params: { user: invalid_user_attributes, tenant: invalid_tenant_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -171,7 +171,7 @@ RSpec.describe 'Users' do
         sign_in admin
 
         patch user_path(user), params: { user: invalid_user_attributes, tenant: invalid_tenant_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
