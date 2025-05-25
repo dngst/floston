@@ -20,8 +20,4 @@
   Sign in count — <span class="text-gray-800 font-semibold"><%= format_count(@sign_in_count) %></span></p>
 
 <p class="mb-4 text-gray-600">
-   <%= link_to "Reminders", user_reminders_path(@user), draggable:false, class: "text-gray-600 underline mt-4" %>
-</p>
-
-<p class="mb-4 text-gray-600">
   Added — <span class="text-gray-800 font-semibold"><%= format_stats_datetime(@user.created_at) %></span></p>

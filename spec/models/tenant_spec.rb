@@ -13,25 +13,20 @@ end
 #
 # Table name: tenants
 #
-#  id           :bigint           not null, primary key
-#  amount_due   :decimal(8, 2)
-#  moved_in     :date
-#  next_payment :date
+#  id           :integer          not null, primary key
 #  unit_number  :string           not null
 #  unit_type    :string           not null
+#  moved_in     :date
+#  next_payment :date
+#  amount_due   :decimal(8, 2)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  property_id  :bigint           not null
-#  user_id      :bigint           not null
+#  user_id      :integer          not null
+#  property_id  :integer          not null
 #
 # Indexes
 #
 #  index_tenants_on_property_id  (property_id)
 #  index_tenants_on_unit_number  (unit_number) UNIQUE
 #  index_tenants_on_user_id      (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (property_id => properties.id)
-#  fk_rails_...  (user_id => users.id)
 #

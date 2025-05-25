@@ -92,13 +92,6 @@ Tenant.find_or_create_by!(
   property_id: 10
 )
 
-24.times do
-  Reminder.create!(
-    amount: 68.90,
-    user_id: jane.id
-  )
-end
-
 50.times do
   unit_number = Faker::Number.unique.number(digits: 3)
 
