@@ -10,25 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_25_064409) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_25_165345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
-
-  create_table "articles", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "body", null: false
-    t.boolean "published", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.bigint "user_id", null: false
-    t.bigint "property_id", null: false
-    t.text "viewed_user_ids"
-    t.integer "view_count", default: 0
-    t.index ["property_id"], name: "index_articles_on_property_id"
-    t.index ["slug"], name: "index_articles_on_slug", unique: true
-    t.index ["user_id"], name: "index_articles_on_user_id"
-  end
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
@@ -114,8 +98,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_25_064409) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
-  add_foreign_key "articles", "properties"
-  add_foreign_key "articles", "users"
   add_foreign_key "comments", "requests"
   add_foreign_key "comments", "users"
   add_foreign_key "properties", "users"
