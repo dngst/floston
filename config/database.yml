@@ -38,6 +38,10 @@ development:
     <<: *sqlite
     database: storage/floston_development_cable.sqlite3
     migrations_paths: db/cable_migrate
+  queue:
+    <<: *sqlite
+    database: storage/floston_development_queue.sqlite3
+    migrations_paths: db/queue_migrate
 
 # Uncomment the following lines to use a specific database role and password.
   # The specified database role being used to connect to postgres.
@@ -108,3 +112,7 @@ production:
     <<: *sqlite
     database: storage/floston_production_cable.sqlite3
     migrations_paths: db/cable_migrate
+  queue:
+    <<: *sqlite
+    database: storage/floston_production_queue.sqlite3
+    migrations_paths: db/queue_migrate

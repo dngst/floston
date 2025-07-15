@@ -106,3 +106,5 @@ gem 'sqlite3', '~> 2.7'
 gem 'solid_cache', '~> 1.0'
 
 gem 'solid_cable', '~> 3.0'
+
+gem 'solid_queue', '~> 1.2'
