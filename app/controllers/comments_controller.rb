@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :request_id, :user_id)
+    params.expect(comment: %i[body request_id user_id])
   end
 
   def send_new_comment_email(request, comment)
@@ -63,7 +63,8 @@ class CommentsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.append('comments', partial: 'comments/comment', locals: { comment: @comment }),
-          turbo_stream.replace('comment_counter', partial: 'requests/comment_counter', locals: { counter: @request.comments.length })
+          turbo_stream.replace('comment_counter', partial: 'requests/comment_counter',
+                                                  locals: { counter: @request.comments.length })
         ]
       end
     end

@@ -21,8 +21,8 @@ class Request < ApplicationRecord
     %w[description title]
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["comments", "property", "user"]
+  def self.ransackable_associations(_auth_object = nil)
+    %w[comments property user]
   end
 end
 

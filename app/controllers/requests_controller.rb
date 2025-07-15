@@ -97,7 +97,7 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:title, :description, :user_id, :property_id)
+    params.expect(request: %i[title description user_id property_id])
   end
 
   def clear_cache

@@ -8,7 +8,8 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
 
   def index
-    @pagy, @properties = pagy(Property.where(id: property_ids, user_id: current_user.id).order(created_at: :desc).includes(:user))
+    @pagy, @properties = pagy(Property.where(id: property_ids,
+                                             user_id: current_user.id).order(created_at: :desc).includes(:user))
   end
 
   def show; end
@@ -52,7 +53,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:name, :user_id)
+    params.expect(property: %i[name user_id])
   end
 
   def clear_cache

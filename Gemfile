@@ -73,10 +73,7 @@ group :development do
   gem 'rack-mini-profiler'
 
   gem 'annotate'
-  gem 'rubocop-factory_bot', require: false
-  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
   gem 'spring'
 end
 
@@ -102,8 +99,8 @@ gem 'httparty', '~> 0.21.0'
 
 gem 'hotwire-spark', '~> 0.1.12', group: :development
 
-gem "csv", "~> 3.3"
+gem 'csv', '~> 3.3'
 
-gem "sqlite3", "~> 2.7"
+gem 'sqlite3', '~> 2.7'
 
-gem "solid_cache", "~> 1.0"
+gem 'solid_cache', '~> 1.0'

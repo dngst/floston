@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   before_action :authorize_profile_access, only: [:show]
 
   def index
-    tenants_list = User.where(id: user_ids, admin: false, admin_id: current_user.id).order(created_at: :desc).includes(:tenant)
+    tenants_list = User.where(id: user_ids, admin: false,
+                              admin_id: current_user.id).order(created_at: :desc).includes(:tenant)
     @pagy, @users = pagy(tenants_list)
   end
 
@@ -50,11 +51,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:fname, :lname, :phone_number)
+    params.expect(user: %i[fname lname phone_number])
   end
 
   def tenant_params
-    params.require(:tenant).permit(:amount_due, :moved_in, :next_payment, :unit_number, :unit_type, :property_id)
+    params.expect(tenant: %i[amount_due moved_in next_payment unit_number unit_type property_id])
   end
 
   def clear_cache
