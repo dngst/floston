@@ -62,7 +62,7 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-  gem 'rspec-rails', '~> 8.0.0'
+  gem 'rspec-rails', '~> 6.0.0'
 end
 
 group :development do
@@ -86,7 +86,6 @@ gem 'friendly_id', '~> 5.5'
 gem 'ransack', '~> 4.0'
 
 gem 'tailwindcss-rails', '~> 2.0'
-
 
 gem 'faker', '~> 3.2'
 
