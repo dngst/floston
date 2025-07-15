@@ -104,3 +104,5 @@ gem 'csv', '~> 3.3'
 gem 'sqlite3', '~> 2.7'
 
 gem 'solid_cache', '~> 1.0'
+
+gem 'solid_cable', '~> 3.0'

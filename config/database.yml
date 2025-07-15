@@ -32,8 +32,13 @@ development:
     database: floston_development
   cache:
     <<: *sqlite
-    database: solid/floston_development_cache.sqlite3
+    database: storage/floston_development_cache.sqlite3
     migration_path: db/cache_migrate
+  cable:
+    <<: *sqlite
+    database: storage/floston_development_cable.sqlite3
+    migrations_paths: db/cable_migrate
+
 # Uncomment the following lines to use a specific database role and password.
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -97,5 +102,9 @@ production:
   password: <%= ENV["FLOSTON_DATABASE_PASSWORD"] %>
   cache:
     <<: *sqlite
-    database: solid/floston_production_cache.sqlite3
+    database: storage/floston_production_cache.sqlite3
     migration_path: db/cache_migrate
+  cable:
+    <<: *sqlite
+    database: storage/floston_production_cable.sqlite3
+    migrations_paths: db/cable_migrate
