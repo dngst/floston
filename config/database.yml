@@ -21,10 +21,20 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-development:
-  <<: *default
-  database: floston_development
+sqlite: &sqlite
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
+development:
+  primary:
+    <<: *default
+    database: floston_development
+  cache:
+    <<: *sqlite
+    database: solid/floston_development_cache.sqlite3
+    migration_path: db/cache_migrate
+# Uncomment the following lines to use a specific database role and password.
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
