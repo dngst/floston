@@ -90,7 +90,12 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  primary: &primary_production
   <<: *default
   database: floston_production
   username: floston
   password: <%= ENV["FLOSTON_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *sqlite
+    database: solid/floston_production_cache.sqlite3
+    migration_path: db/cache_migrate
