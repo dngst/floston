@@ -87,7 +87,6 @@ gem 'ransack', '~> 4.0'
 
 gem 'tailwindcss-rails', '~> 2.0'
 
-gem 'whenever', require: false
 
 gem 'faker', '~> 3.2'
 
