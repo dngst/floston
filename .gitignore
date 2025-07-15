@@ -36,4 +36,3 @@
 /coverage
 dump.rdb
 .env
-solid/*.sqlite3
