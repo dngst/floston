@@ -9,7 +9,7 @@ ruby '3.4.1'
 gem 'rails', '~> 8.0.0'
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem "propshaft"
+gem 'propshaft'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -70,9 +70,9 @@ group :development do
   gem 'rack-mini-profiler'
 
   gem 'annotate'
+  gem 'hotwire-spark', '~> 0.1.12'
   gem 'rubocop-rails', require: false
   gem 'spring'
-  gem 'hotwire-spark', '~> 0.1.12'
 end
 
 gem 'devise', '~> 4.9'
@@ -94,4 +94,3 @@ gem 'httparty', '~> 0.21.0'
 gem 'csv', '~> 3.3'
 
 gem 'sqlite3', '~> 2.7'
-
