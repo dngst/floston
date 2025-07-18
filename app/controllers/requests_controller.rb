@@ -11,11 +11,13 @@ class RequestsController < ApplicationController
 
   def index
     @request_user = User.friendly.find(params[:user_id])
+
     @requests = if current_user&.admin?
-                  admin_requests_query(request_ids).order(created_at: :desc).includes(:user)
+                  admin_requests_query.order(created_at: :desc).includes(:user)
                 else
-                  user_requests_query(request_ids).order(created_at: :desc).includes(:user)
+                  user_requests_query.order(created_at: :desc).includes(:user)
                 end
+
     @pagy, @requests = pagy(@requests, items: 20)
   end
 
@@ -35,7 +37,6 @@ class RequestsController < ApplicationController
     @request = @user.requests.new(request_params)
 
     if @request.save
-      clear_cache
       NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
       redirect_to user_request_url(@user, @request), notice: t('requests.saved')
     else
@@ -46,7 +47,6 @@ class RequestsController < ApplicationController
   def update
     @request = @user.requests.friendly.find(params[:id])
     if @request.update(request_params)
-      clear_cache
       redirect_to user_request_url, notice: t('requests.updated')
     else
       render :edit, status: :unprocessable_content
@@ -55,7 +55,6 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    clear_cache
     redirect_to user_requests_url, notice: t('requests.deleted')
   end
 
@@ -75,7 +74,6 @@ class RequestsController < ApplicationController
       flash[:alert] = t('requests.failed_to_reopen')
       render :show
     end
-    clear_cache
   end
 
   private
@@ -100,23 +98,16 @@ class RequestsController < ApplicationController
     params.expect(request: %i[title description user_id property_id])
   end
 
-  def clear_cache
-    Rails.cache.delete('request_ids')
+  def admin_requests_query
+    Request
+      .joins(:user)
+      .where(users: { admin_id: current_user.id })
+      .then do |query|
+        @request_user.admin? ? query : query.where(user_id: @request_user.id)
+      end
   end
 
-  def admin_requests_query(ids)
-    query = Request.joins(:user).where(id: ids, users: { admin_id: current_user.id })
-    query = query.where(requests: { user_id: @request_user.id }) unless @request_user.admin?
-    query
-  end
-
-  def user_requests_query(ids)
-    Request.where(id: ids, user_id: current_user.id)
-  end
-
-  def request_ids
-    Rails.cache.fetch('request_ids') do
-      Request.pluck(:id)
-    end
+  def user_requests_query
+    Request.where(user_id: current_user.id)
   end
 end
