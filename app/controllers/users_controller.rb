@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   before_action :authorize_profile_access, only: [:show]
 
   def index
-    tenants_list = User.where(id: user_ids, admin: false,
+    tenants_list = User.where(admin: false,
                               admin_id: current_user.id).order(created_at: :desc).includes(:tenant)
     @pagy, @users = pagy(tenants_list)
   end
@@ -33,7 +33,6 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    clear_cache
     redirect_to users_path, notice: t('users.deleted')
   end
 
@@ -56,15 +55,5 @@ class UsersController < ApplicationController
 
   def tenant_params
     params.expect(tenant: %i[amount_due moved_in next_payment unit_number unit_type property_id])
-  end
-
-  def clear_cache
-    Rails.cache.delete('tenant_ids')
-  end
-
-  def user_ids
-    Rails.cache.fetch('tenant_ids') do
-      User.pluck(:id)
-    end
   end
 end
