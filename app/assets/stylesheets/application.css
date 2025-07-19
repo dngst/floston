@@ -69,3 +69,7 @@ div.navbar .active {
   width: max-content;
   animation: appear-then-fade 4s both;
 }
+
+input[type="search"]::-webkit-search-cancel-button {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
