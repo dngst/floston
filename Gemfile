@@ -69,7 +69,6 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem 'rack-mini-profiler'
 
-  gem 'annotate'
   gem 'hotwire-spark', '~> 0.1.12'
   gem 'rubocop-rails', require: false
   gem 'spring'
