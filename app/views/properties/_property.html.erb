@@ -1,36 +1,29 @@
 <%= turbo_stream_from property %>
 
 <div id="<%= dom_id property %>" class="my-12">
-  <% Property::INLINE_EDITABLE_ATTRS.each do |attribute| %>
-    <%= turbo_frame_tag attribute do %>
-      <% if attribute == :name %>
-        <p class="text-2xl capitalize mb-8">
-          <%= link_to (property[attribute].presence || 'Edit'), [:edit, property, attribute: attribute] %>
-        </p>
-        <% if property.tenants_count > 0 %>
-          <%= pluralize(format_count(property.tenants_count), 'Tenant') %>
-        <% else %>
-          <p class="text-gray-500">No tenants yet</p>
-        <% end %>
+  <p class="text-2xl capitalize mb-8">
+    <%= link_to property.name, property_path(property), data: { turbo_frame: "_top" } %>
+  </p>
+  <% if property.tenants_count.positive? %>
+    <%= pluralize(format_count(property.tenants_count), 'Tenant') %>
+  <% else %>
+    <p class="text-gray-500">No tenants yet</p>
+  <% end %>
+  <% if action_name != "show" %>
+    <div class="my-4">
+      <%= link_to "Edit property", edit_property_path(property),
+        draggable:false,
+        class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium",
+        data: { turbo_frame: "_top" } %>
+      <% if property.can_be_deleted? %>
+        <div class="inline-block ml-2">
+          <%= button_to "Delete property", property_path(property),
+            method: :delete, data: { turbo_confirm: "Delete property?" },
+            class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
+        </div>
       <% end %>
-    <% end %>
-
-    <% if action_name != "show" %>
-      <div class="my-4">
-        <%= link_to "Edit property", edit_property_path(property),
-          draggable:false,
-          class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium",
-            data: { turbo_frame: "_top" } %>
-          <% if property.can_be_deleted? %>
-            <div class="inline-block ml-2">
-              <%= button_to "Delete property", property_path(property),
-                method: :delete, data: { turbo_confirm: "Delete property?" },
-                class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
-            </div>
-          <% end %>
-        <hr class="mt-4  max-w-lg">
-      </div>
-    <% end %>
+      <hr class="mt-4  max-w-lg">
+    </div>
   <% end %>
 </div>
 

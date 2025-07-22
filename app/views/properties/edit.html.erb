@@ -6,10 +6,6 @@
   <h1 class="font-bold text-4xl my-4">Editing property</h1>
 
   <div id="update-property-form">
-    <% if params[:attribute].present? %>
-      <%= render "inline_attribute_form", property: @property %>
-    <% else %>
-      <%= render partial: "form", locals: { property: @property } %>
-    <% end %>
+    <%= render partial: "form", locals: { property: @property } %>
   </div>
 </div>

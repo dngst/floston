@@ -11,8 +11,6 @@ class Property < ApplicationRecord
 
   broadcasts_refreshes
 
-  INLINE_EDITABLE_ATTRS = %i[name].freeze
-
   friendly_id :generate_slug, use: :slugged
 
   def generate_slug
