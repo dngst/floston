@@ -19,6 +19,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
+  scope :tenants_for, ->(admin_id) { where(admin: false, admin_id: admin_id).order(created_at: :desc) }
+
   def with_tenant
     build_tenant unless tenant
     self

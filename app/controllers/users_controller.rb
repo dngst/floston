@@ -12,9 +12,7 @@ class UsersController < ApplicationController
   before_action :authorize_profile_access, only: [:show]
 
   def index
-    tenants_list = User.where(admin: false,
-                              admin_id: current_user.id).order(created_at: :desc)
-    @pagy, @users = pagy(tenants_list)
+    @pagy, @users = pagy(User.tenants_for(current_user.id))
   end
 
   def show
