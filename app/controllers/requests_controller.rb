@@ -12,12 +12,7 @@ class RequestsController < ApplicationController
   def index
     @request_user = User.friendly.find(params[:user_id])
 
-    @requests = if current_user&.admin?
-                  admin_requests_query.order(created_at: :desc)
-                else
-                  user_requests_query.order(created_at: :desc)
-                end
-
+    @requests = Request.by_user_scope(current_user)
     @pagy, @requests = pagy(@requests, items: 20)
   end
 
