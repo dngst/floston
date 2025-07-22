@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def index
     tenants_list = User.where(admin: false,
-                              admin_id: current_user.id).order(created_at: :desc).includes(:tenant)
+                              admin_id: current_user.id).order(created_at: :desc)
     @pagy, @users = pagy(tenants_list)
   end
 

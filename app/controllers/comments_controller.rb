@@ -36,15 +36,15 @@ class CommentsController < ApplicationController
   private
 
   def set_user
-    @user = User.includes(:requests).friendly.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
   end
 
   def set_comment
-    @comment = @request.comments.includes(:user).find(params[:id])
+    @comment = @request.comments.find(params[:id])
   end
 
   def set_request
-    @request = @user.requests.includes(:comments).friendly.find(params[:request_id])
+    @request = @user.requests.friendly.find(params[:request_id])
   end
 
   def comment_params

@@ -9,7 +9,8 @@ class PropertiesController < ApplicationController
 
   def index
     @pagy, @properties = pagy(Property.where(
-      user_id: current_user.id).order(created_at: :desc).includes(:user))
+      user_id: current_user.id
+    ).order(created_at: :desc))
   end
 
   def show; end

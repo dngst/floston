@@ -13,9 +13,9 @@ class RequestsController < ApplicationController
     @request_user = User.friendly.find(params[:user_id])
 
     @requests = if current_user&.admin?
-                  admin_requests_query.order(created_at: :desc).includes(:user)
+                  admin_requests_query.order(created_at: :desc)
                 else
-                  user_requests_query.order(created_at: :desc).includes(:user)
+                  user_requests_query.order(created_at: :desc)
                 end
 
     @pagy, @requests = pagy(@requests, items: 20)
