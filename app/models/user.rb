@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include AdminScopable
   extend FriendlyId
 
   has_one :tenant, dependent: :destroy

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Property < ApplicationRecord
+  include UserScopable
   extend FriendlyId
 
   has_many :tenants
