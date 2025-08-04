@@ -72,9 +72,11 @@ group :development do
   gem 'hotwire-spark', '~> 0.1.12'
   gem 'rubocop-rails', require: false
   gem 'spring'
-  gem 'prosopite'
-  gem 'pg_query'
 end
+
+gem 'prosopite'
+
+gem 'pg_query'
 
 gem 'devise', '~> 4.9'
 

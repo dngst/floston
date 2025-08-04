@@ -89,5 +89,7 @@ Rails.application.configure do
     read_timeout:    5
   }
 
-  Prosopite.rails_logger = true
+  config.after_initialize do
+    Prosopite.rails_logger = true
+  end
 end
