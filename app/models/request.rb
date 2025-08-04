@@ -29,9 +29,9 @@ class Request < ApplicationRecord
 
   def self.by_user_query(user)
     if user.admin?
-      joins(:user).where(users: { admin_id: user.id }).order(created_at: :desc)
+      joins(:user).where(users: { admin_id: user.id }).order(created_at: :desc).includes(:comments)
     else
-      where(user_id: user.id).order(created_at: :desc)
+      where(user_id: user.id).order(created_at: :desc).includes(:comments)
     end
   end
 end
