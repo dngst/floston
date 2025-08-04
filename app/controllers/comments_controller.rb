@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
         render turbo_stream: [
           turbo_stream.append('comments', partial: 'comments/comment', locals: { comment: @comment }),
           turbo_stream.replace('comment_counter', partial: 'requests/comment_counter',
-                                                  locals: { counter: @request.comments.length })
+                                                  locals: { counter: @request.comments_count })
         ]
       end
     end

@@ -18,7 +18,6 @@ class RequestsController < ApplicationController
 
   def show
     @user = @request.user
-    @comment_count ||= @request.comments.count
     @comment = @request.comments.build(user: @user)
   end
 
