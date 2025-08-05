@@ -6,7 +6,7 @@
      <div class="w-full">
         <h3 class="lg:text-xl text-lg font-semibold w-full"><%= user.name %></h3>
         <p class="py-2">
-        <%= user.tenant.unit_type %> &middot; <%= link_to "#{user.tenant.property.name}", property_path(user.tenant.property.id), data: { turbo_frame: "_top" } %>
+        <%= user.tenant.unit_type %> &middot; <%= link_to "#{user.tenant.property.name}", property_path(user.tenant.property), data: { turbo_frame: "_top" } %>
         </p>
         <div class="hidden lg:flex">
           <%= link_to user_path(user), draggable:false, data: { turbo_frame: "_top" }, class: "hover:underline" do %>
