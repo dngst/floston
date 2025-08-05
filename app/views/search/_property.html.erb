@@ -9,7 +9,7 @@
       <%= link_to property_path(property), draggable: false, data: { turbo_frame: "_top" }, class: "hover:underline" do %>
         <%= property.name %>
       <% end %>
-      <% if property.tenants_count > 0 %>
+      <% if property.tenants.any? %>
         <span class="text-gray-400 font-normal">(<%= format_count(property.tenants_count) %>)</span>
       <% end %>
     </span>

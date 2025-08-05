@@ -2,7 +2,7 @@
 
 <div id="<%= dom_id request %>">
   <p class="text-xl pl-2 w mt-2 mb-6 <%= 'line-through' if request.closed %>">
-    <% if request.comments.length > 0 && !request.closed %>
+    <% if request.comments.any? && !request.closed %>
       <span class="text-flostonlink">(<%= format_count(request.comments_count) %>)</span>
     <% end %>
     <%= link_to user_request_path(current_user, request), class: ("underline underline-offset-4" if !request.closed), draggable: false, data: { turbo_frame: "_top" } do %>
