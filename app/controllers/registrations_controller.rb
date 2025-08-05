@@ -29,7 +29,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def handle_successful_registration(generated_password)
     set_flash_message! :notice, :signed_up
-    Rails.cache.delete('tenant_ids')
     NewUserMailer.login_credentials(resource, generated_password).deliver_later
     redirect_to after_sign_up_path_for(resource)
   end
