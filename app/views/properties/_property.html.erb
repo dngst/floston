@@ -7,7 +7,7 @@
   <% if property.tenants_count.positive? %>
     <%= pluralize(format_count(property.tenants_count), 'Tenant') %>
   <% else %>
-    <p class="text-gray-500">No tenants yet</p>
+    <p class="text-gray-500"><%= t('empty_state.admin.properties') %></p>
   <% end %>
   <% if action_name != "show" %>
     <div class="my-4">

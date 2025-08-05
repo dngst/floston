@@ -1,4 +1,12 @@
 en:
+  empty_state:
+    users:
+      requests: "You haven't submitted any requests yet"
+    admin:
+      properties: "No tenants yet"
+    requests: "You haven't received any requests yet"
+    properties: "You haven't added any properties yet"
+    tenants: "You haven't added any tenants yet"
   permission_denied: 'You do not have permission to access that page'
   properties:
     saved: 'Property saved'

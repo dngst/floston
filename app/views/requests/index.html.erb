@@ -19,9 +19,9 @@
     <% end %>
   <% else %>
     <% if user_is_admin? %>
-      <p class="mt-4 text-gray-500">You haven't received any requests yet</p>
+      <p class="text-gray-500"><%= t('empty_state.requests') %></p>
     <% else %>
-      <p class="mt-4 text-gray-500">You haven't submitted any requests yet</p>
+      <p class="text-gray-500"><%= t('empty_state.users.requests') %></p>
     <% end %>
   <% end %>
 </div>
