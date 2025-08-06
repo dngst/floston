@@ -10,7 +10,7 @@
 
   <% if @requests.present? %>
     <%= turbo_frame_tag "requests_#{@pagy.page}" do %>
-      <%= render partial: "request_index", collection: @requests, as: :request %>
+      <%= render partial: "request_index", collection: @requests, as: :request, cached: true %>
       <% unless @pagy.page == @pagy.pages %>
         <%= turbo_frame_tag "requests_#{@pagy.next}", src: user_requests_path(current_user, page: @pagy.next), loading: "lazy" do %>
           <%= render "shared/loader" %>
