@@ -2,6 +2,7 @@
 
 class PropertiesController < ApplicationController
   include RequireAdmin
+  include PropertyScoped
 
   before_action :authenticate_user!
   before_action :require_admin
@@ -10,7 +11,7 @@ class PropertiesController < ApplicationController
   def index
     @pagy, @properties = pagy(Property.where(
       user_id: current_user.id
-    ).order(created_at: :desc))
+    ).ordered)
   end
 
   def show; end
@@ -45,10 +46,6 @@ class PropertiesController < ApplicationController
   end
 
   private
-
-  def set_property
-    @property = Property.friendly.find(params[:id])
-  end
 
   def property_params
     params.expect(property: %i[name user_id])

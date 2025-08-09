@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   include RequireAdmin
-
+  include UserScoped
   include UserIsAdminHelper
   helper_method :user_is_admin?
 
@@ -41,10 +41,6 @@ class UsersController < ApplicationController
 
     flash[:alert] = t('permission_denied')
     redirect_to root_path
-  end
-
-  def set_user
-    @user = User.friendly.find(params[:id])
   end
 
   def user_params

@@ -14,6 +14,8 @@ class Property < ApplicationRecord
 
   friendly_id :generate_slug, use: :slugged
 
+  scope :ordered, -> { order(created_at: :desc) }
+
   def generate_slug
     SecureRandom.hex(4)
   end

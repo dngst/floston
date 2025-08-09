@@ -2,6 +2,7 @@
 
 class RequestsController < ApplicationController
   include RequireAdmin
+  include RequestScoped
 
   before_action :authenticate_user!
   before_action :require_admin, only: %i[edit update destroy]
@@ -82,10 +83,6 @@ class RequestsController < ApplicationController
 
   def set_user
     @user = User.friendly.find(params[:user_id])
-  end
-
-  def set_request
-    @request = Request.friendly.find(params[:id])
   end
 
   def request_params
