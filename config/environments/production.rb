@@ -89,12 +89,12 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: ENV['SMTP_HOST'] }
+  config.action_mailer.default_url_options = { host: ENV["SMTP_HOST"] }
   config.action_mailer.smtp_settings = {
-    address: ENV.fetch('SMTP_ADDRESS', nil),
-    port: ENV.fetch('SMTP_PORT', nil),
-    user_name: ENV.fetch('SMTP_USERNAME', nil),
-    password: ENV.fetch('SMTP_PASSWORD', nil),
+    address: ENV.fetch("SMTP_ADDRESS", nil),
+    port: ENV.fetch("SMTP_PORT", nil),
+    user_name: ENV.fetch("SMTP_USERNAME", nil),
+    password: ENV.fetch("SMTP_PASSWORD", nil),
     authentication: "plain",
     enable_starttls_auto: true,
     open_timeout:    5,

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy authorize_profile_access]
   before_action :require_admin, only: %i[index edit update destroy]
-  before_action :authorize_profile_access, only: [:show]
+  before_action :authorize_profile_access, only: [ :show ]
 
   def index
     @pagy, @users = pagy(User.tenants_for(current_user.id))
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params) && @user.tenant&.update(tenant_params)
-      redirect_to user_path(@user), notice: t('users.updated')
+      redirect_to user_path(@user), notice: t("users.updated")
     else
       render :edit, status: :unprocessable_content
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: t('users.deleted')
+    redirect_to users_path, notice: t("users.deleted")
   end
 
   private
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def authorize_profile_access
     return if current_user&.id == @user.admin_id || current_user == @user
 
-    flash[:alert] = t('permission_denied')
+    flash[:alert] = t("permission_denied")
     redirect_to root_path
   end
 

@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     keys_common = %i[fname lname phone_number]
-    keys_sign_up = keys_common + [:email, :password, :password_confirmation, :admin_id, { tenant_attributes: }]
-    keys_account_update = keys_common + [tenant_attributes: tenant_attributes(update: true)]
+    keys_sign_up = keys_common + [ :email, :password, :password_confirmation, :admin_id, { tenant_attributes: } ]
+    keys_account_update = keys_common + [ tenant_attributes: tenant_attributes(update: true) ]
 
     devise_parameter_sanitizer.permit(:sign_up, keys: keys_sign_up)
     devise_parameter_sanitizer.permit(:account_update, keys: keys_account_update)

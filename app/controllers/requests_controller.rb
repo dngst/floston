@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :require_admin, only: %i[edit update destroy]
-  before_action :authorize_request_access, only: [:show]
+  before_action :authorize_request_access, only: [ :show ]
   before_action :set_user
   before_action :set_request, only: %i[show edit update destroy close_request reopen_request]
 
@@ -33,7 +33,7 @@ class RequestsController < ApplicationController
 
     if @request.save
       NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
-      redirect_to user_request_url(@user, @request), notice: t('requests.saved')
+      redirect_to user_request_url(@user, @request), notice: t("requests.saved")
     else
       render :new, status: :unprocessable_content
     end
@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
   def update
     @request = @user.requests.friendly.find(params[:id])
     if @request.update(request_params)
-      redirect_to user_request_url, notice: t('requests.updated')
+      redirect_to user_request_url, notice: t("requests.updated")
     else
       render :edit, status: :unprocessable_content
     end
@@ -50,14 +50,14 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to user_requests_url, notice: t('requests.deleted')
+    redirect_to user_requests_url, notice: t("requests.deleted")
   end
 
   def close_request
     if @request.update(closed: true)
       redirect_to user_request_path(current_user, @request)
     else
-      flash[:alert] = t('requests.failed_to_close')
+      flash[:alert] = t("requests.failed_to_close")
       render :show
     end
   end
@@ -66,7 +66,7 @@ class RequestsController < ApplicationController
     if @request.update(closed: false)
       redirect_to user_request_path(current_user, @request)
     else
-      flash[:alert] = t('requests.failed_to_reopen')
+      flash[:alert] = t("requests.failed_to_reopen")
       render :show
     end
   end
@@ -77,7 +77,7 @@ class RequestsController < ApplicationController
     @request = Request.friendly.find(params[:id])
     return if current_user&.id == @request.user_id || current_user&.id == @request.user.admin_id
 
-    flash[:alert] = t('permission_denied')
+    flash[:alert] = t("permission_denied")
     redirect_to root_path
   end
 

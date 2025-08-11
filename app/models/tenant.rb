@@ -10,16 +10,16 @@ class Tenant < ApplicationRecord
   broadcasts_refreshes
 
   UNIT_TYPES = [
-    'Studio',
-    'Bedsitter',
-    '1 Bedroom',
-    '2 Bedroom',
-    '3 Bedroom',
-    '4 Bedroom',
-    '5 Bedroom',
-    '6 Bedroom',
-    '7 Bedroom',
-    '8 Bedroom +'
+    "Studio",
+    "Bedsitter",
+    "1 Bedroom",
+    "2 Bedroom",
+    "3 Bedroom",
+    "4 Bedroom",
+    "5 Bedroom",
+    "6 Bedroom",
+    "7 Bedroom",
+    "8 Bedroom +"
   ].freeze
 
   def self.unit_types

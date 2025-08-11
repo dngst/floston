@@ -21,7 +21,7 @@ class Property < ApplicationRecord
   end
 
   def name
-    self[:name].split.map(&:capitalize).join(' ') if self[:name]
+    self[:name].split.map(&:capitalize).join(" ") if self[:name]
   end
 
   def can_be_deleted?

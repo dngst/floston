@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     unless current_user&.admin?
-      flash[:alert] = t('registrations.permission_denied')
+      flash[:alert] = t("registrations.permission_denied")
       redirect_to root_path
     end
 

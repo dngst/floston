@@ -1,17 +1,1 @@
-inherit_from: .rubocop_todo.yml
-
-plugins:
-  - rubocop-rails
-
-AllCops:
-  NewCops: enable
-  SuggestExtensions: false
-  Exclude:
-    - 'bin/**/*'
-    - 'db/**/*'
-    - 'config/**/*'
-    - vendor/bundle/**/*
-
-Style/Documentation:
-  Enabled: false
-
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }

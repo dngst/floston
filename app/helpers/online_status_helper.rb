@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module OnlineStatusHelper
-  require 'httparty'
+  require "httparty"
 
   def online?
-    response = HTTParty.get('https://www.google.com')
+    response = HTTParty.get("https://www.google.com")
     response.success?
   rescue StandardError
     false

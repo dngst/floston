@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       send_new_comment_email(@request, @comment)
       handle_create_success
     else
-      render 'requests/show', status: :unprocessable_content
+      render "requests/show", status: :unprocessable_content
     end
   end
 
@@ -40,8 +40,8 @@ class CommentsController < ApplicationController
       format.html { redirect_to user_request_path(@user, @request) }
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.append('comments', partial: 'comments/comment', locals: { comment: @comment }),
-          turbo_stream.replace('comment_counter', partial: 'requests/comment_counter',
+          turbo_stream.append("comments", partial: "comments/comment", locals: { comment: @comment }),
+          turbo_stream.replace("comment_counter", partial: "requests/comment_counter",
                                                   locals: { counter: @request.comments_count })
         ]
       end

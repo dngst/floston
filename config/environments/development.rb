@@ -76,13 +76,13 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = {
-    host: 'localhost:3000', protocol: 'http'
+    host: "localhost:3000", protocol: "http"
   }
   config.action_mailer.smtp_settings = {
-    address: ENV.fetch('SMTP_ADDRESS', nil),
-    port: ENV.fetch('SMTP_PORT', nil),
-    user_name: ENV.fetch('SMTP_USERNAME', nil),
-    password: ENV.fetch('SMTP_PASSWORD', nil),
+    address: ENV.fetch("SMTP_ADDRESS", nil),
+    port: ENV.fetch("SMTP_PORT", nil),
+    user_name: ENV.fetch("SMTP_USERNAME", nil),
+    password: ENV.fetch("SMTP_PASSWORD", nil),
     authentication: "plain",
     enable_starttls_auto: true,
     open_timeout:    5,
