@@ -2,7 +2,6 @@
 
 class CommentsController < ApplicationController
   include UserScoped
-
   before_action :set_user, :set_request
   before_action :set_comment, only: %i[show edit update destroy]
 

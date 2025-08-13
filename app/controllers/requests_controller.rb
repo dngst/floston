@@ -3,16 +3,15 @@
 class RequestsController < ApplicationController
   include RequireAdmin
   include RequestScoped
-
+  include ResourceAuthorization
   before_action :authenticate_user!
-  before_action :require_admin, only: %i[edit update destroy]
-  before_action :authorize_request_access, only: [ :show ]
+  before_action :require_admin, only: %i[update destroy]
   before_action :set_user
-  before_action :set_request, only: %i[show edit update destroy close_request reopen_request]
+  before_action :set_request, only: %i[show update destroy close_request reopen_request]
+  before_action -> { authorize_request_access(@request) }, only: [ :show ]
 
   def index
     @request_user = User.friendly.find(params[:user_id])
-
     @requests = Request.by_user_scope(current_user)
     @pagy, @requests = pagy(@requests, items: 20)
   end
@@ -26,11 +25,8 @@ class RequestsController < ApplicationController
     @request = Request.new
   end
 
-  def edit; end
-
   def create
     @request = @user.requests.new(request_params)
-
     if @request.save
       NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
       redirect_to user_request_url(@user, @request), notice: t("requests.saved")
@@ -72,14 +68,6 @@ class RequestsController < ApplicationController
   end
 
   private
-
-  def authorize_request_access
-    @request = Request.friendly.find(params[:id])
-    return if current_user&.id == @request.user_id || current_user&.id == @request.user.admin_id
-
-    flash[:alert] = t("permission_denied")
-    redirect_to root_path
-  end
 
   def set_user
     @user = User.friendly.find(params[:user_id])

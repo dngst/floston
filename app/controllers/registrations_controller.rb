@@ -11,7 +11,6 @@ class RegistrationsController < Devise::RegistrationsController
       flash[:alert] = t("registrations.permission_denied")
       redirect_to root_path
     end
-
     # create a user without automatically signing them in
     self.resource = resource_class.new(sign_up_params)
     # generate an 8-character random password

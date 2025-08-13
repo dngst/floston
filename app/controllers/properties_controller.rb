@@ -3,7 +3,6 @@
 class PropertiesController < ApplicationController
   include RequireAdmin
   include PropertyScoped
-
   before_action :authenticate_user!
   before_action :require_admin
   before_action :set_property, only: %i[show edit update destroy]
@@ -14,17 +13,12 @@ class PropertiesController < ApplicationController
     ).ordered)
   end
 
-  def show; end
-
   def new
     @property = Property.new
   end
 
-  def edit; end
-
   def create
     @property = Property.new(property_params)
-
     if @property.save
       redirect_to property_url(@property), notice: t("properties.saved")
     else

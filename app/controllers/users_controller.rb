@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   include RequireAdmin
   include UserScoped
   include UserIsAdminHelper
+  include ResourceAuthorization
   helper_method :user_is_admin?
-
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy authorize_profile_access]
   before_action :require_admin, only: %i[index edit update destroy]
-  before_action :authorize_profile_access, only: [ :show ]
+  before_action -> { authorize_profile_access(@user) }, only: [ :edit, :update ]
 
   def index
     @pagy, @users = pagy(User.tenants_for(current_user.id))
@@ -18,8 +18,6 @@ class UsersController < ApplicationController
   def show
     @payout = Tenant.total_amount_due(@user)
   end
-
-  def edit; end
 
   def update
     if @user.update(user_params) && @user.tenant&.update(tenant_params)
@@ -35,13 +33,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def authorize_profile_access
-    return if current_user&.id == @user.admin_id || current_user == @user
-
-    flash[:alert] = t("permission_denied")
-    redirect_to root_path
-  end
 
   def user_params
     params.expect(user: %i[fname lname phone_number])
