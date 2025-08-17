@@ -11,7 +11,6 @@ class RequestsController < ApplicationController
   before_action -> { authorize_request_access(@request) }, only: [ :show ]
 
   def index
-    @request_user = User.friendly.find(params[:user_id])
     @requests = Request.by_user_scope(current_user)
     @pagy, @requests = pagy(@requests, items: 20)
   end
@@ -75,18 +74,5 @@ class RequestsController < ApplicationController
 
   def request_params
     params.expect(request: %i[title description user_id property_id])
-  end
-
-  def admin_requests_query
-    Request
-      .joins(:user)
-      .where(users: { admin_id: current_user.id })
-      .then do |query|
-        @request_user.admin? ? query : query.where(user_id: @request_user.id)
-      end
-  end
-
-  def user_requests_query
-    Request.where(user_id: current_user.id)
   end
 end
