@@ -8,9 +8,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
 
   def index
-    @pagy, @properties = pagy(Property.where(
-      user_id: current_user.id
-    ).ordered)
+    @pagy, @properties = pagy(Property.ordered(current_user))
   end
 
   def new
