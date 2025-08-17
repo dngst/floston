@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   before_action -> { authorize_profile_access(@user) }, only: [ :edit, :update ]
 
   def index
-    @pagy, @users = pagy(User.tenants_for(current_user.id))
+    @pagy, @users = pagy(User.tenants_for(current_user))
   end
 
   def show
