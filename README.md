@@ -16,5 +16,5 @@ Run $ bin/rails dev:cache to toggle caching
 
 ## Tests
 
-$ bundle exec rspec
+$ bin/rspec
 
