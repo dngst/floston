@@ -4,10 +4,10 @@ class SearchController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    query = params[:q]
-    @users = search_users(query)
-    @requests = search_requests(query)
-    @properties = search_properties(query)
+    @query = params[:q]
+    @users = search_users(@query)
+    @requests = search_requests(@query)
+    @properties = search_properties(@query)
   end
 
   private

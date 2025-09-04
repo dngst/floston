@@ -3,7 +3,7 @@
 <div class="border border-gray-300 p-4 rounded mt-4">
     <p class="text-xl font-semibold <%= request.closed ? 'text-gray-500 line-through' : 'hover:underline' %> text-flostonlink">
       <%= link_to user_request_path(request.user, request), draggable:false, data: { turbo_frame: "_top" } do %>
-        <%= request.title %>
+        <%= highlight(request.title, query) %>
       <% end %>
     </p>
   <p class="mt-2 text-gray-800"><%= request.user.name %></p>
