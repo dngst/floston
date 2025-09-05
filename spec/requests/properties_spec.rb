@@ -7,7 +7,7 @@ RSpec.describe '/properties' do
   let(:property) { create(:property, user_id: admin.id) }
 
   let(:valid_attributes) do
-    { name: 'New property', user_id: admin.id }
+    { name: 'New property', amount_due: 100, user_id: admin.id }
   end
 
   let(:invalid_attributes) do

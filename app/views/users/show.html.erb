@@ -26,10 +26,9 @@
                   <p class="text-gray-600">
                   <% if value.is_a?(Date) %>
                     <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
-                  <% elsif attribute == 'amount_due' %>
-                    <%= number_to_currency(value, unit: 'USD ') %>
                   <% elsif attribute == 'property_id' %>
                     <p class="text-gray-600"><%= Property.find_by(id: value)&.name %></p>
+                    <p class="text-gray-600 mt-4 text-xl"><%= number_to_currency(Property.find_by(id: value)&.amount_due,unit: '$') %></p>
                   <% else %>
                     <%= value %>
                   <% end %>
@@ -59,11 +58,3 @@
   </div>
 <% end %>
 
-<% if user_is_admin? && is_current_user?(@user) %>
-  <div class="bg-white rounded-lg">
-    <p class="text-lg font-semibold text-gray-800">Total projected payout</p>
-    <p class="text-gray-600">
-    <%= number_to_currency(@payout, unit: 'USD ', precision: 0) %>
-    </p>
-  </div>
-<% end %>

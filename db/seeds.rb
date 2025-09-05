@@ -23,7 +23,8 @@ end
 50.times do
   Property.create!(
     name: Faker::Address.street_name,
-    user_id: elrich.id
+    user_id: elrich.id,
+    amount_due: 169.95
   )
 end
 
@@ -48,7 +49,6 @@ Tenant.find_or_create_by!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2012",
   next_payment: "15-11-2012",
-  amount_due: 68.90,
   property_id: richards_property.id
 )
 
@@ -68,7 +68,6 @@ Tenant.find_or_create_by!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
-  amount_due: 68.90,
   property_id: 10
 )
 
@@ -88,7 +87,6 @@ Tenant.find_or_create_by!(
   unit_type: "1 Bedroom",
   moved_in: "15-11-2022",
   next_payment: "15-12-2022",
-  amount_due: 68.90,
   property_id: 10
 )
 
@@ -114,7 +112,6 @@ Tenant.find_or_create_by!(
       unit_type: "1 Bedroom",
       moved_in: "15-11-2022",
       next_payment: "15-12-2022",
-      amount_due: 68.90,
       property_id: 10
     )
   else

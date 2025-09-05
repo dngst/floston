@@ -40,6 +40,6 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.expect(property: %i[name user_id])
+    params.expect(property: %i[name amount_due user_id])
   end
 end

@@ -8,7 +8,7 @@ class Property < ApplicationRecord
   has_many :requests
   belongs_to :user
 
-  validates :name, presence: true
+  validates :name, :amount_due, presence: true
 
   broadcasts_refreshes
 

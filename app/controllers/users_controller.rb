@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @payout = Tenant.total_amount_due(@user)
   end
 
   def update
@@ -39,6 +38,6 @@ class UsersController < ApplicationController
   end
 
   def tenant_params
-    params.expect(tenant: %i[amount_due moved_in next_payment unit_number unit_type property_id])
+    params.expect(tenant: %i[moved_in next_payment unit_number unit_type property_id])
   end
 end

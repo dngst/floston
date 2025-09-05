@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_021600) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_05_171722) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -77,6 +77,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_021600) do
     t.integer "user_id", null: false
     t.string "slug"
     t.integer "tenants_count", default: 0
+    t.decimal "amount_due", precision: 8, scale: 2
     t.index ["slug"], name: "index_properties_on_slug", unique: true
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
@@ -111,7 +112,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_021600) do
     t.string "unit_type", null: false
     t.date "moved_in"
     t.date "next_payment"
-    t.decimal "amount_due", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false

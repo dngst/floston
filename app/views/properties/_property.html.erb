@@ -4,6 +4,7 @@
   <p class="text-2xl capitalize mb-8">
     <%= link_to property.name, property_path(property), data: { turbo_frame: "_top" } %>
   </p>
+  <p class="mb-4"><%= number_to_currency(property.amount_due, unit: '$') %></p>
   <% if property.tenants_count.positive? %>
     <%= pluralize(format_count(property.tenants_count), 'Tenant') %>
   <% else %>
