@@ -21,7 +21,7 @@ class SearchController < ApplicationController
 
   def search_requests(query)
     Request.by_user_scope(current_user)
-           .ransack(title_or_description_cont: query)
+           .ransack(title_or_description_or_user_full_name_cont: query)
            .result(distinct: true)
            .page(params[:page])
   end
