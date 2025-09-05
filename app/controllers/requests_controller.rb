@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
     @request = @user.requests.new(request_params)
     if @request.save
       NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
-      redirect_to user_request_url(@user, @request), notice: t("requests.saved")
+      redirect_to user_request_url(@user, @request)
     else
       render :new, status: :unprocessable_content
     end
@@ -37,7 +37,7 @@ class RequestsController < ApplicationController
   def update
     @request = @user.requests.friendly.find(params[:id])
     if @request.update(request_params)
-      redirect_to user_request_url, notice: t("requests.updated")
+      redirect_to user_request_url
     else
       render :edit, status: :unprocessable_content
     end
@@ -45,7 +45,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to user_requests_url, notice: t("requests.deleted")
+    redirect_to user_requests_url
   end
 
   def close_request

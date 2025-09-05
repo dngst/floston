@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params) && @user.tenant&.update(tenant_params)
-      redirect_to user_path(@user), notice: t("users.updated")
+      redirect_to user_path(@user)
     else
       render :edit, status: :unprocessable_content
     end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: t("users.deleted")
+    redirect_to users_path
   end
 
   private

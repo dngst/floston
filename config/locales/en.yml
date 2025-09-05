@@ -8,30 +8,11 @@ en:
     properties: "You haven't added any properties yet"
     tenants: "You haven't added any tenants yet"
   permission_denied: 'You do not have permission to access that page'
-  properties:
-    saved: 'Property saved'
-    updated: 'Property updated'
-    deleted: 'Property deleted'
   requests:
-    saved: 'Request submitted'
-    deleted: 'Request deleted'
     closed: 'Request closed'
     failed_to_close: 'Failed to close the request'
     reopened: 'Request reopened'
     failed_to_reopen: 'Failed to reopen the request'
-  comments:
-    updated: 'Comment updated'
-    deleted: 'Comment deleted'
-  subscriptions:
-    success: 'Subscription successful'
-    failed: 'Subscription unsuccessful'
-    failed_to_initialize: 'Failed to initialize transaction'
-    failed_verification: 'Transaction verification unsuccessful'
-    offline: "You're offline. Failed to connect to Paystack"
-  users:
-    saved:
-    updated: 'Tenant updated'
-    deleted: 'Tenant deleted'
   registrations:
     permission_denied: 'You do not have permission to create an account'
   mailer:
