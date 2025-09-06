@@ -31,9 +31,9 @@ class ApplicationController < ActionController::Base
 
   def tenant_attributes(update: false)
     if update
-      %i[amount_due moved_in next_payment unit_number unit_type]
+      %i[moved_in next_payment unit_number unit_type]
     else
-      %i[unit_number unit_type moved_in next_payment amount_due property_id]
+      %i[unit_number unit_type moved_in next_payment property_id]
     end
   end
 

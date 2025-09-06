@@ -4,4 +4,3 @@
 <p>Please make sure to make the payment by the due date.</p>
 
 <p>Next payment: <%= @tenant.next_payment.strftime("%d %A, %B %Y") %></p>
-<p>Amount due: <%= number_to_currency(@tenant.amount_due, unit: 'USD ', precision: 0) %></p>
