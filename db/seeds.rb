@@ -30,6 +30,7 @@ end
 
 richards_property = Property.find_or_create_by!(
   name: "Viraj, Laikipia Road",
+  amount_due: 250.00,
   user_id: richard.id
 )
 
