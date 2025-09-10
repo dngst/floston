@@ -9,7 +9,7 @@
         <p class="text-gray-600"><%= @user.email %></p>
       </div>
       <div class="my-4">
-        <% if user_signed_in? && is_current_user?(@user) %>
+        <% if show_edit_profile_link?(@user) %>
           <%= link_to "Edit profile", edit_user_registration_path, class: "text-flostonlink underline mr-2" %>
         <% end %>
       </div>
@@ -22,13 +22,13 @@
             <% unless ['id', 'created_at', 'updated_at', 'user_id'].include?(attribute) %>
               <% if value.present? %>
                 <li class="lg:mb-3.5 mb-4">
-                  <h2 class="text-xl font-semibold text-gray-800"><%= @user.tenant.class.human_attribute_name(attribute) %></h2>
+                  <h2 class="text-xl font-semibold text-gray-800"><%= tenant_attribute(@user, attribute) %></h2>
                   <p class="text-gray-600">
                   <% if value.is_a?(Date) %>
                     <%= value.strftime("%A, #{ordinal(value.day)} %B %Y") %>
                   <% elsif attribute == 'property_id' %>
-                    <p class="text-gray-600"><%= Property.find_by(id: value)&.name %></p>
-                    <p class="text-gray-600 mt-4 text-xl"><%= number_to_currency(Property.find_by(id: value)&.amount_due,unit: '$') %></p>
+                    <p class="text-gray-600"><%= show_property_name(value) %></p>
+                    <p class="text-gray-600 mt-4 text-xl"><%= formatted_amount_due(value) %></p>
                   <% else %>
                     <%= value %>
                   <% end %>
@@ -42,7 +42,7 @@
     </div>
   </div>
 <% end %>
-<% if user_is_admin? && !is_current_user?(@user) %>
+<% if show_admin_actions?(@user) %>
   <!-- Mobile Buttons -->
   <div class="lg:hidden flex flex-col p-4">
     <div class="grid grid-flow-col justify-stretch">
