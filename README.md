@@ -10,6 +10,10 @@ $ bin/setup
 
 $ bin/dev
 
+## Credentials
+
+Add smtp/* credentials via $ rails credentials:edit
+
 ## Caching
 
 Run $ bin/rails dev:cache to toggle caching
