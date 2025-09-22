@@ -27,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def handle_successful_registration(generated_password)
-    NewUserMailer.login_credentials(resource, generated_password).deliver_later
+    NewUserMailer.login_credentials(resource, generated_password).deliver_now
     redirect_to after_sign_up_path_for(resource)
   end
 
