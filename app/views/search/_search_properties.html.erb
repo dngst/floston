@@ -4,7 +4,7 @@
       <% count_text = pluralize(format_count(@properties.total_count), "Property") %>
       <h2 class="text-xl mt-4"><%= count_text %></h2>
       <% if @properties.present? %>
-        <%= render partial: "property", collection: @properties, as: :property, locals: { query: @query }, cached: true %>
+        <%= render partial: "property", collection: @properties, as: :property, locals: { query: @query } %>
         <div class="mt-4">
           <%= paginate @properties if @properties.total_count > 9 %>
         </div>
