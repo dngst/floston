@@ -27,7 +27,6 @@ class RequestsController < ApplicationController
   def create
     @request = @user.requests.new(request_params)
     if @request.save
-      NewRequestMailer.request_notification(User.find(@request.user.admin_id), @request).deliver_later
       redirect_to user_request_url(@user, @request)
     else
       render :new, status: :unprocessable_content

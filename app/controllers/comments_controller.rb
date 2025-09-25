@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
   def create
     @comment = @request.comments.build(comment_params)
     if @comment.save
-      send_new_comment_email(@request, @comment)
       handle_create_success
     else
       render "requests/show", status: :unprocessable_content
@@ -27,11 +26,6 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.expect(comment: %i[body request_id user_id])
-  end
-
-  def send_new_comment_email(request, comment)
-    return unless comment.user_id == request.user.admin_id
-    CommentNotificationMailer.comment_notification(request.user, request, comment).deliver_later
   end
 
   def handle_create_success

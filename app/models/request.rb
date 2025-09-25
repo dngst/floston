@@ -6,7 +6,7 @@ class Request < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   belongs_to :property
-
+  after_create :send_new_request_email
   validates :title, :description, presence: true
 
   broadcasts_refreshes
@@ -33,5 +33,12 @@ class Request < ApplicationRecord
     else
       where(user_id: user.id).order(created_at: :desc).includes(:comments)
     end
+  end
+
+  private
+
+  def send_new_request_email
+    admin_user = User.find(self.user.admin_id)
+    NewRequestMailer.request_notification(admin_user, self).deliver_later if admin_user
   end
 end
