@@ -12,11 +12,11 @@ $ bin/dev
 
 ## Credentials
 
-Add smtp/* credentials via $ rails credentials:edit
+Add smtp/* credentials via $ bin/rails credentials:edit
 
 ## Caching
 
-Run $ bin/rails dev:cache to toggle caching
+Run $ bin/rails dev:cache to toggle caching in development
 
 ## Tests
 
