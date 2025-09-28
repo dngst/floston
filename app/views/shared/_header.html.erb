@@ -1,23 +1,17 @@
 <div class="flex justify-between mb-6 sticky top-[4.6rem] bg-white lg:pt-flostonp lg:pb-flostonp pb-flostonpmd">
   <h1 class="text-4xl font-bold">
     <div class="flex justify-normal text-gray-800">
-      <% cache(icon) do %>
-        <%= image_tag icon, class: "w-10 mr-2 hidden md:flex", draggable: false %>
-      <% end %>
+      <%= image_tag icon, class: "w-10 mr-2 hidden md:flex", draggable: false %>
       <%= title %>
     </div>
   </h1>
   <% if authorization %>
     <%= link_to route, draggable:false, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
-      <% cache('bx-plus-circle.svg') do %>
-        <%= image_tag "bx-plus-circle.svg", alt: "New", class: "w-5 mr-2", draggable:false %>
-      <% end %>
+      <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-plus-circle.svg", alt: "New", class: "w-6 mr-2", draggable:false %>
       <%= button_text %>
     <% end %>
     <%= link_to route, class: "md:hidden" do %>
-      <% cache('bx-plus-circle-mobile-svg') do %>
-        <%= image_tag "bx-plus-circle.svg", alt: "New", class: "w-10 mr-2" %>
-      <% end %>
+      <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-plus-circle.svg", alt: "New", class: "w-10 mr-2" %>
     <% end %>
   <% end %>
 </div>

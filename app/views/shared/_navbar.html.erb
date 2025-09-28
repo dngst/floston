@@ -19,32 +19,26 @@
           <% end %>
           <%= active_link_to "Requests", user_requests_path(current_user), draggable:false %>
           <%= link_to destroy_user_session_path, draggable:false, class: "sign-out", data: { turbo_method: :delete } do %>
-            <% cache("bx-log-out-circle.svg") do %>
-              <%= image_tag "bx-log-out-circle.svg", alt: "Sign out", class: "w-6", draggable:false %>
-            <% end %>
+            Sign out
           <% end %>
         </div>
 
         <!-- Profile Icon -->
         <%= link_to user_path(current_user), draggable:false do %>
-        <div class="flex items-center">
-          <div class="relative ml-3 hidden lg:flex">
-            <% cache("bx-user.svg") do %>
-              <%= image_tag "bx-user.svg", alt: "Profile", class: "h-8 w-8", draggable:false %>
-            <% end %>
+          <div class="flex items-center">
+            <div class="relative ml-3 hidden lg:flex">
+              <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-user.svg", alt: "Profile", class: "h-8 w-8", draggable:false %>
+            </div>
+          <% end %>
+          <div class="lg:hidden" role="button" data-action="click->navbar#toggle">
+            <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-menu.svg", alt: "Menu", class: "h-8 w-8", draggable:false %>
+          </div>
+          </div>
+        <% else %>
+          <div class="space-x-6">
+            <%= link_to "Sign in", new_user_session_path, draggable:false, class: "sign-in" %>
           </div>
         <% end %>
-          <div class="lg:hidden" role="button" data-action="click->navbar#toggle">
-            <% cache("bx-menu.svg") do %>
-              <%= image_tag "bx-menu.svg", alt: "Menu", class: "h-8 w-8", draggable:false %>
-            <% end %>
-          </div>
-        </div>
-      <% else %>
-        <div class="space-x-6">
-          <%= link_to "Sign in", new_user_session_path, draggable:false, class: "sign-in" %>
-        </div>
-      <% end %>
     </div>
   </nav>
 
