@@ -1,9 +1,7 @@
 <% content_for :title, @property.name %>
 
 <div class="md:w-2/3 w-full">
-  <%= link_to sanitize('&larr; back'), "javascript:history.back()", class: "text-gray-600" %>
-
-  <div class="mx-auto my-4">
+  <div class="mx-auto my-2">
     <%= render @property %>
 
     <%= link_to "Edit property", edit_property_path(@property), class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium" %>
