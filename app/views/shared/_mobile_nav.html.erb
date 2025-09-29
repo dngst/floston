@@ -21,8 +21,8 @@
       <li class="py-2 px-5 text-lg">
         <%= link_to "Profile", user_path(current_user) %>
       </li>
-      <li class="py-2 px-5 text-lg sign-out text-gray-500 bg-gray-50">
-        <%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } %>
+      <li class="py-2 px-5 text-lg sign-out">
+        <%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete, turbo_confirm: "Sign out?" } %>
       </li>
     </ul>
   <% end %>
