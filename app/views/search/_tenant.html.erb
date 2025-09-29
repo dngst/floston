@@ -2,7 +2,7 @@
 
 <div class="border border-gray-300 p-4 rounded mt-4">
     <p class="text-xl font-semibold text-flostonlink hover:underline">
-      <%= link_to user_path(user), draggable:false, data: { turbo_frame: "_top" } do %>
+      <%= link_to user_path(user), data: { turbo_frame: "_top" } do %>
         <%= highlight(user.name, query) %>
       <% end %>
     </p>

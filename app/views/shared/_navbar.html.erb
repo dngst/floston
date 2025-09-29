@@ -2,7 +2,7 @@
   <nav class="bg-white fixed top-0 w-full">
     <div class="container mx-auto flex items-center justify-between p-4">
       <!-- Logo -->
-      <%= link_to root_path, class: "home-link", draggable:false do %>
+      <%= link_to root_path, class: "home-link" do %>
         <p class="text-black text-2xl font-semibold <%= 'hidden md:flex' if user_signed_in? %>">Floston</p>
       <% end %>
 
@@ -14,29 +14,29 @@
         <!-- Navigation Links -->
         <div class="space-x-6 hidden lg:flex">
           <% if user_is_admin? %>
-            <%= active_link_to "Tenants", users_path, draggable:false %>
-            <%= active_link_to "Properties", properties_path, draggable:false %>
+            <%= active_link_to "Tenants", users_path %>
+            <%= active_link_to "Properties", properties_path %>
           <% end %>
-          <%= active_link_to "Requests", user_requests_path(current_user), draggable:false %>
-          <%= link_to destroy_user_session_path, draggable:false, class: "sign-out", data: { turbo_method: :delete } do %>
+          <%= active_link_to "Requests", user_requests_path(current_user) %>
+          <%= link_to destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } do %>
             Sign out
           <% end %>
         </div>
 
         <!-- Profile Icon -->
-        <%= link_to user_path(current_user), draggable:false do %>
+        <%= link_to user_path(current_user) do %>
           <div class="flex items-center">
             <div class="relative ml-3 hidden lg:flex">
-              <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-user.svg", alt: "Profile", class: "h-8 w-8", draggable:false %>
+              <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-user.svg", alt: "Profile", class: "h-8 w-8" %>
             </div>
           <% end %>
           <div class="lg:hidden" role="button" data-action="click->navbar#toggle">
-            <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-menu.svg", alt: "Menu", class: "h-8 w-8", draggable:false %>
+            <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-menu.svg", alt: "Menu", class: "h-8 w-8" %>
           </div>
           </div>
         <% else %>
           <div class="space-x-6">
-            <%= link_to "Sign in", new_user_session_path, draggable:false, class: "sign-in" %>
+            <%= link_to "Sign in", new_user_session_path, class: "sign-in" %>
           </div>
         <% end %>
     </div>

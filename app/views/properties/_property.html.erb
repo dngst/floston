@@ -13,7 +13,6 @@
   <% if action_name != "show" %>
     <div class="my-4">
       <%= link_to "Edit property", edit_property_path(property),
-        draggable:false,
         class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium",
         data: { turbo_frame: "_top" } %>
       <% if property.can_be_deleted? %>

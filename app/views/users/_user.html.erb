@@ -13,17 +13,17 @@
 
         <!-- Desktop profile link -->
         <div class="hidden lg:flex">
-          <%= link_to user_path(user), draggable: false, data: { turbo_frame: "_top" }, class: "hover:underline" do %>
+          <%= link_to user_path(user), data: { turbo_frame: "_top" }, class: "hover:underline" do %>
             <p class="text-gray-600 mt-2 underline">View profile</p>
           <% end %>
         </div>
 
         <!-- Mobile buttons -->
         <div class="lg:hidden flex flex-col p-4">
-          <%= link_to "View profile", user_path(user), draggable: false, data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-blue-500 border border-blue-500 hover:bg-blue-100 text-center font-medium mb-3" %>
+          <%= link_to "View profile", user_path(user), data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-blue-500 border border-blue-500 hover:bg-blue-100 text-center font-medium mb-3" %>
 
           <div class="grid grid-flow-col justify-stretch">
-            <%= link_to "Edit", edit_user_path(user), draggable: false, data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-gray-800 border border-gray-800 hover:bg-gray-100 text-center font-medium mr-2" %>
+            <%= link_to "Edit", edit_user_path(user), data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-gray-800 border border-gray-800 hover:bg-gray-100 text-center font-medium mr-2" %>
             <%= button_to "Delete", user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-400 border border-red-400 hover:bg-red-100 text-center font-medium w-full" %>
           </div>
         </div>
@@ -32,14 +32,14 @@
       <!-- Desktop actions (edit and delete icons) -->
       <div class="hidden lg:flex justify-between mx-2">
         <div class="mx-2">
-          <%= link_to edit_user_path(user), draggable: false, data: { turbo_frame: "_top" } do %>
-            <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-pencil.svg", alt: "Edit", class: "w-8", draggable: false %>
+          <%= link_to edit_user_path(user), data: { turbo_frame: "_top" } do %>
+            <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-pencil.svg", alt: "Edit", class: "w-8" %>
           <% end %>
         </div>
 
         <div class="mx-1">
-          <%= link_to user_path(user), draggable: false, data: { turbo_method: :delete, turbo_confirm: "Delete tenant?" } do %>
-            <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-trash.svg", alt: "Delete", class: "w-8", draggable: false %>
+          <%= link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: "Delete tenant?" } do %>
+            <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-trash.svg", alt: "Delete", class: "w-8" %>
           <% end %>
         </div>
       </div>

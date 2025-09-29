@@ -5,7 +5,7 @@
     <% if request.comments.any? && !request.closed %>
       <span class="text-flostonlink">(<%= format_count(request.comments_count) %>)</span>
     <% end %>
-    <%= link_to user_request_path(current_user, request), class: ("underline underline-offset-4" if !request.closed), draggable: false, data: { turbo_frame: "_top" } do %>
+    <%= link_to user_request_path(current_user, request), class: ("underline underline-offset-4" if !request.closed), data: { turbo_frame: "_top" } do %>
       <%= request.title %>
     <% end %>
   </p>

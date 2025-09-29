@@ -46,14 +46,14 @@
   <!-- Mobile Buttons -->
   <div class="lg:hidden flex flex-col p-4">
     <div class="grid grid-flow-col justify-stretch">
-      <%= link_to "Edit", edit_user_path(@user), draggable:false, data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-gray-800 border border-gray-300 text-center font-medium mr-2" %>
+      <%= link_to "Edit", edit_user_path(@user), data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-gray-800 border border-gray-300 text-center font-medium mr-2" %>
       <%= button_to "Delete", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-500 border border-gray-300 text-center font-medium w-full" %>
     </div>
   </div>
   <!-- Mobile Buttons -->
 
   <div class="flex mt-4 hidden lg:flex">
-    <%= link_to "Edit tenant", edit_user_path(@user), draggable:false, class: "rounded-lg py-2 px-4 bg-gray-100 mb-0 mr-4 text-center font-medium" %>
+    <%= link_to "Edit tenant", edit_user_path(@user), class: "rounded-lg py-2 px-4 bg-gray-100 mb-0 mr-4 text-center font-medium" %>
     <%= button_to "Delete tenant", @user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-500 bg-red-100 mb-0 text-center font-medium" %>
   </div>
 <% end %>

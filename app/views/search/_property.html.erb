@@ -2,9 +2,9 @@
 
 <div class="border border-gray-300 p-4 rounded mt-4 text-gray-800">
   <p class="text-xl font-semibold flex justify-normal">
-  <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-building-house.svg", alt: "Property", class: "w-6 mr-2", draggable: false %>
+  <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-building-house.svg", alt: "Property", class: "w-6 mr-2" %>
   <span class="flex justify-between w-full">
-    <%= link_to property_path(property), draggable: false, data: { turbo_frame: "_top" }, class: "hover:underline" do %>
+    <%= link_to property_path(property), data: { turbo_frame: "_top" }, class: "hover:underline" do %>
       <%= highlight(property.name, query) %>
     <% end %>
     <% if property.tenants.any? %>

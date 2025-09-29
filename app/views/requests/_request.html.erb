@@ -12,7 +12,7 @@
   </p>
 
   <div class="flex pt-5">
-    <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-user.svg", alt: "User", class: "w-5 mr-1", draggable: false %>
+    <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-user.svg", alt: "User", class: "w-5 mr-1" %>
     <% if request.user == current_user %>
       <p class="text-sm">You</p>
     <% else %>
@@ -20,7 +20,7 @@
         <%= content_tag :p, request.user.name, class: "text-sm" %>
       <% end %>
     <% end %>
-    <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-building-house.svg", alt: "User", class: "w-5 ml-3 mr-1", draggable: false %>
+    <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-building-house.svg", alt: "User", class: "w-5 ml-3 mr-1" %>
     <%= content_tag :p, request.user.tenant.property.name, class: "text-sm" %>
   </div>
 </div>
