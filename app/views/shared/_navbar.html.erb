@@ -18,7 +18,7 @@
             <%= active_link_to "Properties", properties_path %>
           <% end %>
           <%= active_link_to "Requests", user_requests_path(current_user) %>
-          <%= link_to destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete } do %>
+          <%= link_to destroy_user_session_path, class: "sign-out", data: { turbo_method: :delete, turbo_confirm: "Sign out?" } do %>
             Sign out
           <% end %>
         </div>
