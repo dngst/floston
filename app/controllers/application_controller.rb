@@ -2,7 +2,6 @@
 
 class ApplicationController < ActionController::Base
   include Pagy::Backend
-  include OnlineStatusHelper
   helper_method :online?
 
   before_action :configure_permitted_parameters, if: :devise_controller?
