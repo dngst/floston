@@ -18,22 +18,10 @@ class RegistrationsController < Devise::RegistrationsController
     resource.password = generated_password
 
     if resource.save
-      handle_successful_registration(generated_password)
+      NewUserMailer.login_credentials(resource, generated_password).deliver_now
+      redirect_to after_sign_up_path_for(resource)
     else
-      handle_failed_registration
+      respond_with resource
     end
-  end
-
-  private
-
-  def handle_successful_registration(generated_password)
-    NewUserMailer.login_credentials(resource, generated_password).deliver_now
-    redirect_to after_sign_up_path_for(resource)
-  end
-
-  def handle_failed_registration
-    clean_up_passwords resource
-    set_minimum_password_length
-    respond_with resource
   end
 end
