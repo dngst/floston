@@ -34,7 +34,9 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
-    redirect_to properties_url
+    respond_to do |format|
+      format.turbo_stream { redirect_to properties_path }
+    end
   end
 
   private
