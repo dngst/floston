@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.turbo_stream { redirect_to users_path }
+      format.html { redirect_to users_path }
     end
   end
 
