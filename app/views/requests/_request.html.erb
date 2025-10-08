@@ -22,7 +22,7 @@
       <% if request.user == current_user %>
         <p class="text-sm">You</p>
       <% else %>
-        <%= link_to user_path(request.user)  do %>
+        <%= link_to user_path(request.user), data: { turbo_frame: "_top" }  do %>
           <%= content_tag :p, request.user.name, class: "text-sm" %>
         <% end %>
       <% end %>
