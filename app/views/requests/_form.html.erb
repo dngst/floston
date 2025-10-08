@@ -18,6 +18,9 @@
   <%= form.hidden_field :property_id, value: @user.tenant.property_id %>
 
   <div class="mt-4">
-    <%= form.submit "Post request", class: "bg-floston font-medium text-flostontext px-4 py-2 rounded-lg hover:cursor-pointer focus:outline-none focus:border-floston focus:ring-0" %>
+    <%= form.submit class: "bg-floston font-medium text-flostontext px-4 py-2 rounded-lg hover:cursor-pointer focus:outline-none focus:border-floston focus:ring-0" %>
+    <% if action_name == 'edit' %>
+      <%= link_to "Cancel", user_request_path, data: { turbo_frame: "_top" }, class: "bg-gray-100 font-medium text-flostontext px-4 py-3 rounded-lg hover:cursor-pointer focus:outline-none focus:border-floston focus:ring-0" %>
+    <% end %>
   </div>
 <% end %>

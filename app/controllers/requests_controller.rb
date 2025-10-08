@@ -5,9 +5,9 @@ class RequestsController < ApplicationController
   include RequestScoped
   include ResourceAuthorization
   before_action :authenticate_user!
-  before_action :require_admin, only: %i[update destroy]
+  before_action :require_admin, only: %i[destroy]
   before_action :set_user
-  before_action :set_request, only: %i[show update destroy close_request reopen_request]
+  before_action :set_request, only: %i[show edit update destroy close_request reopen_request]
   before_action -> { authorize_request_access(@request) }, only: [ :show ]
 
   def index
@@ -36,7 +36,10 @@ class RequestsController < ApplicationController
   def update
     @request = @user.requests.friendly.find(params[:id])
     if @request.update(request_params)
-      redirect_to user_request_url
+      respond_to do |format|
+        format.turbo_stream { redirect_to user_request_url }
+        format.html { redirect_to user_request_url }
+      end
     else
       render :edit, status: :unprocessable_content
     end
