@@ -2,20 +2,16 @@
 
 <div class="w-full">
   <%= render 'shared/header',
-            title: "Requests",
-            icon: "https://cdn.boxicons.com/svg/basic/bx-hand.svg",
-            route: new_user_request_path,
-            button_text: "Submit a request",
-            authorization: !user_is_admin? %>
+    title: "Requests",
+    icon: "https://cdn.boxicons.com/svg/basic/bx-hand.svg",
+    route: new_user_request_path,
+    button_text: "Submit a request",
+    authorization: !user_is_admin? %>
 
   <% if @requests.present? %>
-    <%= turbo_frame_tag "requests_#{@pagy.page}" do %>
+    <%= turbo_frame_tag "requests", data: { turbo_action: "advance" } do %>
       <%= render partial: "request_index", collection: @requests, as: :request %>
-      <% unless @pagy.page == @pagy.pages %>
-        <%= turbo_frame_tag "requests_#{@pagy.next}", src: user_requests_path(current_user, page: @pagy.next), loading: "lazy" do %>
-          <%= render "shared/loader" %>
-        <% end %>
-      <% end %>
+      <%= render "shared/paginate" %>
     <% end %>
   <% else %>
     <% if user_is_admin? %>

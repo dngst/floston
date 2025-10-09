@@ -2,20 +2,16 @@
 
 <div class="w-full">
   <%= render 'shared/header',
-            title: "Properties",
-            icon: "https://cdn.boxicons.com/svg/basic/bx-building-house.svg",
-            route: new_property_path,
-            button_text: "Add property",
-            authorization: user_is_admin? %>
+    title: "Properties",
+    icon: "https://cdn.boxicons.com/svg/basic/bx-building-house.svg",
+    route: new_property_path,
+    button_text: "Add property",
+    authorization: user_is_admin? %>
 
   <% if @properties.present? %>
-    <%= turbo_frame_tag "properties_#{@pagy.page}" do %>
+    <%= turbo_frame_tag "properties", data: { turbo_action: "advance" } do %>
       <%= render partial: "property", collection: @properties, as: :property, cached: true %>
-      <% unless @pagy.page == @pagy.pages %>
-        <%= turbo_frame_tag "properties_#{@pagy.next}", src: properties_path(page: @pagy.next), loading: "lazy" do %>
-          <%= render "shared/loader" %>
-        <% end %>
-      <% end %>
+      <%= render "shared/paginate" %>
     <% end %>
   <% else %>
     <p class="text-gray-500"><%= t('empty_state.properties') %></p>

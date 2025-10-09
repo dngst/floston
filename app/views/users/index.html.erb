@@ -2,20 +2,16 @@
 
 <div class="w-full">
   <%= render 'shared/header',
-            title: "Tenants",
-            icon: "https://cdn.boxicons.com/svg/basic/bx-group.svg",
-            route: new_user_registration_path,
-            button_text: "Add tenant",
-            authorization: user_is_admin? %>
+    title: "Tenants",
+    icon: "https://cdn.boxicons.com/svg/basic/bx-group.svg",
+    route: new_user_registration_path,
+    button_text: "Add tenant",
+    authorization: user_is_admin? %>
 
   <% if @users.present?  %>
-    <%= turbo_frame_tag "users_#{@pagy.page}" do %>
+    <%= turbo_frame_tag "users" , data: { turbo_action: "advance" } do %>
       <%= render partial: "user", collection: @users, as: :user, cached: true %>
-      <% unless @pagy.page == @pagy.pages %>
-        <%= turbo_frame_tag "users_#{@pagy.next}", src: users_path(page: @pagy.next), loading: "lazy" do %>
-          <%= render "shared/loader" %>
-        <% end %>
-      <% end %>
+      <%= render "shared/paginate" %>
     <% end %>
   <% else %>
     <p class="text-gray-500"><%= t('empty_state.tenants') %></p>
