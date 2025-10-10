@@ -1,13 +1,13 @@
 <% if @requests.present? %>
   <%= turbo_frame_tag "requests_results" do %>
     <div class="mb-14">
-      <% count_text = pluralize(format_count(@requests.total_count), "Request") %>
+      <% count_text = pluralize(format_count(@pagy_requests.count), "Request") %>
       <h2 class="text-xl mt-4"><%= count_text %></h2>
       <% if @requests.present? %>
         <%= render partial: "request", collection: @requests, as: :request, locals: { query: @query } %>
       <% end %>
-      <div class="mt-4">
-        <%= paginate @requests if @requests.total_count > 9 %>
+      <div class="mt-4 text-center">
+        <%== pagy_nav(@pagy_requests) if @pagy_requests.pages > 1 %>
       </div>
     </div>
   <% end %>

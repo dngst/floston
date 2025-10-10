@@ -149,18 +149,6 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.15.1)
-    kaminari (1.2.2)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.2)
-      kaminari-activerecord (= 1.2.2)
-      kaminari-core (= 1.2.2)
-    kaminari-actionview (1.2.2)
-      actionview
-      kaminari-core (= 1.2.2)
-    kaminari-activerecord (1.2.2)
-      activerecord
-      kaminari-core (= 1.2.2)
-    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -400,7 +388,6 @@ DEPENDENCIES
   hotwire-spark (~> 0.1.12)
   httparty (~> 0.21.0)
   importmap-rails
-  kaminari (~> 1.2)
   nested_form (~> 0.3.2)
   pagy (~> 6.1)
   pg (~> 1.1)
