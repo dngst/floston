@@ -1,8 +1,7 @@
 <% if @requests.present? %>
   <%= turbo_frame_tag "requests_results" do %>
     <div class="mb-14">
-      <% count_text = pluralize(format_count(@pagy_requests.count), "Request") %>
-      <h2 class="text-xl mt-4"><%= count_text %></h2>
+      <h2 class="text-xl mt-4"><%= show_count(@pagy_requests, Request) %></h2>
       <% if @requests.present? %>
         <%= render partial: "request", collection: @requests, as: :request, locals: { query: @query } %>
       <% end %>
