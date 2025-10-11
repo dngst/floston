@@ -1,26 +1,23 @@
 <%= turbo_frame_tag request do %>
   <%= turbo_stream_from request %>
   <div>
-    <%= link_to edit_user_request_path(@user, request)  do %>
-      <h1 class="text-4xl font-bold text-gray-800 mb-4 <%= 'line-through' if request.closed %>">
-        <%= request.title %>
-      </h1 >
+    <h1 class="text-4xl font-bold text-gray-800 mb-4 <%= 'line-through' if request.closed %>">
+      <%= request.title %>
+    </h1 >
 
-      <p class="text-gray-600 text-sm">
+    <p class="text-gray-600 text-sm">
       <%= date_format(request.created_at) %>
       <% if request_has_been_updated(request) %>
-         &middot; Edited <%= date_format(request.updated_at) %>
+       &middot; Edited <%= date_format(request.updated_at) %>
       <% end %>
-      </p>
+    </p>
 
-      <p class="mb-4 leading-[1.75em]" style="white-space: pre-line;">
-      <%= request.description %>
-      </p>
-    <% end %>
+    <p class="mb-4 leading-[1.75em]" style="white-space: pre-line;">
+    <%= request.description %>
+    </p>
     <div class="flex pt-5">
-      <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-user.svg", alt: "User", class: "w-5 mr-1" %>
       <% if request.user == current_user %>
-        <p class="text-sm">You</p>
+        <%= link_to "Edit", edit_user_request_path(@user, request), class: "underline text-sm" %>
       <% else %>
         <%= link_to user_path(request.user), data: { turbo_frame: "_top" }  do %>
           <%= content_tag :p, request.user.name, class: "text-sm" %>
