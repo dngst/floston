@@ -1,17 +1,11 @@
-<%= form_with(model: [@user, @request], local: true) do |form| %>
+<%= form_with(model: [@user, @request], local: true, id: "transparent-input") do |form| %>
   <div class="mb-4">
-    <%= form.label :title, class: "block text-gray-800" do %>
-      Title <span class="text-red-500">*</span>
-    <% end %>
-    <%= form.text_field :title, placeholder: "Untitled", autofocus: true %>
+    <%= form.text_field :title, placeholder: "Untitled", autofocus: true, aria: { label: "Title" }, class: "request-title" %>
     <%= render "shared/form_error", model: @request, field: :title %>
   </div>
 
   <div class="mb-4">
-    <%= form.label :description, class: "block text-gray-800" do %>
-      Description <span class="text-red-500">*</span>
-    <% end %>
-    <%= form.text_area :description, placeholder: "Write your request", class: "h-64" %>
+    <%= form.text_area :description, placeholder: "Write your request", aria: { label: "Description" }, class: "h-64" %>
     <%= render "shared/form_error", model: @request, field: :description %>
   </div>
 
