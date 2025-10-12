@@ -1,0 +1,15 @@
+.dialog {
+    @apply bg-white shadow-lg rounded-lg p-6;
+}
+
+.dialog-text {
+    @apply text-lg font-semibold;
+}
+
+.dialog-cancel-btn {
+    @apply btn-base border border-gray-300 hover:bg-gray-100 mr-1;
+}
+
+.dialog-confirm-btn {
+    @apply btn-base bg-red-500 hover:bg-red-600 text-white;
+}

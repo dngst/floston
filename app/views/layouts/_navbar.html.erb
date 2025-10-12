@@ -1,9 +1,9 @@
 <div data-controller="navbar" data-action="resize@window->navbar#closeOnBigScreen" class="navbar">
-  <nav class="bg-white fixed top-0 w-full">
-    <div class="container mx-auto flex items-center justify-between p-4">
+  <nav>
+    <div class="nav-container">
       <!-- Logo -->
       <%= link_to root_path, class: "home-link" do %>
-        <p class="text-black text-2xl font-semibold <%= 'hidden md:flex' if user_signed_in? %>">Floston</p>
+        <p class="nav-logo <%= 'hidden md:flex' if user_signed_in? %>">Floston</p>
       <% end %>
 
       <% if user_signed_in? %>
@@ -26,7 +26,7 @@
         <!-- Profile Icon -->
         <%= link_to user_path(current_user) do %>
           <div class="flex items-center">
-            <div class="relative ml-3 hidden lg:flex">
+            <div class="profile-icon">
               <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-user.svg", alt: "Profile", class: "h-8 w-8" %>
             </div>
           <% end %>
@@ -43,5 +43,5 @@
   </nav>
 
   <!-- Mobile Navigation -->
-  <%= render "shared/mobile_nav" %>
+  <%= render "layouts/mobile_nav" %>
 </div>

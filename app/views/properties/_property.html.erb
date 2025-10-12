@@ -13,13 +13,13 @@
   <% if action_name != "show" %>
     <div class="my-4">
       <%= link_to "Edit property", edit_property_path(property),
-        class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium",
+        class: "btn-secondary mt-2 py-3",
         data: { turbo_frame: "_top" } %>
       <% if property.can_be_deleted? %>
         <div class="inline-block ml-2">
           <%= button_to "Delete property", property_path(property),
             method: :delete, data: { turbo_confirm: "Delete property?" },
-            class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>
+            class: "btn-danger mt-2" %>
         </div>
       <% end %>
       <hr class="mt-4  max-w-lg">

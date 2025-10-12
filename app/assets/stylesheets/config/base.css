@@ -1,0 +1,12 @@
+mark {
+    background-color: #FFE58A;
+    font-weight: bold;
+}
+
+a, img {
+    -webkit-user-drag: none;
+}
+
+.turbo-progress-bar {
+    background: #93E9BE;
+}

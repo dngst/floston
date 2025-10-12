@@ -1,12 +1,12 @@
-<div class="flex justify-between mb-6 sticky top-[4.6rem] bg-white lg:pt-flostonp lg:pb-flostonp pb-flostonpmd">
-  <h1 class="text-4xl font-bold">
+<div class="header">
+  <h1 class="header-title">
     <div class="flex justify-normal text-gray-800">
-      <%= image_tag icon, class: "w-10 mr-2 hidden md:flex" %>
+      <%= image_tag icon, class: "header-icon" %>
       <%= title %>
     </div>
   </h1>
   <% if authorization %>
-    <%= link_to route, class: "bg-floston text-flostontext px-4 py-2 rounded-lg hidden md:flex font-medium" do %>
+    <%= link_to route, class: "btn-primary hidden md:flex" do %>
       <%= image_tag "https://cdn.boxicons.com/svg/basic/bx-plus-circle.svg", alt: "New", class: "w-6 mr-2" %>
       <%= button_text %>
     <% end %>

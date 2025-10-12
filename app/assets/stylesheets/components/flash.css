@@ -1,0 +1,12 @@
+.flash {
+    position: fixed;
+    bottom: 7%;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    width: max-content;
+    animation: appear-then-fade 4s both;
+}

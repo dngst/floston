@@ -1,0 +1,16 @@
+input[type="search"]::-webkit-search-cancel-button {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+textarea,
+input[type=text],
+input[type=date],
+input[type=email],
+input[type=number],
+input[type=password] {
+    @apply w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston !important;
+}
+
+.search-form {
+    @apply lg:w-80 w-full border border-gray-300 rounded-full px-3 py-2 outline-none focus:border-gray-200 focus:ring-gray-200 !important;
+}

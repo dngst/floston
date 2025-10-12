@@ -4,7 +4,7 @@
   <div class="mx-auto my-2">
     <%= render @property %>
 
-    <%= link_to "Edit property", edit_property_path(@property), class: "mt-2 rounded-lg py-2 px-4 bg-gray-100 font-medium" %>
+    <%= link_to "Edit property", edit_property_path(@property), class: "mt-2 btn-secondary py-3" %>
     <% if @property.can_be_deleted? %>
       <div class="inline-block ml-2">
         <%= button_to "Delete property", property_path(@property), method: :delete, data: { turbo_confirm: "Delete property?" }, class: "mt-2 rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100" %>

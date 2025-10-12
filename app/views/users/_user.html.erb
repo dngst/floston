@@ -20,11 +20,11 @@
 
         <!-- Mobile buttons -->
         <div class="lg:hidden flex flex-col p-4">
-          <%= link_to "View profile", user_path(user), data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-blue-500 border border-blue-500 hover:bg-blue-100 text-center font-medium mb-3" %>
+          <%= link_to "View profile", user_path(user), data: { turbo_frame: "_top" }, class: "btn-outline-primary mb-3" %>
 
           <div class="grid grid-flow-col justify-stretch">
-            <%= link_to "Edit", edit_user_path(user), data: { turbo_frame: "_top" }, class: "rounded-lg py-2 px-4 text-gray-800 border border-gray-800 hover:bg-gray-100 text-center font-medium mr-2" %>
-            <%= button_to "Delete", user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "rounded-lg py-2 px-4 text-red-400 border border-red-400 hover:bg-red-100 text-center font-medium w-full" %>
+            <%= link_to "Edit", edit_user_path(user), data: { turbo_frame: "_top" }, class: "btn-outline-secondary mr-2" %>
+            <%= button_to "Delete", user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "btn-outline-danger w-full" %>
           </div>
         </div>
       </div>
@@ -32,13 +32,13 @@
       <!-- Desktop actions (edit and delete icons) -->
       <div class="hidden lg:flex justify-between mx-2">
         <div class="mx-2">
-          <%= link_to edit_user_path(user), data: { turbo_frame: "_top" }, aria: { label: "Edit a tenant's details" }, class: "rounded-lg py-2 px-4 bg-gray-100 font-medium" do %>
+          <%= link_to edit_user_path(user), data: { turbo_frame: "_top" }, aria: { label: "Edit a tenant's details" }, class: "btn-secondary" do %>
             Edit
           <% end %>
         </div>
 
         <div class="mx-1">
-          <%= link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: "Delete tenant?" }, aria: { label: "Delete a tenant" }, class: "rounded-lg py-2 px-4 font-medium text-red-500 bg-red-100"  do %>
+          <%= link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: "Delete tenant?" }, aria: { label: "Delete a tenant" }, class: "btn-danger"  do %>
             Delete
           <% end %>
         </div>

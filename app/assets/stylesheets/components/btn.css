@@ -1,0 +1,27 @@
+.btn-base {
+    @apply font-medium rounded-lg py-2 px-4;
+}
+
+.btn-primary {
+    @apply btn-base bg-floston text-flostontext;
+}
+
+.btn-secondary {
+    @apply btn-base bg-gray-100 ;
+}
+
+.btn-danger {
+    @apply btn-base bg-red-100 text-red-500;
+}
+
+.btn-outline-primary {
+    @apply btn-base border border-blue-500 text-center text-blue-500;
+}
+
+.btn-outline-secondary {
+    @apply btn-base border border-gray-800 text-center text-gray-800;
+}
+
+.btn-outline-danger {
+    @apply btn-base border border-red-500 text-center text-red-500;
+}

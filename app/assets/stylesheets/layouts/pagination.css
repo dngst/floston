@@ -1,0 +1,7 @@
+.pagy-nav {
+    padding-top: 0.5%;
+    .page a {
+        text-decoration: underline;
+        padding: 0.7%;
+    }
+}

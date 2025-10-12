@@ -1,0 +1,32 @@
+.navbar {
+    nav {
+        @apply bg-white fixed top-0 w-full;
+    }
+}
+
+.nav-logo {
+    @apply text-black text-2xl font-semibold;
+}
+
+.nav-container {
+    @apply container mx-auto flex items-center justify-between p-4;
+}
+
+.profile-icon {
+    @apply relative ml-3 hidden lg:flex;
+}
+
+.home-link:hover,
+.sign-out:hover,
+.sign-in:hover {
+    text-decoration: none !important;
+}
+
+div.navbar > nav a:hover,
+div.navbar .active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #93E9BE;
+    text-underline-position: under;
+    text-underline-offset: 0.4em;
+}

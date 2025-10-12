@@ -3,7 +3,7 @@
     <%= form.label :name do %>
       Name <span class="text-red-500">*</span>
     <% end %>
-    <%= form.text_field :name, placeholder: "Fhloston Paradise", autofocus: true, class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
+    <%= form.text_field :name, placeholder: "Fhloston Paradise", autofocus: true, class: "text_fied" %>
     <%= render "shared/form_error", model: property, field: :name %>
   </div>
 
@@ -11,13 +11,13 @@
     <%= form.label :amount_due do %>
       Amount due <span class="text-red-500">*</span>
     <% end %>
-    <%= form.number_field :amount_due, step: 0.01, placeholder: "169.88", class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
+    <%= form.number_field :amount_due, step: 0.01, placeholder: "169.88" %>
     <%= render "shared/form_error", model: property, field: :amount_due %>
   </div>
 
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div>
-    <%= form.submit "Add property", class: "font-medium rounded-lg py-2 px-4 bg-floston text-flostontext font-medium hover:cursor-pointer" %>
+    <%= form.submit "Add property", class: "btn-primary" %>
   </div>
 <% end %>

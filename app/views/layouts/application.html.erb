@@ -5,9 +5,9 @@
   </head>
 
   <body data-controller="back-to-top">
-    <%= render "shared/navbar" %>
+    <%= render "layouts/navbar" %>
 
-    <%= render "shared/confirm_modal" %>
+    <%= render "layouts/confirm_modal" %>
 
     <main class="flex flex-col mx-auto container <%= 'mt-24' if !@home_page %> px-5 h-screen">
       <div class="flash" id="flash">

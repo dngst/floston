@@ -7,12 +7,12 @@
 
     <div class="mt-4">
       <%= f.label :email, class: "block font-semibold text-gray-800" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
      <%= render "devise/shared/form_error", field: :email %>
     </div>
 
     <div class="mt-4">
-      <%= f.submit "Send me reset password instructions", class: "bg-floston font-medium text-flostontext px-4 py-2 rounded-lg hover:cursor-pointer" %>
+      <%= f.submit "Send me reset password instructions", class: "btn-primary" %>
     </div>
   <% end %>
 

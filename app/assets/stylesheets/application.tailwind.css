@@ -1,3 +1,14 @@
+@import "config/animations.css";
+@import "config/base.css";
+@import "layouts/scroll.css";
+@import "layouts/pagination.css";
+@import "layouts/header.css";
+@import "components/btn.css";
+@import "components/dialog.css";
+@import "components/nav.css";
+@import "components/flash.css";
+@import "components/form.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
