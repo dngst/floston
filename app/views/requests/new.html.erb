@@ -1,7 +1,7 @@
 <% content_for :title, "New request" %>
-
-<div class="w-full max-w-md mt-2">
-  <h1 class="text-4xl font-bold text-gray-800 mb-4">New request</h1>
-
-  <%= render "form", request: @request %>
+<div class="w-full lg:max-w-1/2">
+  <div class="lg:w-3/4 mt-2">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">New request</h1>
+    <%= render "form", request: @request %>
+  </div>
 </div>
