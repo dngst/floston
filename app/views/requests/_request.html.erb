@@ -19,7 +19,7 @@
       <% if request.user == current_user %>
         <%= link_to "Edit", edit_user_request_path(@user, request), class: "underline text-sm" %>
       <% else %>
-        <%= link_to user_path(request.user), data: { turbo_frame: "_top" }  do %>
+        <%= link_to user_path(request.user), data: { turbo_frame: "_top" }, class: "underline"  do %>
           <%= content_tag :p, request.user.name, class: "text-sm" %>
         <% end %>
       <% end %>
