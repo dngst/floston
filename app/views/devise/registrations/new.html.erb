@@ -11,7 +11,7 @@
     <%= nested_form_for([resource_name, resource.with_tenant], url: registration_path(resource_name), html: { class: "mt-4" }) do |f| %>
       <div class="mb-4">
         <%= f.label :fname, class: "block font-semibold text-gray-800" do %>
-          First name <span class="text-red-500">*</span>
+          First name <span>*</span>
         <% end %>
         <%= f.text_field :fname, placeholder: "Jane", autofocus: true %>
         <% if resource.errors.include?(:fname) %>
@@ -23,7 +23,7 @@
 
       <div class="mb-4">
         <%= f.label :lname, class: "block font-semibold text-gray-800" do %>
-          Last name <span class="text-red-500">*</span>
+          Last name <span>*</span>
         <% end %>
         <%= f.text_field :lname, placeholder: "Doe" %>
         <% if resource.errors.include?(:lname) %>
@@ -35,7 +35,7 @@
 
       <div class="mb-4">
         <%= f.label :phone_number, class: "block font-semibold text-gray-800" do %>
-          Phone number <span class="text-red-500">*</span>
+          Phone number <span>*</span>
         <% end %>
         <%= f.text_field :phone_number, placeholder: "0700000000" %>
         <%= render "devise/shared/form_error", field: :phone_number %>
@@ -43,7 +43,7 @@
 
       <div class="mb-4">
         <%= f.label :email, class: "block font-semibold text-gray-800" do %>
-          Email <span class="text-red-500">*</span>
+          Email <span>*</span>
         <% end %>
         <%= f.email_field :email, placeholder: "jane.doe@example.com", autocomplete: "email" %>
         <%= render "devise/shared/form_error", field: :email %>

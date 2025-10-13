@@ -1,7 +1,7 @@
 <%= form_with(model: property, class: "contents") do |form| %>
   <div class="my-4">
     <%= form.label :name do %>
-      Name <span class="text-red-500">*</span>
+      Name <span>*</span>
     <% end %>
     <%= form.text_field :name, placeholder: "Fhloston Paradise", autofocus: true, class: "text_fied" %>
     <%= render "shared/form_error", model: property, field: :name %>
@@ -9,7 +9,7 @@
 
   <div class="mb-4">
     <%= form.label :amount_due do %>
-      Amount due <span class="text-red-500">*</span>
+      Amount due <span>*</span>
     <% end %>
     <%= form.number_field :amount_due, step: 0.01, placeholder: "169.88" %>
     <%= render "shared/form_error", model: property, field: :amount_due %>

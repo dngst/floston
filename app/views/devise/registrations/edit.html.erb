@@ -8,7 +8,7 @@
 
       <div class="mb-4">
         <%= f.label :email, class: "text-gray-800" do %>
-          Email <span class="text-red-500">*</span>
+          Email <span>*</span>
         <% end %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         <%= render "devise/shared/form_error", field: :email %>
@@ -40,7 +40,7 @@
 
       <div class="mb-4">
         <%= f.label :current_password, class: "text-gray-800" do %>
-          Current password <span class="text-red-500">*</span>
+          Current password <span>*</span>
         <% end %>
         <i class="text-gray-600">(we need your current password to confirm your changes)</i>
         <%= f.password_field :current_password, autocomplete: "current-password" %>

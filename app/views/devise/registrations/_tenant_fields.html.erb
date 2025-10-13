@@ -1,7 +1,7 @@
 <% if Property.my_properties(current_user).present? %>
   <div class="mb-4">
     <%= f.label :property, class: "block font-semibold text-gray-800" do %>
-      Property <span class="text-red-500">*</span>
+      Property <span>*</span>
     <% end %>
     <%= f.collection_select(:property_id, Property.my_properties(current_user), :id, :name, { prompt: "Select a property" }, { class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" }) %>
     <% if f.object.errors.include?(:property) %>
@@ -18,7 +18,7 @@
 
 <div class="mb-4">
   <%= f.label :unit_number, class: "block font-semibold text-gray-800" do %>
-    Unit number <span class="text-red-500">*</span>
+    Unit number <span>*</span>
   <% end %>
   <%= f.text_field :unit_number, placeholder:"D37" ,class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" %>
   <% if f.object.errors.include?(:unit_number) %>
@@ -30,7 +30,7 @@
 
 <div class="mb-4">
   <%= f.label :unit_type, class: "block font-semibold text-gray-800" do %>
-    Unit type <span class="text-red-500">*</span>
+    Unit type <span>*</span>
   <% end %>
   <%= f.select :unit_type, Tenant.unit_types, { prompt: "Select a unit type" }, { class: "w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston" } %>
   <% if f.object.errors.include?(:unit_type) %>
