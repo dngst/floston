@@ -5,10 +5,10 @@
       <%= request.title %>
     </h1 >
 
-    <p class="text-gray-600 text-sm">
-      <%= date_format(request.created_at) %>
+    <p class="text-gray-600 text-xs">
+      Posted on <%= date_format(request.created_at) %>
       <% if request_has_been_updated(request) %>
-       &middot; Edited <%= date_format(request.updated_at) %>
+       &middot; Edited on <%= date_format(request.updated_at) %>
       <% end %>
     </p>
 
