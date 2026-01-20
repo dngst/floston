@@ -16,7 +16,7 @@
     <%= request.description %>
     </p>
     <div class="flex pt-5">
-      <% if request.user == current_user %>
+      <% if request.user == current_user && !request.closed? %>
         <%= link_to "Edit", edit_user_request_path(@user, request), class: "underline text-sm" %>
       <% else %>
         <%= link_to user_path(request.user), data: { turbo_frame: "_top" }, class: "underline"  do %>

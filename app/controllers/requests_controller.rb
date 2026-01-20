@@ -9,6 +9,7 @@ class RequestsController < ApplicationController
   before_action :set_user
   before_action :set_request, only: %i[show edit update destroy close_request reopen_request]
   before_action -> { authorize_request_access(@request) }, only: [ :show ]
+  before_action :prevent_editing_if_closed, only: [ :edit, :update ]
 
   def index
     @requests = Request.by_user_scope(current_user)
@@ -76,5 +77,12 @@ class RequestsController < ApplicationController
 
   def request_params
     params.expect(request: %i[title description user_id property_id])
+  end
+
+  def prevent_editing_if_closed
+    if @request.closed?
+      flash[:alert] = t("requests.closed")
+      redirect_to user_request_path(@user, @request)
+    end
   end
 end
