@@ -24,7 +24,7 @@
 
           <div class="grid grid-flow-col justify-stretch">
             <%= link_to "Edit", edit_user_path(user), data: { turbo_frame: "_top" }, class: "btn-outline-secondary mr-2" %>
-            <%= button_to "Delete", user, method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "btn-outline-danger w-full" %>
+            <%= button_to "Delete", user_path(user, page: params[:page]), method: :delete, data: { turbo_confirm: "Delete tenant?" }, class: "btn-outline-danger w-full" %>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="mx-1">
-          <%= link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: "Delete tenant?" }, aria: { label: "Delete a tenant" }, class: "btn-danger"  do %>
+          <%= link_to user_path(user, page: params[:page]), data: { turbo_method: :delete, turbo_confirm: "Delete tenant?" }, aria: { label: "Delete a tenant" }, class: "btn-danger"  do %>
             Delete
           <% end %>
         </div>

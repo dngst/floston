@@ -29,8 +29,8 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.turbo_stream { redirect_to users_path }
-      format.html { redirect_to users_path }
+      format.turbo_stream { redirect_to users_path(page: params[:page]) }
+      format.html { redirect_to users_url(page: params[:page]) }
     end
   end
 

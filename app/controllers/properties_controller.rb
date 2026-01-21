@@ -35,8 +35,8 @@ class PropertiesController < ApplicationController
   def destroy
     @property.destroy
     respond_to do |format|
-      format.turbo_stream { redirect_to properties_url }
-      format.html { redirect_to properties_url }
+      format.turbo_stream { redirect_to properties_url(page: params[:page]) }
+      format.html { redirect_to properties_url(page: params[:page]) }
     end
   end
 

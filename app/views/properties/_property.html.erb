@@ -17,7 +17,7 @@
         data: { turbo_frame: "_top" } %>
       <% if property.can_be_deleted? %>
         <div class="inline-block ml-2">
-          <%= button_to "Delete property", property_path(property),
+          <%= button_to "Delete property", property_path(property, page: params[:page]),
             method: :delete, data: { turbo_confirm: "Delete property?" },
             class: "btn-danger mt-2" %>
         </div>
