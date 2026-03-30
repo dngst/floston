@@ -77,7 +77,6 @@ gem "prosopite"
 
 gem "pg_query"
 
-gem "devise", "~> 4.9"
 
 gem "nested_form", "~> 0.3.2"
 
@@ -94,3 +93,5 @@ gem "csv", "~> 3.3"
 gem "sqlite3", "~> 2.7"
 
 gem "httparty", "~> 0.24.2"
+
+gem "devise", "~> 5.0"
