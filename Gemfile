@@ -89,8 +89,6 @@ gem "faker", "~> 3.2"
 
 gem "pagy", "~> 6.1"
 
-
-
 gem "csv", "~> 3.3"
 
 gem "sqlite3", "~> 2.7"
