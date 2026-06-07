@@ -10,7 +10,7 @@
         <%= f.label :email, class: "text-gray-800" do %>
           Email <span>*</span>
         <% end %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autocomplete: "email" %>
         <%= render "devise/shared/form_error", field: :email %>
       </div>
 
