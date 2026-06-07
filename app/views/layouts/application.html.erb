@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   <%= render "layouts/head" %>
+    <%= render "layouts/head" %>
   </head>
 
   <body data-controller="back-to-top">
@@ -13,11 +13,8 @@
       <div class="flash" id="flash">
         <%= render "shared/flash" %>
       </div>
-
       <%= yield %>
-
     </main>
-    <%= render "shared/scroll_to_top" %>
   </body>
 </html>
 
