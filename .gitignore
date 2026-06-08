@@ -37,3 +37,4 @@
 dump.rdb
 .env
 node_modules/
+mise.toml
