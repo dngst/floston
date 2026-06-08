@@ -87,7 +87,7 @@ gem "ransack", "~> 4.0"
 
 gem "faker", "~> 3.2"
 
-gem "pagy", "~> 6.1"
+gem "pagy", "~> 43.5"
 
 gem "csv", "~> 3.3"
 

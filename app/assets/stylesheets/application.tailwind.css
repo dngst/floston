@@ -1,7 +1,7 @@
 @import "config/animations.css";
 @import "config/base.css";
+@import "config/pagy.css";
 @import "layouts/scroll.css";
-@import "layouts/pagination.css";
 @import "layouts/header.css";
 @import "components/btn.css";
 @import "components/dialog.css";

@@ -6,7 +6,7 @@
         <%= render partial: "request", collection: @requests, as: :request, locals: { query: @query } %>
       <% end %>
       <div class="mt-4 text-center">
-        <%== pagy_nav(@pagy_requests) if @pagy_requests.pages > 1 %>
+        <%== @pagy_requests.input_nav_js if @pagy_requests.pages > 1 %>
       </div>
     </div>
   <% end %>

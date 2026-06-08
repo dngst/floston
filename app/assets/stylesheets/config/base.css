@@ -10,3 +10,8 @@ a, img {
 .turbo-progress-bar {
     background: #93E9BE;
 }
+
+.input-nav-js {
+    display: flex;
+    justify-content: center;
+}
