@@ -71,6 +71,7 @@ group :development do
   gem "hotwire-spark", "~> 0.1.12"
   gem "spring"
   gem "rubocop-rails-omakase", require: false
+  gem "letter_opener"
 end
 
 gem "prosopite"
