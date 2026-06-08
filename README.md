@@ -10,14 +10,6 @@ $ bin/setup
 
 $ bin/dev
 
-## Credentials
-
-Add smtp/* credentials via $ bin/rails credentials:edit
-
-## Caching
-
-Run $ bin/rails dev:cache to toggle caching in development
-
 ## Tests
 
 $ bin/rspec
