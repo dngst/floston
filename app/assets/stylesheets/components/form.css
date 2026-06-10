@@ -8,7 +8,10 @@ input[type="search"]::-webkit-search-cancel-button {
     filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 }
 
-textarea,
+textarea {
+    @apply w-full px-3 py-2 border rounded-lg border-gray-300 mt-2 focus:outline-none focus:border-floston focus:ring-floston !important;
+}
+
 input[type=text],
 input[type=date],
 input[type=email],
