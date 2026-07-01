@@ -96,3 +96,5 @@ gem "sqlite3", "~> 2.7"
 gem "httparty", "~> 0.24.2"
 
 gem "devise", "~> 5.0"
+
+gem "oj", "~> 3.17"
