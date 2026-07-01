@@ -14,3 +14,5 @@ Turbo.config.forms.confirm = (message, element) => {
         }, { once: true })
     })
 }
+
+document.addEventListener("turbo:load", Pagy.init)

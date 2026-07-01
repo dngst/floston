@@ -3,6 +3,7 @@
 # Pagy initializer file (43.5.6)
 # See https://ddnexus.github.io/pagy/toolbox/configuration/initializer/
 
+Rails.application.config.assets.paths << Pagy::ROOT.join("javascripts")
 
 ############ Global Options ################################################################
 # See https://ddnexus.github.io/pagy/toolbox/configuration/options/ for details.
