@@ -36,9 +36,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache", "~> 1.0"
-
 gem "solid_cable", "~> 3.0"
-
 gem "solid_queue", "~> 1.2"
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -61,6 +59,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "rspec-rails", "~> 8.0.0"
   gem "dotenv"
+  gem "faker", "~> 3.2"
 end
 
 group :development do
@@ -75,26 +74,13 @@ group :development do
 end
 
 gem "prosopite"
-
 gem "pg_query"
-
-
 gem "nested_form", "~> 0.3.2"
-
 gem "friendly_id", "~> 5.5"
-
 gem "ransack", "~> 4.0"
-
-gem "faker", "~> 3.2"
-
 gem "pagy", "~> 43.5"
-
 gem "csv", "~> 3.3"
-
 gem "sqlite3", "~> 2.7"
-
 gem "httparty", "~> 0.24.2"
-
 gem "devise", "~> 5.0"
-
 gem "oj", "~> 3.17"
