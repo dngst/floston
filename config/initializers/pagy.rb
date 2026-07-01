@@ -4,6 +4,7 @@
 # See https://ddnexus.github.io/pagy/toolbox/configuration/initializer/
 
 Rails.application.config.assets.paths << Pagy::ROOT.join("javascripts")
+Pagy::I18n.pathnames << Rails.root.join("config/locales/pagy")
 
 ############ Global Options ################################################################
 # See https://ddnexus.github.io/pagy/toolbox/configuration/options/ for details.
