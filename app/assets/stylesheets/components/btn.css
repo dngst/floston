@@ -1,5 +1,5 @@
 .btn-base {
-    @apply font-medium rounded-lg py-2 px-4;
+    @apply font-medium rounded-lg py-2 px-4 cursor-pointer;
 }
 
 .btn-primary {
