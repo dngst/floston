@@ -1,5 +1,5 @@
 .btn-base {
-    @apply font-medium rounded-lg py-2 px-4 cursor-pointer;
+    @apply font-medium rounded-lg py-2 px-4 cursor-pointer transition-colors duration-300;
 }
 
 .btn-primary {
@@ -7,11 +7,11 @@
 }
 
 .btn-secondary {
-    @apply btn-base bg-gray-100 ;
+    @apply btn-base bg-gray-100 hover:bg-gray-200;
 }
 
 .btn-danger {
-    @apply btn-base bg-red-100 text-red-500;
+    @apply btn-base bg-red-100 text-red-500 hover:bg-red-200;
 }
 
 .btn-outline-primary {
