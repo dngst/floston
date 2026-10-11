@@ -10,13 +10,13 @@
       <% if @minimum_password_length %>
         <em class="text-gray-600">(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+      <%= f.password_field :password, autofocus: true, required: true, autocomplete: "new-password" %>
       <%= render "devise/shared/form_error", field: :password %>
     </div>
 
     <div class="mt-4">
       <%= f.label :password_confirmation, "Confirm new password", class: "block font-semibold text-gray-800" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
       <%= render "devise/shared/form_error", field: :password_confirmation %>
     </div>
 

@@ -7,7 +7,7 @@
 
     <div class="mt-4">
       <%= f.label :email, class: "block font-semibold text-gray-800" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email" %>
      <%= render "devise/shared/form_error", field: :email %>
     </div>
 

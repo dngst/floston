@@ -45,3 +45,11 @@ input[type=password] {
 .request-title {
     @apply text-4xl font-bold text-gray-800 mb-4 w-full !important;
 }
+
+div:has(:required),
+.contents:has(:required) {
+    label::after {
+        content: " *";
+        @apply text-red-500;
+    }
+}

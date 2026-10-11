@@ -1,17 +1,13 @@
 <%= form_with(model: property, class: "contents") do |form| %>
   <div class="my-4">
-    <%= form.label :name do %>
-      Name <span>*</span>
-    <% end %>
-    <%= form.text_field :name, placeholder: "Fhloston Paradise", autofocus: true, class: "text_fied" %>
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Fhloston Paradise", autofocus: true, required: true, class: "text_fied" %>
     <%= render "shared/form_error", model: property, field: :name %>
   </div>
 
   <div class="mb-4">
-    <%= form.label :amount_due do %>
-      Amount due <span>*</span>
-    <% end %>
-    <%= form.number_field :amount_due, step: 0.01, placeholder: "169.88" %>
+    <%= form.label :amount_due %>
+    <%= form.number_field :amount_due, step: 0.01, placeholder: "169.88", required: true %>
     <%= render "shared/form_error", model: property, field: :amount_due %>
   </div>
 
